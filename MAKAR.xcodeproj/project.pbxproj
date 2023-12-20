@@ -9,21 +9,42 @@
 /* Begin PBXBuildFile section */
 		95B10F7C2B331350005319F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7B2B331350005319F6 /* AppDelegate.swift */; };
 		95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7D2B331350005319F6 /* SceneDelegate.swift */; };
-		95B10F802B331350005319F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7F2B331350005319F6 /* ViewController.swift */; };
-		95B10F832B331350005319F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95B10F812B331350005319F6 /* Main.storyboard */; };
 		95B10F852B331351005319F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95B10F842B331351005319F6 /* Assets.xcassets */; };
 		95B10F882B331351005319F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95B10F862B331351005319F6 /* LaunchScreen.storyboard */; };
+		95B10F942B331501005319F6 /* ExampleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F932B331501005319F6 /* ExampleAPI.swift */; };
+		95B10F962B331519005319F6 /* ExampleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F952B331519005319F6 /* ExampleRequest.swift */; };
+		95B10F982B331534005319F6 /* RequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F972B331534005319F6 /* RequestProvider.swift */; };
+		95B10F9A2B331545005319F6 /* TargetType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F992B331545005319F6 /* TargetType+Extension.swift */; };
+		95B10FA12B3315A3005319F6 /* ExampleCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10FA02B3315A3005319F6 /* ExampleCustomView.swift */; };
+		95B10FA32B3315BB005319F6 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10FA22B3315BB005319F6 /* ExampleViewController.swift */; };
+		95B10FA52B3315C7005319F6 /* ExampleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10FA42B3315C7005319F6 /* ExampleRouter.swift */; };
+		95B10FA72B3315DD005319F6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10FA62B3315DD005319F6 /* BaseViewController.swift */; };
+		95B10FA92B3315EB005319F6 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10FA82B3315EB005319F6 /* BaseView.swift */; };
+		95B10FAB2B3315F5005319F6 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10FAA2B3315F5005319F6 /* BaseButton.swift */; };
+		95B10FAD2B33165C005319F6 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10FAC2B33165C005319F6 /* AppDependency.swift */; };
+		95B10FB02B33169D005319F6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 95B10FAF2B33169D005319F6 /* SnapKit */; };
+		95B10FB32B3316E5005319F6 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 95B10FB22B3316E5005319F6 /* Then */; };
+		95B10FB62B331716005319F6 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 95B10FB52B331716005319F6 /* Moya */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		95B10F782B331350005319F6 /* MAKAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAKAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B10F7B2B331350005319F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B10F7D2B331350005319F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		95B10F7F2B331350005319F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		95B10F822B331350005319F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		95B10F842B331351005319F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95B10F872B331351005319F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95B10F892B331351005319F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95B10F932B331501005319F6 /* ExampleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleAPI.swift; sourceTree = "<group>"; };
+		95B10F952B331519005319F6 /* ExampleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleRequest.swift; sourceTree = "<group>"; };
+		95B10F972B331534005319F6 /* RequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProvider.swift; sourceTree = "<group>"; };
+		95B10F992B331545005319F6 /* TargetType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TargetType+Extension.swift"; sourceTree = "<group>"; };
+		95B10FA02B3315A3005319F6 /* ExampleCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCustomView.swift; sourceTree = "<group>"; };
+		95B10FA22B3315BB005319F6 /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
+		95B10FA42B3315C7005319F6 /* ExampleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleRouter.swift; sourceTree = "<group>"; };
+		95B10FA62B3315DD005319F6 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		95B10FA82B3315EB005319F6 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		95B10FAA2B3315F5005319F6 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
+		95B10FAC2B33165C005319F6 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +52,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95B10FB02B33169D005319F6 /* SnapKit in Frameworks */,
+				95B10FB32B3316E5005319F6 /* Then in Frameworks */,
+				95B10FB62B331716005319F6 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +80,96 @@
 		95B10F7A2B331350005319F6 /* MAKAR */ = {
 			isa = PBXGroup;
 			children = (
-				95B10F7B2B331350005319F6 /* AppDelegate.swift */,
-				95B10F7D2B331350005319F6 /* SceneDelegate.swift */,
-				95B10F7F2B331350005319F6 /* ViewController.swift */,
-				95B10F812B331350005319F6 /* Main.storyboard */,
-				95B10F842B331351005319F6 /* Assets.xcassets */,
+				95B10F8F2B3314B8005319F6 /* Resource */,
+				95B10F902B3314CF005319F6 /* Support */,
+				95B10F912B3314E7005319F6 /* Networking */,
+				95B10F9C2B331572005319F6 /* Presentation */,
+				95B10F9B2B331550005319F6 /* App */,
 				95B10F862B331351005319F6 /* LaunchScreen.storyboard */,
-				95B10F892B331351005319F6 /* Info.plist */,
 			);
 			path = MAKAR;
+			sourceTree = "<group>";
+		};
+		95B10F8F2B3314B8005319F6 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				95B10F842B331351005319F6 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		95B10F902B3314CF005319F6 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				95B10F892B331351005319F6 /* Info.plist */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		95B10F912B3314E7005319F6 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				95B10F922B3314F2005319F6 /* Example */,
+				95B10F972B331534005319F6 /* RequestProvider.swift */,
+				95B10F992B331545005319F6 /* TargetType+Extension.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		95B10F922B3314F2005319F6 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				95B10F932B331501005319F6 /* ExampleAPI.swift */,
+				95B10F952B331519005319F6 /* ExampleRequest.swift */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		95B10F9B2B331550005319F6 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				95B10F7B2B331350005319F6 /* AppDelegate.swift */,
+				95B10F7D2B331350005319F6 /* SceneDelegate.swift */,
+				95B10FAC2B33165C005319F6 /* AppDependency.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		95B10F9C2B331572005319F6 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				95B10F9D2B331583005319F6 /* Example */,
+				95B10F9E2B331587005319F6 /* Base */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		95B10F9D2B331583005319F6 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				95B10F9F2B331596005319F6 /* Views */,
+				95B10FA22B3315BB005319F6 /* ExampleViewController.swift */,
+				95B10FA42B3315C7005319F6 /* ExampleRouter.swift */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		95B10F9E2B331587005319F6 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				95B10FA62B3315DD005319F6 /* BaseViewController.swift */,
+				95B10FA82B3315EB005319F6 /* BaseView.swift */,
+				95B10FAA2B3315F5005319F6 /* BaseButton.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		95B10F9F2B331596005319F6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				95B10FA02B3315A3005319F6 /* ExampleCustomView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +188,11 @@
 			dependencies = (
 			);
 			name = MAKAR;
+			packageProductDependencies = (
+				95B10FAF2B33169D005319F6 /* SnapKit */,
+				95B10FB22B3316E5005319F6 /* Then */,
+				95B10FB52B331716005319F6 /* Moya */,
+			);
 			productName = MAKAR;
 			productReference = 95B10F782B331350005319F6 /* MAKAR.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +221,11 @@
 				Base,
 			);
 			mainGroup = 95B10F6F2B331350005319F6;
+			packageReferences = (
+				95B10FAE2B33169D005319F6 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				95B10FB12B3316E5005319F6 /* XCRemoteSwiftPackageReference "Then" */,
+				95B10FB42B331716005319F6 /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			productRefGroup = 95B10F792B331350005319F6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +242,6 @@
 			files = (
 				95B10F882B331351005319F6 /* LaunchScreen.storyboard in Resources */,
 				95B10F852B331351005319F6 /* Assets.xcassets in Resources */,
-				95B10F832B331350005319F6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +252,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95B10F802B331350005319F6 /* ViewController.swift in Sources */,
+				95B10FAB2B3315F5005319F6 /* BaseButton.swift in Sources */,
+				95B10F982B331534005319F6 /* RequestProvider.swift in Sources */,
+				95B10FA52B3315C7005319F6 /* ExampleRouter.swift in Sources */,
+				95B10FA72B3315DD005319F6 /* BaseViewController.swift in Sources */,
+				95B10FA92B3315EB005319F6 /* BaseView.swift in Sources */,
+				95B10F9A2B331545005319F6 /* TargetType+Extension.swift in Sources */,
+				95B10F942B331501005319F6 /* ExampleAPI.swift in Sources */,
+				95B10FAD2B33165C005319F6 /* AppDependency.swift in Sources */,
+				95B10FA12B3315A3005319F6 /* ExampleCustomView.swift in Sources */,
 				95B10F7C2B331350005319F6 /* AppDelegate.swift in Sources */,
+				95B10F962B331519005319F6 /* ExampleRequest.swift in Sources */,
 				95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */,
+				95B10FA32B3315BB005319F6 /* ExampleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		95B10F812B331350005319F6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				95B10F822B331350005319F6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		95B10F862B331351005319F6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -291,7 +407,6 @@
 				INFOPLIST_FILE = MAKAR/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -318,7 +433,6 @@
 				INFOPLIST_FILE = MAKAR/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -356,6 +470,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		95B10FAE2B33169D005319F6 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		95B10FB12B3316E5005319F6 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		95B10FB42B331716005319F6 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		95B10FAF2B33169D005319F6 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95B10FAE2B33169D005319F6 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		95B10FB22B3316E5005319F6 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95B10FB12B3316E5005319F6 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		95B10FB52B331716005319F6 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95B10FB42B331716005319F6 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 95B10F702B331350005319F6 /* Project object */;
 }
