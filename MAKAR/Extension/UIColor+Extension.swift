@@ -19,11 +19,11 @@ internal extension UIColor {
     }
     
     // MARK: - point
-    static var akkinBlue: UIColor {
+    static var makarBlue: UIColor {
         return UIColor.load(name: "blue")
     }
 
-    static var akkinRed: UIColor {
+    static var makarRed: UIColor {
         return UIColor.load(name: "red")
     }
 

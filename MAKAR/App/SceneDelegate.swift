@@ -28,4 +28,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = dependency.windowCreator(windowScene)
         window?.makeKeyAndVisible()
     }
+
+    func changeRootViewToLoginViewController() {
+        guard let window = window else { return }
+        window.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
+    }
 }
