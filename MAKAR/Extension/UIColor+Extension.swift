@@ -27,6 +27,10 @@ internal extension UIColor {
         return UIColor.load(name: "red")
     }
 
+    static var kakaoYellow: UIColor {
+        return UIColor.load(name: "kakao_yellow")
+    }
+
     // MARK: - text
     static var black: UIColor {
         return UIColor.load(name: "black")
