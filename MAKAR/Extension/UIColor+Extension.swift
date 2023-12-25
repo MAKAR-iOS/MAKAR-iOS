@@ -60,6 +60,10 @@ internal extension UIColor {
         return UIColor.load(name: "lightgray4")
     }
 
+    static var lightgray5: UIColor {
+        return UIColor.load(name: "lightgray5")
+    }
+
     static var white: UIColor {
         return UIColor.load(name: "white")
     }

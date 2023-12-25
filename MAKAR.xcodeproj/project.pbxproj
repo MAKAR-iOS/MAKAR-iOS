@@ -17,7 +17,6 @@
 		956382C32B3975B7006B50ED /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382C22B3975B7006B50ED /* NotificationViewController.swift */; };
 		956382C52B3975BE006B50ED /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382C42B3975BE006B50ED /* MyPageView.swift */; };
 		956382C72B3975C7006B50ED /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382C62B3975C7006B50ED /* MyPageViewController.swift */; };
-		956382D02B397894006B50ED /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382CF2B397894006B50ED /* TabBarView.swift */; };
 		956382D22B39789D006B50ED /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382D12B39789D006B50ED /* TabBarViewController.swift */; };
 		956382D52B397968006B50ED /* MyRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382D42B397968006B50ED /* MyRouteView.swift */; };
 		956382D72B397971006B50ED /* MyRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382D62B397971006B50ED /* MyRouteViewController.swift */; };
@@ -62,7 +61,6 @@
 		956382C22B3975B7006B50ED /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		956382C42B3975BE006B50ED /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		956382C62B3975C7006B50ED /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
-		956382CF2B397894006B50ED /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		956382D12B39789D006B50ED /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		956382D42B397968006B50ED /* MyRouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRouteView.swift; sourceTree = "<group>"; };
 		956382D62B397971006B50ED /* MyRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRouteViewController.swift; sourceTree = "<group>"; };
@@ -157,7 +155,6 @@
 		956382CE2B39787E006B50ED /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				956382CF2B397894006B50ED /* TabBarView.swift */,
 				956382D12B39789D006B50ED /* TabBarViewController.swift */,
 			);
 			path = TabBar;
@@ -426,7 +423,6 @@
 				956382DC2B397A07006B50ED /* HomeView.swift in Sources */,
 				95B10FAB2B3315F5005319F6 /* BaseButton.swift in Sources */,
 				956382E52B397A4D006B50ED /* SearchStationViewController.swift in Sources */,
-				956382D02B397894006B50ED /* TabBarView.swift in Sources */,
 				95B10F982B331534005319F6 /* RequestProvider.swift in Sources */,
 				956382D22B39789D006B50ED /* TabBarViewController.swift in Sources */,
 				956382C12B3975B0006B50ED /* NotificationView.swift in Sources */,
