@@ -31,13 +31,13 @@ class LoginViewController: BaseViewController {
         loginView.tapAppleLogin = {[weak self] in
             guard let self else { return }
             postAppleLogin()
-            router.presentHomeViewController()
+            router.presentTabBarViewController()
         }
 
         loginView.tapKakaoLogin = {[weak self] in
             guard let self else { return }
             postKakaoLogin()
-            router.presentHomeViewController()
+            router.presentTabBarViewController()
         }
     }
 
