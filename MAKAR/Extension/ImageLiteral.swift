@@ -38,7 +38,7 @@ public enum MakarButton {
     public static var mapButton: UIImage { .load(name: "ic_map") }
     public static var moreBottomButton: UIImage { .load(name: "ic_more_bottom") }
     public static var moreRightButton: UIImage { .load(name: "ic_more_right") }
-    public static var myLocationButton: UIImage { .load(name: "skipButton") }
+    public static var myLocationButton: UIImage { .load(name: "ic_my_location") }
     public static var myPageButton: UIImage { .load(name: "ic_my_page") }
     public static var myPageFilledButton: UIImage { .load(name: "ic_my_page_filled") }
     public static var myRouteButton: UIImage { .load(name: "ic_my_route") }
@@ -48,8 +48,8 @@ public enum MakarButton {
     public static var starButton: UIImage { .load(name: "ic_star") }
     public static var subwayButton: UIImage { .load(name: "ic_subway") }
     public static var swapButton: UIImage { .load(name: "ic_swap") }
-    public static var timetableButton: UIImage { .load(name: "ic_time_table") }
-    public static var timetableFilledButton: UIImage { .load(name: "ic_time_table_filled") }
+    public static var timetableButton: UIImage { .load(name: "ic_timetable") }
+    public static var timetableFilledButton: UIImage { .load(name: "ic_timetable_filled") }
 }
 
 extension UIImage {

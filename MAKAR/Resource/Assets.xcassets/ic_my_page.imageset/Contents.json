@@ -5,12 +5,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "myPage@2x.png",
+      "filename" : "my_page@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "myPage@3x.png",
+      "filename" : "my_page@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
