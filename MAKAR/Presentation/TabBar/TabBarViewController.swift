@@ -9,6 +9,13 @@ import UIKit
 
 class TabBarViewController: UITabBarController {
 
+    // MARK: Constants
+    private enum Metric {
+        static let tabBarHeight = 90
+        static let buttonHeight = 50
+        static let tabBarRadius = 15
+    }
+
     // MARK: UI Components
     let homeViewController = HomeViewController()
     let timetableViewController = TimetableViewController()
@@ -29,8 +36,8 @@ class TabBarViewController: UITabBarController {
         super.viewDidLayoutSubviews()
 
         var tabFrame = tabBar.frame
-        tabFrame.size.height = 90
-        tabFrame.origin.y = view.frame.size.height - 90
+        tabFrame.size.height = CGFloat(Metric.tabBarHeight)
+        tabFrame.origin.y = view.frame.size.height - CGFloat(Metric.tabBarHeight)
         tabBar.frame = tabFrame
     }
 
@@ -85,7 +92,7 @@ class TabBarViewController: UITabBarController {
         tabBar.backgroundColor = .white
         tabBar.tintColor = .makarBlue
 
-        tabBar.layer.cornerRadius = 15
+        tabBar.layer.cornerRadius = CGFloat(Metric.tabBarRadius)
         tabBar.layer.borderColor = UIColor.lightgray5.cgColor
         tabBar.layer.borderWidth = 1
 
@@ -93,6 +100,6 @@ class TabBarViewController: UITabBarController {
         tabBar.layer.shadowColor = UIColor.darkgray.withAlphaComponent(0.2).cgColor
         tabBar.layer.shadowOffset = .zero
         tabBar.layer.shadowOpacity = 0.5
-        tabBar.layer.shadowRadius = 15
+        tabBar.layer.shadowRadius = CGFloat(Metric.tabBarRadius)
     }
 }
