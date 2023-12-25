@@ -13,11 +13,11 @@ final class BaseRouter {
     weak var viewController: UIViewController?
     
     // MARK: Routing
-    func presentHomeViewController() {
-        let homeViewController = HomeViewController()
-        viewController?.present(homeViewController, animated: true)
+    func presentTabBarViewController() {
+        let tabBarViewController = TabBarViewController()
+        viewController?.navigationController?.pushViewController(tabBarViewController, animated: true)
 
         let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-        sceneDelegate?.changeRootViewToHomeViewController()
+        sceneDelegate?.changeRootViewToTabBarViewController()
     }
 }

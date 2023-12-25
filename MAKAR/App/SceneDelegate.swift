@@ -35,9 +35,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
     }
 
-    func changeRootViewToHomeViewController() {
+    func changeRootViewToTabBarViewController() {
         guard let window = window else { return }
-        window.rootViewController = UINavigationController(rootViewController: HomeViewController())
-        UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
+        window.rootViewController = UINavigationController(rootViewController: TabBarViewController())
+        UIView.transition(with: window, duration: 0.1, options: [.transitionCrossDissolve], animations: nil)
     }
 }
