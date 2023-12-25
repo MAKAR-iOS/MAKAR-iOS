@@ -11,8 +11,8 @@
 		956382B02B397570006B50ED /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382AF2B397570006B50ED /* SplashViewController.swift */; };
 		956382B42B397581006B50ED /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382B32B397581006B50ED /* LoginView.swift */; };
 		956382B62B39758A006B50ED /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382B52B39758A006B50ED /* LoginViewController.swift */; };
-		956382BD2B3975A1006B50ED /* TimeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382BC2B3975A1006B50ED /* TimeTableView.swift */; };
-		956382BF2B3975A8006B50ED /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382BE2B3975A8006B50ED /* TimeTableViewController.swift */; };
+		956382BD2B3975A1006B50ED /* TimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382BC2B3975A1006B50ED /* TimetableView.swift */; };
+		956382BF2B3975A8006B50ED /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382BE2B3975A8006B50ED /* TimetableViewController.swift */; };
 		956382C12B3975B0006B50ED /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382C02B3975B0006B50ED /* NotificationView.swift */; };
 		956382C32B3975B7006B50ED /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382C22B3975B7006B50ED /* NotificationViewController.swift */; };
 		956382C52B3975BE006B50ED /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382C42B3975BE006B50ED /* MyPageView.swift */; };
@@ -27,6 +27,7 @@
 		956382E52B397A4D006B50ED /* SearchStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382E42B397A4D006B50ED /* SearchStationViewController.swift */; };
 		956382E72B397A5A006B50ED /* SearchRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382E62B397A5A006B50ED /* SearchRouteView.swift */; };
 		956382E92B397A66006B50ED /* SearchRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382E82B397A66006B50ED /* SearchRouteViewController.swift */; };
+		956382F22B39855E006B50ED /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382F12B39855E006B50ED /* ImageLiteral.swift */; };
 		95B10F7C2B331350005319F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7B2B331350005319F6 /* AppDelegate.swift */; };
 		95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7D2B331350005319F6 /* SceneDelegate.swift */; };
 		95B10F852B331351005319F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95B10F842B331351005319F6 /* Assets.xcassets */; };
@@ -52,8 +53,8 @@
 		956382AF2B397570006B50ED /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		956382B32B397581006B50ED /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		956382B52B39758A006B50ED /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		956382BC2B3975A1006B50ED /* TimeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableView.swift; sourceTree = "<group>"; };
-		956382BE2B3975A8006B50ED /* TimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
+		956382BC2B3975A1006B50ED /* TimetableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableView.swift; sourceTree = "<group>"; };
+		956382BE2B3975A8006B50ED /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		956382C02B3975B0006B50ED /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		956382C22B3975B7006B50ED /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		956382C42B3975BE006B50ED /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 		956382E42B397A4D006B50ED /* SearchStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStationViewController.swift; sourceTree = "<group>"; };
 		956382E62B397A5A006B50ED /* SearchRouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouteView.swift; sourceTree = "<group>"; };
 		956382E82B397A66006B50ED /* SearchRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouteViewController.swift; sourceTree = "<group>"; };
+		956382F12B39855E006B50ED /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
 		95B10F782B331350005319F6 /* MAKAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAKAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B10F7B2B331350005319F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B10F7D2B331350005319F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,13 +103,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		956382A82B3974ED006B50ED /* TimeTable */ = {
+		956382A82B3974ED006B50ED /* Timetable */ = {
 			isa = PBXGroup;
 			children = (
-				956382BC2B3975A1006B50ED /* TimeTableView.swift */,
-				956382BE2B3975A8006B50ED /* TimeTableViewController.swift */,
+				956382BC2B3975A1006B50ED /* TimetableView.swift */,
+				956382BE2B3975A8006B50ED /* TimetableViewController.swift */,
 			);
-			path = TimeTable;
+			path = Timetable;
 			sourceTree = "<group>";
 		};
 		956382A92B3974FF006B50ED /* Notification */ = {
@@ -201,6 +203,14 @@
 			path = SearchRoute;
 			sourceTree = "<group>";
 		};
+		956382F02B398551006B50ED /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				956382F12B39855E006B50ED /* ImageLiteral.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		95B10F6F2B331350005319F6 = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +232,7 @@
 			children = (
 				95B10F8F2B3314B8005319F6 /* Resource */,
 				95B10F902B3314CF005319F6 /* Support */,
+				956382F02B398551006B50ED /* Extension */,
 				95B10F912B3314E7005319F6 /* Networking */,
 				95B10F9C2B331572005319F6 /* Presentation */,
 				95B10F9B2B331550005319F6 /* App */,
@@ -282,7 +293,7 @@
 				956382AC2B39753A006B50ED /* Login */,
 				956382CE2B39787E006B50ED /* TabBar */,
 				956382DA2B3979FC006B50ED /* Home */,
-				956382A82B3974ED006B50ED /* TimeTable */,
+				956382A82B3974ED006B50ED /* Timetable */,
 				956382D32B397957006B50ED /* MyRoute */,
 				956382A92B3974FF006B50ED /* Notification */,
 				956382AA2B39750B006B50ED /* MyPage */,
@@ -401,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				956382C72B3975C7006B50ED /* MyPageViewController.swift in Sources */,
+				956382F22B39855E006B50ED /* ImageLiteral.swift in Sources */,
 				956382DC2B397A07006B50ED /* HomeView.swift in Sources */,
 				95B10FAB2B3315F5005319F6 /* BaseButton.swift in Sources */,
 				956382E52B397A4D006B50ED /* SearchStationViewController.swift in Sources */,
@@ -415,7 +427,7 @@
 				95B10F9A2B331545005319F6 /* TargetType+Extension.swift in Sources */,
 				95B10F942B331501005319F6 /* ExampleAPI.swift in Sources */,
 				956382E92B397A66006B50ED /* SearchRouteViewController.swift in Sources */,
-				956382BD2B3975A1006B50ED /* TimeTableView.swift in Sources */,
+				956382BD2B3975A1006B50ED /* TimetableView.swift in Sources */,
 				95B10FAD2B33165C005319F6 /* AppDependency.swift in Sources */,
 				956382E72B397A5A006B50ED /* SearchRouteView.swift in Sources */,
 				95B10FA12B3315A3005319F6 /* ExampleCustomView.swift in Sources */,
@@ -424,7 +436,7 @@
 				956382D72B397971006B50ED /* MyRouteViewController.swift in Sources */,
 				956382DE2B397A0E006B50ED /* HomeViewController.swift in Sources */,
 				95B10F7C2B331350005319F6 /* AppDelegate.swift in Sources */,
-				956382BF2B3975A8006B50ED /* TimeTableViewController.swift in Sources */,
+				956382BF2B3975A8006B50ED /* TimetableViewController.swift in Sources */,
 				956382C52B3975BE006B50ED /* MyPageView.swift in Sources */,
 				956382E32B397A43006B50ED /* SearchStationView.swift in Sources */,
 				95B10F962B331519005319F6 /* ExampleRequest.swift in Sources */,
