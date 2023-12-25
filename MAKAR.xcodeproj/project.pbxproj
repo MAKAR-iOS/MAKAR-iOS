@@ -30,6 +30,7 @@
 		956382F22B39855E006B50ED /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382F12B39855E006B50ED /* ImageLiteral.swift */; };
 		956382F42B398AEB006B50ED /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382F32B398AEB006B50ED /* UIColor+Extension.swift */; };
 		956382F62B398B72006B50ED /* MakarColor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 956382F52B398B72006B50ED /* MakarColor.xcassets */; };
+		956382FA2B39A43E006B50ED /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382F92B39A43E006B50ED /* BaseRouter.swift */; };
 		95B10F7C2B331350005319F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7B2B331350005319F6 /* AppDelegate.swift */; };
 		95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7D2B331350005319F6 /* SceneDelegate.swift */; };
 		95B10F852B331351005319F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95B10F842B331351005319F6 /* Assets.xcassets */; };
@@ -74,6 +75,7 @@
 		956382F12B39855E006B50ED /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
 		956382F32B398AEB006B50ED /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		956382F52B398B72006B50ED /* MakarColor.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MakarColor.xcassets; sourceTree = "<group>"; };
+		956382F92B39A43E006B50ED /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		95B10F782B331350005319F6 /* MAKAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAKAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B10F7B2B331350005319F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B10F7D2B331350005319F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				95B10FA62B3315DD005319F6 /* BaseViewController.swift */,
 				95B10FA82B3315EB005319F6 /* BaseView.swift */,
 				95B10FAA2B3315F5005319F6 /* BaseButton.swift */,
+				956382F92B39A43E006B50ED /* BaseRouter.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				956382E92B397A66006B50ED /* SearchRouteViewController.swift in Sources */,
 				956382BD2B3975A1006B50ED /* TimetableView.swift in Sources */,
 				95B10FAD2B33165C005319F6 /* AppDependency.swift in Sources */,
+				956382FA2B39A43E006B50ED /* BaseRouter.swift in Sources */,
 				956382E72B397A5A006B50ED /* SearchRouteView.swift in Sources */,
 				95B10FA12B3315A3005319F6 /* ExampleCustomView.swift in Sources */,
 				956382D52B397968006B50ED /* MyRouteView.swift in Sources */,

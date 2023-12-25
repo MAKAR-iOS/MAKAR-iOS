@@ -34,4 +34,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = UINavigationController(rootViewController: LoginViewController())
         UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
     }
+
+    func changeRootViewToHomeViewController() {
+        guard let window = window else { return }
+        window.rootViewController = UINavigationController(rootViewController: HomeViewController())
+        UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
+    }
 }
