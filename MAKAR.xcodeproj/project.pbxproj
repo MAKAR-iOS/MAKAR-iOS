@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		956382AE2B397568006B50ED /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382AD2B397568006B50ED /* SplashView.swift */; };
+		956382B02B397570006B50ED /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382AF2B397570006B50ED /* SplashViewController.swift */; };
+		956382B42B397581006B50ED /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382B32B397581006B50ED /* LoginView.swift */; };
+		956382B62B39758A006B50ED /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382B52B39758A006B50ED /* LoginViewController.swift */; };
+		956382BD2B3975A1006B50ED /* TimeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382BC2B3975A1006B50ED /* TimeTableView.swift */; };
+		956382BF2B3975A8006B50ED /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382BE2B3975A8006B50ED /* TimeTableViewController.swift */; };
+		956382C12B3975B0006B50ED /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382C02B3975B0006B50ED /* NotificationView.swift */; };
+		956382C32B3975B7006B50ED /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382C22B3975B7006B50ED /* NotificationViewController.swift */; };
+		956382C52B3975BE006B50ED /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382C42B3975BE006B50ED /* MyPageView.swift */; };
+		956382C72B3975C7006B50ED /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382C62B3975C7006B50ED /* MyPageViewController.swift */; };
+		956382D02B397894006B50ED /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382CF2B397894006B50ED /* TabBarView.swift */; };
+		956382D22B39789D006B50ED /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382D12B39789D006B50ED /* TabBarViewController.swift */; };
+		956382D52B397968006B50ED /* MyRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382D42B397968006B50ED /* MyRouteView.swift */; };
+		956382D72B397971006B50ED /* MyRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382D62B397971006B50ED /* MyRouteViewController.swift */; };
+		956382DC2B397A07006B50ED /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382DB2B397A07006B50ED /* HomeView.swift */; };
+		956382DE2B397A0E006B50ED /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382DD2B397A0E006B50ED /* HomeViewController.swift */; };
+		956382E32B397A43006B50ED /* SearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382E22B397A43006B50ED /* SearchStationView.swift */; };
+		956382E52B397A4D006B50ED /* SearchStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382E42B397A4D006B50ED /* SearchStationViewController.swift */; };
+		956382E72B397A5A006B50ED /* SearchRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382E62B397A5A006B50ED /* SearchRouteView.swift */; };
+		956382E92B397A66006B50ED /* SearchRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382E82B397A66006B50ED /* SearchRouteViewController.swift */; };
 		95B10F7C2B331350005319F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7B2B331350005319F6 /* AppDelegate.swift */; };
 		95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7D2B331350005319F6 /* SceneDelegate.swift */; };
 		95B10F852B331351005319F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95B10F842B331351005319F6 /* Assets.xcassets */; };
@@ -28,6 +48,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		956382AD2B397568006B50ED /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		956382AF2B397570006B50ED /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		956382B32B397581006B50ED /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		956382B52B39758A006B50ED /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		956382BC2B3975A1006B50ED /* TimeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableView.swift; sourceTree = "<group>"; };
+		956382BE2B3975A8006B50ED /* TimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
+		956382C02B3975B0006B50ED /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		956382C22B3975B7006B50ED /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		956382C42B3975BE006B50ED /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		956382C62B3975C7006B50ED /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		956382CF2B397894006B50ED /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		956382D12B39789D006B50ED /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		956382D42B397968006B50ED /* MyRouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRouteView.swift; sourceTree = "<group>"; };
+		956382D62B397971006B50ED /* MyRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRouteViewController.swift; sourceTree = "<group>"; };
+		956382DB2B397A07006B50ED /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		956382DD2B397A0E006B50ED /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		956382E22B397A43006B50ED /* SearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStationView.swift; sourceTree = "<group>"; };
+		956382E42B397A4D006B50ED /* SearchStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStationViewController.swift; sourceTree = "<group>"; };
+		956382E62B397A5A006B50ED /* SearchRouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouteView.swift; sourceTree = "<group>"; };
+		956382E82B397A66006B50ED /* SearchRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouteViewController.swift; sourceTree = "<group>"; };
 		95B10F782B331350005319F6 /* MAKAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAKAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B10F7B2B331350005319F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B10F7D2B331350005319F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +101,106 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		956382A82B3974ED006B50ED /* TimeTable */ = {
+			isa = PBXGroup;
+			children = (
+				956382BC2B3975A1006B50ED /* TimeTableView.swift */,
+				956382BE2B3975A8006B50ED /* TimeTableViewController.swift */,
+			);
+			path = TimeTable;
+			sourceTree = "<group>";
+		};
+		956382A92B3974FF006B50ED /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				956382C02B3975B0006B50ED /* NotificationView.swift */,
+				956382C22B3975B7006B50ED /* NotificationViewController.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		956382AA2B39750B006B50ED /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				956382C42B3975BE006B50ED /* MyPageView.swift */,
+				956382C62B3975C7006B50ED /* MyPageViewController.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		956382AB2B39752D006B50ED /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				956382AD2B397568006B50ED /* SplashView.swift */,
+				956382AF2B397570006B50ED /* SplashViewController.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		956382AC2B39753A006B50ED /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				956382B32B397581006B50ED /* LoginView.swift */,
+				956382B52B39758A006B50ED /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		956382CE2B39787E006B50ED /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				956382CF2B397894006B50ED /* TabBarView.swift */,
+				956382D12B39789D006B50ED /* TabBarViewController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		956382D32B397957006B50ED /* MyRoute */ = {
+			isa = PBXGroup;
+			children = (
+				956382D42B397968006B50ED /* MyRouteView.swift */,
+				956382D62B397971006B50ED /* MyRouteViewController.swift */,
+			);
+			path = MyRoute;
+			sourceTree = "<group>";
+		};
+		956382DA2B3979FC006B50ED /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				956382DB2B397A07006B50ED /* HomeView.swift */,
+				956382DD2B397A0E006B50ED /* HomeViewController.swift */,
+				956382DF2B397A11006B50ED /* Search */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		956382DF2B397A11006B50ED /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				956382E02B397A1B006B50ED /* SearchStation */,
+				956382E12B397A22006B50ED /* SearchRoute */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		956382E02B397A1B006B50ED /* SearchStation */ = {
+			isa = PBXGroup;
+			children = (
+				956382E22B397A43006B50ED /* SearchStationView.swift */,
+				956382E42B397A4D006B50ED /* SearchStationViewController.swift */,
+			);
+			path = SearchStation;
+			sourceTree = "<group>";
+		};
+		956382E12B397A22006B50ED /* SearchRoute */ = {
+			isa = PBXGroup;
+			children = (
+				956382E62B397A5A006B50ED /* SearchRouteView.swift */,
+				956382E82B397A66006B50ED /* SearchRouteViewController.swift */,
+			);
+			path = SearchRoute;
+			sourceTree = "<group>";
+		};
 		95B10F6F2B331350005319F6 = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +278,14 @@
 		95B10F9C2B331572005319F6 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				956382AB2B39752D006B50ED /* Splash */,
+				956382AC2B39753A006B50ED /* Login */,
+				956382CE2B39787E006B50ED /* TabBar */,
+				956382DA2B3979FC006B50ED /* Home */,
+				956382A82B3974ED006B50ED /* TimeTable */,
+				956382D32B397957006B50ED /* MyRoute */,
+				956382A92B3974FF006B50ED /* Notification */,
+				956382AA2B39750B006B50ED /* MyPage */,
 				95B10F9D2B331583005319F6 /* Example */,
 				95B10F9E2B331587005319F6 /* Base */,
 			);
@@ -252,19 +400,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				956382C72B3975C7006B50ED /* MyPageViewController.swift in Sources */,
+				956382DC2B397A07006B50ED /* HomeView.swift in Sources */,
 				95B10FAB2B3315F5005319F6 /* BaseButton.swift in Sources */,
+				956382E52B397A4D006B50ED /* SearchStationViewController.swift in Sources */,
+				956382D02B397894006B50ED /* TabBarView.swift in Sources */,
 				95B10F982B331534005319F6 /* RequestProvider.swift in Sources */,
+				956382D22B39789D006B50ED /* TabBarViewController.swift in Sources */,
+				956382C12B3975B0006B50ED /* NotificationView.swift in Sources */,
 				95B10FA52B3315C7005319F6 /* ExampleRouter.swift in Sources */,
 				95B10FA72B3315DD005319F6 /* BaseViewController.swift in Sources */,
+				956382C32B3975B7006B50ED /* NotificationViewController.swift in Sources */,
 				95B10FA92B3315EB005319F6 /* BaseView.swift in Sources */,
 				95B10F9A2B331545005319F6 /* TargetType+Extension.swift in Sources */,
 				95B10F942B331501005319F6 /* ExampleAPI.swift in Sources */,
+				956382E92B397A66006B50ED /* SearchRouteViewController.swift in Sources */,
+				956382BD2B3975A1006B50ED /* TimeTableView.swift in Sources */,
 				95B10FAD2B33165C005319F6 /* AppDependency.swift in Sources */,
+				956382E72B397A5A006B50ED /* SearchRouteView.swift in Sources */,
 				95B10FA12B3315A3005319F6 /* ExampleCustomView.swift in Sources */,
+				956382D52B397968006B50ED /* MyRouteView.swift in Sources */,
+				956382B02B397570006B50ED /* SplashViewController.swift in Sources */,
+				956382D72B397971006B50ED /* MyRouteViewController.swift in Sources */,
+				956382DE2B397A0E006B50ED /* HomeViewController.swift in Sources */,
 				95B10F7C2B331350005319F6 /* AppDelegate.swift in Sources */,
+				956382BF2B3975A8006B50ED /* TimeTableViewController.swift in Sources */,
+				956382C52B3975BE006B50ED /* MyPageView.swift in Sources */,
+				956382E32B397A43006B50ED /* SearchStationView.swift in Sources */,
 				95B10F962B331519005319F6 /* ExampleRequest.swift in Sources */,
 				95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */,
+				956382B62B39758A006B50ED /* LoginViewController.swift in Sources */,
 				95B10FA32B3315BB005319F6 /* ExampleViewController.swift in Sources */,
+				956382B42B397581006B50ED /* LoginView.swift in Sources */,
+				956382AE2B397568006B50ED /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
