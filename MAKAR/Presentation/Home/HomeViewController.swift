@@ -51,11 +51,25 @@ class HomeViewController: BaseViewController {
         print("setRouteButton clicked")
     }
     
+    private func postMapButtonClicked(){
+        print("mapButton clicked")
+    }
+}
+
+
+extension HomeViewController {
+    
     // MARK: NavigationBar
     private func setNavigationBar(){
         //TODO: NavigationBar MAKAR icon custom 필요
-//        let navigationBar = navigationController!.navigationBar
+        
         navigationItem.title = nil
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_map"), style: .plain, target: self, action: #selector(handleMapButtonClickEvent))
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "logo_makar"), style: .plain, target: nil, action: nil)
+    }
+    
+    @objc private func handleMapButtonClickEvent(){
+        postMapButtonClicked()
     }
     
 }
