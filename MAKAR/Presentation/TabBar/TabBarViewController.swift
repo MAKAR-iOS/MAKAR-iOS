@@ -61,7 +61,7 @@ class TabBarViewController: UITabBarController {
         notificationViewController.tabBarItem.selectedImage = MakarButton.notificationFilledButton
         myPageViewController.tabBarItem.selectedImage = MakarButton.myPageFilledButton
 
-      //  homeViewController.navigationItem.largeTitleDisplayMode = .automatic
+        homeViewController.navigationItem.largeTitleDisplayMode = .never
         timetableViewController.navigationItem.largeTitleDisplayMode = .automatic
         myRouteViewController.navigationItem.largeTitleDisplayMode = .automatic
         notificationViewController.navigationItem.largeTitleDisplayMode = .automatic
@@ -73,7 +73,7 @@ class TabBarViewController: UITabBarController {
         let navigationNotification = UINavigationController(rootViewController: notificationViewController)
         let navigationMyPage = UINavigationController(rootViewController: myPageViewController)
 
-       // navigationHome.navigationBar.prefersLargeTitles = false
+        navigationHome.navigationBar.prefersLargeTitles = false
         navigationTimetable.navigationBar.prefersLargeTitles = true
         navigationMyRoute.navigationBar.prefersLargeTitles = true
         navigationNotification.navigationBar.prefersLargeTitles = true

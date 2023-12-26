@@ -10,8 +10,13 @@ import UIKit
 extension BaseViewController{
     
     func setNavigationBackButton(){
-        self.navigationController?.navigationBar.topItem?.backButtonTitle = ""
-        self.navigationController?.navigationBar.tintColor = .black
+        let navigationBar = navigationController?.navigationBar
+
+        navigationBar?.topItem?.backButtonTitle = ""
+        navigationBar?.tintColor = .black
+        
+//        navigationBar?.setBackgroundImage(UIImage(), for: .default)
+//        navigationBar?.shadowImage = UIImage()
     }
     
 }
