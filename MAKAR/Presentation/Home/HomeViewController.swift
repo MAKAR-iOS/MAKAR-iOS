@@ -20,6 +20,7 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .background
+        setNavigationBar()
     }
 
     // MARK: Configuration
@@ -31,10 +32,7 @@ class HomeViewController: BaseViewController {
         homeView.tapSetRouteButton = {[weak self] in
             guard let self else { return }
     
-            let SearchRouteVC = SearchRouteViewController()
-            SearchRouteVC.modalPresentationStyle = .fullScreen
-            self.present(SearchRouteVC, animated: true, completion: nil)
-            
+            self.navigationController?.pushViewController(SearchRouteViewController(), animated: true)
             postSetRouteButtonClicked()
         }
     }
@@ -51,6 +49,13 @@ class HomeViewController: BaseViewController {
     // MARK: Networking
     private func postSetRouteButtonClicked() {
         print("setRouteButton clicked")
+    }
+    
+    // MARK: NavigationBar
+    private func setNavigationBar(){
+        //TODO: NavigationBar MAKAR icon custom 필요
+//        let navigationBar = navigationController!.navigationBar
+        navigationItem.title = nil
     }
     
 }
