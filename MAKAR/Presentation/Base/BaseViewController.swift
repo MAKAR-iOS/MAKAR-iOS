@@ -13,6 +13,7 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavigationBackButton()
         configureSubviews()
         makeConstraints()
         view.backgroundColor = .white

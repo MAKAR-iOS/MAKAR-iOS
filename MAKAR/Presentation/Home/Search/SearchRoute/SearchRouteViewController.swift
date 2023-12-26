@@ -31,7 +31,6 @@ class SearchRouteViewController : BaseViewController {
     
     // MARK: NavigationBar
     private func setNavigationBar(){
-        setNavigationBackButton()
         navigationItem.title = "경로 설정하기"
     }
     
