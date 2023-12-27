@@ -62,13 +62,8 @@ class HomeView: BaseView {
         $0.font = UIFont.systemFont(ofSize: 15, weight: .light)
     }
     
-    private let setRouteButton = BaseButton().then {
+    private let setRouteButton = RouteBaseButton().then {
         $0.setTitle("경로 설정하기", for: .normal)
-        $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = .makarBlue
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        $0.layer.cornerRadius = CGFloat(Metric.buttonRadius)
-//        $0.isHidden = true
     }
     
     private let changeRouteButton = BaseButton().then{
@@ -80,12 +75,8 @@ class HomeView: BaseView {
         $0.layer.cornerRadius = CGFloat(Metric.buttonRadius)
     }
     
-    private let setAlarmButton = BaseButton().then{
+    private let setAlarmButton = RouteBaseButton().then{
         $0.setTitle("막차/하차 알림 설정하기", for: .normal)
-        $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = .makarBlue
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        $0.layer.cornerRadius = CGFloat(Metric.buttonRadius)
     }
     
     private let mainDivider1 = UIView().then{
