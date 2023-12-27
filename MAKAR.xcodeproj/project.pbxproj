@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2645F7052B3B42AE00320883 /* NavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2645F7042B3B42AE00320883 /* NavigationBarExtension.swift */; };
+		267065262B3C997200F19EC3 /* FavoriteStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267065252B3C997200F19EC3 /* FavoriteStationView.swift */; };
+		267065282B3C998A00F19EC3 /* FavoriteStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267065272B3C998A00F19EC3 /* FavoriteStationViewController.swift */; };
 		26E664752B3C4C20002579C1 /* SourceSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664742B3C4C20002579C1 /* SourceSearchStationView.swift */; };
 		26E664772B3C4CFA002579C1 /* DestinationSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664762B3C4CFA002579C1 /* DestinationSearchStationView.swift */; };
 		26E664792B3C4D0A002579C1 /* DestinationSearchStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664782B3C4D0A002579C1 /* DestinationSearchStationViewController.swift */; };
@@ -57,6 +59,8 @@
 
 /* Begin PBXFileReference section */
 		2645F7042B3B42AE00320883 /* NavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarExtension.swift; sourceTree = "<group>"; };
+		267065252B3C997200F19EC3 /* FavoriteStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStationView.swift; sourceTree = "<group>"; };
+		267065272B3C998A00F19EC3 /* FavoriteStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStationViewController.swift; sourceTree = "<group>"; };
 		26E664742B3C4C20002579C1 /* SourceSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceSearchStationView.swift; sourceTree = "<group>"; };
 		26E664762B3C4CFA002579C1 /* DestinationSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchStationView.swift; sourceTree = "<group>"; };
 		26E664782B3C4D0A002579C1 /* DestinationSearchStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchStationViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 			children = (
 				956382C42B3975BE006B50ED /* MyPageView.swift */,
 				956382C62B3975C7006B50ED /* MyPageViewController.swift */,
+				267065252B3C997200F19EC3 /* FavoriteStationView.swift */,
+				267065272B3C998A00F19EC3 /* FavoriteStationViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -443,6 +449,7 @@
 				956382D22B39789D006B50ED /* TabBarViewController.swift in Sources */,
 				956382C12B3975B0006B50ED /* NotificationView.swift in Sources */,
 				95B10FA52B3315C7005319F6 /* ExampleRouter.swift in Sources */,
+				267065262B3C997200F19EC3 /* FavoriteStationView.swift in Sources */,
 				26E664752B3C4C20002579C1 /* SourceSearchStationView.swift in Sources */,
 				95B10FA72B3315DD005319F6 /* BaseViewController.swift in Sources */,
 				956382C32B3975B7006B50ED /* NotificationViewController.swift in Sources */,
@@ -461,6 +468,7 @@
 				956382D52B397968006B50ED /* MyRouteView.swift in Sources */,
 				956382B02B397570006B50ED /* SplashViewController.swift in Sources */,
 				956382D72B397971006B50ED /* MyRouteViewController.swift in Sources */,
+				267065282B3C998A00F19EC3 /* FavoriteStationViewController.swift in Sources */,
 				956382DE2B397A0E006B50ED /* HomeViewController.swift in Sources */,
 				2645F7052B3B42AE00320883 /* NavigationBarExtension.swift in Sources */,
 				95B10F7C2B331350005319F6 /* AppDelegate.swift in Sources */,
