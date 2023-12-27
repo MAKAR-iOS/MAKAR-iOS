@@ -15,6 +15,7 @@ class SearchRouteView : BaseView {
         static let searchBarHeight = 38
         static let searchBarRadius = 18
         static let swapButtonHeight = 30
+        static let swapButtonWidth = 30
     }
     
     // MARK: UI Components
@@ -31,34 +32,35 @@ class SearchRouteView : BaseView {
     }
     
     private let sourceSearchBar = BaseButton().then{
-        // TODO: Image, title 간격 조정
         $0.setTitle("출발역을 입력하세요", for: .normal)
         $0.setTitleColor(.darkgray, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.contentHorizontalAlignment = .left
         $0.setImage(MakarButton.searchBarButton, for: .normal)
-        $0.contentEdgeInsets = .init(top: 0, left: 15, bottom: 0, right: 0)
-        $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 30)
+        $0.contentEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 0)
+        $0.imageEdgeInsets = .init(top: 0, left: -5, bottom: 0, right: 0)
         $0.backgroundColor = .systemGray6
         $0.layer.cornerRadius = CGFloat(Metric.searchBarRadius)
     }
     
     private let destinationSearchBar = BaseButton().then{
-        // TODO: Image, title 간격 조정
         $0.setTitle("도착역을 입력하세요", for: .normal)
         $0.setTitleColor(.darkgray, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.contentHorizontalAlignment = .left
         $0.setImage(MakarButton.searchBarButton, for: .normal)
-        $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 30)
-        $0.contentEdgeInsets = .init(top: 0, left: 15, bottom: 0, right: 0)
+        $0.contentEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 0)
+        $0.imageEdgeInsets = .init(top: 0, left: -5, bottom: 0, right: 0)
         $0.backgroundColor = .systemGray6
         $0.layer.cornerRadius = CGFloat(Metric.searchBarRadius)
     }
     
     private let swapButton = BaseButton().then{
-        // TODO: Image size 조정
-        $0.setImage(MakarButton.swapButton, for: .normal)
+        var config = UIButton.Configuration.plain()
+        config.baseForegroundColor = .white
+        config.cornerStyle = .capsule
+        config.image = MakarButton.swapButton
+        $0.configuration = config
     }
     
     private let searchRouteButton = BaseRouteButton().then{
@@ -80,7 +82,7 @@ class SearchRouteView : BaseView {
         addSubview(destinationText)
         addSubview(sourceSearchBar)
         addSubview(destinationSearchBar)
-//        addSubview(swapButton)
+        addSubview(swapButton)
         addSubview(searchRouteButton)
         
         swapButton.addTarget(self, action: #selector(handleSwapButtonClickEvent), for: .touchUpInside)
@@ -105,23 +107,24 @@ class SearchRouteView : BaseView {
             $0.width.equalTo(Metric.textWidth)
         }
         
-//        swapButton.snp.makeConstraints{
-//            $0.trailing.equalToSuperview().inset(20)
-//            $0.centerY.equalTo(sourceText.snp.bottom).inset(-25)
-//            $0.height.equalTo(Metric.swapButtonHeight)
-//        }
+        swapButton.snp.makeConstraints{
+            $0.trailing.equalToSuperview().inset(20)
+            $0.centerY.equalTo(sourceText.snp.bottom).inset(-25)
+            $0.height.equalTo(Metric.swapButtonHeight)
+            $0.width.equalTo(Metric.swapButtonWidth)
+        }
         
         sourceSearchBar.snp.makeConstraints{
             $0.centerY.equalTo(sourceText)
             $0.leading.equalTo(sourceText.snp.trailing).inset(-8)
-            $0.trailing.equalToSuperview().inset(50)
+            $0.trailing.equalTo(swapButton.snp.leading).inset(-5)
             $0.height.equalTo(Metric.searchBarHeight)
         }
         
         destinationSearchBar.snp.makeConstraints{
             $0.centerY.equalTo(destinationText)
             $0.leading.equalTo(destinationText.snp.trailing).inset(-8)
-            $0.trailing.equalToSuperview().inset(50)
+            $0.trailing.equalTo(swapButton.snp.leading).inset(-5)
             $0.height.equalTo(Metric.searchBarHeight)
         }
         
