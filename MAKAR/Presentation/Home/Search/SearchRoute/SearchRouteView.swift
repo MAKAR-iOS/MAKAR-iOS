@@ -31,6 +31,7 @@ class SearchRouteView : BaseView {
     }
     
     private let sourceSearchBar = BaseButton().then{
+        // TODO: Image, title 간격 조정
         $0.setTitle("출발역을 입력하세요", for: .normal)
         $0.setTitleColor(.darkgray, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -43,6 +44,7 @@ class SearchRouteView : BaseView {
     }
     
     private let destinationSearchBar = BaseButton().then{
+        // TODO: Image, title 간격 조정
         $0.setTitle("도착역을 입력하세요", for: .normal)
         $0.setTitleColor(.darkgray, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -59,7 +61,7 @@ class SearchRouteView : BaseView {
         $0.setImage(UIImage(named: "ic_swap"), for: .normal)
     }
     
-    private let searchRouteButton = RouteBaseButton().then{
+    private let searchRouteButton = BaseRouteButton().then{
         $0.setTitle("경로 찾기", for: .normal)
     }
     

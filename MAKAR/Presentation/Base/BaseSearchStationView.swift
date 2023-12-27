@@ -6,7 +6,7 @@
 //
 
 import UIKit
-class SearchStationView : BaseView {
+class BaseSearchStationView : BaseView {
     // MARK: Constants
     private enum Metric {
         static let searchBarHeight = 38
