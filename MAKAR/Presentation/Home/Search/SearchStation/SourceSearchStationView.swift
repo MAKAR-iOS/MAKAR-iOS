@@ -6,6 +6,6 @@
 //
 
 import UIKit
-class SourceStationSearchView : BaseSearchStationView {
+class SourceSearchStationView : BaseSearchStationView {
     
 }

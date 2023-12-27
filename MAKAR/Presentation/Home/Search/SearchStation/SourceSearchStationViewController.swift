@@ -6,23 +6,24 @@
 //
 
 import UIKit
-class SearchStationViewController : BaseViewController {
+class SourceSearchStationViewController : BaseViewController {
     
     // MARK: UI Components
-    private let searchStationView = SearchStationView()
+    private let sourceSearchStationView = SourceSearchStationView()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .background
+        setNavigationBar()
     }
     
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
         
-        view.addSubview(searchStationView)
+        view.addSubview(sourceSearchStationView)
     }
     
     // MARK: Layout
@@ -30,8 +31,13 @@ class SearchStationViewController : BaseViewController {
         super.makeConstraints()
         
         // TODO: Layout 수정
-        searchStationView.snp.makeConstraints {
+        sourceSearchStationView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    // MARK: NavigationBar
+    private func setNavigationBar(){
+        navigationItem.title = "출발역"
     }
 }
