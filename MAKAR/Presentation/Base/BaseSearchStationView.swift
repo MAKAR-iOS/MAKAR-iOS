@@ -14,7 +14,7 @@ class BaseSearchStationView : BaseView {
     }
     
     // MARK: UI Components
-    private let stationSearchBar = UISearchBar().then{
+    let stationSearchBar = UISearchBar().then{
         $0.placeholder = "역을 검색해주세요"
         $0.searchTextField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.searchTextField.textColor = .darkgray
@@ -41,7 +41,7 @@ class BaseSearchStationView : BaseView {
         
         stationSearchBar.snp.makeConstraints{
             $0.top.equalTo(safeAreaLayoutGuide).inset(10)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(15)
             $0.height.equalTo(Metric.searchBarHeight)
         }
     }

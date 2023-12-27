@@ -48,6 +48,7 @@ public enum MakarButton {
     public static var starButton: UIImage { .load(name: "ic_star") }
     public static var subwayButton: UIImage { .load(name: "ic_subway") }
     public static var swapButton: UIImage { .load(name: "ic_swap") }
+    public static var searchBarButton : UIImage {.load(name: "ic_search")}
     public static var timetableButton: UIImage { .load(name: "ic_timetable") }
     public static var timetableFilledButton: UIImage { .load(name: "ic_timetable_filled") }
 }

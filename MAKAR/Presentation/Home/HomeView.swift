@@ -54,7 +54,7 @@ class HomeView: BaseView {
     }
     
     private let mainMakarProgress = UIImageView().then{
-        $0.image = UIImage(named: "makar_progress")
+        $0.image = MakarImage.makarProgress
     }
     
     private let mainDestinationText = UILabel().then{

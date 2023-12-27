@@ -24,6 +24,26 @@ class SourceSearchStationViewController : BaseViewController {
         super.configureSubviews()
         
         view.addSubview(sourceSearchStationView)
+        
+        sourceSearchStationView.tapMyLocationButton = {[weak self] in
+            guard let self else { return }
+            postMyLocationButtonClicked()
+        }
+        
+        sourceSearchStationView.tapHomeButton = {[weak self] in
+            guard let self else { return }
+            postHomeButtonClicked()
+        }
+        
+        sourceSearchStationView.tapSchoolButton = {[weak self] in
+            guard let self else { return }
+            postSchoolButtonClicked()
+        }
+        
+        sourceSearchStationView.tapMoreButton = {[weak self] in
+            guard let self else { return }
+            postMoreButtonClicked()
+        }
     }
     
     // MARK: Layout
@@ -36,8 +56,25 @@ class SourceSearchStationViewController : BaseViewController {
         }
     }
     
+    // MARK: Networking
+    private func postMyLocationButtonClicked(){
+        print("myLocationButton clicked")
+    }
+    
+    private func postHomeButtonClicked(){
+        print("homeButton clicked")
+    }
+    
+    private func postSchoolButtonClicked(){
+        print("schoolButton clicked")
+    }
+    
+    private func postMoreButtonClicked(){
+        print("moreButton clicked")
+    }
+    
     // MARK: NavigationBar
     private func setNavigationBar(){
-        navigationItem.title = "출발역"
+        navigationItem.title = "출발역 입력"
     }
 }

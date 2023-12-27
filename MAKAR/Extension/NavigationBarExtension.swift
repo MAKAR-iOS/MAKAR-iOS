@@ -14,9 +14,6 @@ extension BaseViewController{
 
         navigationBar?.topItem?.backButtonTitle = ""
         navigationBar?.tintColor = .black
-        
-//        navigationBar?.setBackgroundImage(UIImage(), for: .default)
-//        navigationBar?.shadowImage = UIImage()
     }
     
 }
