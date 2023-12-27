@@ -125,13 +125,13 @@ class HomeView: BaseView {
         addSubview(mainRouteView)
         addSubview(mainMakarProgress)
         addSubview(mainDestinationText)
-//        addSubview(setRouteButton)
+        addSubview(setRouteButton)
         addSubview(changeRouteButton)
         addSubview(setAlarmButton)
-//        addSubview(mainDivider1)
-//        addSubview(favoriteRouteListText)
-//        addSubview(mainDivider2)
-//        addSubview(recentRouteListText)
+        addSubview(mainDivider1)
+        addSubview(favoriteRouteListText)
+        addSubview(mainDivider2)
+        addSubview(recentRouteListText)
         
         resetRouteButton.addTarget(self, action: #selector(handleResetRouteButtonClickEvent), for: .touchUpInside)
         setRouteButton.addTarget(self, action: #selector(handleSetRouteButtonClickEvent), for: .touchUpInside)
@@ -169,11 +169,11 @@ class HomeView: BaseView {
             $0.trailing.equalToSuperview().inset(70)
         }
         
-//        setRouteButton.snp.makeConstraints {
-//            $0.top.equalTo(mainDestinationText.snp.bottom).inset(-30)
-//            $0.leading.trailing.equalToSuperview().inset(20)
-//            $0.height.equalTo(Metric.buttonHeight)
-//        }
+        setRouteButton.snp.makeConstraints {
+            $0.top.equalTo(mainDestinationText.snp.bottom).inset(-30)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(Metric.buttonHeight)
+        }
         
         changeRouteButton.snp.makeConstraints{
             $0.top.equalTo(mainDestinationText.snp.bottom).inset(-30)
@@ -188,27 +188,27 @@ class HomeView: BaseView {
             
         }
         
-//        mainDivider1.snp.makeConstraints {
-//            $0.top.equalTo(setRouteButton.snp.bottom).inset(-30)
-//            $0.leading.trailing.equalToSuperview()
-//            $0.height.equalTo(Metric.dividerHeight)
-//        }
-//        
-//        favoriteRouteListText.snp.makeConstraints{
-//            $0.top.equalTo(mainDivider1.snp.bottom).inset(-15)
-//            $0.leading.equalToSuperview().inset(20)
-//        }
-//        
-//        mainDivider2.snp.makeConstraints {
-//            $0.top.equalTo(favoriteRouteListText.snp.bottom).inset(-30)
-//            $0.leading.trailing.equalToSuperview()
-//            $0.height.equalTo(Metric.dividerHeight)
-//        }
-//        
-//        recentRouteListText.snp.makeConstraints{
-//            $0.top.equalTo(mainDivider2.snp.bottom).inset(-15)
-//            $0.leading.equalToSuperview().inset(20)
-//        }
+        mainDivider1.snp.makeConstraints {
+            $0.top.equalTo(setRouteButton.snp.bottom).inset(-30)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(Metric.dividerHeight)
+        }
+        
+        favoriteRouteListText.snp.makeConstraints{
+            $0.top.equalTo(mainDivider1.snp.bottom).inset(-15)
+            $0.leading.equalToSuperview().inset(20)
+        }
+        
+        mainDivider2.snp.makeConstraints {
+            $0.top.equalTo(favoriteRouteListText.snp.bottom).inset(-30)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(Metric.dividerHeight)
+        }
+        
+        recentRouteListText.snp.makeConstraints{
+            $0.top.equalTo(mainDivider2.snp.bottom).inset(-15)
+            $0.leading.equalToSuperview().inset(20)
+        }
     }
     
     // MARK: Event
@@ -226,5 +226,34 @@ class HomeView: BaseView {
     
     @objc private func handleSetAlarmButtonClickEvent() {
         tapSetAlarmButton?()
+    }
+    
+    // MARK: ChangeComponent
+    func changeComponentRouteSet(){
+        mainTitleText.text = "막차까지 12분 남았어요!"
+        mainRouteView.text = "Source   ->  Destination"
+        mainDestinationText.text = "Destination"
+        resetRouteButton.isHidden = false
+        setRouteButton.isHidden = true
+        changeRouteButton.isHidden = false
+        setAlarmButton.isHidden = false
+        mainDivider1.isHidden = true
+        mainDivider2.isHidden = true
+        favoriteRouteListText.isHidden = true
+        recentRouteListText.isHidden = true
+    }
+    
+    func changeComponentRouteUnset(){
+        mainTitleText.text = "경로를 설정해주세요"
+        mainRouteView.text = "출발역   ->  도착역"
+        mainDestinationText.text = "MAKAR"
+        resetRouteButton.isHidden = true
+        setRouteButton.isHidden = false
+        changeRouteButton.isHidden = true
+        setAlarmButton.isHidden = true
+        mainDivider1.isHidden = false
+        mainDivider2.isHidden = false
+        favoriteRouteListText.isHidden = false
+        recentRouteListText.isHidden = false
     }
 }
