@@ -14,6 +14,7 @@ class HomeView: BaseView {
         static let buttonHeight = 43
         static let buttonRadius = 18
         static let dividerHeight = 2
+        static let resetButtonHeight = 26
     }
     
     // MARK: UI Components
@@ -23,23 +24,17 @@ class HomeView: BaseView {
     }
     
     private let resetRouteButton = BaseButton().then{
-        $0.setTitle("   경로 취소   ", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 10, weight: .light)
-        $0.layer.borderWidth = 0.5
-        $0.layer.cornerRadius = 12
-        
-//        var title = AttributedString("경로 취소")
-//        title.font = UIFont.systemFont(ofSize: 10, weight: .light)
-//
-//        var config = UIButton.Configuration.filled()
-//        config.baseBackgroundColor = .white
-//        config.cornerStyle = .capsule
-//        config.attributedTitle = title
-//        config.baseForegroundColor = .black
-//        config.background.strokeColor = .black
-//        config.background.strokeWidth = 1
-//        $0.configuration = config
+        var title = AttributedString("경로 취소")
+        title.font = UIFont.systemFont(ofSize: 11, weight: .medium)
+
+        var config = UIButton.Configuration.filled()
+        config.baseBackgroundColor = .white
+        config.cornerStyle = .capsule
+        config.attributedTitle = title
+        config.baseForegroundColor = .black
+        config.background.strokeColor = .black
+        config.background.strokeWidth = 0.7
+        $0.configuration = config
     }
     
     private let mainRouteView = UILabel().then{
@@ -97,15 +92,11 @@ class HomeView: BaseView {
         $0.font = UIFont.systemFont(ofSize: 15, weight: .light)
     }
     
-    
-    
     // MARK: Properties
     var tapResetRouteButton: (() -> Void)?
     var tapSetRouteButton: (() -> Void)?
     var tapChangeRouteButton: (() -> Void)?
     var tapSetAlarmButton: (() -> Void)?
-    
-    
     
     // MARK: Configuration
     override func configureSubviews() {
@@ -142,6 +133,7 @@ class HomeView: BaseView {
         resetRouteButton.snp.makeConstraints{
             $0.centerY.equalTo(mainTitleText)
             $0.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(Metric.resetButtonHeight)
         }
         
         mainRouteView.snp.makeConstraints {
@@ -157,7 +149,7 @@ class HomeView: BaseView {
         
         mainDestinationText.snp.makeConstraints {
             $0.top.equalTo(mainMakarProgress.snp.bottom).inset(-3)
-            $0.trailing.equalToSuperview().inset(70)
+            $0.centerX.equalTo(mainMakarProgress.snp.trailing).inset(45)
         }
         
         setRouteButton.snp.makeConstraints {
@@ -176,7 +168,6 @@ class HomeView: BaseView {
             $0.top.equalTo(changeRouteButton.snp.bottom).inset(-10)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(Metric.buttonHeight)
-            
         }
         
         mainDivider1.snp.makeConstraints {
