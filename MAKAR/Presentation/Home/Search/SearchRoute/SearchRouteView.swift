@@ -10,9 +10,11 @@ class SearchRouteView : BaseView {
     
     // MARK: Constants
     private enum Metric {
+        static let textWidth = 40
         static let buttonHeight = 43
         static let searchBarHeight = 38
-        static let searchBarRadius = 22
+        static let searchBarRadius = 18
+        static let swapButtonHeight = 30
     }
     
     // MARK: UI Components
@@ -28,29 +30,32 @@ class SearchRouteView : BaseView {
         $0.textColor = .darkgray
     }
     
-    private let sourceSearchBar = UISearchBar().then{
-        $0.placeholder = "출발역을 입력하세요"
-        $0.searchTextField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        $0.searchTextField.textColor = .darkgray
-        $0.searchTextField.backgroundColor = .systemGray6
-        $0.searchBarStyle = .minimal
-        $0.setSearchFieldBackgroundImage(UIImage(), for: .normal)
-        $0.searchTextField.layer.cornerRadius = CGFloat(Metric.searchBarRadius)
-        $0.searchTextField.layer.masksToBounds = true
+    private let sourceSearchBar = BaseButton().then{
+        $0.setTitle("출발역을 입력하세요", for: .normal)
+        $0.setTitleColor(.darkgray, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.contentHorizontalAlignment = .left
+        $0.setImage(UIImage(named: "ic_search"), for: .normal)
+        $0.contentEdgeInsets = .init(top: 0, left: 15, bottom: 0, right: 0)
+        $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 30)
+        $0.backgroundColor = .systemGray6
+        $0.layer.cornerRadius = CGFloat(Metric.searchBarRadius)
     }
     
-    private let destinationSearchBar = UISearchBar().then{
-        $0.placeholder = "도착역을 입력하세요"
-        $0.searchTextField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        $0.searchTextField.textColor = .darkgray
-        $0.searchTextField.backgroundColor = .systemGray6
-        $0.searchBarStyle = .minimal
-        $0.setSearchFieldBackgroundImage(UIImage(), for: .normal)
-        $0.searchTextField.layer.cornerRadius = CGFloat(Metric.searchBarRadius)
-        $0.searchTextField.layer.masksToBounds = true
+    private let destinationSearchBar = BaseButton().then{
+        $0.setTitle("도착역을 입력하세요", for: .normal)
+        $0.setTitleColor(.darkgray, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.contentHorizontalAlignment = .left
+        $0.setImage(UIImage(named: "ic_search"), for: .normal)
+        $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 30)
+        $0.contentEdgeInsets = .init(top: 0, left: 15, bottom: 0, right: 0)
+        $0.backgroundColor = .systemGray6
+        $0.layer.cornerRadius = CGFloat(Metric.searchBarRadius)
     }
     
-    private let swapStationButton = BaseButton().then{
+    private let swapButton = BaseButton().then{
+        // TODO: Image size 조정
         $0.setImage(UIImage(named: "ic_swap"), for: .normal)
     }
     
@@ -73,12 +78,12 @@ class SearchRouteView : BaseView {
         addSubview(destinationText)
         addSubview(sourceSearchBar)
         addSubview(destinationSearchBar)
-        addSubview(swapStationButton)
+//        addSubview(swapButton)
         addSubview(searchRouteButton)
         
-        swapStationButton.addTarget(self, action: #selector(handleSwapStationButtonClickEvent), for: .touchUpInside)
-        sourceSearchBar.searchTextField.addTarget(self, action: #selector(handleSourceSearchBarClickEvent), for: .touchUpInside)
-        destinationSearchBar.searchTextField.addTarget(self, action: #selector(handleDestinationSearchBarClickEvent), for: .touchUpInside)
+        swapButton.addTarget(self, action: #selector(handleSwapButtonClickEvent), for: .touchUpInside)
+        sourceSearchBar.addTarget(self, action: #selector(handleSourceSearchBarClickEvent), for: .touchUpInside)
+        destinationSearchBar.addTarget(self, action: #selector(handleDestinationSearchBarClickEvent), for: .touchUpInside)
         searchRouteButton.addTarget(self, action: #selector(handleSearchRouteButtonClickEvent), for: .touchUpInside)
     }
     
@@ -89,29 +94,32 @@ class SearchRouteView : BaseView {
         sourceText.snp.makeConstraints{
             $0.top.equalTo(safeAreaLayoutGuide).inset(20)
             $0.leading.equalToSuperview().inset(20)
+            $0.width.equalTo(Metric.textWidth)
         }
         
         destinationText.snp.makeConstraints{
             $0.top.equalTo(sourceText.snp.bottom).inset(-40)
             $0.leading.equalTo(sourceText.snp.leading)
+            $0.width.equalTo(Metric.textWidth)
         }
         
-        swapStationButton.snp.makeConstraints{
-            $0.trailing.equalToSuperview().inset(20)
-            $0.centerY.equalTo(sourceText.snp.bottom).inset(-25)
-        }
+//        swapButton.snp.makeConstraints{
+//            $0.trailing.equalToSuperview().inset(20)
+//            $0.centerY.equalTo(sourceText.snp.bottom).inset(-25)
+//            $0.height.equalTo(Metric.swapButtonHeight)
+//        }
         
         sourceSearchBar.snp.makeConstraints{
             $0.centerY.equalTo(sourceText)
-            $0.leading.equalTo(sourceText.snp.trailing).inset(-5)
-            $0.trailing.equalTo(swapStationButton.snp.leading)
+            $0.leading.equalTo(sourceText.snp.trailing).inset(-8)
+            $0.trailing.equalToSuperview().inset(50)
             $0.height.equalTo(Metric.searchBarHeight)
         }
         
         destinationSearchBar.snp.makeConstraints{
             $0.centerY.equalTo(destinationText)
-            $0.leading.equalTo(destinationText.snp.trailing).inset(-5)
-            $0.trailing.equalTo(swapStationButton.snp.leading)
+            $0.leading.equalTo(destinationText.snp.trailing).inset(-8)
+            $0.trailing.equalToSuperview().inset(50)
             $0.height.equalTo(Metric.searchBarHeight)
         }
         
@@ -123,7 +131,7 @@ class SearchRouteView : BaseView {
     }
     
     // MARK: Event
-    @objc private func handleSwapStationButtonClickEvent() {
+    @objc private func handleSwapButtonClickEvent() {
         tapSwapStationButton?()
     }
     
