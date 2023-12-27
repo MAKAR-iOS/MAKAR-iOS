@@ -29,11 +29,26 @@ class HomeViewController: BaseViewController {
 
         view.addSubview(homeView)
         
+        homeView.tapResetRouteButton = {[weak self] in
+            guard let self else { return }
+            postResetRouteButtonClicked()
+        }
+
         homeView.tapSetRouteButton = {[weak self] in
             guard let self else { return }
     
             self.navigationController?.pushViewController(SearchRouteViewController(), animated: true)
             postSetRouteButtonClicked()
+        }
+        
+        homeView.tapChangeRouteButton = {[weak self] in
+            guard let self else { return }
+            postChangeRouteButtonClicked()
+        }
+        
+        homeView.tapSetAlarmButton = {[weak self] in
+            guard let self else { return }
+            postSetAlarmButtonClicked()
         }
     }
 
@@ -47,12 +62,24 @@ class HomeViewController: BaseViewController {
     }
     
     // MARK: Networking
+    private func postResetRouteButtonClicked(){
+        print("resetRouteButton clicked")
+    }
+    
     private func postSetRouteButtonClicked() {
         print("setRouteButton clicked")
     }
     
     private func postMapButtonClicked(){
         print("mapButton clicked")
+    }
+    
+    private func postChangeRouteButtonClicked(){
+        print("changeRouteButton clicked")
+    }
+    
+    private func postSetAlarmButtonClicked(){
+        print("setAlarmButton clicked")
     }
 }
 
