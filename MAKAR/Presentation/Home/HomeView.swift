@@ -133,7 +133,10 @@ class HomeView: BaseView {
 //        addSubview(mainDivider2)
 //        addSubview(recentRouteListText)
         
+        resetRouteButton.addTarget(self, action: #selector(handleResetRouteButtonClickEvent), for: .touchUpInside)
         setRouteButton.addTarget(self, action: #selector(handleSetRouteButtonClickEvent), for: .touchUpInside)
+        changeRouteButton.addTarget(self, action: #selector(handleChangeRouteButtonClickEvent), for: .touchUpInside)
+        setAlarmButton.addTarget(self, action: #selector(handleSetAlarmButtonClickEvent), for: .touchUpInside)
     }
     
     // MARK: Layout
@@ -209,8 +212,19 @@ class HomeView: BaseView {
     }
     
     // MARK: Event
+    @objc private func handleResetRouteButtonClickEvent() {
+        tapResetRouteButton?()
+    }
+    
     @objc private func handleSetRouteButtonClickEvent() {
         tapSetRouteButton?()
     }
     
+    @objc private func handleChangeRouteButtonClickEvent() {
+        tapChangeRouteButton?()
+    }
+    
+    @objc private func handleSetAlarmButtonClickEvent() {
+        tapSetAlarmButton?()
+    }
 }
