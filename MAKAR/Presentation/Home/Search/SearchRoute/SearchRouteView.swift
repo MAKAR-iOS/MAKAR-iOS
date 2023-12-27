@@ -36,7 +36,7 @@ class SearchRouteView : BaseView {
         $0.setTitleColor(.darkgray, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.contentHorizontalAlignment = .left
-        $0.setImage(UIImage(named: "ic_search"), for: .normal)
+        $0.setImage(MakarButton.searchBarButton, for: .normal)
         $0.contentEdgeInsets = .init(top: 0, left: 15, bottom: 0, right: 0)
         $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 30)
         $0.backgroundColor = .systemGray6
@@ -49,7 +49,7 @@ class SearchRouteView : BaseView {
         $0.setTitleColor(.darkgray, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.contentHorizontalAlignment = .left
-        $0.setImage(UIImage(named: "ic_search"), for: .normal)
+        $0.setImage(MakarButton.searchBarButton, for: .normal)
         $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 30)
         $0.contentEdgeInsets = .init(top: 0, left: 15, bottom: 0, right: 0)
         $0.backgroundColor = .systemGray6
@@ -58,7 +58,7 @@ class SearchRouteView : BaseView {
     
     private let swapButton = BaseButton().then{
         // TODO: Image size 조정
-        $0.setImage(UIImage(named: "ic_swap"), for: .normal)
+        $0.setImage(MakarButton.swapButton, for: .normal)
     }
     
     private let searchRouteButton = BaseRouteButton().then{
