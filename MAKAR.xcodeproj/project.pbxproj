@@ -10,6 +10,10 @@
 		2645F7052B3B42AE00320883 /* NavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2645F7042B3B42AE00320883 /* NavigationBarExtension.swift */; };
 		267065262B3C997200F19EC3 /* FavoriteStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267065252B3C997200F19EC3 /* FavoriteStationView.swift */; };
 		267065282B3C998A00F19EC3 /* FavoriteStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267065272B3C998A00F19EC3 /* FavoriteStationViewController.swift */; };
+		2670652C2B3CA6B100F19EC3 /* HomeSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2670652B2B3CA6B100F19EC3 /* HomeSearchStationView.swift */; };
+		2670652E2B3CA6BC00F19EC3 /* HomeSearchStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2670652D2B3CA6BC00F19EC3 /* HomeSearchStationViewController.swift */; };
+		267065302B3CA6E200F19EC3 /* SchoolSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2670652F2B3CA6E200F19EC3 /* SchoolSearchStationView.swift */; };
+		267065322B3CA70200F19EC3 /* SchoolSearchStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267065312B3CA70200F19EC3 /* SchoolSearchStationViewController.swift */; };
 		26E664752B3C4C20002579C1 /* SourceSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664742B3C4C20002579C1 /* SourceSearchStationView.swift */; };
 		26E664772B3C4CFA002579C1 /* DestinationSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664762B3C4CFA002579C1 /* DestinationSearchStationView.swift */; };
 		26E664792B3C4D0A002579C1 /* DestinationSearchStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664782B3C4D0A002579C1 /* DestinationSearchStationViewController.swift */; };
@@ -61,6 +65,10 @@
 		2645F7042B3B42AE00320883 /* NavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarExtension.swift; sourceTree = "<group>"; };
 		267065252B3C997200F19EC3 /* FavoriteStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStationView.swift; sourceTree = "<group>"; };
 		267065272B3C998A00F19EC3 /* FavoriteStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStationViewController.swift; sourceTree = "<group>"; };
+		2670652B2B3CA6B100F19EC3 /* HomeSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchStationView.swift; sourceTree = "<group>"; };
+		2670652D2B3CA6BC00F19EC3 /* HomeSearchStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchStationViewController.swift; sourceTree = "<group>"; };
+		2670652F2B3CA6E200F19EC3 /* SchoolSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSearchStationView.swift; sourceTree = "<group>"; };
+		267065312B3CA70200F19EC3 /* SchoolSearchStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSearchStationViewController.swift; sourceTree = "<group>"; };
 		26E664742B3C4C20002579C1 /* SourceSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceSearchStationView.swift; sourceTree = "<group>"; };
 		26E664762B3C4CFA002579C1 /* DestinationSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchStationView.swift; sourceTree = "<group>"; };
 		26E664782B3C4D0A002579C1 /* DestinationSearchStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchStationViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +129,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		267065292B3CA68000F19EC3 /* FavoriteStation */ = {
+			isa = PBXGroup;
+			children = (
+				2670652A2B3CA6A000F19EC3 /* SearchStation */,
+				267065252B3C997200F19EC3 /* FavoriteStationView.swift */,
+				267065272B3C998A00F19EC3 /* FavoriteStationViewController.swift */,
+			);
+			path = FavoriteStation;
+			sourceTree = "<group>";
+		};
+		2670652A2B3CA6A000F19EC3 /* SearchStation */ = {
+			isa = PBXGroup;
+			children = (
+				2670652B2B3CA6B100F19EC3 /* HomeSearchStationView.swift */,
+				2670652D2B3CA6BC00F19EC3 /* HomeSearchStationViewController.swift */,
+				2670652F2B3CA6E200F19EC3 /* SchoolSearchStationView.swift */,
+				267065312B3CA70200F19EC3 /* SchoolSearchStationViewController.swift */,
+			);
+			path = SearchStation;
+			sourceTree = "<group>";
+		};
 		956382A82B3974ED006B50ED /* Timetable */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,10 +171,9 @@
 		956382AA2B39750B006B50ED /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				267065292B3CA68000F19EC3 /* FavoriteStation */,
 				956382C42B3975BE006B50ED /* MyPageView.swift */,
 				956382C62B3975C7006B50ED /* MyPageViewController.swift */,
-				267065252B3C997200F19EC3 /* FavoriteStationView.swift */,
-				267065272B3C998A00F19EC3 /* FavoriteStationViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -443,6 +471,7 @@
 				26F3B4292B3C2B3800E7756F /* BaseRouteButton.swift in Sources */,
 				956382F22B39855E006B50ED /* ImageLiteral.swift in Sources */,
 				956382DC2B397A07006B50ED /* HomeView.swift in Sources */,
+				267065302B3CA6E200F19EC3 /* SchoolSearchStationView.swift in Sources */,
 				95B10FAB2B3315F5005319F6 /* BaseButton.swift in Sources */,
 				956382E52B397A4D006B50ED /* SourceSearchStationViewController.swift in Sources */,
 				95B10F982B331534005319F6 /* RequestProvider.swift in Sources */,
@@ -453,11 +482,13 @@
 				26E664752B3C4C20002579C1 /* SourceSearchStationView.swift in Sources */,
 				95B10FA72B3315DD005319F6 /* BaseViewController.swift in Sources */,
 				956382C32B3975B7006B50ED /* NotificationViewController.swift in Sources */,
+				2670652C2B3CA6B100F19EC3 /* HomeSearchStationView.swift in Sources */,
 				95B10FA92B3315EB005319F6 /* BaseView.swift in Sources */,
 				95B10F9A2B331545005319F6 /* TargetType+Extension.swift in Sources */,
 				956382F42B398AEB006B50ED /* UIColor+Extension.swift in Sources */,
 				95B10F942B331501005319F6 /* ExampleAPI.swift in Sources */,
 				956382E92B397A66006B50ED /* SearchRouteViewController.swift in Sources */,
+				267065322B3CA70200F19EC3 /* SchoolSearchStationViewController.swift in Sources */,
 				956382BD2B3975A1006B50ED /* TimetableView.swift in Sources */,
 				95B10FAD2B33165C005319F6 /* AppDependency.swift in Sources */,
 				956382FA2B39A43E006B50ED /* BaseRouter.swift in Sources */,
@@ -478,6 +509,7 @@
 				95B10F962B331519005319F6 /* ExampleRequest.swift in Sources */,
 				95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */,
 				956382B62B39758A006B50ED /* LoginViewController.swift in Sources */,
+				2670652E2B3CA6BC00F19EC3 /* HomeSearchStationViewController.swift in Sources */,
 				95B10FA32B3315BB005319F6 /* ExampleViewController.swift in Sources */,
 				956382B42B397581006B50ED /* LoginView.swift in Sources */,
 				956382AE2B397568006B50ED /* SplashView.swift in Sources */,

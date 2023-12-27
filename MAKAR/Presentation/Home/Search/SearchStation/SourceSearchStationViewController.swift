@@ -42,6 +42,8 @@ class SourceSearchStationViewController : BaseViewController {
         
         sourceSearchStationView.tapMoreButton = {[weak self] in
             guard let self else { return }
+            
+            self.navigationController?.pushViewController(FavoriteStationViewController(), animated: true)
             postMoreButtonClicked()
         }
     }
