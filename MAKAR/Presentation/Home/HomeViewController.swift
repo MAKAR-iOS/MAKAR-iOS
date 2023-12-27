@@ -9,11 +9,11 @@ import UIKit
 
 class HomeViewController: BaseViewController {
     
+    // MARK: Flag
+    static var isRouteSet = false;
+    
     // MARK: UI Components
     private let homeView = HomeView()
-    
-    // MARK: Environment
-
 
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -21,6 +21,12 @@ class HomeViewController: BaseViewController {
 
         view.backgroundColor = .background
         setNavigationBar()
+        changeComponent()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        changeComponent()
     }
 
     // MARK: Configuration
@@ -31,6 +37,10 @@ class HomeViewController: BaseViewController {
         
         homeView.tapResetRouteButton = {[weak self] in
             guard let self else { return }
+            
+            //TODO: Alert로 수정 필요
+            changeComponent()
+            HomeViewController.isRouteSet = false;
             postResetRouteButtonClicked()
         }
 
@@ -38,11 +48,14 @@ class HomeViewController: BaseViewController {
             guard let self else { return }
     
             self.navigationController?.pushViewController(SearchRouteViewController(), animated: true)
+            HomeViewController.isRouteSet = true;
             postSetRouteButtonClicked()
         }
         
         homeView.tapChangeRouteButton = {[weak self] in
             guard let self else { return }
+            
+            self.navigationController?.pushViewController(SearchRouteViewController(), animated: true)
             postChangeRouteButtonClicked()
         }
         
@@ -99,4 +112,17 @@ extension HomeViewController {
         postMapButtonClicked()
     }
     
+    // MARK: ChangeComponent
+    private func changeComponent(){
+        if(HomeViewController.isRouteSet){
+            homeView.changeComponentRouteSet()
+            print("changeComponent: RouteSet")
+        }
+        else{
+            homeView.changeComponentRouteUnset()
+            print("changeComponent: RouteUnset")
+        }
+        //임시 method
+        homeView.layoutIfNeeded()
+    }
 }
