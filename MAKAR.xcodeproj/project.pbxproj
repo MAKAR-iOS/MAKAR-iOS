@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2645F7052B3B42AE00320883 /* NavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2645F7042B3B42AE00320883 /* NavigationBarExtension.swift */; };
+		26F3B4292B3C2B3800E7756F /* RouteBaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F3B4282B3C2B3800E7756F /* RouteBaseButton.swift */; };
 		956382AE2B397568006B50ED /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382AD2B397568006B50ED /* SplashView.swift */; };
 		956382B02B397570006B50ED /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382AF2B397570006B50ED /* SplashViewController.swift */; };
 		956382B42B397581006B50ED /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382B32B397581006B50ED /* LoginView.swift */; };
@@ -53,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		2645F7042B3B42AE00320883 /* NavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarExtension.swift; sourceTree = "<group>"; };
+		26F3B4282B3C2B3800E7756F /* RouteBaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteBaseButton.swift; sourceTree = "<group>"; };
 		956382AD2B397568006B50ED /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		956382AF2B397570006B50ED /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		956382B32B397581006B50ED /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				95B10FA82B3315EB005319F6 /* BaseView.swift */,
 				95B10FAA2B3315F5005319F6 /* BaseButton.swift */,
 				956382F92B39A43E006B50ED /* BaseRouter.swift */,
+				26F3B4282B3C2B3800E7756F /* RouteBaseButton.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				956382C72B3975C7006B50ED /* MyPageViewController.swift in Sources */,
+				26F3B4292B3C2B3800E7756F /* RouteBaseButton.swift in Sources */,
 				956382F22B39855E006B50ED /* ImageLiteral.swift in Sources */,
 				956382DC2B397A07006B50ED /* HomeView.swift in Sources */,
 				95B10FAB2B3315F5005319F6 /* BaseButton.swift in Sources */,
