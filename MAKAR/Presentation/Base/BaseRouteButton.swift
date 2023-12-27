@@ -6,7 +6,7 @@
 //
 
 import UIKit
-class RouteBaseButton : BaseButton {
+class BaseRouteButton : BaseButton {
     
     override init() {
         super.init()

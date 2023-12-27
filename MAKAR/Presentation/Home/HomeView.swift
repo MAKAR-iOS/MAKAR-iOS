@@ -62,7 +62,7 @@ class HomeView: BaseView {
         $0.font = UIFont.systemFont(ofSize: 15, weight: .light)
     }
     
-    private let setRouteButton = RouteBaseButton().then {
+    private let setRouteButton = BaseRouteButton().then {
         $0.setTitle("경로 설정하기", for: .normal)
     }
     
@@ -75,7 +75,7 @@ class HomeView: BaseView {
         $0.layer.cornerRadius = CGFloat(Metric.buttonRadius)
     }
     
-    private let setAlarmButton = RouteBaseButton().then{
+    private let setAlarmButton = BaseRouteButton().then{
         $0.setTitle("막차/하차 알림 설정하기", for: .normal)
     }
     
