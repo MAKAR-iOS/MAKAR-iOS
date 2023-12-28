@@ -42,6 +42,7 @@ class HomeSearchStationViewController : BaseSearchStationViewController {
     
     // MARK: NavigationBar
     override func setNavigationBar(){
+        super.setNavigationBar()
         navigationItem.title = "역 검색"
     }
     

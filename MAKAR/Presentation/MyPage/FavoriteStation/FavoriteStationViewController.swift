@@ -69,6 +69,7 @@ class FavoriteStationViewController : BaseViewController {
     
     // MARK: NavigationBar
     override func setNavigationBar(){
+        super.setNavigationBar()
         navigationItem.title = "자주 가는 역 설정"
     }
     

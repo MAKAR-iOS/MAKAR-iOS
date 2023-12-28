@@ -79,6 +79,7 @@ class SearchRouteViewController : BaseViewController {
     
     // MARK: NavigationBar
     override func setNavigationBar(){
+        super.setNavigationBar()
         navigationItem.title = "경로 설정하기"
     }
     

@@ -13,10 +13,10 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNavigationBackButton()
         configureSubviews()
         makeConstraints()
         setNavigationBar()
+        setEditing()
         view.backgroundColor = .white
     }
     
@@ -31,5 +31,21 @@ class BaseViewController: UIViewController {
     
     // MARK: NavigationBar
     func setNavigationBar(){
+        let navigationBar = navigationController?.navigationBar
+        navigationBar?.topItem?.backButtonTitle = ""
+        navigationBar?.tintColor = .black
     }
+    
+    // MARK: Keyboard
+    func setEditing(){
+          let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+          tap.cancelsTouchesInView = false
+          view.addGestureRecognizer(tap)
+        }
+        
+        @objc func handleTap() {
+            self.view.endEditing(true)
+        }
 }
+
+

@@ -86,6 +86,7 @@ class SourceSearchStationViewController : BaseSearchStationViewController {
     
     // MARK: NavigationBar
     override func setNavigationBar(){
+        super.setNavigationBar()
         navigationItem.title = "출발역 입력"
     }
     
