@@ -17,7 +17,6 @@ class SearchRouteViewController : BaseViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .background
-        setNavigationBar()
     }
     
     // MARK: Configuration
@@ -79,7 +78,7 @@ class SearchRouteViewController : BaseViewController {
     }
     
     // MARK: NavigationBar
-    private func setNavigationBar(){
+    override func setNavigationBar(){
         navigationItem.title = "경로 설정하기"
     }
     

@@ -16,7 +16,6 @@ class FavoriteStationViewController : BaseViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .background
-        setNavigationBar()
     }
     
     // MARK: Configuration
@@ -69,7 +68,7 @@ class FavoriteStationViewController : BaseViewController {
     }
     
     // MARK: NavigationBar
-    private func setNavigationBar(){
+    override func setNavigationBar(){
         navigationItem.title = "자주 가는 역 설정"
     }
     
