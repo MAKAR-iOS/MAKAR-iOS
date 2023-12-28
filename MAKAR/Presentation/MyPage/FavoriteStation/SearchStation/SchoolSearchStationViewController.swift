@@ -6,7 +6,12 @@
 //
 
 import UIKit
-class SchoolSearchStationViewController : BaseViewController {
+class SchoolSearchStationViewController : BaseSearchStationViewController {
+    
+    // MARK: Constants
+    private enum Metric {
+        static let viewHeight = 80
+    }
     
     // MARK: UI Components
     private let schoolSearchStationView = SchoolSearchStationView()
@@ -16,7 +21,6 @@ class SchoolSearchStationViewController : BaseViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .background
-        setNavigationBar()
     }
     
     // MARK: Configuration
@@ -31,12 +35,30 @@ class SchoolSearchStationViewController : BaseViewController {
         super.makeConstraints()
         
         schoolSearchStationView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(Metric.viewHeight)
         }
     }
     
     // MARK: NavigationBar
-    private func setNavigationBar(){
+    override func setNavigationBar(){
         navigationItem.title = "역 검색"
+    }
+    
+    // MARK: TableView
+    override func setTableView() {
+        super.setTableView()
+        
+        tableView.snp.makeConstraints{
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(Metric.viewHeight)
+        }
+    }
+}
+
+extension SchoolSearchStationViewController {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        //TableView Networking Test
+        print("SchoolSearchStationVC : cell -> \(cell!.textLabel!.text)")
     }
 }

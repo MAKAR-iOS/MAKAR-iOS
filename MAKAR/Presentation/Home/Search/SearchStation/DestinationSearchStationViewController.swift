@@ -6,7 +6,12 @@
 //
 
 import UIKit
-class DestinationSearchStationViewController : BaseViewController {
+class DestinationSearchStationViewController : BaseSearchStationViewController {
+    
+    // MARK: Constants
+    private enum Metric {
+        static let viewHeight = 125
+    }
     
     // MARK: UI Components
     private let destinationSearchStationView = DestinationSearchStationView()
@@ -16,7 +21,6 @@ class DestinationSearchStationViewController : BaseViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .background
-        setNavigationBar()
     }
     
     // MARK: Configuration
@@ -51,9 +55,9 @@ class DestinationSearchStationViewController : BaseViewController {
     override func makeConstraints() {
         super.makeConstraints()
         
-        // TODO: Layout 수정
         destinationSearchStationView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(Metric.viewHeight)
         }
     }
     
@@ -71,7 +75,24 @@ class DestinationSearchStationViewController : BaseViewController {
     }
     
     // MARK: NavigationBar
-    private func setNavigationBar(){
+    override func setNavigationBar(){
         navigationItem.title = "도착역 입력"
+    }
+    
+    // MARK: TableView
+    override func setTableView() {
+        super.setTableView()
+        
+        tableView.snp.makeConstraints{
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(Metric.viewHeight)
+        }
+    }
+}
+
+extension DestinationSearchStationViewController {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        //TableView Networking Test
+        print("DestinationSearchStationVC : cell -> \(cell!.textLabel!.text)")
     }
 }
