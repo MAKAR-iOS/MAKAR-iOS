@@ -104,5 +104,6 @@ extension SourceSearchStationViewController {
         let cell = tableView.cellForRow(at: indexPath)
         //TableView Networking Test
         print("SourceSearchStationVC : cell -> \(cell!.textLabel!.text)")
+        navigationController?.popViewController(animated: true)
     }
 }
