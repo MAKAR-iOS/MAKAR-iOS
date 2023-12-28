@@ -16,6 +16,7 @@ class BaseViewController: UIViewController {
         setNavigationBackButton()
         configureSubviews()
         makeConstraints()
+        setNavigationBar()
         view.backgroundColor = .white
     }
     
@@ -26,5 +27,9 @@ class BaseViewController: UIViewController {
     
     // MARK: Layout
     func makeConstraints() {
+    }
+    
+    // MARK: NavigationBar
+    func setNavigationBar(){
     }
 }
