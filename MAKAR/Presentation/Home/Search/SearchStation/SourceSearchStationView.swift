@@ -10,21 +10,28 @@ class SourceSearchStationView : BaseSearchStationView {
     
     // MARK: Constants
     private enum Metric {
-        static let buttonHeight = 27
-        static let buttonRadius = 12
+        static let buttonHeight = 30
     }
     
     // MARK: UI Components
     private let myLocationButton = BaseButton().then{
-        $0.configuration = stationButtonConfigure(title: "내 위치", image: MakarButton.myLocationButton)
+        // TODO: Button Config 수정
+//        $0.configuration = stationButtonConfigure(title: "내 위치", image: MakarButton.myLocationButton)
+        let systemImageConfig = UIImage.SymbolConfiguration(paletteColors: [.darkgray2])
+        let image = UIImage(systemName: "mappin.and.ellipse", withConfiguration: systemImageConfig)!
+        $0.configuration = stationButtonConfigure(title: "내 위치", image: image)
     }
     
     private let homeButton = BaseButton().then{
-        $0.configuration = stationButtonConfigure(title: "집", image: MakarButton.homeButton)
+//        $0.configuration = stationButtonConfigure(title: "집", image: MakarButton.homeButton)
+        let systemImageConfig = UIImage.SymbolConfiguration(paletteColors: [.darkgray2])
+        $0.configuration = stationButtonConfigure(title: "집", image: UIImage(systemName: "house", withConfiguration: systemImageConfig)!)
     }
     
     private let schoolButton = BaseButton().then{
-        $0.configuration = stationButtonConfigure(title: "학교", image: MakarButton.schoolButton)
+//        $0.configuration = stationButtonConfigure(title: "학교", image: MakarButton.schoolButton)
+        let systemImageConfig = UIImage.SymbolConfiguration(paletteColors: [.darkgray2])
+        $0.configuration = stationButtonConfigure(title: "학교", image: UIImage(systemName: "graduationcap", withConfiguration: systemImageConfig)!)
     }
     
     private let moreButton = BaseButton().then{
@@ -57,29 +64,28 @@ class SourceSearchStationView : BaseSearchStationView {
         super.makeConstraints()
         
         myLocationButton.snp.makeConstraints{
-            $0.top.equalTo(stationSearchBar.snp.bottom).inset(-10)
+            $0.top.equalTo(stationSearchBar.snp.bottom).inset(-15)
             $0.leading.equalToSuperview().inset(20)
             $0.height.equalTo(Metric.buttonHeight)
         }
         
         homeButton.snp.makeConstraints{
             $0.top.equalTo(myLocationButton)
-            $0.leading.equalTo(myLocationButton.snp.trailing).inset(-10)
+            $0.leading.equalTo(myLocationButton.snp.trailing).inset(-8)
             $0.height.equalTo(Metric.buttonHeight)
         }
         
         schoolButton.snp.makeConstraints{
             $0.top.equalTo(myLocationButton)
-            $0.leading.equalTo(homeButton.snp.trailing).inset(-10)
+            $0.leading.equalTo(homeButton.snp.trailing).inset(-8)
             $0.height.equalTo(Metric.buttonHeight)
         }
         
         moreButton.snp.makeConstraints{
             $0.top.equalTo(myLocationButton)
-            $0.leading.equalTo(schoolButton.snp.trailing).inset(-10)
+            $0.leading.equalTo(schoolButton.snp.trailing).inset(-8)
             $0.height.equalTo(Metric.buttonHeight)
         }
-        
     }
     
     // MARK: Event
@@ -104,15 +110,16 @@ extension SourceSearchStationView {
     
    static func stationButtonConfigure(title : String, image : UIImage) -> UIButton.Configuration{
         var title = AttributedString(title)
-        title.font =  UIFont.systemFont(ofSize: 13, weight: .light)
+       title.font =  UIFont.systemFont(ofSize: 13, weight: .medium)
         var config = UIButton.Configuration.plain()
         config.attributedTitle = title
-        config.background.strokeColor = .black
-        config.background.strokeWidth = 0.5
-        config.baseForegroundColor = .black
+       config.background.strokeColor = .darkgray
+        config.background.strokeWidth = 0.8
+        config.baseForegroundColor = .darkgray
         config.cornerStyle = .capsule
         config.image = image
-        config.imagePadding = 5
+        config.imagePadding = 3
+        config.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize:13)
         return config
     }
 }
