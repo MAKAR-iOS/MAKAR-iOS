@@ -48,6 +48,7 @@ class HomeViewController: BaseViewController {
             guard let self else { return }
     
             self.navigationController?.pushViewController(SearchRouteViewController(), animated: true)
+            // TODO: flag 수정
             HomeViewController.isRouteSet = true;
             postSetRouteButtonClicked()
         }
@@ -61,6 +62,8 @@ class HomeViewController: BaseViewController {
         
         homeView.tapSetAlarmButton = {[weak self] in
             guard let self else { return }
+            
+            self.tabBarController?.selectedIndex = 3
             postSetAlarmButtonClicked()
         }
     }
@@ -104,8 +107,8 @@ extension HomeViewController {
         //TODO: NavigationBar MAKAR icon custom 필요
         
         navigationItem.title = nil
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_map"), style: .plain, target: self, action: #selector(handleMapButtonClickEvent))
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "logo_makar"), style: .plain, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: MakarButton.mapButton, style: .plain, target: self, action: #selector(handleMapButtonClickEvent))
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: MakarImage.makarLogo, style: .plain, target: nil, action: nil)
     }
     
     @objc private func handleMapButtonClickEvent(){
