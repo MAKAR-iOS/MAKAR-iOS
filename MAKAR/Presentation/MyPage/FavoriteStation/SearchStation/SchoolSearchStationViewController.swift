@@ -60,5 +60,6 @@ extension SchoolSearchStationViewController {
         let cell = tableView.cellForRow(at: indexPath)
         //TableView Networking Test
         print("SchoolSearchStationVC : cell -> \(cell!.textLabel!.text)")
+        navigationController?.popViewController(animated: true)
     }
 }

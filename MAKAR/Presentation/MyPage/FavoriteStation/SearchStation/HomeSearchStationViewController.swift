@@ -60,5 +60,6 @@ extension HomeSearchStationViewController {
         let cell = tableView.cellForRow(at: indexPath)
         //TableView Networking Test
         print("HomeSearchStationVC : cell -> \(cell!.textLabel!.text)")
+        navigationController?.popViewController(animated: true)
     }
 }
