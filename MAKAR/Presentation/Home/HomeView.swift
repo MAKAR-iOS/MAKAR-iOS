@@ -13,7 +13,7 @@ class HomeView: BaseView {
     private enum Metric {
         static let buttonHeight = 43
         static let buttonRadius = 18
-        static let dividerHeight = 2
+        static let dividerHeight = 4
         static let resetButtonHeight = 26
     }
     
@@ -81,6 +81,7 @@ class HomeView: BaseView {
     private let favoriteRouteListText = UILabel().then{
         $0.text = "즐겨찾는 경로"
         $0.font = UIFont.systemFont(ofSize: 15, weight: .light)
+        $0.textColor = .darkgray
     }
     
     private let mainDivider2 = UIView().then{
@@ -90,6 +91,7 @@ class HomeView: BaseView {
     private let recentRouteListText = UILabel().then{
         $0.text = "최근 경로"
         $0.font = UIFont.systemFont(ofSize: 15, weight: .light)
+        $0.textColor = .darkgray
     }
     
     // MARK: Properties

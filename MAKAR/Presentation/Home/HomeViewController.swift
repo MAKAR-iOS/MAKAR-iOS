@@ -99,6 +99,7 @@ class HomeViewController: BaseViewController {
     
     // MARK: NavigationBar
     override func setNavigationBar(){
+        super.setNavigationBar()
         //TODO: NavigationBar MAKAR icon custom 필요
         
         navigationItem.title = nil
