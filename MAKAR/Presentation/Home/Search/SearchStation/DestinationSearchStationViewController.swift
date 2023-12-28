@@ -27,11 +27,15 @@ class DestinationSearchStationViewController : BaseViewController {
         
         destinationSearchStationView.tapHomeButton = {[weak self] in
             guard let self else { return }
+            
+            navigationController?.popViewController(animated: true)
             postHomeButtonClicked()
         }
         
         destinationSearchStationView.tapSchoolButton = {[weak self] in
             guard let self else { return }
+            
+            navigationController?.popViewController(animated: true)
             postSchoolButtonClicked()
         }
         

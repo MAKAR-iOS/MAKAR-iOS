@@ -48,6 +48,7 @@ class HomeViewController: BaseViewController {
             guard let self else { return }
     
             self.navigationController?.pushViewController(SearchRouteViewController(), animated: true)
+            // TODO: flag 수정
             HomeViewController.isRouteSet = true;
             postSetRouteButtonClicked()
         }
@@ -61,6 +62,8 @@ class HomeViewController: BaseViewController {
         
         homeView.tapSetAlarmButton = {[weak self] in
             guard let self else { return }
+            
+            self.tabBarController?.selectedIndex = 3
             postSetAlarmButtonClicked()
         }
     }
