@@ -29,14 +29,14 @@ class FavoriteStationView : BaseView {
     
     private let homeStationTextView = UITextField().then{
         // TODO: 수정 필요
-        $0.textColor = .darkgray
+        $0.textColor = .darkGray
         $0.font = UIFont.systemFont(ofSize: 15)
         $0.backgroundColor = .red
     }
     
     private let schoolStationTextView = UITextField().then{
         // TODO: 수정 필요
-        $0.textColor = .darkgray
+        $0.textColor = .darkGray
         $0.font = UIFont.systemFont(ofSize: 15)
         $0.backgroundColor = .red
     }
@@ -47,7 +47,7 @@ class FavoriteStationView : BaseView {
         var config = UIButton.Configuration.filled()
         config.attributedTitle = title
         config.baseForegroundColor = .white
-        config.baseBackgroundColor = .lightgray2
+        config.baseBackgroundColor = .lightGray2
         config.cornerStyle = .large
         $0.configuration = config
     }
@@ -58,7 +58,7 @@ class FavoriteStationView : BaseView {
         var config = UIButton.Configuration.filled()
         config.attributedTitle = title
         config.baseForegroundColor = .white
-        config.baseBackgroundColor = .lightgray2
+        config.baseBackgroundColor = .lightGray2
         config.cornerStyle = .large
         $0.configuration = config
     }
