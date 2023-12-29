@@ -18,20 +18,20 @@ class SourceSearchStationView : BaseSearchStationView {
     private let myLocationButton = BaseButton().then{
         // TODO: Button Config 수정
 //        $0.configuration = stationButtonConfigure(title: "내 위치", image: MakarButton.myLocationButton)
-        let systemImageConfig = UIImage.SymbolConfiguration(paletteColors: [.darkgray2])
+        let systemImageConfig = UIImage.SymbolConfiguration(paletteColors: [.darkGray2])
         let image = UIImage(systemName: "mappin.and.ellipse", withConfiguration: systemImageConfig)!
         $0.configuration = stationButtonConfigure(title: "내 위치", image: image)
     }
     
     private let homeButton = BaseButton().then{
 //        $0.configuration = stationButtonConfigure(title: "집", image: MakarButton.homeButton)
-        let systemImageConfig = UIImage.SymbolConfiguration(paletteColors: [.darkgray2])
+        let systemImageConfig = UIImage.SymbolConfiguration(paletteColors: [.darkGray2])
         $0.configuration = stationButtonConfigure(title: "집", image: UIImage(systemName: "house", withConfiguration: systemImageConfig)!)
     }
     
     private let schoolButton = BaseButton().then{
 //        $0.configuration = stationButtonConfigure(title: "학교", image: MakarButton.schoolButton)
-        let systemImageConfig = UIImage.SymbolConfiguration(paletteColors: [.darkgray2])
+        let systemImageConfig = UIImage.SymbolConfiguration(paletteColors: [.darkGray2])
         $0.configuration = stationButtonConfigure(title: "학교", image: UIImage(systemName: "graduationcap", withConfiguration: systemImageConfig)!)
     }
     
@@ -125,9 +125,9 @@ extension SourceSearchStationView {
        title.font =  UIFont.systemFont(ofSize: 13, weight: .medium)
         var config = UIButton.Configuration.plain()
         config.attributedTitle = title
-       config.background.strokeColor = .darkgray
+       config.background.strokeColor = .darkGray
         config.background.strokeWidth = 0.8
-        config.baseForegroundColor = .darkgray
+        config.baseForegroundColor = .darkGray
         config.cornerStyle = .capsule
         config.image = image
         config.imagePadding = 3
