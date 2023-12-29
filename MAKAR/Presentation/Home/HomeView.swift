@@ -13,7 +13,7 @@ class HomeView: BaseView {
     private enum Metric {
         static let buttonHeight = 43
         static let buttonRadius = 18
-        static let dividerHeight = 2
+        static let dividerHeight = 4
         static let resetButtonHeight = 26
     }
     
@@ -40,7 +40,7 @@ class HomeView: BaseView {
     private let mainRouteView = UILabel().then{
         //TODO: Text ic_arrow 수정 필요
         $0.text = "출발역  ->  도착역"
-        $0.textColor = .darkGray
+        $0.textColor = .darkgray
         $0.textAlignment = .center
         $0.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         $0.backgroundColor = .systemGray6
@@ -81,6 +81,7 @@ class HomeView: BaseView {
     private let favoriteRouteListText = UILabel().then{
         $0.text = "즐겨찾는 경로"
         $0.font = UIFont.systemFont(ofSize: 15, weight: .light)
+        $0.textColor = .darkgray
     }
     
     private let mainDivider2 = UIView().then{
@@ -90,6 +91,7 @@ class HomeView: BaseView {
     private let recentRouteListText = UILabel().then{
         $0.text = "최근 경로"
         $0.font = UIFont.systemFont(ofSize: 15, weight: .light)
+        $0.textColor = .darkgray
     }
     
     // MARK: Properties

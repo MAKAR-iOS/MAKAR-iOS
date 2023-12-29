@@ -11,6 +11,7 @@ class SourceSearchStationView : BaseSearchStationView {
     // MARK: Constants
     private enum Metric {
         static let buttonHeight = 30
+        static let dividerHeight = 12
     }
     
     // MARK: UI Components
@@ -37,6 +38,10 @@ class SourceSearchStationView : BaseSearchStationView {
     private let moreButton = BaseButton().then{
         $0.configuration = stationButtonConfigure(title: "", image: MakarButton.moreRightButton)
     }
+    
+    private let divider = UIView().then{
+        $0.backgroundColor = .divider
+    }
   
     // MARK: Properties
     var tapMyLocationButton: (() -> Void)?
@@ -52,6 +57,7 @@ class SourceSearchStationView : BaseSearchStationView {
         addSubview(homeButton)
         addSubview(schoolButton)
         addSubview(moreButton)
+        addSubview(divider)
         
         myLocationButton.addTarget(self, action: #selector(handleMyLocationButtonClickEvent), for: .touchUpInside)
         homeButton.addTarget(self, action: #selector(handleHomeButtonClickEvent), for: .touchUpInside)
@@ -85,6 +91,12 @@ class SourceSearchStationView : BaseSearchStationView {
             $0.top.equalTo(myLocationButton)
             $0.leading.equalTo(schoolButton.snp.trailing).inset(-8)
             $0.height.equalTo(Metric.buttonHeight)
+        }
+        
+        divider.snp.makeConstraints{
+            $0.top.equalTo(myLocationButton.snp.bottom).inset(-20)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(Metric.dividerHeight)
         }
     }
     

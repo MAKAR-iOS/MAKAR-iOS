@@ -20,7 +20,6 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .background
-        setNavigationBar()
         changeComponent()
     }
     
@@ -97,13 +96,10 @@ class HomeViewController: BaseViewController {
     private func postSetAlarmButtonClicked(){
         print("setAlarmButton clicked")
     }
-}
-
-
-extension HomeViewController {
     
     // MARK: NavigationBar
-    private func setNavigationBar(){
+    override func setNavigationBar(){
+        super.setNavigationBar()
         //TODO: NavigationBar MAKAR icon custom 필요
         
         navigationItem.title = nil
@@ -114,6 +110,9 @@ extension HomeViewController {
     @objc private func handleMapButtonClickEvent(){
         postMapButtonClicked()
     }
+}
+
+extension HomeViewController {
     
     // MARK: ChangeComponent
     private func changeComponent(){
