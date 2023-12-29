@@ -40,7 +40,7 @@ class HomeView: BaseView {
     private let mainRouteView = UILabel().then{
         //TODO: Text ic_arrow 수정 필요
         $0.text = "출발역  ->  도착역"
-        $0.textColor = .darkGray
+        $0.textColor = .darkgray
         $0.textAlignment = .center
         $0.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         $0.backgroundColor = .systemGray6

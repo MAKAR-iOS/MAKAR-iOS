@@ -10,10 +10,11 @@ class FavoriteStationView : BaseView {
     
     // MARK: Constants
     private enum Metric {
-        static let buttonWidth = 62
-        static let buttonHeight = 30
+        static let buttonWidth = 60
+        static let buttonHeight = 28
         static let buttonRadius = 6
-        static let setButtonHeight = 50
+        static let textViewHeight = 35
+        static let setButtonHeight = 45
     }
     
     // MARK: UI Components
@@ -27,23 +28,29 @@ class FavoriteStationView : BaseView {
         $0.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
     }
     
-    private let homeStationTextView = UITextField().then{
-        // TODO: 수정 필요
-        $0.textColor = .darkgray
-        $0.font = UIFont.systemFont(ofSize: 15)
-        $0.backgroundColor = .red
+    private let homeStationTextView = BaseButton().then{
+        $0.setTitle("집 주변 지하철 역을 등록해주세요", for: .normal)
+        $0.setTitleColor(.lightgray, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .light)
+        $0.contentHorizontalAlignment = .left
+        $0.contentEdgeInsets = .init(top: 0, left: 10, bottom: 0, right: 0)
+        $0.backgroundColor = .systemGray6
+        $0.layer.cornerRadius = CGFloat(Metric.buttonRadius)
     }
     
-    private let schoolStationTextView = UITextField().then{
-        // TODO: 수정 필요
-        $0.textColor = .darkgray
-        $0.font = UIFont.systemFont(ofSize: 15)
-        $0.backgroundColor = .red
+    private let schoolStationTextView = BaseButton().then{
+        $0.setTitle("학교 주변 지하철 역을 등록해주세요", for: .normal)
+        $0.setTitleColor(.lightgray, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .light)
+        $0.contentHorizontalAlignment = .left
+        $0.contentEdgeInsets = .init(top: 0, left: 10, bottom: 0, right: 0)
+        $0.backgroundColor = .systemGray6
+        $0.layer.cornerRadius = CGFloat(Metric.buttonRadius)
     }
     
     private let homeSearchStationButton = BaseButton().then{
         var title = AttributedString("역 검색")
-        title.font =  UIFont.systemFont(ofSize: 13)
+        title.font =  UIFont.systemFont(ofSize: 12)
         var config = UIButton.Configuration.filled()
         config.attributedTitle = title
         config.baseForegroundColor = .white
@@ -54,7 +61,7 @@ class FavoriteStationView : BaseView {
     
     private let schoolSearchStationButton = BaseButton().then{
         var title = AttributedString("역 검색")
-        title.font =  UIFont.systemFont(ofSize: 13)
+        title.font =  UIFont.systemFont(ofSize: 12)
         var config = UIButton.Configuration.filled()
         config.attributedTitle = title
         config.baseForegroundColor = .white
@@ -88,6 +95,8 @@ class FavoriteStationView : BaseView {
         addSubview(schoolStationTextView)
         addSubview(setButton)
         
+        homeStationTextView.addTarget(self, action: #selector(handleHomeSearchStationButtonClickEvent), for: .touchUpInside)
+        schoolStationTextView.addTarget(self, action: #selector(handleSchoolSearchStationButtonClickEvent), for: .touchUpInside)
         homeSearchStationButton.addTarget(self, action: #selector(handleHomeSearchStationButtonClickEvent), for: .touchUpInside)
         schoolSearchStationButton.addTarget(self, action: #selector(handleSchoolSearchStationButtonClickEvent), for: .touchUpInside)
         setButton.addTarget(self, action: #selector(handleSetButtonClickEvent), for: .touchUpInside)
@@ -110,9 +119,10 @@ class FavoriteStationView : BaseView {
         }
         
         homeStationTextView.snp.makeConstraints{
-            $0.top.equalTo(homeText.snp.bottom).inset(-10)
+            $0.centerY.equalTo(homeSearchStationButton)
             $0.leading.equalToSuperview().inset(20)
             $0.trailing.equalTo(homeSearchStationButton.snp.leading).inset(-10)
+            $0.height.equalTo(Metric.textViewHeight)
         }
         
         schoolText.snp.makeConstraints{
@@ -128,9 +138,10 @@ class FavoriteStationView : BaseView {
         }
         
         schoolStationTextView.snp.makeConstraints{
-            $0.top.equalTo(schoolText.snp.bottom).inset(-10)
+            $0.centerY.equalTo(schoolSearchStationButton)
             $0.leading.equalToSuperview().inset(20)
             $0.trailing.equalTo(schoolSearchStationButton.snp.leading).inset(-10)
+            $0.height.equalTo(Metric.textViewHeight)
         }
         
         setButton.snp.makeConstraints{
