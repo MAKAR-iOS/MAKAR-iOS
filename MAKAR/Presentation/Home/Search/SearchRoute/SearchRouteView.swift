@@ -22,18 +22,18 @@ class SearchRouteView : BaseView {
     private let sourceText = UILabel().then{
         $0.text = "출발역"
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        $0.textColor = .darkgray
+        $0.textColor = .darkGray
     }
     
     private let destinationText = UILabel().then{
         $0.text = "도착역"
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        $0.textColor = .darkgray
+        $0.textColor = .darkGray
     }
     
     private let sourceSearchBar = BaseButton().then{
         $0.setTitle("출발역을 입력하세요", for: .normal)
-        $0.setTitleColor(.darkgray, for: .normal)
+        $0.setTitleColor(.darkGray, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.contentHorizontalAlignment = .left
         $0.setImage(MakarButton.searchBarButton, for: .normal)
@@ -45,7 +45,7 @@ class SearchRouteView : BaseView {
     
     private let destinationSearchBar = BaseButton().then{
         $0.setTitle("도착역을 입력하세요", for: .normal)
-        $0.setTitleColor(.darkgray, for: .normal)
+        $0.setTitleColor(.darkGray, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.contentHorizontalAlignment = .left
         $0.setImage(MakarButton.searchBarButton, for: .normal)

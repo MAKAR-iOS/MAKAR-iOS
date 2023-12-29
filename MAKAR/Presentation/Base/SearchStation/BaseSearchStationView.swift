@@ -17,7 +17,7 @@ class BaseSearchStationView : BaseView {
     let stationSearchBar = UISearchBar().then{
         $0.placeholder = "역을 검색해주세요"
         $0.searchTextField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        $0.searchTextField.textColor = .darkgray
+        $0.searchTextField.textColor = .darkGray
         $0.searchTextField.backgroundColor = .systemGray6
         $0.searchBarStyle = .minimal
         $0.setSearchFieldBackgroundImage(UIImage(), for: .normal)

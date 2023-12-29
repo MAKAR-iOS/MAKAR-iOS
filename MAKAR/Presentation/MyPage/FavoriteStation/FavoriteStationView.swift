@@ -54,7 +54,7 @@ class FavoriteStationView : BaseView {
         var config = UIButton.Configuration.filled()
         config.attributedTitle = title
         config.baseForegroundColor = .white
-        config.baseBackgroundColor = .lightgray2
+        config.baseBackgroundColor = .lightGray2
         config.cornerStyle = .large
         $0.configuration = config
     }
@@ -65,7 +65,7 @@ class FavoriteStationView : BaseView {
         var config = UIButton.Configuration.filled()
         config.attributedTitle = title
         config.baseForegroundColor = .white
-        config.baseBackgroundColor = .lightgray2
+        config.baseBackgroundColor = .lightGray2
         config.cornerStyle = .large
         $0.configuration = config
     }
