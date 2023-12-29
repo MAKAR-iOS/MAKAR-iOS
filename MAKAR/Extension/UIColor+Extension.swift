@@ -36,31 +36,31 @@ internal extension UIColor {
         return UIColor.load(name: "black")
     }
 
-    static var darkgray: UIColor {
+    static var darkGray: UIColor {
         return UIColor.load(name: "darkgray")
     }
 
-    static var darkgray2: UIColor {
+    static var darkGray2: UIColor {
         return UIColor.load(name: "darkgray2")
     }
 
-    static var lightgray: UIColor {
+    static var lightGray: UIColor {
         return UIColor.load(name: "lightgray")
     }
 
-    static var lightgray2: UIColor {
+    static var lightGray2: UIColor {
         return UIColor.load(name: "lightgray2")
     }
 
-    static var lightgray3: UIColor {
+    static var lightGray3: UIColor {
         return UIColor.load(name: "lightgray3")
     }
 
-    static var lightgray4: UIColor {
+    static var lightGray4: UIColor {
         return UIColor.load(name: "lightgray4")
     }
 
-    static var lightgray5: UIColor {
+    static var lightGray5: UIColor {
         return UIColor.load(name: "lightgray5")
     }
 

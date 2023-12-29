@@ -93,11 +93,11 @@ class TabBarViewController: UITabBarController {
         tabBar.tintColor = .makarBlue
 
         tabBar.layer.cornerRadius = CGFloat(Metric.tabBarRadius)
-        tabBar.layer.borderColor = UIColor.lightgray5.cgColor
+        tabBar.layer.borderColor = UIColor.lightGray5.cgColor
         tabBar.layer.borderWidth = 1
 
         tabBar.layer.masksToBounds = false
-        tabBar.layer.shadowColor = UIColor.darkgray.withAlphaComponent(0.2).cgColor
+        tabBar.layer.shadowColor = UIColor.darkGray.withAlphaComponent(0.2).cgColor
         tabBar.layer.shadowOffset = .zero
         tabBar.layer.shadowOpacity = 0.5
         tabBar.layer.shadowRadius = CGFloat(Metric.tabBarRadius)
