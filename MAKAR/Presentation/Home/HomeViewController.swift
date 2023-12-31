@@ -10,7 +10,15 @@ import UIKit
 class HomeViewController: BaseViewController {
     
     // MARK: Flag
-    static var isRouteSet = false;
+    static var isRouteSet = false //경로 설정 유무 플래그
+    var leftTime = 0 //막차/하차까지 남은 시간
+    var makarNotiFlag = false //막차 알림 실행 유무 플래그
+    var hakarNotiFlag = false //하차 알림 실행 유무 플래그
+    
+    static let makarDateComponents = DateComponents(year: 2024, month: 1, day: 1, hour: 21, minute: 00)
+    static let hakarDateComponents = DateComponents(year: 2024, month: 1, day: 1, hour: 22, minute: 00)
+    let makarTime = Calendar.current.date(from: makarDateComponents)!//임시 막차 시간
+    let hakarTime = Calendar.current.date(from: hakarDateComponents)!//임시 하차 시간
     
     // MARK: UI Components
     private let homeView = HomeView()
@@ -25,6 +33,7 @@ class HomeViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        startNotification()
         changeComponent()
     }
 
@@ -39,7 +48,9 @@ class HomeViewController: BaseViewController {
             
             //TODO: Alert로 수정 필요
             changeComponent()
-            HomeViewController.isRouteSet = false;
+            HomeViewController.isRouteSet = false
+            makarNotiFlag = false
+            hakarNotiFlag = false
             postResetRouteButtonClicked()
         }
 
@@ -110,6 +121,40 @@ class HomeViewController: BaseViewController {
     @objc private func handleMapButtonClickEvent(){
         postMapButtonClicked()
     }
+    
+    // MARK: Measure Notification Time
+    private func startNotification(){
+        if(HomeViewController.isRouteSet){
+            if(!makarNotiFlag){
+                //막차까지 남은 시간 계산
+                leftTime = checkNotificationTime(targetDate: makarTime)
+                
+            } else if(!hakarNotiFlag){
+                //하차까지 남은 시간 계산
+                leftTime = checkNotificationTime(targetDate: hakarTime)
+                
+            }else{
+                
+            }
+            
+            
+        }else{
+            
+        }
+    }
+    
+    private func checkNotificationTime(targetDate : Date) -> Int{
+        //현재 시간과 설정된 시간 비교
+        let date = Date()
+        let dateFormatter = DateFormatter().then{
+            $0.dateFormat = "YYYY-MM-dd HH:mm:ss"
+            $0.locale = Locale(identifier: "ko_kr")
+        }
+        let currentDate = dateFormatter.date(from: dateFormatter.string(from: date))!
+        let targetDate = dateFormatter.date(from: dateFormatter.string(from: targetDate))!
+        print("[currentTime] : \(currentDate)")
+        return Calendar.current.dateComponents([.minute], from: currentDate, to: targetDate).minute!
+    }
 }
 
 extension HomeViewController {
@@ -117,7 +162,7 @@ extension HomeViewController {
     // MARK: ChangeComponent
     private func changeComponent(){
         if(HomeViewController.isRouteSet){
-            homeView.changeComponentRouteSet()
+            homeView.changeComponentRouteSet(leftTime: leftTime)
             print("changeComponent: RouteSet")
         }
         else{

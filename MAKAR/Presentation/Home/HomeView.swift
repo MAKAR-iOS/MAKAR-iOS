@@ -213,8 +213,8 @@ class HomeView: BaseView {
     }
     
     // MARK: ChangeComponent
-    func changeComponentRouteSet(){
-        mainTitleText.text = "막차까지 12분 남았어요!"
+    func changeComponentRouteSet(leftTime : Int){
+        mainTitleText.text = "막차까지 \(leftTime)분 남았어요!"
         mainRouteView.text = "Source   ->  Destination"
         mainDestinationText.text = "Destination"
         resetRouteButton.isHidden = false
