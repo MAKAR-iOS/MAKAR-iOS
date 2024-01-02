@@ -17,8 +17,8 @@ class HomeViewController: BaseViewController {
     var hakarNotiFlag = false //하차 알림 실행 유무 플래그
     var isMakarTaken = false //막차 측정/하차 측정 구분 플래그
     
-    static let makarDateComponents = DateComponents(year: 2024, month: 1, day: 2, hour: 21, minute: 00)
-    static let hakarDateComponents = DateComponents(year: 2024, month: 1, day: 2, hour: 22, minute: 00)
+    static let makarDateComponents = DateComponents(year: 2024, month: 1, day: 2, hour: 20, minute: 43)
+    static let hakarDateComponents = DateComponents(year: 2024, month: 1, day: 2, hour: 20, minute: 45)
     let makarTime = Calendar.current.date(from: makarDateComponents)!//임시 막차 시간
     let hakarTime = Calendar.current.date(from: hakarDateComponents)!//임시 하차 시간
     let makarAlarmTime = 10 //임시 막차 알림 시간
@@ -128,42 +128,47 @@ class HomeViewController: BaseViewController {
     
     // MARK: Measure Notification Time
     private func startNotification(){
-        if(HomeViewController.isRouteSet){
-            //막차까지 남은 시간 계산
-            if(!isMakarTaken){
-                makarLeftTime = checkNotificationTime(targetDate: makarTime)
-                if(makarLeftTime < 0){
-                    //막차 시간 도달
-                    isMakarTaken = true
-                    changeComponent()
-                } else {
-                    if(makarLeftTime == makarAlarmTime && !makarNotiFlag){
-                        //showNotification
-                        makarNotiFlag = true
+        DispatchQueue.global(qos: .background).async {
+            let runLoop = RunLoop.current
+            
+            Timer.scheduledTimer(withTimeInterval: 10, repeats: true){ _ in
+                if(HomeViewController.isRouteSet){
+                    //막차까지 남은 시간 계산
+                    if(!self.isMakarTaken){
+                        self.makarLeftTime = self.checkNotificationTime(targetDate: self.makarTime)
+                        if(self.makarLeftTime < 0){
+                            //막차 시간 도달
+                            self.isMakarTaken = true
+                            self.hakarLeftTime = self.checkNotificationTime(targetDate: self.hakarTime)
+                            self.changeComponent()
+                        } else {
+                            if(self.makarLeftTime == self.makarAlarmTime && !self.makarNotiFlag){
+                                //showNotification
+                                self.makarNotiFlag = true
+                            }
+                            self.changeMainTitleText(target: "막차", minute: self.makarLeftTime)
+                        }
+                    }else{
+                        //하차까지 남은 시간 계산
+                        self.hakarLeftTime = self.checkNotificationTime(targetDate: self.hakarTime)
+                        if(self.hakarLeftTime == self.hakarAlarmTime && !self.hakarNotiFlag){
+                            //showNotification
+                            self.hakarNotiFlag = true
+                        }
+                        self.changeMainTitleText(target: "하차", minute: self.hakarLeftTime)
                     }
-                    changeMainTitleText(target: "막차", minute: makarLeftTime)
-                }
-            }else{
-                //하차까지 남은 시간 계산
-                hakarLeftTime = checkNotificationTime(targetDate: hakarTime)
-                if(hakarLeftTime < 0){
-                    //하차 시간 도달
-                    HomeViewController.isRouteSet = false
-                    //경로 제거
-                    isMakarTaken = false
-                    makarNotiFlag = false
-                    hakarNotiFlag = false
-                    changeComponent()
-                } else{
-                    if(hakarLeftTime == hakarAlarmTime && !hakarNotiFlag){
-                        //showNotification
-                        hakarNotiFlag = true
-                    }
-                    changeMainTitleText(target: "하차", minute: hakarLeftTime)
                 }
             }
-        }else{
-//            비동기 중지
+            //하차 시간 까지 비동기 루프 실행
+            runLoop.run(until: self.hakarTime)
+            
+            //하차 시간 도달
+            HomeViewController.isRouteSet = false
+            //경로 제거
+            self.isMakarTaken = false
+            self.makarNotiFlag = false
+            self.hakarNotiFlag = false
+            self.changeComponent()
         }
     }
     
