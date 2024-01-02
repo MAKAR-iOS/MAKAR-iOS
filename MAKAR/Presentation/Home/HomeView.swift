@@ -215,7 +215,6 @@ class HomeView: BaseView {
     // MARK: ChangeComponent
     func changeComponentRouteSet(){
         mainRouteView.text = "Source   ->  Destination"
-        mainDestinationText.text = "Destination"
         resetRouteButton.isHidden = false
         setRouteButton.isHidden = true
         changeRouteButton.isHidden = false
@@ -224,6 +223,10 @@ class HomeView: BaseView {
         mainDivider2.isHidden = true
         favoriteRouteListText.isHidden = true
         recentRouteListText.isHidden = true
+    }
+    
+    func changeMainDestinationText(destinationText : String){
+        mainDestinationText.text = destinationText
     }
     
     func changeComponentRouteUnset(){
