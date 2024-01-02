@@ -11,14 +11,18 @@ class HomeViewController: BaseViewController {
     
     // MARK: Flag
     static var isRouteSet = false //경로 설정 유무 플래그
-    var leftTime = 0 //막차/하차까지 남은 시간
+    var makarLeftTime = 0 //막차까지 남은 시간
+    var hakarLeftTime = 0 //하차까지 남은 시간
     var makarNotiFlag = false //막차 알림 실행 유무 플래그
     var hakarNotiFlag = false //하차 알림 실행 유무 플래그
+    var isMakarTaken = false //막차 측정/하차 측정 구분 플래그
     
-    static let makarDateComponents = DateComponents(year: 2024, month: 1, day: 1, hour: 21, minute: 00)
-    static let hakarDateComponents = DateComponents(year: 2024, month: 1, day: 1, hour: 22, minute: 00)
+    static let makarDateComponents = DateComponents(year: 2024, month: 1, day: 2, hour: 21, minute: 00)
+    static let hakarDateComponents = DateComponents(year: 2024, month: 1, day: 2, hour: 22, minute: 00)
     let makarTime = Calendar.current.date(from: makarDateComponents)!//임시 막차 시간
     let hakarTime = Calendar.current.date(from: hakarDateComponents)!//임시 하차 시간
+    let makarAlarmTime = 10 //임시 막차 알림 시간
+    let hakarAlarmTime = 10 //임시 하차 알림 시간
     
     // MARK: UI Components
     private let homeView = HomeView()
@@ -125,21 +129,41 @@ class HomeViewController: BaseViewController {
     // MARK: Measure Notification Time
     private func startNotification(){
         if(HomeViewController.isRouteSet){
-            if(!makarNotiFlag){
-                //막차까지 남은 시간 계산
-                leftTime = checkNotificationTime(targetDate: makarTime)
-                
-            } else if(!hakarNotiFlag){
-                //하차까지 남은 시간 계산
-                leftTime = checkNotificationTime(targetDate: hakarTime)
-                
+            //막차까지 남은 시간 계산
+            if(!isMakarTaken){
+                makarLeftTime = checkNotificationTime(targetDate: makarTime)
+                if(makarLeftTime <= 0){
+                    //막차 시간 도달
+                    isMakarTaken = true
+                    changeComponent()
+                } else {
+                    if(makarLeftTime == makarAlarmTime && !makarNotiFlag){
+                        //showNotification
+                        makarNotiFlag = true
+                    }
+//                    남은 시간 업데이트
+                }
             }else{
-                
+                //하차까지 남은 시간 계산
+                hakarLeftTime = checkNotificationTime(targetDate: hakarTime)
+                if(hakarLeftTime <= 0){
+                    //하차 시간 도달
+                    HomeViewController.isRouteSet = false
+                    //경로 제거
+                    isMakarTaken = false
+                    makarNotiFlag = false
+                    hakarNotiFlag = false
+                    changeComponent()
+                } else{
+                    if(hakarLeftTime == hakarAlarmTime && !hakarNotiFlag){
+                        //showNotification
+                        hakarNotiFlag = true
+                    }
+//                    남은시간 업데이트
+                }
             }
-            
-            
         }else{
-            
+//            비동기 중지
         }
     }
     
@@ -162,7 +186,12 @@ extension HomeViewController {
     // MARK: ChangeComponent
     private func changeComponent(){
         if(HomeViewController.isRouteSet){
-            homeView.changeComponentRouteSet(leftTime: leftTime)
+            if(!isMakarTaken){
+                homeView.changeComponentRouteSet(target: "막차",leftTime: makarLeftTime)
+            }
+            else{
+                homeView.changeComponentRouteSet(target: "하차", leftTime: hakarLeftTime)
+            }
             print("changeComponent: RouteSet")
         }
         else{
