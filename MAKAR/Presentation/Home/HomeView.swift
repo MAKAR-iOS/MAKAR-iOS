@@ -18,7 +18,7 @@ class HomeView: BaseView {
     }
     
     // MARK: UI Components
-    private let mainTitleText = UILabel().then {
+    let mainTitleText = UILabel().then {
         $0.text = "경로를 설정해주세요"
         $0.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
     }
@@ -213,8 +213,7 @@ class HomeView: BaseView {
     }
     
     // MARK: ChangeComponent
-    func changeComponentRouteSet(target : String, leftTime : Int){
-        mainTitleText.text = target+"까지 \(leftTime)분 남았어요!"
+    func changeComponentRouteSet(){
         mainRouteView.text = "Source   ->  Destination"
         mainDestinationText.text = "Destination"
         resetRouteButton.isHidden = false

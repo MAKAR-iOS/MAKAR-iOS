@@ -132,7 +132,7 @@ class HomeViewController: BaseViewController {
             //막차까지 남은 시간 계산
             if(!isMakarTaken){
                 makarLeftTime = checkNotificationTime(targetDate: makarTime)
-                if(makarLeftTime <= 0){
+                if(makarLeftTime < 0){
                     //막차 시간 도달
                     isMakarTaken = true
                     changeComponent()
@@ -141,12 +141,12 @@ class HomeViewController: BaseViewController {
                         //showNotification
                         makarNotiFlag = true
                     }
-//                    남은 시간 업데이트
+                    changeMainTitleText(target: "막차", minute: makarLeftTime)
                 }
             }else{
                 //하차까지 남은 시간 계산
                 hakarLeftTime = checkNotificationTime(targetDate: hakarTime)
-                if(hakarLeftTime <= 0){
+                if(hakarLeftTime < 0){
                     //하차 시간 도달
                     HomeViewController.isRouteSet = false
                     //경로 제거
@@ -159,7 +159,7 @@ class HomeViewController: BaseViewController {
                         //showNotification
                         hakarNotiFlag = true
                     }
-//                    남은시간 업데이트
+                    changeMainTitleText(target: "하차", minute: hakarLeftTime)
                 }
             }
         }else{
@@ -185,20 +185,33 @@ extension HomeViewController {
     
     // MARK: ChangeComponent
     private func changeComponent(){
-        if(HomeViewController.isRouteSet){
-            if(!isMakarTaken){
-                homeView.changeComponentRouteSet(target: "막차",leftTime: makarLeftTime)
+        DispatchQueue.main.async {
+            if(HomeViewController.isRouteSet){
+                if(!self.isMakarTaken){
+                    self.changeMainTitleText(target: "막차", minute: self.makarLeftTime)
+                }
+                else{
+                    self.changeMainTitleText(target: "하차", minute: self.hakarLeftTime)
+                }
+                self.homeView.changeComponentRouteSet()
+                print("changeComponent: RouteSet")
             }
             else{
-                homeView.changeComponentRouteSet(target: "하차", leftTime: hakarLeftTime)
+                self.homeView.changeComponentRouteUnset()
+                print("changeComponent: RouteUnset")
             }
-            print("changeComponent: RouteSet")
         }
-        else{
-            homeView.changeComponentRouteUnset()
-            print("changeComponent: RouteUnset")
+    }
+    
+    private func changeMainTitleText(target: String, minute : Int){
+        DispatchQueue.main.async {
+            let length = String(minute).count
+            let string = "\(target)까지 \(minute)분 남았어요!"
+            let formattedText = String(format: NSLocalizedString(string, comment: ""), minute)
+            let spannableString = NSMutableAttributedString(string: formattedText)
+            
+            spannableString.addAttribute(.foregroundColor, value: UIColor.red, range: NSRange(location: 5, length: length))
+            self.homeView.mainTitleText.attributedText = spannableString
         }
-        //임시 method
-        homeView.layoutIfNeeded()
     }
 }
