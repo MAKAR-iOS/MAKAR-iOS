@@ -194,9 +194,11 @@ extension HomeViewController {
             if(HomeViewController.isRouteSet){
                 if(!self.isMakarTaken){
                     self.changeMainTitleText(target: "막차", minute: self.makarLeftTime)
+                    self.homeView.changeMainDestinationText(destinationText: "Source")
                 }
                 else{
                     self.changeMainTitleText(target: "하차", minute: self.hakarLeftTime)
+                    self.homeView.changeMainDestinationText(destinationText: "Destination")
                 }
                 self.homeView.changeComponentRouteSet()
                 print("changeComponent: RouteSet")
