@@ -18,7 +18,7 @@ class HomeView: BaseView {
     }
     
     // MARK: UI Components
-    private let mainTitleText = UILabel().then {
+    let mainTitleText = UILabel().then {
         $0.text = "경로를 설정해주세요"
         $0.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
     }
@@ -214,9 +214,7 @@ class HomeView: BaseView {
     
     // MARK: ChangeComponent
     func changeComponentRouteSet(){
-        mainTitleText.text = "막차까지 12분 남았어요!"
         mainRouteView.text = "Source   ->  Destination"
-        mainDestinationText.text = "Destination"
         resetRouteButton.isHidden = false
         setRouteButton.isHidden = true
         changeRouteButton.isHidden = false
@@ -225,6 +223,10 @@ class HomeView: BaseView {
         mainDivider2.isHidden = true
         favoriteRouteListText.isHidden = true
         recentRouteListText.isHidden = true
+    }
+    
+    func changeMainDestinationText(destinationText : String){
+        mainDestinationText.text = destinationText
     }
     
     func changeComponentRouteUnset(){
