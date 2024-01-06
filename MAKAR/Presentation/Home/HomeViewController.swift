@@ -17,8 +17,8 @@ class HomeViewController: BaseViewController {
     var hakarNotiFlag = false //하차 알림 실행 유무 플래그
     var isMakarTaken = false //막차 측정/하차 측정 구분 플래그
     
-    static let makarDateComponents = DateComponents(year: 2024, month: 1, day: 2, hour: 20, minute: 43)
-    static let hakarDateComponents = DateComponents(year: 2024, month: 1, day: 2, hour: 20, minute: 45)
+    static let makarDateComponents = DateComponents(year: 2024, month: 1, day: 5, hour: 17, minute: 56)
+    static let hakarDateComponents = DateComponents(year: 2024, month: 1, day: 5, hour: 17, minute: 58)
     let makarTime = Calendar.current.date(from: makarDateComponents)!//임시 막차 시간
     let hakarTime = Calendar.current.date(from: hakarDateComponents)!//임시 하차 시간
     let makarAlarmTime = 10 //임시 막차 알림 시간
@@ -50,11 +50,7 @@ class HomeViewController: BaseViewController {
         homeView.tapResetRouteButton = {[weak self] in
             guard let self else { return }
             
-            //TODO: Alert로 수정 필요
-            changeComponent()
-            HomeViewController.isRouteSet = false
-            makarNotiFlag = false
-            hakarNotiFlag = false
+            showResetRouteAlert()
             postResetRouteButtonClicked()
         }
 
@@ -220,5 +216,19 @@ extension HomeViewController {
             spannableString.addAttribute(.foregroundColor, value: UIColor.red, range: NSRange(location: 5, length: length))
             self.homeView.mainTitleText.attributedText = spannableString
         }
+    }
+    
+    
+    // MARK: Alert
+    private func showResetRouteAlert(){
+        let resetRouteAlert = UIAlertController(title: "경로 초기화", message: "설정된 경로를 초기화하시겠어요?", preferredStyle: .alert)
+        resetRouteAlert.addAction( UIAlertAction(title: "확인", style: .destructive, handler: {_ in
+            self.changeComponent()
+            HomeViewController.isRouteSet = false
+            self.makarNotiFlag = false
+            self.hakarNotiFlag = false
+        }))
+        resetRouteAlert.addAction(UIAlertAction(title: "취소", style: .cancel))
+        present(resetRouteAlert, animated: true)
     }
 }
