@@ -66,6 +66,9 @@
 		95B10FB02B33169D005319F6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 95B10FAF2B33169D005319F6 /* SnapKit */; };
 		95B10FB32B3316E5005319F6 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 95B10FB22B3316E5005319F6 /* Then */; };
 		95B10FB62B331716005319F6 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 95B10FB52B331716005319F6 /* Moya */; };
+		95D0043B2B4BE220009D4DF3 /* MakarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D0043A2B4BE220009D4DF3 /* MakarTableViewCell.swift */; };
+		95D0043D2B4BE358009D4DF3 /* MakarNotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D0043C2B4BE358009D4DF3 /* MakarNotiView.swift */; };
+		95D0043F2B4BE3DE009D4DF3 /* GetOffNotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D0043E2B4BE3DE009D4DF3 /* GetOffNotiView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,6 +130,9 @@
 		95B10FA82B3315EB005319F6 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		95B10FAA2B3315F5005319F6 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		95B10FAC2B33165C005319F6 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
+		95D0043A2B4BE220009D4DF3 /* MakarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakarTableViewCell.swift; sourceTree = "<group>"; };
+		95D0043C2B4BE358009D4DF3 /* MakarNotiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakarNotiView.swift; sourceTree = "<group>"; };
+		95D0043E2B4BE3DE009D4DF3 /* GetOffNotiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOffNotiView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +220,9 @@
 			children = (
 				956382C02B3975B0006B50ED /* NotificationView.swift */,
 				956382C22B3975B7006B50ED /* NotificationViewController.swift */,
+				95D0043C2B4BE358009D4DF3 /* MakarNotiView.swift */,
+				95D0043A2B4BE220009D4DF3 /* MakarTableViewCell.swift */,
+				95D0043E2B4BE3DE009D4DF3 /* GetOffNotiView.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -547,8 +556,10 @@
 				95B10F942B331501005319F6 /* ExampleAPI.swift in Sources */,
 				956382E92B397A66006B50ED /* SearchRouteViewController.swift in Sources */,
 				267065322B3CA70200F19EC3 /* SchoolSearchStationViewController.swift in Sources */,
+				95D0043F2B4BE3DE009D4DF3 /* GetOffNotiView.swift in Sources */,
 				956382BD2B3975A1006B50ED /* TimetableView.swift in Sources */,
 				95B10FAD2B33165C005319F6 /* AppDependency.swift in Sources */,
+				95D0043B2B4BE220009D4DF3 /* MakarTableViewCell.swift in Sources */,
 				956382FA2B39A43E006B50ED /* BaseRouter.swift in Sources */,
 				956382E72B397A5A006B50ED /* SearchRouteView.swift in Sources */,
 				26E664772B3C4CFA002579C1 /* DestinationSearchStationView.swift in Sources */,
@@ -573,6 +584,7 @@
 				95B10FA32B3315BB005319F6 /* ExampleViewController.swift in Sources */,
 				956382B42B397581006B50ED /* LoginView.swift in Sources */,
 				956382AE2B397568006B50ED /* SplashView.swift in Sources */,
+				95D0043D2B4BE358009D4DF3 /* MakarNotiView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

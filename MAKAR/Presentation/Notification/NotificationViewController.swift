@@ -8,9 +8,11 @@
 import UIKit
 
 class NotificationViewController: BaseViewController {
-    
+
     // MARK: UI Components
     private let notificationView = NotificationView()
+    private let makarNotiView = MakarNotiView()
+    private let getOffNotiView = GetOffNotiView()
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -29,12 +31,12 @@ class NotificationViewController: BaseViewController {
 
         view.addSubview(notificationView)
 
-        notificationView.tapMakarAdd = {[weak self] in
+        notificationView.makarNotiView.tapMakarAdd = {[weak self] in
             guard let self else { return }
             addMakarNoti()
         }
 
-        notificationView.tapGetOffAdd = {[weak self] in
+        notificationView.getOffNotiView.tapGetOffAdd = {[weak self] in
             guard let self else { return }
             addGetOffNoti()
         }
@@ -49,12 +51,12 @@ class NotificationViewController: BaseViewController {
         }
     }
 
-    // MARK: Networking
+    // MARK: Event
     private func addMakarNoti() {
-        print("addMakarNoti called")
+        self.present(makarNotiView.makarAlertController, animated: true)
     }
 
     private func addGetOffNoti() {
-        print("addGetOffNoti called")
+        self.present(getOffNotiView.getOffAlertController, animated: true)
     }
 }
