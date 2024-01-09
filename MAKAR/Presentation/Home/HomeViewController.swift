@@ -41,6 +41,7 @@ class HomeViewController: BaseViewController {
             let flowLayout = UICollectionViewFlowLayout()
             flowLayout.scrollDirection = .horizontal
             flowLayout.minimumLineSpacing = 15
+            //cell 크기 설정
             flowLayout.itemSize = CGSize(width: Metric.collectionViewCellWidth, height: Metric.collectionViewCellHeight)
             let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
             return view
@@ -49,7 +50,8 @@ class HomeViewController: BaseViewController {
     lazy var recentRouteCollectionView: UICollectionView = {
             let flowLayout = UICollectionViewFlowLayout()
             flowLayout.scrollDirection = .horizontal
-            flowLayout.minimumLineSpacing = 20
+            flowLayout.minimumLineSpacing = 15
+            flowLayout.itemSize = CGSize(width: Metric.collectionViewCellWidth, height: Metric.collectionViewCellHeight)
             let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
             return view
         }()
@@ -103,6 +105,12 @@ class HomeViewController: BaseViewController {
             
             self.tabBarController?.selectedIndex = 3
             postSetAlarmButtonClicked()
+        }
+        
+        homeView.tapEditFavoriteRouteButton = {[weak self] in
+            guard let self else { return }
+            
+            // TODO: 
         }
     }
     
@@ -286,9 +294,10 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     func setFavoriteRouteCollectionView(){
         view.addSubview(favoriteRouteCollectionView)
         favoriteRouteCollectionView.backgroundColor = .background
+        favoriteRouteCollectionView.showsHorizontalScrollIndicator = false //스크롤바 숨김
         
         favoriteRouteCollectionView.snp.makeConstraints{
-            $0.top.equalTo(homeView.favoriteRouteListText.snp.bottom).inset(-20)
+            $0.top.equalTo(homeView.favoriteRouteListText.snp.bottom).inset(-15)
             $0.leading.equalToSuperview().inset(20)
             $0.trailing.equalToSuperview()
             $0.height.equalTo(Metric.collectionViewHeight)
