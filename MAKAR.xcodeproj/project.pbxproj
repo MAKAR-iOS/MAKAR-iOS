@@ -18,6 +18,9 @@
 		26E664752B3C4C20002579C1 /* SourceSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664742B3C4C20002579C1 /* SourceSearchStationView.swift */; };
 		26E664772B3C4CFA002579C1 /* DestinationSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664762B3C4CFA002579C1 /* DestinationSearchStationView.swift */; };
 		26E664792B3C4D0A002579C1 /* DestinationSearchStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664782B3C4D0A002579C1 /* DestinationSearchStationViewController.swift */; };
+		26EFA2982B4D5296003678C0 /* FavoriteRouteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EFA2972B4D5296003678C0 /* FavoriteRouteCollectionViewCell.swift */; };
+		26EFA29B2B4D65F1003678C0 /* RecentRouteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EFA29A2B4D65F1003678C0 /* RecentRouteCollectionViewCell.swift */; };
+		26EFA29D2B4D9D9B003678C0 /* RouteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EFA29C2B4D9D9B003678C0 /* RouteData.swift */; };
 		26F3B4292B3C2B3800E7756F /* BaseRouteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F3B4282B3C2B3800E7756F /* BaseRouteButton.swift */; };
 		956382AE2B397568006B50ED /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382AD2B397568006B50ED /* SplashView.swift */; };
 		956382B02B397570006B50ED /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382AF2B397570006B50ED /* SplashViewController.swift */; };
@@ -74,6 +77,9 @@
 		26E664742B3C4C20002579C1 /* SourceSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceSearchStationView.swift; sourceTree = "<group>"; };
 		26E664762B3C4CFA002579C1 /* DestinationSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchStationView.swift; sourceTree = "<group>"; };
 		26E664782B3C4D0A002579C1 /* DestinationSearchStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchStationViewController.swift; sourceTree = "<group>"; };
+		26EFA2972B4D5296003678C0 /* FavoriteRouteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteCollectionViewCell.swift; sourceTree = "<group>"; };
+		26EFA29A2B4D65F1003678C0 /* RecentRouteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentRouteCollectionViewCell.swift; sourceTree = "<group>"; };
+		26EFA29C2B4D9D9B003678C0 /* RouteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteData.swift; sourceTree = "<group>"; };
 		26F3B4282B3C2B3800E7756F /* BaseRouteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouteButton.swift; sourceTree = "<group>"; };
 		956382AD2B397568006B50ED /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		956382AF2B397570006B50ED /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +167,16 @@
 			path = SearchStation;
 			sourceTree = "<group>";
 		};
+		26EFA2992B4D65E2003678C0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				26EFA2972B4D5296003678C0 /* FavoriteRouteCollectionViewCell.swift */,
+				26EFA29A2B4D65F1003678C0 /* RecentRouteCollectionViewCell.swift */,
+				26EFA29C2B4D9D9B003678C0 /* RouteData.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		956382A82B3974ED006B50ED /* Timetable */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +243,7 @@
 		956382DA2B3979FC006B50ED /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				26EFA2992B4D65E2003678C0 /* Cell */,
 				956382DB2B397A07006B50ED /* HomeView.swift */,
 				956382DD2B397A0E006B50ED /* HomeViewController.swift */,
 				956382DF2B397A11006B50ED /* Search */,
@@ -481,9 +498,11 @@
 				956382C72B3975C7006B50ED /* MyPageViewController.swift in Sources */,
 				26F3B4292B3C2B3800E7756F /* BaseRouteButton.swift in Sources */,
 				956382F22B39855E006B50ED /* ImageLiteral.swift in Sources */,
+				26EFA29B2B4D65F1003678C0 /* RecentRouteCollectionViewCell.swift in Sources */,
 				267F3C452B3D6AE300E3CD29 /* BaseSearchStationViewController.swift in Sources */,
 				956382DC2B397A07006B50ED /* HomeView.swift in Sources */,
 				267065302B3CA6E200F19EC3 /* SchoolSearchStationView.swift in Sources */,
+				26EFA2982B4D5296003678C0 /* FavoriteRouteCollectionViewCell.swift in Sources */,
 				95B10FAB2B3315F5005319F6 /* BaseButton.swift in Sources */,
 				956382E52B397A4D006B50ED /* SourceSearchStationViewController.swift in Sources */,
 				95B10F982B331534005319F6 /* RequestProvider.swift in Sources */,
@@ -519,6 +538,7 @@
 				956382E32B397A43006B50ED /* BaseSearchStationView.swift in Sources */,
 				2698646F2B3DC77F003FE9FB /* LineNumImage.swift in Sources */,
 				95B10F962B331519005319F6 /* ExampleRequest.swift in Sources */,
+				26EFA29D2B4D9D9B003678C0 /* RouteData.swift in Sources */,
 				95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */,
 				956382B62B39758A006B50ED /* LoginViewController.swift in Sources */,
 				2670652E2B3CA6BC00F19EC3 /* HomeSearchStationViewController.swift in Sources */,

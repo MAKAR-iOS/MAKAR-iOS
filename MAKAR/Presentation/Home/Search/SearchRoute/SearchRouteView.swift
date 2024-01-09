@@ -152,4 +152,9 @@ class SearchRouteView : BaseView {
         tapSearchRouteButton?()
     }
     
+    func changeSearchBarText(sourceText : String, destinationText : String){
+        self.sourceSearchBar.setTitle(sourceText, for: .normal)
+        self.destinationSearchBar.setTitle(destinationText, for: .normal)
+    }
+    
 }

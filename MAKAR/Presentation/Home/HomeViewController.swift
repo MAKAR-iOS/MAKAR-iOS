@@ -8,6 +8,12 @@
 import UIKit
 
 class HomeViewController: BaseViewController {
+    // MARK: Constants
+    private enum Metric {
+        static let collectionViewHeight = 100
+        static let collectionViewCellHeight = 90
+        static let collectionViewCellWidth = 100
+    }
     
     // MARK: Flag
     static var isRouteSet = false //경로 설정 유무 플래그
@@ -17,22 +23,46 @@ class HomeViewController: BaseViewController {
     var hakarNotiFlag = false //하차 알림 실행 유무 플래그
     var isMakarTaken = false //막차 측정/하차 측정 구분 플래그
     
-    static let makarDateComponents = DateComponents(year: 2024, month: 1, day: 5, hour: 17, minute: 56)
-    static let hakarDateComponents = DateComponents(year: 2024, month: 1, day: 5, hour: 17, minute: 58)
+    static let makarDateComponents = DateComponents(year: 2024, month: 1, day: 9, hour: 22, minute: 56)
+    static let hakarDateComponents = DateComponents(year: 2024, month: 1, day: 9, hour: 22, minute: 58)
     let makarTime = Calendar.current.date(from: makarDateComponents)!//임시 막차 시간
     let hakarTime = Calendar.current.date(from: hakarDateComponents)!//임시 하차 시간
     let makarAlarmTime = 10 //임시 막차 알림 시간
     let hakarAlarmTime = 10 //임시 하차 알림 시간
     
+    // TODO: dummylist
+    let favoriteRouteList : [RouteData] = RouteData.favoriteRouteList
+    let recentRouteList : [RouteData] = RouteData.recentRouteList
+    
     // MARK: UI Components
     private let homeView = HomeView()
-
+    
+    lazy var favoriteRouteCollectionView: UICollectionView = {
+            let flowLayout = UICollectionViewFlowLayout()
+            flowLayout.scrollDirection = .horizontal
+            flowLayout.minimumLineSpacing = 15
+            //cell 크기 설정
+            flowLayout.itemSize = CGSize(width: Metric.collectionViewCellWidth, height: Metric.collectionViewCellHeight)
+            let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+            return view
+        }()
+    
+    lazy var recentRouteCollectionView: UICollectionView = {
+            let flowLayout = UICollectionViewFlowLayout()
+            flowLayout.scrollDirection = .horizontal
+            flowLayout.minimumLineSpacing = 15
+            flowLayout.itemSize = CGSize(width: Metric.collectionViewCellWidth, height: Metric.collectionViewCellHeight)
+            let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+            return view
+        }()
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .background
         changeComponent()
+        setFavoriteRouteCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,11 +70,11 @@ class HomeViewController: BaseViewController {
         startNotification()
         changeComponent()
     }
-
+    
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
-
+        
         view.addSubview(homeView)
         
         homeView.tapResetRouteButton = {[weak self] in
@@ -53,10 +83,10 @@ class HomeViewController: BaseViewController {
             showResetRouteAlert()
             postResetRouteButtonClicked()
         }
-
+        
         homeView.tapSetRouteButton = {[weak self] in
             guard let self else { return }
-    
+            
             self.navigationController?.pushViewController(SearchRouteViewController(), animated: true)
             // TODO: flag 수정
             HomeViewController.isRouteSet = true;
@@ -76,12 +106,18 @@ class HomeViewController: BaseViewController {
             self.tabBarController?.selectedIndex = 3
             postSetAlarmButtonClicked()
         }
+        
+        homeView.tapEditFavoriteRouteButton = {[weak self] in
+            guard let self else { return }
+            
+            // TODO: 
+        }
     }
-
+    
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
-
+        
         homeView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
@@ -115,7 +151,7 @@ class HomeViewController: BaseViewController {
         
         navigationItem.title = nil
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: MakarButton.mapButton, style: .plain, target: self, action: #selector(handleMapButtonClickEvent))
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: MakarImage.makarLogo, style: .plain, target: nil, action: nil)
+        //        navigationItem.leftBarButtonItem = UIBarButtonItem(image: MakarImage.makarLogo, style: .plain, target: nil, action: nil)
     }
     
     @objc private func handleMapButtonClickEvent(){
@@ -180,9 +216,7 @@ class HomeViewController: BaseViewController {
         print("[currentTime] : \(currentDate)")
         return Calendar.current.dateComponents([.minute], from: currentDate, to: targetDate).minute!
     }
-}
-
-extension HomeViewController {
+    
     
     // MARK: ChangeComponent
     private func changeComponent(){
@@ -197,10 +231,14 @@ extension HomeViewController {
                     self.homeView.changeMainDestinationText(destinationText: "Destination")
                 }
                 self.homeView.changeComponentRouteSet()
+                self.favoriteRouteCollectionView.isHidden = true
+                self.recentRouteCollectionView.isHidden = true
                 print("changeComponent: RouteSet")
             }
             else{
                 self.homeView.changeComponentRouteUnset()
+                self.favoriteRouteCollectionView.isHidden = false
+                self.recentRouteCollectionView.isHidden = false
                 print("changeComponent: RouteUnset")
             }
         }
@@ -232,3 +270,48 @@ extension HomeViewController {
         present(resetRouteAlert, animated: true)
     }
 }
+
+extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    // MARK: CollectionView
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return favoriteRouteList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteRouteCollectionViewCell", for: indexPath) as? FavoriteRouteCollectionViewCell
+        else {
+            return UICollectionViewCell()
+        }
+        cell.setData(data: favoriteRouteList[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let data = favoriteRouteList[indexPath.row]
+        let sourceText = data.sourceText + " " + data.sourceLine
+        let destinationText = data.destinationText + " " + data.destinationLine
+        
+        let searchRouteVC = SearchRouteViewController()
+        searchRouteVC.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)
+        self.navigationController?.pushViewController(searchRouteVC, animated: true)
+    }
+    
+    func setFavoriteRouteCollectionView(){
+        view.addSubview(favoriteRouteCollectionView)
+        favoriteRouteCollectionView.backgroundColor = .background
+        favoriteRouteCollectionView.showsHorizontalScrollIndicator = false //스크롤바 숨김
+        
+        favoriteRouteCollectionView.snp.makeConstraints{
+            $0.top.equalTo(homeView.favoriteRouteListText.snp.bottom).inset(-15)
+            $0.leading.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview()
+            $0.height.equalTo(Metric.collectionViewHeight)
+        }
+        
+        favoriteRouteCollectionView.register(FavoriteRouteCollectionViewCell.self, forCellWithReuseIdentifier: "FavoriteRouteCollectionViewCell")
+        favoriteRouteCollectionView.delegate = self
+        favoriteRouteCollectionView.dataSource = self
+    }
+}
+
