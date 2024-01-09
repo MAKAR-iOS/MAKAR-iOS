@@ -8,6 +8,12 @@
 import UIKit
 
 class HomeViewController: BaseViewController {
+    // MARK: Constants
+    private enum Metric {
+        static let collectionViewHeight = 100
+        static let collectionViewCellHeight = 150
+        static let collectionViewCellWidth = 150
+    }
     
     // MARK: Flag
     static var isRouteSet = false //경로 설정 유무 플래그
@@ -17,17 +23,34 @@ class HomeViewController: BaseViewController {
     var hakarNotiFlag = false //하차 알림 실행 유무 플래그
     var isMakarTaken = false //막차 측정/하차 측정 구분 플래그
     
-    static let makarDateComponents = DateComponents(year: 2024, month: 1, day: 5, hour: 17, minute: 56)
-    static let hakarDateComponents = DateComponents(year: 2024, month: 1, day: 5, hour: 17, minute: 58)
+    static let makarDateComponents = DateComponents(year: 2024, month: 1, day: 9, hour: 22, minute: 56)
+    static let hakarDateComponents = DateComponents(year: 2024, month: 1, day: 9, hour: 22, minute: 58)
     let makarTime = Calendar.current.date(from: makarDateComponents)!//임시 막차 시간
     let hakarTime = Calendar.current.date(from: hakarDateComponents)!//임시 하차 시간
     let makarAlarmTime = 10 //임시 막차 알림 시간
     let hakarAlarmTime = 10 //임시 하차 알림 시간
     
     let favoriteRouteList = ["강남역 -> 숭실대입구역", "합정역 -> 신촌역", "이태원역 -> 시청역"]
+    let recentRouteList = ["홍대역 -> 숭실대입구역", "합정역 -> 신촌역", "이태원역 -> 시청역"]
     
     // MARK: UI Components
     private let homeView = HomeView()
+    
+    lazy var favoriteRouteCollectionView: UICollectionView = {
+            let flowLayout = UICollectionViewFlowLayout()
+            flowLayout.scrollDirection = .horizontal
+            flowLayout.minimumLineSpacing = 20
+            let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+            return view
+        }()
+    
+    lazy var recentRouteCollectionView: UICollectionView = {
+            let flowLayout = UICollectionViewFlowLayout()
+            flowLayout.scrollDirection = .horizontal
+            flowLayout.minimumLineSpacing = 20
+            let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+            return view
+        }()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -198,12 +221,14 @@ class HomeViewController: BaseViewController {
                     self.homeView.changeMainDestinationText(destinationText: "Destination")
                 }
                 self.homeView.changeComponentRouteSet()
-//                self.favoriteRouteCollectionView.isHidden = true
+                self.favoriteRouteCollectionView.isHidden = true
+                self.recentRouteCollectionView.isHidden = true
                 print("changeComponent: RouteSet")
             }
             else{
                 self.homeView.changeComponentRouteUnset()
-//                self.favoriteRouteCollectionView.isHidden = false
+                self.favoriteRouteCollectionView.isHidden = false
+                self.recentRouteCollectionView.isHidden = false
                 print("changeComponent: RouteUnset")
             }
         }
@@ -247,7 +272,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         else {
             return UICollectionViewCell()
         }
-        
+        cell.backgroundColor = .blue
         return cell
     }
     
@@ -255,27 +280,22 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         self.navigationController?.pushViewController(SearchRouteViewController(), animated: true)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: Metric.collectionViewCellWidth, height: Metric.collectionViewCellHeight)
+      }
+    
     func setFavoriteRouteCollectionView(){
-        let layout = createFlowLayout()
-        let favoriteRouteCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
         view.addSubview(favoriteRouteCollectionView)
         
         favoriteRouteCollectionView.snp.makeConstraints{
-            $0.top.equalTo(homeView.favoriteRouteListText.snp.bottom).inset(20)
-            $0.trailing.leading.bottom.equalToSuperview()
+            $0.top.equalTo(homeView.favoriteRouteListText.snp.bottom).inset(-20)
+            $0.trailing.leading.equalToSuperview()
+            $0.height.equalTo(Metric.collectionViewHeight)
         }
         
         favoriteRouteCollectionView.delegate = self
         favoriteRouteCollectionView.dataSource = self
         favoriteRouteCollectionView.register(FavoriteRouteCollectionViewCell.self, forCellWithReuseIdentifier: "FavoriteRouteCollectionViewCell")
     }
-    
-    func createFlowLayout() -> UICollectionViewFlowLayout {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 100, height: 100)
-
-        return layout
-    }
 }
+
