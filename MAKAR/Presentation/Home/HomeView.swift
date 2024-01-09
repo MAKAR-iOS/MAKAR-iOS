@@ -184,7 +184,7 @@ class HomeView: BaseView {
         }
         
         mainDivider2.snp.makeConstraints {
-            $0.top.equalTo(favoriteRouteListText.snp.bottom).inset(-50)
+            $0.top.equalTo(favoriteRouteListText.snp.bottom).inset(-140)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(Metric.dividerHeight)
         }

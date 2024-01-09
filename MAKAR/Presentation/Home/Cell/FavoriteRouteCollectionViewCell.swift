@@ -7,5 +7,6 @@
 
 import UIKit
 class FavoriteRouteCollectionViewCell : UICollectionViewCell {
-    
+    func setData(data : String) {
+     }
 }
