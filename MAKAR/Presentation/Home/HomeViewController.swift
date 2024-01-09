@@ -23,8 +23,8 @@ class HomeViewController: BaseViewController {
     var hakarNotiFlag = false //하차 알림 실행 유무 플래그
     var isMakarTaken = false //막차 측정/하차 측정 구분 플래그
     
-    static let makarDateComponents = DateComponents(year: 2024, month: 1, day: 9, hour: 22, minute: 56)
-    static let hakarDateComponents = DateComponents(year: 2024, month: 1, day: 9, hour: 22, minute: 58)
+    static let makarDateComponents = DateComponents(year: 2024, month: 1, day: 10, hour: 22, minute: 56)
+    static let hakarDateComponents = DateComponents(year: 2024, month: 1, day: 10, hour: 22, minute: 58)
     let makarTime = Calendar.current.date(from: makarDateComponents)!//임시 막차 시간
     let hakarTime = Calendar.current.date(from: hakarDateComponents)!//임시 하차 시간
     let makarAlarmTime = 10 //임시 막차 알림 시간
@@ -111,7 +111,13 @@ class HomeViewController: BaseViewController {
         homeView.tapEditFavoriteRouteButton = {[weak self] in
             guard let self else { return }
             
-            // TODO: 
+            // TODO: 즐겨찾는 경로 편집 기능
+        }
+        
+        homeView.tapAllDeleteRecentRouteButton = {[weak self] in
+            guard let self else { return }
+            
+            // TODO: 최근 경로 전체 삭제 기능
         }
     }
     
