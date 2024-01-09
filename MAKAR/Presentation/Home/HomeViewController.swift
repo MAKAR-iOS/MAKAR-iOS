@@ -24,15 +24,18 @@ class HomeViewController: BaseViewController {
     let makarAlarmTime = 10 //임시 막차 알림 시간
     let hakarAlarmTime = 10 //임시 하차 알림 시간
     
+    let favoriteRouteList = ["강남역 -> 숭실대입구역", "합정역 -> 신촌역", "이태원역 -> 시청역"]
+    
     // MARK: UI Components
     private let homeView = HomeView()
-
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .background
         changeComponent()
+        setFavoriteRouteCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,11 +43,11 @@ class HomeViewController: BaseViewController {
         startNotification()
         changeComponent()
     }
-
+    
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
-
+        
         view.addSubview(homeView)
         
         homeView.tapResetRouteButton = {[weak self] in
@@ -53,10 +56,10 @@ class HomeViewController: BaseViewController {
             showResetRouteAlert()
             postResetRouteButtonClicked()
         }
-
+        
         homeView.tapSetRouteButton = {[weak self] in
             guard let self else { return }
-    
+            
             self.navigationController?.pushViewController(SearchRouteViewController(), animated: true)
             // TODO: flag 수정
             HomeViewController.isRouteSet = true;
@@ -77,11 +80,11 @@ class HomeViewController: BaseViewController {
             postSetAlarmButtonClicked()
         }
     }
-
+    
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
-
+        
         homeView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
@@ -115,7 +118,7 @@ class HomeViewController: BaseViewController {
         
         navigationItem.title = nil
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: MakarButton.mapButton, style: .plain, target: self, action: #selector(handleMapButtonClickEvent))
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: MakarImage.makarLogo, style: .plain, target: nil, action: nil)
+        //        navigationItem.leftBarButtonItem = UIBarButtonItem(image: MakarImage.makarLogo, style: .plain, target: nil, action: nil)
     }
     
     @objc private func handleMapButtonClickEvent(){
@@ -180,9 +183,7 @@ class HomeViewController: BaseViewController {
         print("[currentTime] : \(currentDate)")
         return Calendar.current.dateComponents([.minute], from: currentDate, to: targetDate).minute!
     }
-}
-
-extension HomeViewController {
+    
     
     // MARK: ChangeComponent
     private func changeComponent(){
@@ -197,10 +198,12 @@ extension HomeViewController {
                     self.homeView.changeMainDestinationText(destinationText: "Destination")
                 }
                 self.homeView.changeComponentRouteSet()
+//                self.favoriteRouteCollectionView.isHidden = true
                 print("changeComponent: RouteSet")
             }
             else{
                 self.homeView.changeComponentRouteUnset()
+//                self.favoriteRouteCollectionView.isHidden = false
                 print("changeComponent: RouteUnset")
             }
         }
@@ -230,5 +233,49 @@ extension HomeViewController {
         }))
         resetRouteAlert.addAction(UIAlertAction(title: "취소", style: .cancel))
         present(resetRouteAlert, animated: true)
+    }
+}
+
+extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return favoriteRouteList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteRouteCollectionViewCell", for: indexPath) as? FavoriteRouteCollectionViewCell
+        else {
+            return UICollectionViewCell()
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(SearchRouteViewController(), animated: true)
+    }
+    
+    func setFavoriteRouteCollectionView(){
+        let layout = createFlowLayout()
+        let favoriteRouteCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        view.addSubview(favoriteRouteCollectionView)
+        
+        favoriteRouteCollectionView.snp.makeConstraints{
+            $0.top.equalTo(homeView.favoriteRouteListText.snp.bottom).inset(20)
+            $0.trailing.leading.bottom.equalToSuperview()
+        }
+        
+        favoriteRouteCollectionView.delegate = self
+        favoriteRouteCollectionView.dataSource = self
+        favoriteRouteCollectionView.register(FavoriteRouteCollectionViewCell.self, forCellWithReuseIdentifier: "FavoriteRouteCollectionViewCell")
+    }
+    
+    func createFlowLayout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 100, height: 100)
+
+        return layout
     }
 }

@@ -78,7 +78,7 @@ class HomeView: BaseView {
         $0.backgroundColor = .divider
     }
     
-    private let favoriteRouteListText = UILabel().then{
+    let favoriteRouteListText = UILabel().then{
         $0.text = "즐겨찾는 경로"
         $0.font = UIFont.systemFont(ofSize: 15, weight: .light)
         $0.textColor = .darkgray
@@ -184,7 +184,7 @@ class HomeView: BaseView {
         }
         
         mainDivider2.snp.makeConstraints {
-            $0.top.equalTo(favoriteRouteListText.snp.bottom).inset(-30)
+            $0.top.equalTo(favoriteRouteListText.snp.bottom).inset(-50)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(Metric.dividerHeight)
         }
