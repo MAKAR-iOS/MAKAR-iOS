@@ -83,4 +83,9 @@ class SearchRouteViewController : BaseViewController {
         navigationItem.title = "경로 설정하기"
     }
     
+    // MARK: Event
+    func changeSearchBarText(sourceText : String, destinationText : String){
+            self.searchRouteView.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)
+    }
+    
 }

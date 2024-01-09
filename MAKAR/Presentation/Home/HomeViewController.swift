@@ -288,7 +288,13 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(SearchRouteViewController(), animated: true)
+        let data = favoriteRouteList[indexPath.row]
+        let sourceText = data.sourceText + " " + data.sourceLine
+        let destinationText = data.destinationText + " " + data.destinationLine
+        
+        let searchRouteVC = SearchRouteViewController()
+        searchRouteVC.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)
+        self.navigationController?.pushViewController(searchRouteVC, animated: true)
     }
     
     func setFavoriteRouteCollectionView(){
