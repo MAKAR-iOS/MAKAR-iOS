@@ -31,8 +31,8 @@ class HomeViewController: BaseViewController {
     let hakarAlarmTime = 10 //임시 하차 알림 시간
     
     // TODO: dummylist
-    let favoriteRouteList : [RouteData] = RouteData.favoriteRouteList
-    let recentRouteList : [RouteData] = RouteData.recentRouteList
+    var favoriteRouteList : [RouteData] = RouteData.favoriteRouteList
+    var recentRouteList : [RouteData] = RouteData.recentRouteList
     
     // MARK: UI Components
     private let homeView = HomeView()
@@ -63,6 +63,7 @@ class HomeViewController: BaseViewController {
         view.backgroundColor = .background
         changeComponent()
         setFavoriteRouteCollectionView()
+        setRecentRouteCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -275,20 +276,41 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     // MARK: CollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return favoriteRouteList.count
+        if(collectionView == favoriteRouteCollectionView){
+            return favoriteRouteList.count
+        } else {
+            return recentRouteList.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteRouteCollectionViewCell", for: indexPath) as? FavoriteRouteCollectionViewCell
-        else {
-            return UICollectionViewCell()
+        //즐겨찾는 경로
+        if (collectionView == favoriteRouteCollectionView){
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteRouteCollectionViewCell", for: indexPath) as? FavoriteRouteCollectionViewCell
+            else {
+                return UICollectionViewCell()
+            }
+            cell.setData(data: favoriteRouteList[indexPath.row])
+            return cell
+        } else {
+            //최근 경로
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecentRouteCollectionViewCell", for: indexPath) as? RecentRouteCollectionViewCell
+            else {
+                return UICollectionViewCell()
+            }
+            cell.setData(data: recentRouteList[indexPath.row])
+            return cell
         }
-        cell.setData(data: favoriteRouteList[indexPath.row])
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let data = favoriteRouteList[indexPath.row]
+        let data : RouteData
+        if(collectionView == favoriteRouteCollectionView){
+            data = favoriteRouteList[indexPath.row]
+        } else {
+            data = recentRouteList[indexPath.row]
+        }
+        //searchBar Text 수정
         let sourceText = data.sourceText + " " + data.sourceLine
         let destinationText = data.destinationText + " " + data.destinationLine
         
@@ -312,6 +334,23 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         favoriteRouteCollectionView.register(FavoriteRouteCollectionViewCell.self, forCellWithReuseIdentifier: "FavoriteRouteCollectionViewCell")
         favoriteRouteCollectionView.delegate = self
         favoriteRouteCollectionView.dataSource = self
+    }
+    
+    func setRecentRouteCollectionView(){
+        view.addSubview(recentRouteCollectionView)
+        recentRouteCollectionView.backgroundColor = .background
+        recentRouteCollectionView.showsHorizontalScrollIndicator = false //스크롤바 숨김
+        
+        recentRouteCollectionView.snp.makeConstraints{
+            $0.top.equalTo(homeView.recentRouteListText.snp.bottom).inset(-15)
+            $0.leading.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview()
+            $0.height.equalTo(Metric.collectionViewHeight)
+        }
+        
+        recentRouteCollectionView.register(RecentRouteCollectionViewCell.self, forCellWithReuseIdentifier: "RecentRouteCollectionViewCell")
+        recentRouteCollectionView.delegate = self
+        recentRouteCollectionView.dataSource = self
     }
 }
 
