@@ -19,7 +19,7 @@ class FavoriteRouteCollectionViewCell : UICollectionViewCell {
     private var sourceLineNumImageView = UIImageView()
         
     private var sourceText = UILabel().then{
-        $0.font = .systemFont(ofSize: 12, weight: .light)
+        $0.font = .systemFont(ofSize: 13, weight: .light)
     }
     private var moreRightLabel = UILabel().then{
         $0.text = ">"
@@ -28,7 +28,7 @@ class FavoriteRouteCollectionViewCell : UICollectionViewCell {
     private var destinationLineNumImageView = UIImageView()
     
     private var destinationText = UILabel().then{
-        $0.font = .systemFont(ofSize: 12, weight: .light)
+        $0.font = .systemFont(ofSize: 13, weight: .light)
     }
     
     // MARK: Init
@@ -64,7 +64,7 @@ class FavoriteRouteCollectionViewCell : UICollectionViewCell {
     func makeConstraints() {
         sourceLineNumImageView.snp.makeConstraints{
             $0.top.equalToSuperview().inset(25)
-            $0.leading.equalToSuperview().inset(15)
+            $0.leading.equalToSuperview().inset(10)
             $0.width.height.equalTo(Metric.lineNumSize)
         }
         
@@ -76,13 +76,13 @@ class FavoriteRouteCollectionViewCell : UICollectionViewCell {
         
         moreRightLabel.snp.makeConstraints{
             $0.top.equalTo(sourceText.snp.bottom).inset(-12)
-            $0.leading.equalToSuperview().inset(15)
+            $0.leading.equalToSuperview().inset(10)
             $0.width.height.equalTo(Metric.moreLabelSize)
         }
         
         destinationLineNumImageView.snp.makeConstraints{
             $0.centerY.equalTo(moreRightLabel.snp.centerY)
-            $0.leading.equalTo(moreRightLabel.snp.trailing).inset(-3)
+            $0.leading.equalTo(moreRightLabel.snp.trailing).inset(-1)
             $0.width.height.equalTo(Metric.lineNumSize)
         }
         

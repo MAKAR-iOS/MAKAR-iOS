@@ -84,6 +84,12 @@ class HomeView: BaseView {
         $0.textColor = .darkgray
     }
     
+    private let editFavoriteRouteButton = BaseButton().then{
+        $0.setTitle("편집", for: .normal)
+        $0.setTitleColor(.lightgray3, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .light)
+    }
+    
     private let mainDivider2 = UIView().then{
         $0.backgroundColor = .divider
     }
@@ -99,6 +105,7 @@ class HomeView: BaseView {
     var tapSetRouteButton: (() -> Void)?
     var tapChangeRouteButton: (() -> Void)?
     var tapSetAlarmButton: (() -> Void)?
+    var tapEditFavoriteRouteButton: (() -> Void)?
     
     // MARK: Configuration
     override func configureSubviews() {
@@ -114,6 +121,7 @@ class HomeView: BaseView {
         addSubview(setAlarmButton)
         addSubview(mainDivider1)
         addSubview(favoriteRouteListText)
+        addSubview(editFavoriteRouteButton)
         addSubview(mainDivider2)
         addSubview(recentRouteListText)
         
@@ -121,6 +129,7 @@ class HomeView: BaseView {
         setRouteButton.addTarget(self, action: #selector(handleSetRouteButtonClickEvent), for: .touchUpInside)
         changeRouteButton.addTarget(self, action: #selector(handleChangeRouteButtonClickEvent), for: .touchUpInside)
         setAlarmButton.addTarget(self, action: #selector(handleSetAlarmButtonClickEvent), for: .touchUpInside)
+        editFavoriteRouteButton.addTarget(self, action: #selector(handleEditFavoriteRouteButton), for: .touchUpInside)
     }
     
     // MARK: Layout
@@ -183,8 +192,13 @@ class HomeView: BaseView {
             $0.leading.equalToSuperview().inset(20)
         }
         
+        editFavoriteRouteButton.snp.makeConstraints{
+            $0.top.equalTo(favoriteRouteListText.snp.top)
+            $0.trailing.equalToSuperview().inset(20)
+        }
+        
         mainDivider2.snp.makeConstraints {
-            $0.top.equalTo(favoriteRouteListText.snp.bottom).inset(-140)
+            $0.top.equalTo(favoriteRouteListText.snp.bottom).inset(-135)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(Metric.dividerHeight)
         }
@@ -212,6 +226,10 @@ class HomeView: BaseView {
         tapSetAlarmButton?()
     }
     
+    @objc private func handleEditFavoriteRouteButton(){
+        tapEditFavoriteRouteButton?()
+    }
+    
     // MARK: ChangeComponent
     func changeComponentRouteSet(){
         mainRouteView.text = "Source   ->  Destination"
@@ -222,6 +240,7 @@ class HomeView: BaseView {
         mainDivider1.isHidden = true
         mainDivider2.isHidden = true
         favoriteRouteListText.isHidden = true
+        editFavoriteRouteButton.isHidden = true
         recentRouteListText.isHidden = true
     }
     
@@ -240,6 +259,7 @@ class HomeView: BaseView {
         mainDivider1.isHidden = false
         mainDivider2.isHidden = false
         favoriteRouteListText.isHidden = false
+        editFavoriteRouteButton.isHidden = false
         recentRouteListText.isHidden = false
     }
 }
