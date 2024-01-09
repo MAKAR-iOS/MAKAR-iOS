@@ -11,8 +11,8 @@ class HomeViewController: BaseViewController {
     // MARK: Constants
     private enum Metric {
         static let collectionViewHeight = 100
-        static let collectionViewCellHeight = 150
-        static let collectionViewCellWidth = 150
+        static let collectionViewCellHeight = 90
+        static let collectionViewCellWidth = 100
     }
     
     // MARK: Flag
@@ -30,8 +30,9 @@ class HomeViewController: BaseViewController {
     let makarAlarmTime = 10 //임시 막차 알림 시간
     let hakarAlarmTime = 10 //임시 하차 알림 시간
     
-    let favoriteRouteList = ["강남역 -> 숭실대입구역", "합정역 -> 신촌역", "이태원역 -> 시청역"]
-    let recentRouteList = ["홍대역 -> 숭실대입구역", "합정역 -> 신촌역", "이태원역 -> 시청역"]
+    // TODO: dummylist
+    let favoriteRouteList : [RouteData] = RouteData.favoriteRouteList
+    let recentRouteList : [RouteData] = RouteData.recentRouteList
     
     // MARK: UI Components
     private let homeView = HomeView()
@@ -39,7 +40,8 @@ class HomeViewController: BaseViewController {
     lazy var favoriteRouteCollectionView: UICollectionView = {
             let flowLayout = UICollectionViewFlowLayout()
             flowLayout.scrollDirection = .horizontal
-            flowLayout.minimumLineSpacing = 20
+            flowLayout.minimumLineSpacing = 15
+            flowLayout.itemSize = CGSize(width: Metric.collectionViewCellWidth, height: Metric.collectionViewCellHeight)
             let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
             return view
         }()
@@ -263,6 +265,7 @@ class HomeViewController: BaseViewController {
 
 extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     
+    // MARK: CollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return favoriteRouteList.count
     }
@@ -272,7 +275,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         else {
             return UICollectionViewCell()
         }
-        cell.backgroundColor = .blue
+        cell.setData(data: favoriteRouteList[indexPath.row])
         return cell
     }
     
@@ -280,22 +283,20 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         self.navigationController?.pushViewController(SearchRouteViewController(), animated: true)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: Metric.collectionViewCellWidth, height: Metric.collectionViewCellHeight)
-      }
-    
     func setFavoriteRouteCollectionView(){
         view.addSubview(favoriteRouteCollectionView)
+        favoriteRouteCollectionView.backgroundColor = .background
         
         favoriteRouteCollectionView.snp.makeConstraints{
             $0.top.equalTo(homeView.favoriteRouteListText.snp.bottom).inset(-20)
-            $0.trailing.leading.equalToSuperview()
+            $0.leading.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview()
             $0.height.equalTo(Metric.collectionViewHeight)
         }
         
+        favoriteRouteCollectionView.register(FavoriteRouteCollectionViewCell.self, forCellWithReuseIdentifier: "FavoriteRouteCollectionViewCell")
         favoriteRouteCollectionView.delegate = self
         favoriteRouteCollectionView.dataSource = self
-        favoriteRouteCollectionView.register(FavoriteRouteCollectionViewCell.self, forCellWithReuseIdentifier: "FavoriteRouteCollectionViewCell")
     }
 }
 
