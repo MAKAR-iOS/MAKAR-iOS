@@ -94,7 +94,7 @@ class HomeView: BaseView {
         $0.backgroundColor = .divider
     }
     
-    private let recentRouteListText = UILabel().then{
+    let recentRouteListText = UILabel().then{
         $0.text = "최근 경로"
         $0.font = UIFont.systemFont(ofSize: 15, weight: .light)
         $0.textColor = .darkgray

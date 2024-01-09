@@ -23,5 +23,8 @@ extension RouteData {
         RouteData(sourceText: "이수역", sourceLine: "4호선", destinationText: "광화문역", destinationLine: "5호선", date: "")
     ]
     
-    static let recentRouteList : [RouteData] = []
+    static let recentRouteList : [RouteData] = [
+        RouteData(sourceText: "이수역", sourceLine: "7호선", destinationText: "광화문역", destinationLine: "5호선", date: "12.23"),
+        RouteData(sourceText: "시청역", sourceLine: "1호선", destinationText: "안암역", destinationLine: "6호선", date: "01.11")
+    ]
 }
