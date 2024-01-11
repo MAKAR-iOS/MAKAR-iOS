@@ -132,7 +132,11 @@ extension MyPageViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 3
+        if(section == 2){
+            return 0
+        } else {
+            return 3
+        }
     }
         
     func setTableView(){
