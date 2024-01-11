@@ -11,17 +11,21 @@ class MyPageViewController: BaseViewController {
     
     // MARK: Constants
     private enum Metric {
-        static let myPageViewHeight = 70
+        static let myPageViewHeight = 90
     }
 
     // MARK: UI Components
     private let myPageView = MyPageView()
+    let myPageTableView = UITableView(frame: .zero, style: .grouped)
+    let myPageTableViewCellList : [[String]] = [["자주 가는 역 설정", "즐겨찾는 경로 설정", "푸시 알림"], ["서비스 이용 약관", "개인 정보 처리 방침"], ["로그아웃", "회원 탈퇴"]]
+    let myPageTableViewHeaderList : [String] = ["설정", "앱 정보", "계정 관리"]
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .background
+        setTableView()
     }
     
     // MARK: Configuration
@@ -47,7 +51,69 @@ class MyPageViewController: BaseViewController {
         super.setNavigationBar()
         navigationItem.title = "마이페이지"
     }
+}
+
+    // MARK: TableView
+extension MyPageViewController : UITableViewDelegate, UITableViewDataSource {
+    //cell
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return myPageTableViewCellList[section].count
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myPageTableViewCell") ?? UITableViewCell(style: .default, reuseIdentifier: "myPageTableViewCell")
+        // MARK: 여기 잘 짠듯 칭찬 부탁
+        // TODO: 칭찬하고 마크 지우기
+        cell.textLabel?.text = myPageTableViewCellList[indexPath.section][indexPath.row]
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
+        cell.textLabel?.textColor = .darkgray
+        cell.backgroundColor = .background
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
+    }
+    
+    //header
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return myPageTableViewHeaderList[section]
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    //footer
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: .zero)
+        footerView.backgroundColor = .divider
+        return footerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 3
+    }
+        
+    func setTableView(){
+        view.addSubview(myPageTableView)
+
+        myPageTableView.backgroundColor = .background
+        myPageTableView.separatorStyle = .none
+        
+        myPageTableView.snp.makeConstraints{
+            $0.top.equalTo(myPageView.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        myPageTableView.dataSource = self
+        myPageTableView.delegate = self
+    }
 }
 
 extension MyPageViewController {
