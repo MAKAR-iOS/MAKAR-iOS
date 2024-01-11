@@ -34,6 +34,7 @@ class BaseViewController: UIViewController {
         let navigationBar = navigationController?.navigationBar
         navigationBar?.topItem?.backButtonTitle = ""
         navigationBar?.tintColor = .black
+        navigationBar?.prefersLargeTitles = false
     }
     
     // MARK: Keyboard

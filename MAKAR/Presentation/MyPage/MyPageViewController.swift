@@ -50,6 +50,8 @@ class MyPageViewController: BaseViewController {
     override func setNavigationBar(){
         super.setNavigationBar()
         navigationItem.title = "마이페이지"
+        //TODO: 타이틀 크기 논의 필요
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
 
@@ -74,6 +76,39 @@ extension MyPageViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 45
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0:
+                //자주 가는 역 설정
+                navigationController?.pushViewController(FavoriteStationViewController(), animated: true)
+            case 1:
+                //즐겨찾는 경로 설정
+                navigationController?.pushViewController(FavoriteRouteViewController(), animated: true)
+            case 2:
+                //푸시 알림 설정
+                navigationController?.pushViewController(PushAlarmViewController(), animated: true)
+            default:
+                break
+            }
+        case 1:
+            if(indexPath.row == 0){
+                //서비스 이용 약관
+            } else{
+                //개인정보 처리 방침
+            }
+        case 2:
+            if(indexPath.row == 0){
+                showLogoutAlert()
+            } else{
+                showWithdrawalAlert()
+            }
+        default:
+            break
+        }
     }
     
     //header
@@ -116,11 +151,12 @@ extension MyPageViewController : UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+    // MARK: Alert
 extension MyPageViewController {
     private func showLogoutAlert(){
         let logoutAlert = UIAlertController(title: "로그아웃하시겠어요?", message: "", preferredStyle: .alert)
         logoutAlert.addAction( UIAlertAction(title: "로그아웃하기", style: .destructive, handler: {_ in
-           
+           // TODO: 로그아웃 기능 구현
         }))
         logoutAlert.addAction(UIAlertAction(title: "취소", style: .cancel))
         present(logoutAlert, animated: true)
@@ -129,7 +165,7 @@ extension MyPageViewController {
     private func showWithdrawalAlert(){
         let withdrawalAlert = UIAlertController(title: "정말 탈퇴하시겠어요?", message: "이 동작은 취소할 수 없어요", preferredStyle: .alert)
         withdrawalAlert.addAction( UIAlertAction(title: "탈퇴하기", style: .destructive, handler: {_ in
-           
+           // TODO: 회원탈퇴 기능 구현
         }))
         withdrawalAlert.addAction(UIAlertAction(title: "취소", style: .cancel))
         present(withdrawalAlert, animated: true)
