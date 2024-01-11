@@ -12,6 +12,7 @@ class MyPageView: BaseView {
     // MARK: Constants
     private enum Metric {
         static let profileImageSize = 60
+        static let dividerHeight = 10
     }
     
     // MARK: UI Components
@@ -30,6 +31,10 @@ class MyPageView: BaseView {
         $0.textColor = .lightGray
     }
     
+    private let divider = UIView().then{
+        $0.backgroundColor = .divider
+    }
+    
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
@@ -37,6 +42,7 @@ class MyPageView: BaseView {
         addSubview(userProfileImageView)
         addSubview(userNameLabel)
         addSubview(userLoginLabel)
+        addSubview(divider)
     }
 
     // MARK: Layout
@@ -57,6 +63,12 @@ class MyPageView: BaseView {
         userLoginLabel.snp.makeConstraints{
             $0.leading.equalTo(userProfileImageView.snp.trailing).inset(-10)
             $0.bottom.equalTo(userProfileImageView.snp.bottom).inset(8)
+        }
+        
+        divider.snp.makeConstraints{
+            $0.top.equalTo(userProfileImageView.snp.bottom).inset(-10)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(Metric.dividerHeight)
         }
     }
 }
