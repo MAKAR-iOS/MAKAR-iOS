@@ -23,16 +23,16 @@ class HomeViewController: BaseViewController {
     var hakarNotiFlag = false //하차 알림 실행 유무 플래그
     var isMakarTaken = false //막차 측정/하차 측정 구분 플래그
     
-    static let makarDateComponents = DateComponents(year: 2024, month: 1, day: 9, hour: 22, minute: 56)
-    static let hakarDateComponents = DateComponents(year: 2024, month: 1, day: 9, hour: 22, minute: 58)
+    static let makarDateComponents = DateComponents(year: 2024, month: 1, day: 10, hour: 22, minute: 56)
+    static let hakarDateComponents = DateComponents(year: 2024, month: 1, day: 10, hour: 22, minute: 58)
     let makarTime = Calendar.current.date(from: makarDateComponents)!//임시 막차 시간
     let hakarTime = Calendar.current.date(from: hakarDateComponents)!//임시 하차 시간
     let makarAlarmTime = 10 //임시 막차 알림 시간
     let hakarAlarmTime = 10 //임시 하차 알림 시간
     
     // TODO: dummylist
-    let favoriteRouteList : [RouteData] = RouteData.favoriteRouteList
-    let recentRouteList : [RouteData] = RouteData.recentRouteList
+    var favoriteRouteList : [RouteData] = RouteData.favoriteRouteList
+    var recentRouteList : [RouteData] = RouteData.recentRouteList
     
     // MARK: UI Components
     private let homeView = HomeView()
@@ -63,6 +63,7 @@ class HomeViewController: BaseViewController {
         view.backgroundColor = .background
         changeComponent()
         setFavoriteRouteCollectionView()
+        setRecentRouteCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,7 +111,14 @@ class HomeViewController: BaseViewController {
         homeView.tapEditFavoriteRouteButton = {[weak self] in
             guard let self else { return }
             
-            // TODO: 
+            // TODO: 즐겨찾는 경로 편집 기능
+        }
+        
+        homeView.tapAllDeleteRecentRouteButton = {[weak self] in
+            guard let self else { return }
+            
+            self.recentRouteList = []
+            recentRouteCollectionView.reloadData()
         }
     }
     
@@ -175,7 +183,7 @@ class HomeViewController: BaseViewController {
                             self.changeComponent()
                         } else {
                             if(self.makarLeftTime == self.makarAlarmTime && !self.makarNotiFlag){
-                                //showNotification
+                                //TODO: showNotification
                                 self.makarNotiFlag = true
                             }
                             self.changeMainTitleText(target: "막차", minute: self.makarLeftTime)
@@ -184,7 +192,7 @@ class HomeViewController: BaseViewController {
                         //하차까지 남은 시간 계산
                         self.hakarLeftTime = self.checkNotificationTime(targetDate: self.hakarTime)
                         if(self.hakarLeftTime == self.hakarAlarmTime && !self.hakarNotiFlag){
-                            //showNotification
+                            //TODO: showNotification
                             self.hakarNotiFlag = true
                         }
                         self.changeMainTitleText(target: "하차", minute: self.hakarLeftTime)
@@ -275,20 +283,49 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     // MARK: CollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return favoriteRouteList.count
+        if(collectionView == favoriteRouteCollectionView){
+            return favoriteRouteList.count
+        } else {
+            return recentRouteList.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteRouteCollectionViewCell", for: indexPath) as? FavoriteRouteCollectionViewCell
-        else {
-            return UICollectionViewCell()
+        //즐겨찾는 경로
+        if (collectionView == favoriteRouteCollectionView){
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteRouteCollectionViewCell", for: indexPath) as? FavoriteRouteCollectionViewCell
+            else {
+                return UICollectionViewCell()
+            }
+            cell.setData(data: favoriteRouteList[indexPath.row])
+            return cell
+        } else {
+            //최근 경로
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecentRouteCollectionViewCell", for: indexPath) as? RecentRouteCollectionViewCell
+            else {
+                return UICollectionViewCell()
+            }
+            
+            cell.setData(data: recentRouteList[indexPath.row])
+            //최근경로 삭제
+            cell.tapDeleteRecentRouteButton = {[weak self] in
+                guard let self else { return }
+                
+                self.recentRouteList.remove(at: indexPath.row)
+                recentRouteCollectionView.reloadData()
+            }
+            return cell
         }
-        cell.setData(data: favoriteRouteList[indexPath.row])
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let data = favoriteRouteList[indexPath.row]
+        let data : RouteData
+        if(collectionView == favoriteRouteCollectionView){
+            data = favoriteRouteList[indexPath.row]
+        } else {
+            data = recentRouteList[indexPath.row]
+        }
+        //searchBar Text 수정
         let sourceText = data.sourceText + " " + data.sourceLine
         let destinationText = data.destinationText + " " + data.destinationLine
         
@@ -312,6 +349,23 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         favoriteRouteCollectionView.register(FavoriteRouteCollectionViewCell.self, forCellWithReuseIdentifier: "FavoriteRouteCollectionViewCell")
         favoriteRouteCollectionView.delegate = self
         favoriteRouteCollectionView.dataSource = self
+    }
+    
+    func setRecentRouteCollectionView(){
+        view.addSubview(recentRouteCollectionView)
+        recentRouteCollectionView.backgroundColor = .background
+        recentRouteCollectionView.showsHorizontalScrollIndicator = false //스크롤바 숨김
+        
+        recentRouteCollectionView.snp.makeConstraints{
+            $0.top.equalTo(homeView.recentRouteListText.snp.bottom).inset(-15)
+            $0.leading.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview()
+            $0.height.equalTo(Metric.collectionViewHeight)
+        }
+        
+        recentRouteCollectionView.register(RecentRouteCollectionViewCell.self, forCellWithReuseIdentifier: "RecentRouteCollectionViewCell")
+        recentRouteCollectionView.delegate = self
+        recentRouteCollectionView.dataSource = self
     }
 }
 

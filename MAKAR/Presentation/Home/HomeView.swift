@@ -94,10 +94,16 @@ class HomeView: BaseView {
         $0.backgroundColor = .divider
     }
     
-    private let recentRouteListText = UILabel().then{
+    let recentRouteListText = UILabel().then{
         $0.text = "최근 경로"
         $0.font = UIFont.systemFont(ofSize: 15, weight: .light)
         $0.textColor = .darkgray
+    }
+    
+    let allDeleteRecentRouteButton = BaseButton().then{
+        $0.setTitle("전체 삭제", for: .normal)
+        $0.setTitleColor(.lightgray3, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .light)
     }
     
     // MARK: Properties
@@ -106,6 +112,7 @@ class HomeView: BaseView {
     var tapChangeRouteButton: (() -> Void)?
     var tapSetAlarmButton: (() -> Void)?
     var tapEditFavoriteRouteButton: (() -> Void)?
+    var tapAllDeleteRecentRouteButton: (() -> Void)?
     
     // MARK: Configuration
     override func configureSubviews() {
@@ -124,12 +131,14 @@ class HomeView: BaseView {
         addSubview(editFavoriteRouteButton)
         addSubview(mainDivider2)
         addSubview(recentRouteListText)
+        addSubview(allDeleteRecentRouteButton)
         
         resetRouteButton.addTarget(self, action: #selector(handleResetRouteButtonClickEvent), for: .touchUpInside)
         setRouteButton.addTarget(self, action: #selector(handleSetRouteButtonClickEvent), for: .touchUpInside)
         changeRouteButton.addTarget(self, action: #selector(handleChangeRouteButtonClickEvent), for: .touchUpInside)
         setAlarmButton.addTarget(self, action: #selector(handleSetAlarmButtonClickEvent), for: .touchUpInside)
         editFavoriteRouteButton.addTarget(self, action: #selector(handleEditFavoriteRouteButton), for: .touchUpInside)
+        allDeleteRecentRouteButton.addTarget(self, action: #selector(handleAllDeleteRecentRouteButton), for: .touchUpInside)
     }
     
     // MARK: Layout
@@ -207,6 +216,11 @@ class HomeView: BaseView {
             $0.top.equalTo(mainDivider2.snp.bottom).inset(-15)
             $0.leading.equalToSuperview().inset(20)
         }
+        
+        allDeleteRecentRouteButton.snp.makeConstraints{
+            $0.top.equalTo(recentRouteListText.snp.top)
+            $0.trailing.equalToSuperview().inset(20)
+        }
     }
     
     // MARK: Event
@@ -230,6 +244,10 @@ class HomeView: BaseView {
         tapEditFavoriteRouteButton?()
     }
     
+    @objc private func handleAllDeleteRecentRouteButton(){
+        tapAllDeleteRecentRouteButton?()
+    }
+    
     // MARK: ChangeComponent
     func changeComponentRouteSet(){
         mainRouteView.text = "Source   ->  Destination"
@@ -242,6 +260,7 @@ class HomeView: BaseView {
         favoriteRouteListText.isHidden = true
         editFavoriteRouteButton.isHidden = true
         recentRouteListText.isHidden = true
+        allDeleteRecentRouteButton.isHidden = true
     }
     
     func changeMainDestinationText(destinationText : String){
@@ -261,5 +280,6 @@ class HomeView: BaseView {
         favoriteRouteListText.isHidden = false
         editFavoriteRouteButton.isHidden = false
         recentRouteListText.isHidden = false
+        allDeleteRecentRouteButton.isHidden = false
     }
 }
