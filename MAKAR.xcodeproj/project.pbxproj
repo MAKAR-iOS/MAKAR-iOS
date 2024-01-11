@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		2647CE7F2B50064A001208BE /* FavoriteRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647CE7E2B50064A001208BE /* FavoriteRouteView.swift */; };
 		2647CE822B500677001208BE /* FavoriteRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647CE812B500677001208BE /* FavoriteRouteViewController.swift */; };
-		2647CE842B5006AE001208BE /* PushAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647CE832B5006AE001208BE /* PushAlarmView.swift */; };
 		2647CE862B5006B8001208BE /* PushAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647CE852B5006B8001208BE /* PushAlarmViewController.swift */; };
+		2647CE892B500F35001208BE /* FavoriteRouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647CE882B500F35001208BE /* FavoriteRouteTableViewCell.swift */; };
 		267065262B3C997200F19EC3 /* FavoriteStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267065252B3C997200F19EC3 /* FavoriteStationView.swift */; };
 		267065282B3C998A00F19EC3 /* FavoriteStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267065272B3C998A00F19EC3 /* FavoriteStationViewController.swift */; };
 		2670652C2B3CA6B100F19EC3 /* HomeSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2670652B2B3CA6B100F19EC3 /* HomeSearchStationView.swift */; };
@@ -72,8 +72,8 @@
 /* Begin PBXFileReference section */
 		2647CE7E2B50064A001208BE /* FavoriteRouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteView.swift; sourceTree = "<group>"; };
 		2647CE812B500677001208BE /* FavoriteRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteViewController.swift; sourceTree = "<group>"; };
-		2647CE832B5006AE001208BE /* PushAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAlarmView.swift; sourceTree = "<group>"; };
 		2647CE852B5006B8001208BE /* PushAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAlarmViewController.swift; sourceTree = "<group>"; };
+		2647CE882B500F35001208BE /* FavoriteRouteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteTableViewCell.swift; sourceTree = "<group>"; };
 		267065252B3C997200F19EC3 /* FavoriteStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStationView.swift; sourceTree = "<group>"; };
 		267065272B3C998A00F19EC3 /* FavoriteStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStationViewController.swift; sourceTree = "<group>"; };
 		2670652B2B3CA6B100F19EC3 /* HomeSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchStationView.swift; sourceTree = "<group>"; };
@@ -150,6 +150,7 @@
 			children = (
 				2647CE7E2B50064A001208BE /* FavoriteRouteView.swift */,
 				2647CE812B500677001208BE /* FavoriteRouteViewController.swift */,
+				2647CE882B500F35001208BE /* FavoriteRouteTableViewCell.swift */,
 			);
 			path = FavoriteRoute;
 			sourceTree = "<group>";
@@ -157,7 +158,6 @@
 		2647CE872B5006BF001208BE /* PushAlarm */ = {
 			isa = PBXGroup;
 			children = (
-				2647CE832B5006AE001208BE /* PushAlarmView.swift */,
 				2647CE852B5006B8001208BE /* PushAlarmViewController.swift */,
 			);
 			path = PushAlarm;
@@ -542,9 +542,9 @@
 				2647CE862B5006B8001208BE /* PushAlarmViewController.swift in Sources */,
 				26E664752B3C4C20002579C1 /* SourceSearchStationView.swift in Sources */,
 				95B10FA72B3315DD005319F6 /* BaseViewController.swift in Sources */,
-				2647CE842B5006AE001208BE /* PushAlarmView.swift in Sources */,
 				956382C32B3975B7006B50ED /* NotificationViewController.swift in Sources */,
 				2670652C2B3CA6B100F19EC3 /* HomeSearchStationView.swift in Sources */,
+				2647CE892B500F35001208BE /* FavoriteRouteTableViewCell.swift in Sources */,
 				95B10FA92B3315EB005319F6 /* BaseView.swift in Sources */,
 				95B10F9A2B331545005319F6 /* TargetType+Extension.swift in Sources */,
 				956382F42B398AEB006B50ED /* UIColor+Extension.swift in Sources */,

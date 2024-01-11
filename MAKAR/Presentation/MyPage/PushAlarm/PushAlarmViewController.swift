@@ -8,6 +8,7 @@
 import UIKit
 class PushAlarmViewController : BaseViewController {
     
+    // MARK: UI Components
     let pushAlarmTableView = UITableView(frame: .zero, style: .grouped)
     let pushAlarmTableViewCellList : [[String]] = [["전체 알림"], ["막차 알림", "하차 알림"]]
     
