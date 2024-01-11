@@ -117,7 +117,8 @@ class HomeViewController: BaseViewController {
         homeView.tapAllDeleteRecentRouteButton = {[weak self] in
             guard let self else { return }
             
-            // TODO: 최근 경로 전체 삭제 기능
+            self.recentRouteList = []
+            recentRouteCollectionView.reloadData()
         }
     }
     
@@ -182,7 +183,7 @@ class HomeViewController: BaseViewController {
                             self.changeComponent()
                         } else {
                             if(self.makarLeftTime == self.makarAlarmTime && !self.makarNotiFlag){
-                                //showNotification
+                                //TODO: showNotification
                                 self.makarNotiFlag = true
                             }
                             self.changeMainTitleText(target: "막차", minute: self.makarLeftTime)
@@ -191,7 +192,7 @@ class HomeViewController: BaseViewController {
                         //하차까지 남은 시간 계산
                         self.hakarLeftTime = self.checkNotificationTime(targetDate: self.hakarTime)
                         if(self.hakarLeftTime == self.hakarAlarmTime && !self.hakarNotiFlag){
-                            //showNotification
+                            //TODO: showNotification
                             self.hakarNotiFlag = true
                         }
                         self.changeMainTitleText(target: "하차", minute: self.hakarLeftTime)
@@ -304,7 +305,15 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
             else {
                 return UICollectionViewCell()
             }
+            
             cell.setData(data: recentRouteList[indexPath.row])
+            //최근경로 삭제
+            cell.tapDeleteRecentRouteButton = {[weak self] in
+                guard let self else { return }
+                
+                self.recentRouteList.remove(at: indexPath.row)
+                recentRouteCollectionView.reloadData()
+            }
             return cell
         }
     }
