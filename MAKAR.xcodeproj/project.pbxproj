@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2647CE7F2B50064A001208BE /* FavoriteRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647CE7E2B50064A001208BE /* FavoriteRouteView.swift */; };
+		2647CE822B500677001208BE /* FavoriteRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647CE812B500677001208BE /* FavoriteRouteViewController.swift */; };
+		2647CE862B5006B8001208BE /* PushAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647CE852B5006B8001208BE /* PushAlarmViewController.swift */; };
+		2647CE892B500F35001208BE /* FavoriteRouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647CE882B500F35001208BE /* FavoriteRouteTableViewCell.swift */; };
 		267065262B3C997200F19EC3 /* FavoriteStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267065252B3C997200F19EC3 /* FavoriteStationView.swift */; };
 		267065282B3C998A00F19EC3 /* FavoriteStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267065272B3C998A00F19EC3 /* FavoriteStationViewController.swift */; };
 		2670652C2B3CA6B100F19EC3 /* HomeSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2670652B2B3CA6B100F19EC3 /* HomeSearchStationView.swift */; };
@@ -66,6 +70,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2647CE7E2B50064A001208BE /* FavoriteRouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteView.swift; sourceTree = "<group>"; };
+		2647CE812B500677001208BE /* FavoriteRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteViewController.swift; sourceTree = "<group>"; };
+		2647CE852B5006B8001208BE /* PushAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAlarmViewController.swift; sourceTree = "<group>"; };
+		2647CE882B500F35001208BE /* FavoriteRouteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteTableViewCell.swift; sourceTree = "<group>"; };
 		267065252B3C997200F19EC3 /* FavoriteStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStationView.swift; sourceTree = "<group>"; };
 		267065272B3C998A00F19EC3 /* FavoriteStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStationViewController.swift; sourceTree = "<group>"; };
 		2670652B2B3CA6B100F19EC3 /* HomeSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchStationView.swift; sourceTree = "<group>"; };
@@ -137,6 +145,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2647CE802B50065F001208BE /* FavoriteRoute */ = {
+			isa = PBXGroup;
+			children = (
+				2647CE7E2B50064A001208BE /* FavoriteRouteView.swift */,
+				2647CE812B500677001208BE /* FavoriteRouteViewController.swift */,
+				2647CE882B500F35001208BE /* FavoriteRouteTableViewCell.swift */,
+			);
+			path = FavoriteRoute;
+			sourceTree = "<group>";
+		};
+		2647CE872B5006BF001208BE /* PushAlarm */ = {
+			isa = PBXGroup;
+			children = (
+				2647CE852B5006B8001208BE /* PushAlarmViewController.swift */,
+			);
+			path = PushAlarm;
+			sourceTree = "<group>";
+		};
 		267065292B3CA68000F19EC3 /* FavoriteStation */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +224,8 @@
 		956382AA2B39750B006B50ED /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				2647CE872B5006BF001208BE /* PushAlarm */,
+				2647CE802B50065F001208BE /* FavoriteRoute */,
 				267065292B3CA68000F19EC3 /* FavoriteStation */,
 				956382C42B3975BE006B50ED /* MyPageView.swift */,
 				956382C62B3975C7006B50ED /* MyPageViewController.swift */,
@@ -502,6 +530,7 @@
 				267F3C452B3D6AE300E3CD29 /* BaseSearchStationViewController.swift in Sources */,
 				956382DC2B397A07006B50ED /* HomeView.swift in Sources */,
 				267065302B3CA6E200F19EC3 /* SchoolSearchStationView.swift in Sources */,
+				2647CE7F2B50064A001208BE /* FavoriteRouteView.swift in Sources */,
 				26EFA2982B4D5296003678C0 /* FavoriteRouteCollectionViewCell.swift in Sources */,
 				95B10FAB2B3315F5005319F6 /* BaseButton.swift in Sources */,
 				956382E52B397A4D006B50ED /* SourceSearchStationViewController.swift in Sources */,
@@ -510,10 +539,12 @@
 				956382C12B3975B0006B50ED /* NotificationView.swift in Sources */,
 				95B10FA52B3315C7005319F6 /* ExampleRouter.swift in Sources */,
 				267065262B3C997200F19EC3 /* FavoriteStationView.swift in Sources */,
+				2647CE862B5006B8001208BE /* PushAlarmViewController.swift in Sources */,
 				26E664752B3C4C20002579C1 /* SourceSearchStationView.swift in Sources */,
 				95B10FA72B3315DD005319F6 /* BaseViewController.swift in Sources */,
 				956382C32B3975B7006B50ED /* NotificationViewController.swift in Sources */,
 				2670652C2B3CA6B100F19EC3 /* HomeSearchStationView.swift in Sources */,
+				2647CE892B500F35001208BE /* FavoriteRouteTableViewCell.swift in Sources */,
 				95B10FA92B3315EB005319F6 /* BaseView.swift in Sources */,
 				95B10F9A2B331545005319F6 /* TargetType+Extension.swift in Sources */,
 				956382F42B398AEB006B50ED /* UIColor+Extension.swift in Sources */,
@@ -540,6 +571,7 @@
 				95B10F962B331519005319F6 /* ExampleRequest.swift in Sources */,
 				26EFA29D2B4D9D9B003678C0 /* RouteData.swift in Sources */,
 				95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */,
+				2647CE822B500677001208BE /* FavoriteRouteViewController.swift in Sources */,
 				956382B62B39758A006B50ED /* LoginViewController.swift in Sources */,
 				2670652E2B3CA6BC00F19EC3 /* HomeSearchStationViewController.swift in Sources */,
 				95B10FA32B3315BB005319F6 /* ExampleViewController.swift in Sources */,

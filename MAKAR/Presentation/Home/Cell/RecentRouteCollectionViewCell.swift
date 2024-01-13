@@ -145,7 +145,6 @@ class RecentRouteCollectionViewCell : UICollectionViewCell {
     
     // MARK: Event
     @objc func handleDeleteRecentRouteButton(){
-        // TODO: 최근 경로 삭제 기능
         tapDeleteRecentRouteButton?()
     }
 }
