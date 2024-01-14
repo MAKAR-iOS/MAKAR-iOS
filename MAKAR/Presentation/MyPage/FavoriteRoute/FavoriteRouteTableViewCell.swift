@@ -47,6 +47,7 @@ class FavoriteRouteTableViewCell : UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        configure()
         configureSubviews()
         makeConstraints()
     }
@@ -56,6 +57,10 @@ class FavoriteRouteTableViewCell : UITableViewCell {
     }
     
     // MARK: Configuration
+    func configure(){
+        self.backgroundColor = .background
+    }
+    
     func configureSubviews() {
         addSubview(favoriteRouteStackView)
         favoriteRouteStackView.addArrangedSubview(sourceLineNumImageView)
@@ -64,7 +69,12 @@ class FavoriteRouteTableViewCell : UITableViewCell {
         favoriteRouteStackView.addArrangedSubview(destinationLineNumImageView)
         favoriteRouteStackView.addArrangedSubview(destinationText)
         addSubview(deleteRecentRouteButton)
+        
+        deleteRecentRouteButton.addTarget(self, action: #selector(handleDeleteRecentRouteButton), for: .touchUpInside)
     }
+    
+    // MARK: Properties
+    var tapDeleteRecentRouteButton: (() -> Void)?
         
     // MARK: Layout
     func makeConstraints() {
@@ -101,6 +111,11 @@ class FavoriteRouteTableViewCell : UITableViewCell {
         } else {
             destinationLineNumImageView.image = MakarImage.line0
         }
+    }
+    
+    // MARK: Event
+    @objc func handleDeleteRecentRouteButton(){
+        tapDeleteRecentRouteButton?()
     }
 }
 
