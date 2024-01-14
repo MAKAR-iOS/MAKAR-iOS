@@ -31,7 +31,7 @@ class HomeViewController: BaseViewController {
     let hakarAlarmTime = 10 //임시 하차 알림 시간
     
     // TODO: dummylist
-    var favoriteRouteList : [RouteData] = RouteData.favoriteRouteList
+    static var favoriteRouteList : [RouteData] = RouteData.favoriteRouteList
     var recentRouteList : [RouteData] = RouteData.recentRouteList
     
     // MARK: UI Components
@@ -70,6 +70,7 @@ class HomeViewController: BaseViewController {
         super.viewWillAppear(animated)
         startNotification()
         changeComponent()
+        favoriteRouteCollectionView.reloadData()
     }
     
     // MARK: Configuration
@@ -284,7 +285,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     // MARK: CollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(collectionView == favoriteRouteCollectionView){
-            return favoriteRouteList.count
+            return HomeViewController.favoriteRouteList.count
         } else {
             return recentRouteList.count
         }
@@ -297,7 +298,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
             else {
                 return UICollectionViewCell()
             }
-            cell.setData(data: favoriteRouteList[indexPath.row])
+            cell.setData(data: HomeViewController.favoriteRouteList[indexPath.row])
             return cell
         } else {
             //최근 경로
@@ -321,7 +322,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let data : RouteData
         if(collectionView == favoriteRouteCollectionView){
-            data = favoriteRouteList[indexPath.row]
+            data = HomeViewController.favoriteRouteList[indexPath.row]
         } else {
             data = recentRouteList[indexPath.row]
         }
