@@ -38,7 +38,7 @@ extension PushAlarmViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pushAlarmTableViewCell") ?? UITableViewCell(style: .default, reuseIdentifier: "pushAlarmTableViewCell")
         cell.textLabel?.text = pushAlarmTableViewCellList[indexPath.section][indexPath.row]
         cell.textLabel?.font = UIFont.systemFont(ofSize: 16)
-        cell.textLabel?.textColor = .darkgray
+        cell.textLabel?.textColor = .darkGray
         cell.backgroundColor = .background
         cell.accessoryView = UISwitch()
         return cell

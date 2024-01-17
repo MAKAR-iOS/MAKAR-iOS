@@ -19,7 +19,7 @@ class RecentRouteCollectionViewCell : UICollectionViewCell {
     
     private var recentRouteDateLabel = UILabel().then{
         $0.font = .systemFont(ofSize: 12, weight: .light)
-        $0.textColor = .lightgray3
+        $0.textColor = .lightGray3
     }
     
     private var deleteRecentRouteButton = BaseButton().then{
@@ -59,7 +59,7 @@ class RecentRouteCollectionViewCell : UICollectionViewCell {
         self.layer.cornerRadius = 10
         self.backgroundColor = .white
         self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.lightgray4.cgColor
+        self.layer.borderColor = UIColor.lightGray4.cgColor
     }
     
     func configureSubviews() {

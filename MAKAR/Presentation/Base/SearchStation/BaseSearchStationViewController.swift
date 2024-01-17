@@ -61,7 +61,7 @@ extension BaseSearchStationViewController: UITableViewDelegate, UITableViewDataS
         cell.backgroundColor = .background
         cell.textLabel?.text = lineNum
         cell.textLabel?.font = UIFont.systemFont(ofSize: 16)
-        cell.textLabel?.textColor = .darkgray
+        cell.textLabel?.textColor = .darkGray
         
         if let lineImage = lineNumImage.lineNumMap[lineNum] {
             cell.accessoryView = UIImageView(image: lineImage)
