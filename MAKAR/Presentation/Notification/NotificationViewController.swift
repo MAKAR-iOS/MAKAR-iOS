@@ -57,6 +57,9 @@ class NotificationViewController: BaseViewController {
     }
 
     private func addGetOffNoti() {
-        self.present(getOffNotiView.getOffAlertController, animated: true)
+        let getOffNotiSetViewController = GetOffNotiSetViewController()
+        getOffNotiSetViewController.modalPresentationStyle = .overFullScreen
+        self.present(getOffNotiSetViewController, animated: false)
+//        self.present(getOffNotiView.getOffAlertController, animated: true)
     }
 }
