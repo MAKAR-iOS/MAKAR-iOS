@@ -67,6 +67,9 @@
 		95B10FB02B33169D005319F6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 95B10FAF2B33169D005319F6 /* SnapKit */; };
 		95B10FB32B3316E5005319F6 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 95B10FB22B3316E5005319F6 /* Then */; };
 		95B10FB62B331716005319F6 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 95B10FB52B331716005319F6 /* Moya */; };
+		95CC86202B57B3980088E44E /* GetOffNotiSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CC861F2B57B3980088E44E /* GetOffNotiSetViewController.swift */; };
+		95CC86222B57B3A00088E44E /* GetOffNotiSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CC86212B57B3A00088E44E /* GetOffNotiSetView.swift */; };
+		95CC86242B57B4150088E44E /* GetOffNotiSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CC86232B57B4150088E44E /* GetOffNotiSetTableViewCell.swift */; };
 		95D0043B2B4BE220009D4DF3 /* MakarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D0043A2B4BE220009D4DF3 /* MakarTableViewCell.swift */; };
 		95D0043D2B4BE358009D4DF3 /* MakarNotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D0043C2B4BE358009D4DF3 /* MakarNotiView.swift */; };
 		95D0043F2B4BE3DE009D4DF3 /* GetOffNotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D0043E2B4BE3DE009D4DF3 /* GetOffNotiView.swift */; };
@@ -132,6 +135,9 @@
 		95B10FA82B3315EB005319F6 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		95B10FAA2B3315F5005319F6 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		95B10FAC2B33165C005319F6 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
+		95CC861F2B57B3980088E44E /* GetOffNotiSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOffNotiSetViewController.swift; sourceTree = "<group>"; };
+		95CC86212B57B3A00088E44E /* GetOffNotiSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOffNotiSetView.swift; sourceTree = "<group>"; };
+		95CC86232B57B4150088E44E /* GetOffNotiSetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOffNotiSetTableViewCell.swift; sourceTree = "<group>"; };
 		95D0043A2B4BE220009D4DF3 /* MakarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakarTableViewCell.swift; sourceTree = "<group>"; };
 		95D0043C2B4BE358009D4DF3 /* MakarNotiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakarNotiView.swift; sourceTree = "<group>"; };
 		95D0043E2B4BE3DE009D4DF3 /* GetOffNotiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOffNotiView.swift; sourceTree = "<group>"; };
@@ -226,6 +232,9 @@
 				95D0043C2B4BE358009D4DF3 /* MakarNotiView.swift */,
 				95D0043A2B4BE220009D4DF3 /* MakarTableViewCell.swift */,
 				95D0043E2B4BE3DE009D4DF3 /* GetOffNotiView.swift */,
+				95CC861F2B57B3980088E44E /* GetOffNotiSetViewController.swift */,
+				95CC86212B57B3A00088E44E /* GetOffNotiSetView.swift */,
+				95CC86232B57B4150088E44E /* GetOffNotiSetTableViewCell.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -538,6 +547,7 @@
 				26EFA29B2B4D65F1003678C0 /* RecentRouteCollectionViewCell.swift in Sources */,
 				267F3C452B3D6AE300E3CD29 /* BaseSearchStationViewController.swift in Sources */,
 				956382DC2B397A07006B50ED /* HomeView.swift in Sources */,
+				95CC86222B57B3A00088E44E /* GetOffNotiSetView.swift in Sources */,
 				267065302B3CA6E200F19EC3 /* SchoolSearchStationView.swift in Sources */,
 				2647CE7F2B50064A001208BE /* FavoriteRouteView.swift in Sources */,
 				26EFA2982B4D5296003678C0 /* FavoriteRouteCollectionViewCell.swift in Sources */,
@@ -584,10 +594,12 @@
 				95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */,
 				2647CE822B500677001208BE /* FavoriteRouteViewController.swift in Sources */,
 				956382B62B39758A006B50ED /* LoginViewController.swift in Sources */,
+				95CC86202B57B3980088E44E /* GetOffNotiSetViewController.swift in Sources */,
 				2670652E2B3CA6BC00F19EC3 /* HomeSearchStationViewController.swift in Sources */,
 				95B10FA32B3315BB005319F6 /* ExampleViewController.swift in Sources */,
 				956382B42B397581006B50ED /* LoginView.swift in Sources */,
 				956382AE2B397568006B50ED /* SplashView.swift in Sources */,
+				95CC86242B57B4150088E44E /* GetOffNotiSetTableViewCell.swift in Sources */,
 				95D0043D2B4BE358009D4DF3 /* MakarNotiView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
