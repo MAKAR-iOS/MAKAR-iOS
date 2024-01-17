@@ -35,17 +35,36 @@ extension FavoriteRouteViewController : UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteRouteTableViewCell") as? FavoriteRouteTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteRouteTableViewCell", for: indexPath) as? FavoriteRouteTableViewCell
         else {
             return UITableViewCell()
         }
         cell.setData(data: favoriteRouteList[indexPath.row])
-        cell.backgroundColor = .background
+        cell.contentView.isHidden = true
+        
+        //즐겨찾는 경로 삭제
+        cell.tapDeleteRecentRouteButton = {[weak self] in
+            guard let self else { return }
+            HomeViewController.favoriteRouteList.remove(at: indexPath.row)
+            favoriteRouteList = HomeViewController.favoriteRouteList
+            favoriteRouteTableView.reloadData()
+        }
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let data : RouteData = favoriteRouteList[indexPath.row]
+        //searchBar Text 수정
+        let sourceText = data.sourceText + " " + data.sourceLine
+        let destinationText = data.destinationText + " " + data.destinationLine
+        
+        let searchRouteVC = SearchRouteViewController()
+        searchRouteVC.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)
+        self.navigationController?.pushViewController(searchRouteVC, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 45
+        return 48
     }
     
     func setTableView(){
