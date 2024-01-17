@@ -11,14 +11,13 @@ final class MakarTableViewCell: UITableViewCell {
 
     static let identifier = "MakarTableViewCell"
 
+    // MARK: UI Components
     private(set) var makarNameLabel = UILabel().then {
-        $0.text = "막차 알림1"
         $0.textColor = .darkGray
         $0.font = .systemFont(ofSize: 16, weight: .medium)
     }
 
     private(set) var makarTimeLabel = UILabel().then {
-        $0.text = "10분 전"
         $0.textColor = .makarBlue
         $0.font = .systemFont(ofSize: 16, weight: .bold)
     }
@@ -27,6 +26,7 @@ final class MakarTableViewCell: UITableViewCell {
         $0.setImage(MakarButton.deleteButton, for: .normal)
     }
 
+    // MARK: init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureSubviews()
@@ -41,12 +41,14 @@ final class MakarTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: Configuration
     private func configureSubviews() {
         contentView.addSubview(makarNameLabel)
         contentView.addSubview(makarTimeLabel)
         contentView.addSubview(deleteButton)
     }
 
+    // MARK: Layout
     private func makeConstraints() {
         makarNameLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(20)
