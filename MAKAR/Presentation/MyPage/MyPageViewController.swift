@@ -68,7 +68,7 @@ extension MyPageViewController : UITableViewDelegate, UITableViewDataSource {
         // TODO: 칭찬하고 마크 지우기
         cell.textLabel?.text = myPageTableViewCellList[indexPath.section][indexPath.row]
         cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
-        cell.textLabel?.textColor = .darkgray
+        cell.textLabel?.textColor = .darkGray
         cell.backgroundColor = .background
         cell.accessoryType = .disclosureIndicator
         return cell

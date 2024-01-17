@@ -30,7 +30,7 @@ class FavoriteStationView : BaseView {
     
     private let homeStationTextView = BaseButton().then{
         $0.setTitle("집 주변 지하철 역을 등록해주세요", for: .normal)
-        $0.setTitleColor(.lightgray, for: .normal)
+        $0.setTitleColor(.lightGray, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .light)
         $0.contentHorizontalAlignment = .left
         $0.contentEdgeInsets = .init(top: 0, left: 10, bottom: 0, right: 0)
@@ -40,7 +40,7 @@ class FavoriteStationView : BaseView {
     
     private let schoolStationTextView = BaseButton().then{
         $0.setTitle("학교 주변 지하철 역을 등록해주세요", for: .normal)
-        $0.setTitleColor(.lightgray, for: .normal)
+        $0.setTitleColor(.lightGray, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .light)
         $0.contentHorizontalAlignment = .left
         $0.contentEdgeInsets = .init(top: 0, left: 10, bottom: 0, right: 0)

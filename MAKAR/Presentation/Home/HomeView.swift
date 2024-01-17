@@ -40,7 +40,7 @@ class HomeView: BaseView {
     private let mainRouteView = UILabel().then{
         //TODO: Text ic_arrow 수정 필요
         $0.text = "출발역  ->  도착역"
-        $0.textColor = .darkgray
+        $0.textColor = .darkGray
         $0.textAlignment = .center
         $0.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         $0.backgroundColor = .systemGray6
@@ -81,12 +81,12 @@ class HomeView: BaseView {
     let favoriteRouteListText = UILabel().then{
         $0.text = "즐겨찾는 경로"
         $0.font = UIFont.systemFont(ofSize: 15, weight: .light)
-        $0.textColor = .darkgray
+        $0.textColor = .darkGray
     }
     
     private let editFavoriteRouteButton = BaseButton().then{
         $0.setTitle("편집", for: .normal)
-        $0.setTitleColor(.lightgray3, for: .normal)
+        $0.setTitleColor(.lightGray3, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .light)
     }
     
@@ -97,12 +97,12 @@ class HomeView: BaseView {
     let recentRouteListText = UILabel().then{
         $0.text = "최근 경로"
         $0.font = UIFont.systemFont(ofSize: 15, weight: .light)
-        $0.textColor = .darkgray
+        $0.textColor = .darkGray
     }
     
     let allDeleteRecentRouteButton = BaseButton().then{
         $0.setTitle("전체 삭제", for: .normal)
-        $0.setTitleColor(.lightgray3, for: .normal)
+        $0.setTitleColor(.lightGray3, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .light)
     }
     
