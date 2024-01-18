@@ -95,18 +95,18 @@ class FavoriteRouteTableViewCell : UITableViewCell {
         //TODO: data 설정 수정
         lineNumImage.addLineNum()
 
-        sourceText.text = data.sourceText
-        destinationText.text = data.destinationText
+        sourceText.text = data.sourceStation.stationName
+        destinationText.text = data.destinationStation.stationName
         
         //출발역 호선 이미지
-        if let sourceLineImg = lineNumImage.lineNumMap[data.sourceLine] {
+        if let sourceLineImg = lineNumImage.lineNumMap[data.sourceStation.lineNum] {
             sourceLineNumImageView.image =  sourceLineImg
         } else {
             sourceLineNumImageView.image = MakarImage.line0
         }
         
         //도착역 호선 이미지
-        if let destinationLineImg = lineNumImage.lineNumMap[data.destinationLine] {
+        if let destinationLineImg = lineNumImage.lineNumMap[data.destinationStation.lineNum] {
             destinationLineNumImageView.image = destinationLineImg
         } else {
             destinationLineNumImageView.image = MakarImage.line0
