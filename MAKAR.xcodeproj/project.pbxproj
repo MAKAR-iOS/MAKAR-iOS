@@ -57,6 +57,7 @@
 		956382F42B398AEB006B50ED /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382F32B398AEB006B50ED /* UIColor+Extension.swift */; };
 		956382F62B398B72006B50ED /* MakarColor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 956382F52B398B72006B50ED /* MakarColor.xcassets */; };
 		956382FA2B39A43E006B50ED /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382F92B39A43E006B50ED /* BaseRouter.swift */; };
+		95A5D9DD2B58B4F8000A2A72 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 95A5D9DC2B58B4F8000A2A72 /* Toast */; };
 		95B10F7C2B331350005319F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7B2B331350005319F6 /* AppDelegate.swift */; };
 		95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7D2B331350005319F6 /* SceneDelegate.swift */; };
 		95B10F852B331351005319F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95B10F842B331351005319F6 /* Assets.xcassets */; };
@@ -164,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95A5D9DD2B58B4F8000A2A72 /* Toast in Frameworks */,
 				95B10FB02B33169D005319F6 /* SnapKit in Frameworks */,
 				95B10FB32B3316E5005319F6 /* Then in Frameworks */,
 				95B10FB62B331716005319F6 /* Moya in Frameworks */,
@@ -512,6 +514,7 @@
 				95B10FAF2B33169D005319F6 /* SnapKit */,
 				95B10FB22B3316E5005319F6 /* Then */,
 				95B10FB52B331716005319F6 /* Moya */,
+				95A5D9DC2B58B4F8000A2A72 /* Toast */,
 			);
 			productName = MAKAR;
 			productReference = 95B10F782B331350005319F6 /* MAKAR.app */;
@@ -545,6 +548,7 @@
 				95B10FAE2B33169D005319F6 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				95B10FB12B3316E5005319F6 /* XCRemoteSwiftPackageReference "Then" */,
 				95B10FB42B331716005319F6 /* XCRemoteSwiftPackageReference "Moya" */,
+				95A5D9DB2B58B4F8000A2A72 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = 95B10F792B331350005319F6 /* Products */;
 			projectDirPath = "";
@@ -848,6 +852,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		95A5D9DB2B58B4F8000A2A72 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
 		95B10FAE2B33169D005319F6 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -875,6 +887,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		95A5D9DC2B58B4F8000A2A72 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95A5D9DB2B58B4F8000A2A72 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
 		95B10FAF2B33169D005319F6 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 95B10FAE2B33169D005319F6 /* XCRemoteSwiftPackageReference "SnapKit" */;
