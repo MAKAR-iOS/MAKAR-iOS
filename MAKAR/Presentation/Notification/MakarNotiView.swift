@@ -10,8 +10,9 @@ import UIKit
 class MakarNotiView: BaseView {
 
     let makarTimeArr = [5, 10, 15, 20, 25, 30]
-    var tempMakarTime = 5
-    var selectedMakarTime: [Int] = [5]
+    var tempMakarTime = [5]
+    var selectedMakarTime = [5]
+//    var selectedMakarTime: [Int] = []
 
     // MARK: UI Components
     private let makarNotiLabel = UILabel().then {
@@ -50,6 +51,7 @@ class MakarNotiView: BaseView {
 
     // MARK: Properties
     var tapMakarAdd: (() -> Void)?
+    var tapMakarNotiAdd: (() -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -64,7 +66,7 @@ class MakarNotiView: BaseView {
         addSubview(makarNotiLabel)
         addSubview(makarNotiAddButton)
         addSubview(makarEmptyLabel)
-        addSubview(makarTableView)
+//        addSubview(makarTableView)
 
         makarNotiAddButton.addTarget(
             self,
@@ -73,7 +75,7 @@ class MakarNotiView: BaseView {
         )
     }
 
-    private func setMakarNotiView() {
+    func setMakarNotiView() {
         backgroundColor = .white
         layer.cornerRadius = 19
         layer.shadowColor = UIColor.lightGray4.cgColor
@@ -88,13 +90,18 @@ class MakarNotiView: BaseView {
             makarTableView.isHidden = false
             makarEmptyLabel.isHidden = true
         }
+
+        makarTableView.reloadData()
     }
 
     func setMakarAlertController() {
         let okAction = UIAlertAction(title: "추가", style: .destructive) { [self] _ in
-            selectedMakarTime.append(tempMakarTime)
+//            selectedMakarTime.append(tempMakarTime)
             print(selectedMakarTime)
-            setMakarNotiView()
+            print(#function, #line, "")
+            selectedMakarTime += tempMakarTime
+//            setMakarNotiView()
+            tapMakarNotiAdd?()
             makarTableView.reloadData()
         }
         let cancelAction = UIAlertAction(title: "닫기", style: .cancel)
@@ -133,11 +140,11 @@ class MakarNotiView: BaseView {
             $0.centerX.equalToSuperview()
         }
 
-        makarTableView.snp.makeConstraints {
-            $0.top.equalTo(makarNotiLabel.snp.bottom).offset(16)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(85)
-        }
+//        makarTableView.snp.makeConstraints {
+//            $0.top.equalTo(makarNotiLabel.snp.bottom).offset(16)
+//            $0.leading.trailing.equalToSuperview()
+//            $0.height.equalTo(85)
+//        }
     }
 
     // MARK: Event
@@ -165,7 +172,7 @@ extension MakarNotiView: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView,
                     didSelectRow row: Int,
                     inComponent component: Int) {
-        tempMakarTime = makarTimeArr[row]
+        tempMakarTime[0] = makarTimeArr[row]
     }
 }
 
@@ -186,6 +193,14 @@ extension MakarNotiView: UITableViewDataSource {
             withIdentifier: MakarTableViewCell.identifier,
             for: indexPath
         ) as? MakarTableViewCell else { return UITableViewCell() }
+
+        cell.tapDeleteNotiButton = {[weak self] in
+            guard let self else { return }
+            
+            selectedMakarTime.remove(at: indexPath.row)
+            print(selectedMakarTime)
+            makarTableView.reloadData()
+        }
 
         cell.makarNameLabel.text = "막차 알림 " + "\(indexPath.row + 1)"
         cell.makarTimeLabel.text = "\(selectedMakarTime[indexPath.row])" + "분 전"

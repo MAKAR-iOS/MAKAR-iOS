@@ -46,7 +46,12 @@ final class MakarTableViewCell: UITableViewCell {
         contentView.addSubview(makarNameLabel)
         contentView.addSubview(makarTimeLabel)
         contentView.addSubview(deleteButton)
+
+        deleteButton.addTarget(self, action: #selector(handleDeleteNotiRouteButton), for: .touchUpInside)
     }
+
+    // MARK: Properties
+    var tapDeleteNotiButton: (() -> Void)?
 
     // MARK: Layout
     private func makeConstraints() {
@@ -65,5 +70,10 @@ final class MakarTableViewCell: UITableViewCell {
             $0.centerY.equalToSuperview()
             $0.height.width.equalTo(23)
         }
+    }
+
+    // MARK: Event
+    @objc func handleDeleteNotiRouteButton(){
+        tapDeleteNotiButton?()
     }
 }
