@@ -55,8 +55,8 @@ extension FavoriteRouteViewController : UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data : RouteData = favoriteRouteList[indexPath.row]
         //searchBar Text 수정
-        let sourceText = data.sourceText + " " + data.sourceLine
-        let destinationText = data.destinationText + " " + data.destinationLine
+        let sourceText = data.sourceStation.stationName + " " + data.sourceStation.lineNum
+        let destinationText = data.destinationStation.stationName + " " + data.destinationStation.lineNum
         
         let searchRouteVC = SearchRouteViewController()
         searchRouteVC.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)
