@@ -53,16 +53,16 @@ extension RouteData {
         RouteData(sourceStation: Station(stationName: "숭실대입구역", stationCode: "", lineNum: "7호선"),
                   destinationStation: Station(stationName: "이수역", stationCode: "", lineNum: "7호선"),
                   makarTime: Date(), hakarTime: Date(), totalTime: 4, transitCount: 0, date: "", 
-                  subRouteItemList: [SubRouteItem(subRoute: SubRoute(startStationName: "숭실대입구역", endStationName: "이수역", sectionTime: 4), transferInfo: TransferInfo(fromLine: 7, toLine: 7, transferStation: "", transferTime: 0))]),
+                  subRouteItemList: [SubRouteItem(subRoute: SubRoute(startStationName: "숭실대입구역", endStationName: "이수역", lineNum: "7호선", sectionTime: 4), transferInfo: TransferInfo(fromLine: 7, toLine: 7, transferStation: "", transferTime: 0))]),
         RouteData(sourceStation: Station(stationName: "강남역", stationCode: "", lineNum: "2호선"),
                   destinationStation: Station(stationName: "합정역", stationCode: "", lineNum: "2호선"),
                   makarTime: Date(), hakarTime: Date(), totalTime: 30, transitCount: 0, date: "", 
-                  subRouteItemList: [SubRouteItem(subRoute: SubRoute(startStationName: "강남역", endStationName: "합정역", sectionTime: 30), transferInfo: TransferInfo(fromLine: 2, toLine: 2, transferStation: "", transferTime: 0))]),
+                  subRouteItemList: [SubRouteItem(subRoute: SubRoute(startStationName: "강남역", endStationName: "합정역", lineNum: "2호선", sectionTime: 30), transferInfo: TransferInfo(fromLine: 2, toLine: 2, transferStation: "", transferTime: 0))]),
         RouteData(sourceStation: Station(stationName: "숭실대입구역", stationCode: "", lineNum: "7호선"),
                   destinationStation: Station(stationName: "신촌역", stationCode: "", lineNum: "2호선"),
                   makarTime: Date(), hakarTime: Date(), totalTime: 35, transitCount: 1, date: "", 
-                  subRouteItemList: [SubRouteItem(subRoute: SubRoute(startStationName: "숭실대입구역", endStationName: "대림역", sectionTime: 12), transferInfo: TransferInfo(fromLine: 7, toLine: 7, transferStation: "대림", transferTime: 5)),
-                                    SubRouteItem(subRoute: SubRoute(startStationName: "대림역", endStationName: "신촌역", sectionTime: 18), transferInfo: TransferInfo(fromLine: 2, toLine: 2, transferStation: "대림역", transferTime: 5))
+                  subRouteItemList: [SubRouteItem(subRoute: SubRoute(startStationName: "숭실대입구역", endStationName: "대림역", lineNum: "7호선", sectionTime: 12), transferInfo: TransferInfo(fromLine: 7, toLine: 7, transferStation: "대림", transferTime: 5)),
+                                     SubRouteItem(subRoute: SubRoute(startStationName: "대림역", endStationName: "신촌역", lineNum: "2호선", sectionTime: 18), transferInfo: TransferInfo(fromLine: 2, toLine: 2, transferStation: "대림역", transferTime: 5))
                                      ])
     ]
 }
