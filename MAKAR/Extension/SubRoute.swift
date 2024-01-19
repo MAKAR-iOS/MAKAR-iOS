@@ -11,7 +11,7 @@ struct SubRoute {
     let endStationName : String
     let startStationCode : Int = 0
     let endStationCode : Int = 0
-    let lineNum : Int = 0
+    let lineNum : String 
 //    let wayCode : Int
     let sectionTime : Int
 }

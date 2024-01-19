@@ -327,8 +327,8 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
             data = recentRouteList[indexPath.row]
         }
         //searchBar Text 수정
-        let sourceText = data.sourceStation.stationName + " " + data.sourceStation.lineNum
-        let destinationText = data.destinationStation.stationName + " " + data.destinationStation.lineNum
+        let sourceText = "\(data.sourceStation.stationName) \(data.sourceStation.lineNum)"
+        let destinationText = "\(data.destinationStation.stationName) \(data.destinationStation.lineNum)"
         
         let searchRouteVC = SearchRouteViewController()
         searchRouteVC.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)

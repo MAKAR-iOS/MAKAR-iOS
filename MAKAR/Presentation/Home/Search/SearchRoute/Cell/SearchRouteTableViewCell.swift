@@ -10,7 +10,8 @@ class SearchRouteTableViewCell : UITableViewCell {
     
     // MARK: Constants
     private enum Metric {
-      
+        static let dividerHeight = 6
+        static let dividerWidth = 2
     }
     
     private let dateFormatter = DateFormatter().then {
@@ -37,7 +38,7 @@ class SearchRouteTableViewCell : UITableViewCell {
     
     let routeStackView = UIStackView().then{ //경로
         $0.axis = .vertical
-        $0.spacing = 5
+        $0.spacing = 10
         $0.distribution = .equalSpacing
         $0.alignment = .leading
     }
@@ -86,8 +87,7 @@ class SearchRouteTableViewCell : UITableViewCell {
         }
         
         routeStackView.snp.makeConstraints{
-            $0.top.equalTo(leftTimeLabel.snp.bottom).inset(-10)
-            $0.height.greaterThanOrEqualTo(0)
+            $0.top.equalTo(leftTimeLabel.snp.bottom).inset(-15)
             $0.leading.trailing.bottom.equalToSuperview().inset(20)
         }
     }
@@ -104,17 +104,15 @@ class SearchRouteTableViewCell : UITableViewCell {
         
         //TODO: SUBROUTE 수정
         //출발역
-        let routeLabel = UILabel()
-        routeLabel.text = data.sourceStation.stationName
+        let routeLabel = SubRouteTextView(lineName: data.sourceStation.stationName, lineNum: data.sourceStation.lineNum)
         routeStackView.addArrangedSubview(routeLabel)
         //중간역, 도착역
         for route in data.subRouteItemList {
-                    let routeLabel = UILabel()
-                    routeLabel.text = route.subRoute.endStationName
+            let routeLabel = SubRouteTextView(lineName: route.subRoute.endStationName, lineNum: route.subRoute.lineNum)
                     routeStackView.addArrangedSubview(routeLabel)
                 }
     }
-    
+        
     //열차 출발, 도착 시간 format 지정
     private func changeDateFormat(date : Date) -> String{
         dateFormatter.dateFormat = "HH:mm"
