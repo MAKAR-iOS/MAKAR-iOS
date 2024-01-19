@@ -9,14 +9,25 @@ import UIKit
 
 class SearchRouteViewController : BaseViewController {
     
+    // MARK: Constants
+    private enum Metric {
+        static let searchRouteViewHeight = 188
+    }
+    
     // MARK: UI Components
     private let searchRouteView = SearchRouteView()
+    private let searchRouteTableView = UITableView(frame: .zero, style: .plain)
+    
+        // TODO: FIX: DUMMYLIST
+    let searchRouteList : [RouteData] = RouteData.searchRouteList
+
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .background
+        setSearchRouteTableView()
     }
     
     // MARK: Configuration
@@ -54,9 +65,10 @@ class SearchRouteViewController : BaseViewController {
     override func makeConstraints() {
         super.makeConstraints()
         
-        // TODO: Layout 수정
         searchRouteView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(Metric.searchRouteViewHeight)
         }
     }
     
@@ -88,4 +100,37 @@ class SearchRouteViewController : BaseViewController {
             self.searchRouteView.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)
     }
     
+}
+
+    // MARK: TableView
+extension SearchRouteViewController : UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchRouteList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "searchRouteTableViewCell", for: indexPath) as? SearchRouteTableViewCell
+        else {
+            return UITableViewCell()
+        }
+        cell.setData(data: searchRouteList[indexPath.row])
+        cell.contentView.isHidden = true
+        return cell
+    }
+    
+    func setSearchRouteTableView(){
+        view.addSubview(searchRouteTableView)
+
+        searchRouteTableView.backgroundColor = .background
+        searchRouteTableView.separatorStyle = .none
+        
+        searchRouteTableView.snp.makeConstraints{
+            $0.top.equalTo(searchRouteView.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        searchRouteTableView.register(SearchRouteTableViewCell.self, forCellReuseIdentifier: "searchRouteTableViewCell")
+        searchRouteTableView.dataSource = self
+        searchRouteTableView.delegate = self
+    }
 }

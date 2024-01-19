@@ -15,43 +15,53 @@ struct RouteData {
     let totalTime : Int
     let transitCount : Int
     let date : String //경로 설정한 날짜
-    let subRouteList : [SubRoute] = []
+    let subRouteItemList : [SubRouteItem]
 }
 
 extension RouteData {
     static let favoriteRouteList : [RouteData] = [
         RouteData(sourceStation: Station(stationName: "강남역", stationCode: "", lineNum: "2호선"),
                   destinationStation: Station(stationName: "숭실대입구역", stationCode: "", lineNum: "7호선"),
-                  makarTime: Date(), hakarTime: Date(), totalTime: 40, transitCount: 0, date: ""),
+                  makarTime: Date(), hakarTime: Date(), totalTime: 40, transitCount: 0, date: "", 
+                  subRouteItemList: []),
         RouteData(sourceStation: Station(stationName: "홍대역", stationCode: "", lineNum: "2호선"),
                   destinationStation: Station(stationName: "신촌역", stationCode: "", lineNum: "2호선"),
-                  makarTime: Date(), hakarTime: Date(), totalTime: 20, transitCount: 0, date: ""),
+                  makarTime: Date(), hakarTime: Date(), totalTime: 20, transitCount: 0, date: "",
+                  subRouteItemList: []),
         RouteData(sourceStation: Station(stationName: "이태원역", stationCode: "", lineNum: "6호선"),
                   destinationStation: Station(stationName: "부평역", stationCode: "", lineNum: "1호선"),
-                  makarTime: Date(), hakarTime: Date(), totalTime: 73, transitCount: 1, date: ""),
+                  makarTime: Date(), hakarTime: Date(), totalTime: 73, transitCount: 1, date: "", 
+                  subRouteItemList: []),
         RouteData(sourceStation: Station(stationName: "이수역", stationCode: "", lineNum: "4호선"),
                   destinationStation: Station(stationName: "광화문역", stationCode: "", lineNum: "5호선"),
-                  makarTime: Date(), hakarTime: Date(), totalTime: 50, transitCount: 1, date: "")
+                  makarTime: Date(), hakarTime: Date(), totalTime: 50, transitCount: 1, date: "", 
+                  subRouteItemList: [])
     ]
     
     static let recentRouteList : [RouteData] = [
         RouteData(sourceStation: Station(stationName: "이수역", stationCode: "", lineNum: "4호선"),
                   destinationStation: Station(stationName: "광화문역", stationCode: "", lineNum: "5호선"),
-                  makarTime: Date(), hakarTime: Date(), totalTime: 50, transitCount: 1, date: "12.23"),
+                  makarTime: Date(), hakarTime: Date(), totalTime: 50, transitCount: 1, date: "12.23", 
+                  subRouteItemList: []),
         RouteData(sourceStation: Station(stationName: "시청역", stationCode: "", lineNum: "1호선"),
                   destinationStation: Station(stationName: "안암역", stationCode: "", lineNum: "6호선"),
-                  makarTime: Date(), hakarTime: Date(), totalTime: 50, transitCount: 1, date: "01.11")
+                  makarTime: Date(), hakarTime: Date(), totalTime: 50, transitCount: 1, date: "01.11", 
+                  subRouteItemList: [])
     ]
     
-    static let setRouteList : [RouteData] = [
+    static let searchRouteList : [RouteData] = [
         RouteData(sourceStation: Station(stationName: "숭실대입구역", stationCode: "", lineNum: "7호선"),
                   destinationStation: Station(stationName: "이수역", stationCode: "", lineNum: "7호선"),
-                  makarTime: Date(), hakarTime: Date(), totalTime: 4, transitCount: 0, date: ""),
+                  makarTime: Date(), hakarTime: Date(), totalTime: 4, transitCount: 0, date: "", 
+                  subRouteItemList: []),
         RouteData(sourceStation: Station(stationName: "강남역", stationCode: "", lineNum: "2호선"),
                   destinationStation: Station(stationName: "합정역", stationCode: "", lineNum: "2호선"),
-                  makarTime: Date(), hakarTime: Date(), totalTime: 30, transitCount: 0, date: ""),
+                  makarTime: Date(), hakarTime: Date(), totalTime: 30, transitCount: 0, date: "", 
+                  subRouteItemList: []),
         RouteData(sourceStation: Station(stationName: "숭실대입구역", stationCode: "", lineNum: "7호선"),
                   destinationStation: Station(stationName: "신촌역", stationCode: "", lineNum: "2호선"),
-                  makarTime: Date(), hakarTime: Date(), totalTime: 35, transitCount: 1, date: "")
+                  makarTime: Date(), hakarTime: Date(), totalTime: 35, transitCount: 1, date: "", 
+                  subRouteItemList: [SubRouteItem(subRoute: SubRoute(startStationName: "숭실대입구", endStationName: "대림", sectionTime: 12), transferInfo: TransferInfo(fromLine: 7, toLine: 7, transferStation: "대림", transferTime: 5)),
+                                    SubRouteItem(subRoute: SubRoute(startStationName: "대림", endStationName: "신촌", sectionTime: 18), transferInfo: TransferInfo(fromLine: 2, toLine: 2, transferStation: "대림", transferTime: 5))])
     ]
 }
