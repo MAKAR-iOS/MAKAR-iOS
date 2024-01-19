@@ -23,6 +23,7 @@
 		267065322B3CA70200F19EC3 /* SchoolSearchStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267065312B3CA70200F19EC3 /* SchoolSearchStationViewController.swift */; };
 		267F3C452B3D6AE300E3CD29 /* BaseSearchStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267F3C442B3D6AE300E3CD29 /* BaseSearchStationViewController.swift */; };
 		2698646F2B3DC77F003FE9FB /* LineNumImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2698646E2B3DC77F003FE9FB /* LineNumImage.swift */; };
+		26A0EF312B5A90B3003E11D6 /* SubRouteTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0EF302B5A90B3003E11D6 /* SubRouteTextView.swift */; };
 		26E664752B3C4C20002579C1 /* SourceSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664742B3C4C20002579C1 /* SourceSearchStationView.swift */; };
 		26E664772B3C4CFA002579C1 /* DestinationSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664762B3C4CFA002579C1 /* DestinationSearchStationView.swift */; };
 		26E664792B3C4D0A002579C1 /* DestinationSearchStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664782B3C4D0A002579C1 /* DestinationSearchStationViewController.swift */; };
@@ -96,6 +97,7 @@
 		267065312B3CA70200F19EC3 /* SchoolSearchStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSearchStationViewController.swift; sourceTree = "<group>"; };
 		267F3C442B3D6AE300E3CD29 /* BaseSearchStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSearchStationViewController.swift; sourceTree = "<group>"; };
 		2698646E2B3DC77F003FE9FB /* LineNumImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineNumImage.swift; sourceTree = "<group>"; };
+		26A0EF302B5A90B3003E11D6 /* SubRouteTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubRouteTextView.swift; sourceTree = "<group>"; };
 		26E664742B3C4C20002579C1 /* SourceSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceSearchStationView.swift; sourceTree = "<group>"; };
 		26E664762B3C4CFA002579C1 /* DestinationSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchStationView.swift; sourceTree = "<group>"; };
 		26E664782B3C4D0A002579C1 /* DestinationSearchStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchStationViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +214,15 @@
 			path = SearchStation;
 			sourceTree = "<group>";
 		};
+		26A0EF322B5A90BB003E11D6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				26150E122B594BA000E5059D /* SearchRouteTableViewCell.swift */,
+				26A0EF302B5A90B3003E11D6 /* SubRouteTextView.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		26EFA2992B4D65E2003678C0 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,9 +337,9 @@
 		956382E12B397A22006B50ED /* SearchRoute */ = {
 			isa = PBXGroup;
 			children = (
+				26A0EF322B5A90BB003E11D6 /* Cell */,
 				956382E62B397A5A006B50ED /* SearchRouteView.swift */,
 				956382E82B397A66006B50ED /* SearchRouteViewController.swift */,
-				26150E122B594BA000E5059D /* SearchRouteTableViewCell.swift */,
 			);
 			path = SearchRoute;
 			sourceTree = "<group>";
@@ -558,6 +569,7 @@
 				956382F22B39855E006B50ED /* ImageLiteral.swift in Sources */,
 				26EFA29B2B4D65F1003678C0 /* RecentRouteCollectionViewCell.swift in Sources */,
 				267F3C452B3D6AE300E3CD29 /* BaseSearchStationViewController.swift in Sources */,
+				26A0EF312B5A90B3003E11D6 /* SubRouteTextView.swift in Sources */,
 				956382DC2B397A07006B50ED /* HomeView.swift in Sources */,
 				95CC86222B57B3A00088E44E /* GetOffNotiSetView.swift in Sources */,
 				267065302B3CA6E200F19EC3 /* SchoolSearchStationView.swift in Sources */,
