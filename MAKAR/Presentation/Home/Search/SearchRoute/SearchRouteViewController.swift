@@ -30,6 +30,11 @@ class SearchRouteViewController : BaseViewController {
         setSearchRouteTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searchRouteTableView.reloadData()
+    }
+    
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
@@ -120,9 +125,10 @@ extension SearchRouteViewController : UITableViewDelegate, UITableViewDataSource
     
     func setSearchRouteTableView(){
         view.addSubview(searchRouteTableView)
-
+        
         searchRouteTableView.backgroundColor = .background
-        searchRouteTableView.separatorStyle = .none
+        searchRouteTableView.separatorStyle = .singleLine
+        searchRouteTableView.rowHeight = UITableView.automaticDimension
         
         searchRouteTableView.snp.makeConstraints{
             $0.top.equalTo(searchRouteView.snp.bottom)
