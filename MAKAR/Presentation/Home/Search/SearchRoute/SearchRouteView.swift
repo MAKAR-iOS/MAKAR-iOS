@@ -16,6 +16,7 @@ class SearchRouteView : BaseView {
         static let searchBarRadius = 18
         static let swapButtonHeight = 30
         static let swapButtonWidth = 30
+        static let dividerHeight = 10
     }
     
     // MARK: UI Components
@@ -67,6 +68,10 @@ class SearchRouteView : BaseView {
         $0.setTitle("경로 찾기", for: .normal)
     }
     
+    private let divider = UIView().then{
+        $0.backgroundColor = .divider
+    }
+    
     // MARK: Properties
     var tapSwapStationButton: (() -> Void)?
     var tapSourceSearchBar: (() -> Void)?
@@ -84,6 +89,7 @@ class SearchRouteView : BaseView {
         addSubview(destinationSearchBar)
         addSubview(swapButton)
         addSubview(searchRouteButton)
+        addSubview(divider)
         
         swapButton.addTarget(self, action: #selector(handleSwapButtonClickEvent), for: .touchUpInside)
         sourceSearchBar.addTarget(self, action: #selector(handleSourceSearchBarClickEvent), for: .touchUpInside)
@@ -132,6 +138,12 @@ class SearchRouteView : BaseView {
             $0.top.equalTo(destinationSearchBar.snp.bottom).inset(-20)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(Metric.buttonHeight)
+        }
+        
+        divider.snp.makeConstraints{
+            $0.top.equalTo(searchRouteButton.snp.bottom).inset(-10)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(Metric.dividerHeight)
         }
     }
     
