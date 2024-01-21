@@ -20,7 +20,7 @@ class SubRouteTextView : UIView{
     private var lineNumImageView = UIImageView()
         
     private var lineNameLabel = UILabel().then{
-        $0.font = .systemFont(ofSize: 16, weight: .light)
+        $0.font = .systemFont(ofSize: 15, weight: .light)
         $0.sizeToFit()
     }
     

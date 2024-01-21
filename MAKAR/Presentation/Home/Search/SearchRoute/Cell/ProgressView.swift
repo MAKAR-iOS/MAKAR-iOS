@@ -13,6 +13,7 @@ class progressView : UILabel{
     private enum Metric {
         static let selfHeight = 20
         static let radius = 10
+        static let imageSize = 12
     }
     
     init(color : UIColor, text : String){
@@ -32,7 +33,7 @@ class progressView : UILabel{
         //text
         textColor = .white
         textAlignment = .center
-        font = .systemFont(ofSize: 13, weight: .regular)
+        font = .systemFont(ofSize: 12, weight: .regular)
         
         //layer
         backgroundColor = .divider
@@ -49,12 +50,18 @@ class progressView : UILabel{
     
     private func setData(color : UIColor, text : String){
         self.backgroundColor = color
-        self.text = text
+        let attributedString = NSMutableAttributedString(string: "")
         
         if(color == .divider){
             self.textColor = .darkGray
         } else {
             //지하철 이미지 추가
+            let imageAttachment = NSTextAttachment()
+            imageAttachment.image = MakarButton.myRouteButton
+            imageAttachment.bounds = CGRect(x: 0, y: -1, width: Metric.imageSize, height: Metric.imageSize)
+            attributedString.append(NSAttributedString(attachment: imageAttachment))
         }
+        attributedString.append(NSAttributedString(string: text))
+        self.attributedText = attributedString
     }
 }
