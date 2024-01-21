@@ -22,8 +22,10 @@
 		267065302B3CA6E200F19EC3 /* SchoolSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2670652F2B3CA6E200F19EC3 /* SchoolSearchStationView.swift */; };
 		267065322B3CA70200F19EC3 /* SchoolSearchStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267065312B3CA70200F19EC3 /* SchoolSearchStationViewController.swift */; };
 		267F3C452B3D6AE300E3CD29 /* BaseSearchStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267F3C442B3D6AE300E3CD29 /* BaseSearchStationViewController.swift */; };
-		2698646F2B3DC77F003FE9FB /* LineNumImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2698646E2B3DC77F003FE9FB /* LineNumImage.swift */; };
+		2698646F2B3DC77F003FE9FB /* LineNumMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2698646E2B3DC77F003FE9FB /* LineNumMap.swift */; };
 		26A0EF312B5A90B3003E11D6 /* SubRouteTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0EF302B5A90B3003E11D6 /* SubRouteTextView.swift */; };
+		26A0EF342B5AA1B8003E11D6 /* SearchRouteProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0EF332B5AA1B8003E11D6 /* SearchRouteProgressView.swift */; };
+		26A0EF3A2B5D2D2C003E11D6 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0EF392B5D2D2C003E11D6 /* ProgressView.swift */; };
 		26E664752B3C4C20002579C1 /* SourceSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664742B3C4C20002579C1 /* SourceSearchStationView.swift */; };
 		26E664772B3C4CFA002579C1 /* DestinationSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664762B3C4CFA002579C1 /* DestinationSearchStationView.swift */; };
 		26E664792B3C4D0A002579C1 /* DestinationSearchStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664782B3C4D0A002579C1 /* DestinationSearchStationViewController.swift */; };
@@ -96,8 +98,10 @@
 		2670652F2B3CA6E200F19EC3 /* SchoolSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSearchStationView.swift; sourceTree = "<group>"; };
 		267065312B3CA70200F19EC3 /* SchoolSearchStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSearchStationViewController.swift; sourceTree = "<group>"; };
 		267F3C442B3D6AE300E3CD29 /* BaseSearchStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSearchStationViewController.swift; sourceTree = "<group>"; };
-		2698646E2B3DC77F003FE9FB /* LineNumImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineNumImage.swift; sourceTree = "<group>"; };
+		2698646E2B3DC77F003FE9FB /* LineNumMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineNumMap.swift; sourceTree = "<group>"; };
 		26A0EF302B5A90B3003E11D6 /* SubRouteTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubRouteTextView.swift; sourceTree = "<group>"; };
+		26A0EF332B5AA1B8003E11D6 /* SearchRouteProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouteProgressView.swift; sourceTree = "<group>"; };
+		26A0EF392B5D2D2C003E11D6 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		26E664742B3C4C20002579C1 /* SourceSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceSearchStationView.swift; sourceTree = "<group>"; };
 		26E664762B3C4CFA002579C1 /* DestinationSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchStationView.swift; sourceTree = "<group>"; };
 		26E664782B3C4D0A002579C1 /* DestinationSearchStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchStationViewController.swift; sourceTree = "<group>"; };
@@ -219,6 +223,8 @@
 			children = (
 				26150E122B594BA000E5059D /* SearchRouteTableViewCell.swift */,
 				26A0EF302B5A90B3003E11D6 /* SubRouteTextView.swift */,
+				26A0EF332B5AA1B8003E11D6 /* SearchRouteProgressView.swift */,
+				26A0EF392B5D2D2C003E11D6 /* ProgressView.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -350,7 +356,7 @@
 				956382F12B39855E006B50ED /* ImageLiteral.swift */,
 				956382F32B398AEB006B50ED /* UIColor+Extension.swift */,
 				956382F52B398B72006B50ED /* MakarColor.xcassets */,
-				2698646E2B3DC77F003FE9FB /* LineNumImage.swift */,
+				2698646E2B3DC77F003FE9FB /* LineNumMap.swift */,
 				26EFA29C2B4D9D9B003678C0 /* RouteData.swift */,
 				26150E0E2B59433700E5059D /* Station.swift */,
 				26150E102B59471E00E5059D /* SubRoute.swift */,
@@ -598,9 +604,11 @@
 				95D0043F2B4BE3DE009D4DF3 /* GetOffNotiView.swift in Sources */,
 				956382BD2B3975A1006B50ED /* TimetableView.swift in Sources */,
 				95B10FAD2B33165C005319F6 /* AppDependency.swift in Sources */,
+				26A0EF3A2B5D2D2C003E11D6 /* ProgressView.swift in Sources */,
 				95D0043B2B4BE220009D4DF3 /* MakarTableViewCell.swift in Sources */,
 				956382FA2B39A43E006B50ED /* BaseRouter.swift in Sources */,
 				956382E72B397A5A006B50ED /* SearchRouteView.swift in Sources */,
+				26A0EF342B5AA1B8003E11D6 /* SearchRouteProgressView.swift in Sources */,
 				26E664772B3C4CFA002579C1 /* DestinationSearchStationView.swift in Sources */,
 				95B10FA12B3315A3005319F6 /* ExampleCustomView.swift in Sources */,
 				26E664792B3C4D0A002579C1 /* DestinationSearchStationViewController.swift in Sources */,
@@ -614,7 +622,7 @@
 				956382C52B3975BE006B50ED /* MyPageView.swift in Sources */,
 				956382E32B397A43006B50ED /* BaseSearchStationView.swift in Sources */,
 				26150E0F2B59433700E5059D /* Station.swift in Sources */,
-				2698646F2B3DC77F003FE9FB /* LineNumImage.swift in Sources */,
+				2698646F2B3DC77F003FE9FB /* LineNumMap.swift in Sources */,
 				95B10F962B331519005319F6 /* ExampleRequest.swift in Sources */,
 				26EFA29D2B4D9D9B003678C0 /* RouteData.swift in Sources */,
 				95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */,

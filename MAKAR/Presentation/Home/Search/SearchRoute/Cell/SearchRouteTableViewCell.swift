@@ -36,6 +36,8 @@ class SearchRouteTableViewCell : UITableViewCell {
         $0.sizeToFit()
     }
     
+    let routeProgressView = SearchRouteProgressView()
+    
     let routeStackView = UIStackView().then{ //경로
         $0.axis = .vertical
         $0.spacing = 10
@@ -65,6 +67,7 @@ class SearchRouteTableViewCell : UITableViewCell {
         addSubview(totalTimeLabel)
         addSubview(routeTimeLabel)
         addSubview(leftTimeLabel)
+        addSubview(routeProgressView)
         addSubview(routeStackView)
     }
     
@@ -86,8 +89,13 @@ class SearchRouteTableViewCell : UITableViewCell {
             $0.leading.equalToSuperview().inset(20)
         }
         
+        routeProgressView.snp.makeConstraints{
+            $0.top.equalTo(leftTimeLabel.snp.bottom).inset(-10)
+            $0.leading.trailing.equalToSuperview().inset(20)
+        }
+        
         routeStackView.snp.makeConstraints{
-            $0.top.equalTo(leftTimeLabel.snp.bottom).inset(-15)
+            $0.top.equalTo(routeProgressView.snp.bottom).inset(-15)
             $0.leading.trailing.bottom.equalToSuperview().inset(20)
         }
     }
@@ -101,6 +109,7 @@ class SearchRouteTableViewCell : UITableViewCell {
         totalTimeLabel.text = "\(data.totalTime)분"
         routeTimeLabel.text = "\(startTime) 출발 | \(endTime) 도착"
         leftTimeLabel.text = "\(checkLeftTime(targetDate: data.makarTime))분 후 막차"
+        routeProgressView.setData(subRouteItemList: data.subRouteItemList)
         
         //TODO: SUBROUTE 수정
         //출발역
