@@ -62,7 +62,7 @@ extension RouteData {
                   destinationStation: Station(stationName: "신촌역", stationCode: "", lineNum: "2호선"),
                   makarTime: Date(), hakarTime: Date(), totalTime: 35, transitCount: 1, date: "", 
                   subRouteItemList: [SubRouteItem(subRoute: SubRoute(startStationName: "숭실대입구역", endStationName: "대림역", lineNum: "7호선", sectionTime: 12), transferInfo: TransferInfo(fromLine: 7, toLine: 7, transferStation: "대림", transferTime: 5)),
-                                     SubRouteItem(subRoute: SubRoute(startStationName: "대림역", endStationName: "신촌역", lineNum: "2호선", sectionTime: 18), transferInfo: TransferInfo(fromLine: 2, toLine: 2, transferStation: "대림역", transferTime: 5))
+                                     SubRouteItem(subRoute: SubRoute(startStationName: "대림역", endStationName: "신촌역", lineNum: "2호선", sectionTime: 18), transferInfo: TransferInfo(fromLine: 2, toLine: 2, transferStation: "대림역", transferTime: 0))
                                      ])
     ]
 }

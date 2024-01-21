@@ -23,3 +23,21 @@ class LineNumImage {
         lineNumMap["공항철도"] = MakarImage.lineA
     }
 }
+
+class LineNumColor {
+    var lineNumColorMap : [String : UIColor] = [:]
+    
+    func addLineNum(){
+        lineNumColorMap["1호선"] = .line1
+        lineNumColorMap["2호선"] = .line2
+        lineNumColorMap["3호선"] = .line3
+        lineNumColorMap["4호선"] = .line4
+        lineNumColorMap["5호선"] = .line5
+        lineNumColorMap["6호선"] = .line6
+        lineNumColorMap["7호선"] = .line7
+        lineNumColorMap["8호선"] = .line8
+        lineNumColorMap["9호선"] = .line9
+        lineNumColorMap["경의중앙"] = .lineK
+        lineNumColorMap["공항철도"] = .lineA
+    }
+}
