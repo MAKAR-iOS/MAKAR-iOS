@@ -109,17 +109,21 @@ class SearchRouteTableViewCell : UITableViewCell {
         totalTimeLabel.text = "\(data.totalTime)분"
         routeTimeLabel.text = "\(startTime) 출발 | \(endTime) 도착"
         leftTimeLabel.text = "\(checkLeftTime(targetDate: data.makarTime))분 후 막차"
-        routeProgressView.setData(subRouteItemList: data.subRouteItemList)
+        if(routeProgressView.subviews.isEmpty){
+            routeProgressView.setData(subRouteItemList: data.subRouteItemList)
+        }
         
-        //TODO: SUBROUTE 수정
-        //출발역
-        let routeLabel = SubRouteTextView(lineName: data.sourceStation.stationName, lineNum: data.sourceStation.lineNum)
-        routeStackView.addArrangedSubview(routeLabel)
-        //중간역, 도착역
-        for route in data.subRouteItemList {
-            let routeLabel = SubRouteTextView(lineName: route.subRoute.endStationName, lineNum: route.subRoute.lineNum)
-                    routeStackView.addArrangedSubview(routeLabel)
-                }
+        if(routeStackView.subviews.isEmpty){
+            //TODO: SUBROUTE 수정
+            //출발역
+            let routeLabel = SubRouteTextView(lineName: data.sourceStation.stationName, lineNum: data.sourceStation.lineNum)
+            routeStackView.addArrangedSubview(routeLabel)
+            //중간역, 도착역
+            for route in data.subRouteItemList {
+                let routeLabel = SubRouteTextView(lineName: route.subRoute.endStationName, lineNum: route.subRoute.lineNum)
+                routeStackView.addArrangedSubview(routeLabel)
+            }
+        }
     }
         
     //열차 출발, 도착 시간 format 지정

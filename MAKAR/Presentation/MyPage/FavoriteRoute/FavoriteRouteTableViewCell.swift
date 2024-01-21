@@ -10,7 +10,6 @@ class FavoriteRouteTableViewCell : UITableViewCell {
     
     // MARK: Constants
     private enum Metric {
-        static let lineNumSize = 16
         static let moreLabelSize = 12
         static let deleteButtonSize = 20
     }
@@ -22,21 +21,6 @@ class FavoriteRouteTableViewCell : UITableViewCell {
         $0.spacing = 5
         $0.distribution = .equalSpacing
         $0.alignment = .center
-    }
-
-    private var sourceLineNumImageView = UIImageView()
-        
-    private var sourceText = UILabel().then{
-        $0.font = .systemFont(ofSize: 14, weight: .light)
-    }
-    private var moreRightLabel = UILabel().then{
-        $0.text = ">"
-        $0.font = .systemFont(ofSize: 14, weight: .light)
-    }
-    private var destinationLineNumImageView = UIImageView()
-    
-    private var destinationText = UILabel().then{
-        $0.font = .systemFont(ofSize: 14, weight: .light)
     }
     
     private var deleteRecentRouteButton = UIButton().then{
@@ -63,11 +47,6 @@ class FavoriteRouteTableViewCell : UITableViewCell {
     
     func configureSubviews() {
         addSubview(favoriteRouteStackView)
-        favoriteRouteStackView.addArrangedSubview(sourceLineNumImageView)
-        favoriteRouteStackView.addArrangedSubview(sourceText)
-        favoriteRouteStackView.addArrangedSubview(moreRightLabel)
-        favoriteRouteStackView.addArrangedSubview(destinationLineNumImageView)
-        favoriteRouteStackView.addArrangedSubview(destinationText)
         addSubview(deleteRecentRouteButton)
         
         deleteRecentRouteButton.addTarget(self, action: #selector(handleDeleteRecentRouteButton), for: .touchUpInside)
@@ -92,24 +71,25 @@ class FavoriteRouteTableViewCell : UITableViewCell {
     }
     
     func setData(data : RouteData) {
-        //TODO: data 설정 수정
         lineNumImage.addLineNum()
-
-        sourceText.text = data.sourceStation.stationName
-        destinationText.text = data.destinationStation.stationName
         
-        //출발역 호선 이미지
-        if let sourceLineImg = lineNumImage.lineNumMap[data.sourceStation.lineNum] {
-            sourceLineNumImageView.image =  sourceLineImg
-        } else {
-            sourceLineNumImageView.image = MakarImage.line0
-        }
-        
-        //도착역 호선 이미지
-        if let destinationLineImg = lineNumImage.lineNumMap[data.destinationStation.lineNum] {
-            destinationLineNumImageView.image = destinationLineImg
-        } else {
-            destinationLineNumImageView.image = MakarImage.line0
+        if(favoriteRouteStackView.subviews.isEmpty){
+            //출발역
+            let routeLabel = FavoriteRouteTextView(lineName: data.sourceStation.stationName, lineNum: data.sourceStation.lineNum)
+            favoriteRouteStackView.addArrangedSubview(routeLabel)
+            
+            //중간역, 도착역
+            for route in data.subRouteItemList {
+                
+                let moreRightLabel = UILabel().then{
+                    $0.text = ">"
+                    $0.font = .systemFont(ofSize: 14, weight: .light)
+                }
+                favoriteRouteStackView.addArrangedSubview(moreRightLabel)
+                
+                let routeLabel = FavoriteRouteTextView(lineName: route.subRoute.endStationName, lineNum: route.subRoute.lineNum)
+                favoriteRouteStackView.addArrangedSubview(routeLabel)
+            }
         }
     }
     
