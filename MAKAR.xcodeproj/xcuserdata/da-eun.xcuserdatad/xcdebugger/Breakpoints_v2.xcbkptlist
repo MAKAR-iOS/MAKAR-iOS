@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "36E27B36-6916-4D8C-9455-F8B27A9FA659"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "76C4A26A-876F-4E2D-B4BA-82036C3F79D8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MAKAR/Presentation/Home/Search/SearchRoute/SearchRouteTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "makeConstraints()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "76C4A26A-876F-4E2D-B4BA-82036C3F79D8 - d948d06754d05382"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MAKAR.SearchRouteTableViewCell.makeConstraints() -&gt; ()"
+                  moduleName = "MAKAR"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/da-eun/Desktop/iOS/MAKAR-iOS/MAKAR/Presentation/Home/Search/SearchRoute/SearchRouteTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "312">
+               </Location>
+               <Location
+                  uuid = "76C4A26A-876F-4E2D-B4BA-82036C3F79D8 - a79cff3cfd5c891"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (SnapKit.ConstraintMaker) -&gt; () in MAKAR.SearchRouteTableViewCell.makeConstraints() -&gt; ()"
+                  moduleName = "MAKAR"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/da-eun/Desktop/iOS/MAKAR-iOS/MAKAR/Presentation/Home/Search/SearchRoute/SearchRouteTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CA8A0080-D934-48F4-908E-C79755D28ACB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MAKAR/Presentation/Home/Search/SearchRoute/SearchRouteTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "makeConstraints()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
