@@ -13,6 +13,8 @@ class NotificationViewController: BaseViewController {
     let makarTimeArr = [5, 10, 15, 20, 25, 30]
     var tempMakarTime = 5
     var selectedMakarTime: [Int] = []
+    let getOffStationArr = ["없음", "1전 역", "2전 역", "3전 역"]
+    var selectedGetOffStation = "없음"
 
     // MARK: UI Components
     private let makarNotiView = UIView().then {
@@ -58,7 +60,29 @@ class NotificationViewController: BaseViewController {
         )
     }
 
-    private let getOffNotiView = GetOffNotiView()
+    private let getOffNotiView = UIView().then {
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 19
+        $0.layer.shadowColor = UIColor.lightGray4.cgColor
+        $0.layer.shadowOpacity = 0.35
+        $0.layer.shadowOffset = .zero
+        $0.layer.shadowRadius = 19
+    }
+
+    private let getOffNotiLabel = UILabel().then {
+        $0.text = "하차 알림"
+        $0.textColor = .black
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+    }
+
+    private let getOffNotiAddButton = BaseButton().then {
+        $0.setTitle("없음", for: .normal)
+        $0.setTitleColor(UIColor.lightGray, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        $0.semanticContentAttribute = .forceRightToLeft
+        $0.imageEdgeInsets = .init(top: 0, left: 10, bottom: 0, right: 0)
+        $0.setImage(MakarButton.moreBottomButton, for: .normal)
+    }
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -67,6 +91,7 @@ class NotificationViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setDropDown()
         setMakarTableViewHidden()
         setMakarAlertController()
 
@@ -134,10 +159,8 @@ class NotificationViewController: BaseViewController {
         makarNotiView.addSubview(makarNotiAddButton)
         makarNotiView.addSubview(makarTableView)
 
-        getOffNotiView.tapGetOffAdd = {[weak self] in
-            guard let self else { return }
-            addGetOffNoti()
-        }
+        getOffNotiView.addSubview(getOffNotiLabel)
+        getOffNotiView.addSubview(getOffNotiAddButton)
     }
 
     // MARK: Layout
@@ -177,14 +200,35 @@ class NotificationViewController: BaseViewController {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(80)
         }
+
+        getOffNotiLabel.snp.makeConstraints {
+            $0.centerY.equalTo(getOffNotiView.snp.centerY)
+            $0.leading.equalTo(getOffNotiView).inset(20)
+        }
+
+        getOffNotiAddButton.snp.makeConstraints {
+            $0.centerY.equalTo(getOffNotiView.snp.centerY)
+            $0.trailing.equalTo(getOffNotiView).inset(22)
+            $0.height.equalTo(20)
+            $0.width.equalTo(60)
+        }
     }
 
-    // MARK: Event
-    private func addGetOffNoti() {
-        let getOffNotiSetViewController = GetOffNotiSetViewController()
-        getOffNotiSetViewController.modalPresentationStyle = .overFullScreen
-        self.present(getOffNotiSetViewController, animated: false)
-//        self.present(getOffNotiView.getOffAlertController, animated: true)
+    private func setDropDown() {
+        let actionClosure = { [self] (action: UIAction) in
+            selectedGetOffStation = action.title
+            print(selectedGetOffStation)
+        }
+
+        var menuChildren: [UIMenuElement] = []
+        for station in getOffStationArr {
+            menuChildren.append(UIAction(title: station, handler: actionClosure))
+        }
+
+        getOffNotiAddButton.menu = UIMenu(options: .displayInline, children: menuChildren)
+        getOffNotiAddButton.showsMenuAsPrimaryAction = true
+        getOffNotiAddButton.changesSelectionAsPrimaryAction = true
+
     }
 }
 

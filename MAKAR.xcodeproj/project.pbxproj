@@ -39,7 +39,6 @@
 		956382B62B39758A006B50ED /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382B52B39758A006B50ED /* LoginViewController.swift */; };
 		956382BD2B3975A1006B50ED /* TimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382BC2B3975A1006B50ED /* TimetableView.swift */; };
 		956382BF2B3975A8006B50ED /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382BE2B3975A8006B50ED /* TimetableViewController.swift */; };
-		956382C12B3975B0006B50ED /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382C02B3975B0006B50ED /* NotificationView.swift */; };
 		956382C32B3975B7006B50ED /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382C22B3975B7006B50ED /* NotificationViewController.swift */; };
 		956382C52B3975BE006B50ED /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382C42B3975BE006B50ED /* MyPageView.swift */; };
 		956382C72B3975C7006B50ED /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382C62B3975C7006B50ED /* MyPageViewController.swift */; };
@@ -75,12 +74,8 @@
 		95B10FB02B33169D005319F6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 95B10FAF2B33169D005319F6 /* SnapKit */; };
 		95B10FB32B3316E5005319F6 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 95B10FB22B3316E5005319F6 /* Then */; };
 		95B10FB62B331716005319F6 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 95B10FB52B331716005319F6 /* Moya */; };
-		95CC86202B57B3980088E44E /* GetOffNotiSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CC861F2B57B3980088E44E /* GetOffNotiSetViewController.swift */; };
-		95CC86222B57B3A00088E44E /* GetOffNotiSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CC86212B57B3A00088E44E /* GetOffNotiSetView.swift */; };
-		95CC86242B57B4150088E44E /* GetOffNotiSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CC86232B57B4150088E44E /* GetOffNotiSetTableViewCell.swift */; };
 		95D0043B2B4BE220009D4DF3 /* MakarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D0043A2B4BE220009D4DF3 /* MakarTableViewCell.swift */; };
 		95D0043D2B4BE358009D4DF3 /* MakarNotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D0043C2B4BE358009D4DF3 /* MakarNotiView.swift */; };
-		95D0043F2B4BE3DE009D4DF3 /* GetOffNotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D0043E2B4BE3DE009D4DF3 /* GetOffNotiView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,7 +111,6 @@
 		956382B52B39758A006B50ED /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		956382BC2B3975A1006B50ED /* TimetableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableView.swift; sourceTree = "<group>"; };
 		956382BE2B3975A8006B50ED /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
-		956382C02B3975B0006B50ED /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		956382C22B3975B7006B50ED /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		956382C42B3975BE006B50ED /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		956382C62B3975C7006B50ED /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
@@ -150,12 +144,8 @@
 		95B10FA82B3315EB005319F6 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		95B10FAA2B3315F5005319F6 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		95B10FAC2B33165C005319F6 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
-		95CC861F2B57B3980088E44E /* GetOffNotiSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOffNotiSetViewController.swift; sourceTree = "<group>"; };
-		95CC86212B57B3A00088E44E /* GetOffNotiSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOffNotiSetView.swift; sourceTree = "<group>"; };
-		95CC86232B57B4150088E44E /* GetOffNotiSetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOffNotiSetTableViewCell.swift; sourceTree = "<group>"; };
 		95D0043A2B4BE220009D4DF3 /* MakarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakarTableViewCell.swift; sourceTree = "<group>"; };
 		95D0043C2B4BE358009D4DF3 /* MakarNotiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakarNotiView.swift; sourceTree = "<group>"; };
-		95D0043E2B4BE3DE009D4DF3 /* GetOffNotiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOffNotiView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,14 +242,9 @@
 		956382A92B3974FF006B50ED /* Notification */ = {
 			isa = PBXGroup;
 			children = (
-				956382C02B3975B0006B50ED /* NotificationView.swift */,
 				956382C22B3975B7006B50ED /* NotificationViewController.swift */,
 				95D0043C2B4BE358009D4DF3 /* MakarNotiView.swift */,
 				95D0043A2B4BE220009D4DF3 /* MakarTableViewCell.swift */,
-				95D0043E2B4BE3DE009D4DF3 /* GetOffNotiView.swift */,
-				95CC861F2B57B3980088E44E /* GetOffNotiSetViewController.swift */,
-				95CC86212B57B3A00088E44E /* GetOffNotiSetView.swift */,
-				95CC86232B57B4150088E44E /* GetOffNotiSetTableViewCell.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -581,14 +566,12 @@
 				267F3C452B3D6AE300E3CD29 /* BaseSearchStationViewController.swift in Sources */,
 				26A0EF312B5A90B3003E11D6 /* SubRouteTextView.swift in Sources */,
 				956382DC2B397A07006B50ED /* HomeView.swift in Sources */,
-				95CC86222B57B3A00088E44E /* GetOffNotiSetView.swift in Sources */,
 				267065302B3CA6E200F19EC3 /* SchoolSearchStationView.swift in Sources */,
 				26EFA2982B4D5296003678C0 /* FavoriteRouteCollectionViewCell.swift in Sources */,
 				95B10FAB2B3315F5005319F6 /* BaseButton.swift in Sources */,
 				956382E52B397A4D006B50ED /* SourceSearchStationViewController.swift in Sources */,
 				95B10F982B331534005319F6 /* RequestProvider.swift in Sources */,
 				956382D22B39789D006B50ED /* TabBarViewController.swift in Sources */,
-				956382C12B3975B0006B50ED /* NotificationView.swift in Sources */,
 				95B10FA52B3315C7005319F6 /* ExampleRouter.swift in Sources */,
 				26150E152B59525900E5059D /* TransferInfo.swift in Sources */,
 				267065262B3C997200F19EC3 /* FavoriteStationView.swift in Sources */,
@@ -605,7 +588,6 @@
 				95B10F942B331501005319F6 /* ExampleAPI.swift in Sources */,
 				956382E92B397A66006B50ED /* SearchRouteViewController.swift in Sources */,
 				267065322B3CA70200F19EC3 /* SchoolSearchStationViewController.swift in Sources */,
-				95D0043F2B4BE3DE009D4DF3 /* GetOffNotiView.swift in Sources */,
 				956382BD2B3975A1006B50ED /* TimetableView.swift in Sources */,
 				95B10FAD2B33165C005319F6 /* AppDependency.swift in Sources */,
 				26A0EF3A2B5D2D2C003E11D6 /* ProgressView.swift in Sources */,
@@ -633,7 +615,6 @@
 				26150E172B5952D700E5059D /* SubRouteItem.swift in Sources */,
 				2647CE822B500677001208BE /* FavoriteRouteViewController.swift in Sources */,
 				956382B62B39758A006B50ED /* LoginViewController.swift in Sources */,
-				95CC86202B57B3980088E44E /* GetOffNotiSetViewController.swift in Sources */,
 				2670652E2B3CA6BC00F19EC3 /* HomeSearchStationViewController.swift in Sources */,
 				95B10FA32B3315BB005319F6 /* ExampleViewController.swift in Sources */,
 				956382B42B397581006B50ED /* LoginView.swift in Sources */,
