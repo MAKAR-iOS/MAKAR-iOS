@@ -26,6 +26,7 @@
 		26A0EF312B5A90B3003E11D6 /* SubRouteTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0EF302B5A90B3003E11D6 /* SubRouteTextView.swift */; };
 		26A0EF342B5AA1B8003E11D6 /* SearchRouteProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0EF332B5AA1B8003E11D6 /* SearchRouteProgressView.swift */; };
 		26A0EF3A2B5D2D2C003E11D6 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0EF392B5D2D2C003E11D6 /* ProgressView.swift */; };
+		26A0EF3C2B5D58CE003E11D6 /* FavoriteRouteTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0EF3B2B5D58CE003E11D6 /* FavoriteRouteTextView.swift */; };
 		26E664752B3C4C20002579C1 /* SourceSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664742B3C4C20002579C1 /* SourceSearchStationView.swift */; };
 		26E664772B3C4CFA002579C1 /* DestinationSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664762B3C4CFA002579C1 /* DestinationSearchStationView.swift */; };
 		26E664792B3C4D0A002579C1 /* DestinationSearchStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664782B3C4D0A002579C1 /* DestinationSearchStationViewController.swift */; };
@@ -98,6 +99,7 @@
 		26A0EF302B5A90B3003E11D6 /* SubRouteTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubRouteTextView.swift; sourceTree = "<group>"; };
 		26A0EF332B5AA1B8003E11D6 /* SearchRouteProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouteProgressView.swift; sourceTree = "<group>"; };
 		26A0EF392B5D2D2C003E11D6 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		26A0EF3B2B5D58CE003E11D6 /* FavoriteRouteTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteTextView.swift; sourceTree = "<group>"; };
 		26E664742B3C4C20002579C1 /* SourceSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceSearchStationView.swift; sourceTree = "<group>"; };
 		26E664762B3C4CFA002579C1 /* DestinationSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchStationView.swift; sourceTree = "<group>"; };
 		26E664782B3C4D0A002579C1 /* DestinationSearchStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchStationViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			children = (
 				2647CE812B500677001208BE /* FavoriteRouteViewController.swift */,
 				2647CE882B500F35001208BE /* FavoriteRouteTableViewCell.swift */,
+				26A0EF3B2B5D58CE003E11D6 /* FavoriteRouteTextView.swift */,
 			);
 			path = FavoriteRoute;
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 				956382D22B39789D006B50ED /* TabBarViewController.swift in Sources */,
 				95B10FA52B3315C7005319F6 /* ExampleRouter.swift in Sources */,
 				26150E152B59525900E5059D /* TransferInfo.swift in Sources */,
+				26A0EF3C2B5D58CE003E11D6 /* FavoriteRouteTextView.swift in Sources */,
 				267065262B3C997200F19EC3 /* FavoriteStationView.swift in Sources */,
 				2647CE862B5006B8001208BE /* PushAlarmViewController.swift in Sources */,
 				26E664752B3C4C20002579C1 /* SourceSearchStationView.swift in Sources */,
