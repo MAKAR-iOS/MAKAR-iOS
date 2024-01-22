@@ -112,7 +112,7 @@ class HomeViewController: BaseViewController {
         homeView.tapEditFavoriteRouteButton = {[weak self] in
             guard let self else { return }
             
-            // TODO: 즐겨찾는 경로 편집 기능
+            self.navigationController?.pushViewController(FavoriteRouteViewController(), animated: true)
         }
         
         homeView.tapAllDeleteRecentRouteButton = {[weak self] in
@@ -280,7 +280,7 @@ class HomeViewController: BaseViewController {
     }
 }
 
-extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: CollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -316,6 +316,30 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
                 recentRouteCollectionView.reloadData()
             }
             return cell
+        }
+    }
+    
+    //item size
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        print("cell size")
+        if(collectionView == favoriteRouteCollectionView){
+            guard let cell = favoriteRouteCollectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteRouteCollectionViewCell", for: indexPath) as? FavoriteRouteCollectionViewCell
+            else {
+                return .zero
+            }
+            cell.setData(data: HomeViewController.favoriteRouteList[indexPath.row])
+            cell.layoutIfNeeded()
+            let cellWidth = max(cell.destinationText.frame.width, cell.sourceText.frame.width) + 50
+            return CGSize(width: cellWidth, height: 90)
+        } else {
+            guard let cell = recentRouteCollectionView.dequeueReusableCell(withReuseIdentifier: "RecentRouteCollectionViewCell", for: indexPath) as? RecentRouteCollectionViewCell
+            else {
+                return .zero
+            }
+            cell.setData(data: recentRouteList[indexPath.row])
+            cell.layoutIfNeeded()
+            let cellWidth = max(cell.destinationText.frame.width, cell.sourceText.frame.width) + 50
+            return CGSize(width: cellWidth, height: 90)
         }
     }
     

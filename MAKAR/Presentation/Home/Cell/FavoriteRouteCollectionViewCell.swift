@@ -10,7 +10,6 @@ class FavoriteRouteCollectionViewCell : UICollectionViewCell {
     // MARK: Constants
     private enum Metric {
         static let lineNumSize = 15
-        static let moreLabelSize = 12
     }
     
     // MARK: UI Components
@@ -18,17 +17,20 @@ class FavoriteRouteCollectionViewCell : UICollectionViewCell {
 
     private var sourceLineNumImageView = UIImageView()
         
-    private var sourceText = UILabel().then{
+    var sourceText = UILabel().then{
         $0.font = .systemFont(ofSize: 13, weight: .light)
+        $0.sizeToFit()
     }
     private var moreRightLabel = UILabel().then{
         $0.text = ">"
         $0.font = .systemFont(ofSize: 13, weight: .light)
+        $0.sizeToFit()
     }
     private var destinationLineNumImageView = UIImageView()
     
-    private var destinationText = UILabel().then{
+    var destinationText = UILabel().then{
         $0.font = .systemFont(ofSize: 13, weight: .light)
+        $0.sizeToFit()
     }
     
     // MARK: Init
@@ -71,25 +73,22 @@ class FavoriteRouteCollectionViewCell : UICollectionViewCell {
         sourceText.snp.makeConstraints{
             $0.top.equalToSuperview().inset(25)
             $0.leading.equalTo(sourceLineNumImageView.snp.trailing).inset(-3)
-            $0.trailing.equalToSuperview().inset(10)
         }
         
         moreRightLabel.snp.makeConstraints{
             $0.top.equalTo(sourceText.snp.bottom).inset(-12)
             $0.leading.equalToSuperview().inset(10)
-            $0.width.height.equalTo(Metric.moreLabelSize)
         }
         
         destinationLineNumImageView.snp.makeConstraints{
             $0.centerY.equalTo(moreRightLabel.snp.centerY)
-            $0.leading.equalTo(moreRightLabel.snp.trailing).inset(-1)
+            $0.leading.equalTo(moreRightLabel.snp.trailing).inset(-3)
             $0.width.height.equalTo(Metric.lineNumSize)
         }
         
         destinationText.snp.makeConstraints{
             $0.centerY.equalTo(moreRightLabel.snp.centerY)
             $0.leading.equalTo(destinationLineNumImageView.snp.trailing).inset(-3)
-            $0.trailing.equalToSuperview().inset(10)
         }
     }
     
