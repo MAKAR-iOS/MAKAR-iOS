@@ -36,6 +36,7 @@ class HomeViewController: BaseViewController {
     
     // MARK: UI Components
     private let homeView = HomeView()
+    private let homeScrollView = UIScrollView()
     
     lazy var favoriteRouteCollectionView: UICollectionView = {
             let flowLayout = UICollectionViewFlowLayout()
@@ -77,7 +78,9 @@ class HomeViewController: BaseViewController {
     override func configureSubviews() {
         super.configureSubviews()
         
-        view.addSubview(homeView)
+        view.addSubview(homeScrollView)
+        homeScrollView.addSubview(homeView)
+        homeScrollView.showsVerticalScrollIndicator = false
         
         homeView.tapResetRouteButton = {[weak self] in
             guard let self else { return }
@@ -127,9 +130,19 @@ class HomeViewController: BaseViewController {
     override func makeConstraints() {
         super.makeConstraints()
         
-        homeView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        homeScrollView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
+        
+        homeView.snp.makeConstraints{
+            $0.width.equalTo(homeScrollView)
+            $0.top.bottom.equalTo(homeScrollView)
+        }
+        
+        let contentViewHeight = homeView.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor)
+        contentViewHeight.priority = .defaultLow
+        contentViewHeight.isActive = true
     }
     
     // MARK: Networking
