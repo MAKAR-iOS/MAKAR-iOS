@@ -64,8 +64,6 @@ extension MyPageViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myPageTableViewCell") ?? UITableViewCell(style: .default, reuseIdentifier: "myPageTableViewCell")
-        // MARK: 여기 잘 짠듯 칭찬 부탁
-        // TODO: 칭찬하고 마크 지우기
         cell.textLabel?.text = myPageTableViewCellList[indexPath.section][indexPath.row]
         cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
         cell.textLabel?.textColor = .darkGray

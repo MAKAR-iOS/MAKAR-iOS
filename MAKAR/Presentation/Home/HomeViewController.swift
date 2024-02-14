@@ -334,25 +334,34 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     //item size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print("cell size")
         if(collectionView == favoriteRouteCollectionView){
-            guard let cell = favoriteRouteCollectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteRouteCollectionViewCell", for: indexPath) as? FavoriteRouteCollectionViewCell
-            else {
-                return .zero
-            }
-            cell.setData(data: HomeViewController.favoriteRouteList[indexPath.row])
-            cell.layoutIfNeeded()
-            let cellWidth = max(cell.destinationText.frame.width, cell.sourceText.frame.width) + 50
+            let data = HomeViewController.favoriteRouteList[indexPath.row]
+            let cellWidth = calculateCellWidth(for: data, cell: FavoriteRouteCollectionViewCell())
             return CGSize(width: cellWidth, height: 90)
         } else {
-            guard let cell = recentRouteCollectionView.dequeueReusableCell(withReuseIdentifier: "RecentRouteCollectionViewCell", for: indexPath) as? RecentRouteCollectionViewCell
-            else {
-                return .zero
-            }
-            cell.setData(data: recentRouteList[indexPath.row])
-            cell.layoutIfNeeded()
-            let cellWidth = max(cell.destinationText.frame.width, cell.sourceText.frame.width) + 50
+            let data = recentRouteList[indexPath.row]
+            let cellWidth = calculateCellWidth(for: data, cell: RecentRouteCollectionViewCell())
             return CGSize(width: cellWidth, height: 90)
+        }
+    }
+    
+    // TODO: simplify
+    private func calculateCellWidth(for data: RouteData, cell: UICollectionViewCell) -> CGFloat {
+        if let favoriteCell = cell as? FavoriteRouteCollectionViewCell {
+            favoriteCell.setData(data: data)
+            favoriteCell.setNeedsLayout()
+            favoriteCell.layoutIfNeeded()
+            let cellWidth = max(favoriteCell.destinationText.frame.width, favoriteCell.sourceText.frame.width) + 50
+            return cellWidth
+        } else if let recentCell = cell as? RecentRouteCollectionViewCell {
+            recentCell.setData(data: data)
+            recentCell.setNeedsLayout()
+            recentCell.layoutIfNeeded()
+            let cellWidth = max(recentCell.destinationText.frame.width, recentCell.sourceText.frame.width) + 50
+            return cellWidth
+        }
+        else {
+            return 0
         }
     }
     
