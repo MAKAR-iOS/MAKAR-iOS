@@ -28,7 +28,7 @@ class StartSignInViewController: BaseViewController {
 
         view.addSubview(startSignInView)
 
-        startSignInView.tapLoginButton = {[weak self] in
+        startSignInView.tapSignInButton = {[weak self] in
             guard let self else { return }
             postAppleLogin()
             router.presentTabBarViewController()
