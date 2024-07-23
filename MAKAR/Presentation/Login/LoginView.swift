@@ -13,8 +13,8 @@ class LoginView: BaseView {
     private enum Metric {
         static let logoWidth = 200
         static let logoHeight = 40
-        static let buttonHeight = 50
-        static let buttonRadius = 6
+        static let buttonHeight = 56
+        static let buttonRadius = 8
     }
 
     // MARK: UI Components
@@ -28,42 +28,40 @@ class LoginView: BaseView {
         $0.image = MakarImage.makarLogo
     }
 
-    private let appleLoginButton = BaseButton().then {
-        $0.setTitle("Apple로 로그인", for: .normal)
-        $0.setImage(MakarImage.appleLogo, for: .normal)
-        $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 10)
-        $0.setTitleColor(UIColor.white, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        $0.backgroundColor = .black
+    private let loginButton = BaseButton().then {
+        $0.setTitle("로그인", for: .normal)
+        $0.setTitleColor(UIColor.makarBlue, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        $0.backgroundColor = .white
+        $0.layer.borderColor = UIColor.makarBlue.cgColor
+        $0.layer.borderWidth = 1
         $0.layer.cornerRadius = CGFloat(Metric.buttonRadius)
     }
 
-
-    private let kakaoLoginButton = BaseButton().then {
-        $0.setTitle("카카오톡으로 로그인", for: .normal)
-        $0.setImage(MakarImage.kakaoLogo, for: .normal)
-        $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 10)
-        $0.setTitleColor(UIColor.black, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        $0.backgroundColor = .kakaoYellow
+    private let signUpButton = BaseButton().then {
+        $0.setTitle("회원가입", for: .normal)
+        $0.setTitleColor(UIColor.white, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        $0.backgroundColor = .makarBlue
         $0.layer.cornerRadius = CGFloat(Metric.buttonRadius)
     }
 
     // MARK: Properties
-    var tapAppleLogin: (() -> Void)?
-    var tapKakaoLogin: (() -> Void)?
+    var tapLoginButton: (() -> Void)?
+    var tapSignUpButton: (() -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
+        self.backgroundColor = .background
 
         addSubview(makarLabel)
         addSubview(makarLogoImageView)
-        addSubview(appleLoginButton)
-        addSubview(kakaoLoginButton)
+        addSubview(loginButton)
+        addSubview(signUpButton)
 
-        appleLoginButton.addTarget(self, action: #selector(handleAppleLoginEvent), for: .touchUpInside)
-        kakaoLoginButton.addTarget(self, action: #selector(handleKakaoLoginEvent), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(handleAppleLoginEvent), for: .touchUpInside)
+        signUpButton.addTarget(self, action: #selector(handleKakaoLoginEvent), for: .touchUpInside)
     }
 
     // MARK: Layout
@@ -82,14 +80,14 @@ class LoginView: BaseView {
             $0.height.equalTo(Metric.logoHeight)
         }
 
-        appleLoginButton.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(690)
+        loginButton.snp.makeConstraints {
+            $0.bottom.equalTo(signUpButton.snp.top).offset(-13)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(Metric.buttonHeight)
         }
 
-        kakaoLoginButton.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(752)
+        signUpButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(68)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(Metric.buttonHeight)
         }
@@ -97,10 +95,10 @@ class LoginView: BaseView {
 
     // MARK: Event
     @objc private func handleAppleLoginEvent() {
-        tapAppleLogin?()
+        tapLoginButton?()
     }
 
     @objc private func handleKakaoLoginEvent() {
-        tapKakaoLogin?()
+        tapSignUpButton?()
     }
 }
