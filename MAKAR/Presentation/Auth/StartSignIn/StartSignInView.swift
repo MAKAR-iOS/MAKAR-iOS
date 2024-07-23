@@ -1,5 +1,5 @@
 //
-//  LoginView.swift
+//  StartSignInView.swift
 //  MAKAR
 //
 //  Created by 박지윤 on 2023/12/25.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginView: BaseView {
+class StartSignInView: BaseView {
     
     // MARK: Constants
     private enum Metric {

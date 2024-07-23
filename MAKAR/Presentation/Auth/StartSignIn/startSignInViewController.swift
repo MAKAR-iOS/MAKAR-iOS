@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  StartSignInViewController.swift
 //  MAKAR
 //
 //  Created by 박지윤 on 2023/12/25.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class LoginViewController: BaseViewController {
+class StartSignInViewController: BaseViewController {
     
     // MARK: UI Components
-    private let loginView = LoginView()
+    private let startSignInView = StartSignInView()
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -26,15 +26,15 @@ class LoginViewController: BaseViewController {
     override func configureSubviews() {
         super.configureSubviews()
 
-        view.addSubview(loginView)
+        view.addSubview(startSignInView)
 
-        loginView.tapLoginButton = {[weak self] in
+        startSignInView.tapLoginButton = {[weak self] in
             guard let self else { return }
             postAppleLogin()
             router.presentTabBarViewController()
         }
 
-        loginView.tapSignUpButton = {[weak self] in
+        startSignInView.tapSignUpButton = {[weak self] in
             guard let self else { return }
             postKakaoLogin()
             router.presentTabBarViewController()
@@ -45,7 +45,7 @@ class LoginViewController: BaseViewController {
     override func makeConstraints() {
         super.makeConstraints()
 
-        loginView.snp.makeConstraints {
+        startSignInView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
