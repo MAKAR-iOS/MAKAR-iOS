@@ -56,6 +56,12 @@
 		956382F42B398AEB006B50ED /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382F32B398AEB006B50ED /* UIColor+Extension.swift */; };
 		956382F62B398B72006B50ED /* MakarColor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 956382F52B398B72006B50ED /* MakarColor.xcassets */; };
 		956382FA2B39A43E006B50ED /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382F92B39A43E006B50ED /* BaseRouter.swift */; };
+		956737C62B604DD2008B7322 /* TabCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956737C52B604DD2008B7322 /* TabCollectionViewCell.swift */; };
+		9583D6862B5F57B800FDBE53 /* TimeTableTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583D6852B5F57B800FDBE53 /* TimeTableTabView.swift */; };
+		9583D6882B5F580A00FDBE53 /* ScrollFitable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583D6872B5F580A00FDBE53 /* ScrollFitable.swift */; };
+		9583D68A2B5F582700FDBE53 /* TimeTablePagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583D6892B5F582700FDBE53 /* TimeTablePagerView.swift */; };
+		9583D68C2B5F584400FDBE53 /* UIPageViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583D68B2B5F584400FDBE53 /* UIPageViewController+Extension.swift */; };
+		9583D6902B5F586D00FDBE53 /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583D68F2B5F586D00FDBE53 /* LabelViewController.swift */; };
 		95A5D9DD2B58B4F8000A2A72 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 95A5D9DC2B58B4F8000A2A72 /* Toast */; };
 		95B10F7C2B331350005319F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7B2B331350005319F6 /* AppDelegate.swift */; };
 		95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7D2B331350005319F6 /* SceneDelegate.swift */; };
@@ -76,7 +82,6 @@
 		95B10FB32B3316E5005319F6 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 95B10FB22B3316E5005319F6 /* Then */; };
 		95B10FB62B331716005319F6 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 95B10FB52B331716005319F6 /* Moya */; };
 		95D0043B2B4BE220009D4DF3 /* MakarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D0043A2B4BE220009D4DF3 /* MakarTableViewCell.swift */; };
-		95D0043D2B4BE358009D4DF3 /* MakarNotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D0043C2B4BE358009D4DF3 /* MakarNotiView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -129,6 +134,12 @@
 		956382F32B398AEB006B50ED /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		956382F52B398B72006B50ED /* MakarColor.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MakarColor.xcassets; sourceTree = "<group>"; };
 		956382F92B39A43E006B50ED /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		956737C52B604DD2008B7322 /* TabCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCollectionViewCell.swift; sourceTree = "<group>"; };
+		9583D6852B5F57B800FDBE53 /* TimeTableTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableTabView.swift; sourceTree = "<group>"; };
+		9583D6872B5F580A00FDBE53 /* ScrollFitable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollFitable.swift; sourceTree = "<group>"; };
+		9583D6892B5F582700FDBE53 /* TimeTablePagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTablePagerView.swift; sourceTree = "<group>"; };
+		9583D68B2B5F584400FDBE53 /* UIPageViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPageViewController+Extension.swift"; sourceTree = "<group>"; };
+		9583D68F2B5F586D00FDBE53 /* LabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewController.swift; sourceTree = "<group>"; };
 		95B10F782B331350005319F6 /* MAKAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAKAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B10F7B2B331350005319F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B10F7D2B331350005319F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,7 +158,6 @@
 		95B10FAA2B3315F5005319F6 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		95B10FAC2B33165C005319F6 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		95D0043A2B4BE220009D4DF3 /* MakarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakarTableViewCell.swift; sourceTree = "<group>"; };
-		95D0043C2B4BE358009D4DF3 /* MakarNotiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakarNotiView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,7 +247,11 @@
 			isa = PBXGroup;
 			children = (
 				956382BC2B3975A1006B50ED /* TimetableView.swift */,
+				9583D6852B5F57B800FDBE53 /* TimeTableTabView.swift */,
+				9583D6872B5F580A00FDBE53 /* ScrollFitable.swift */,
+				9583D6892B5F582700FDBE53 /* TimeTablePagerView.swift */,
 				956382BE2B3975A8006B50ED /* TimetableViewController.swift */,
+				9583D68F2B5F586D00FDBE53 /* LabelViewController.swift */,
 			);
 			path = Timetable;
 			sourceTree = "<group>";
@@ -246,7 +260,6 @@
 			isa = PBXGroup;
 			children = (
 				956382C22B3975B7006B50ED /* NotificationViewController.swift */,
-				95D0043C2B4BE358009D4DF3 /* MakarNotiView.swift */,
 				95D0043A2B4BE220009D4DF3 /* MakarTableViewCell.swift */,
 			);
 			path = Notification;
@@ -295,6 +308,7 @@
 			children = (
 				956382D42B397968006B50ED /* MyRouteView.swift */,
 				956382D62B397971006B50ED /* MyRouteViewController.swift */,
+				956737C52B604DD2008B7322 /* TabCollectionViewCell.swift */,
 			);
 			path = MyRoute;
 			sourceTree = "<group>";
@@ -345,6 +359,7 @@
 			children = (
 				956382F12B39855E006B50ED /* ImageLiteral.swift */,
 				956382F32B398AEB006B50ED /* UIColor+Extension.swift */,
+				9583D68B2B5F584400FDBE53 /* UIPageViewController+Extension.swift */,
 				956382F52B398B72006B50ED /* MakarColor.xcassets */,
 				2698646E2B3DC77F003FE9FB /* LineNumMap.swift */,
 				26EFA29C2B4D9D9B003678C0 /* RouteData.swift */,
@@ -563,6 +578,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				956382C72B3975C7006B50ED /* MyPageViewController.swift in Sources */,
+				9583D6862B5F57B800FDBE53 /* TimeTableTabView.swift in Sources */,
 				26F3B4292B3C2B3800E7756F /* BaseRouteButton.swift in Sources */,
 				956382F22B39855E006B50ED /* ImageLiteral.swift in Sources */,
 				26EFA29B2B4D65F1003678C0 /* RecentRouteCollectionViewCell.swift in Sources */,
@@ -581,6 +597,9 @@
 				267065262B3C997200F19EC3 /* FavoriteStationView.swift in Sources */,
 				2647CE862B5006B8001208BE /* PushAlarmViewController.swift in Sources */,
 				26E664752B3C4C20002579C1 /* SourceSearchStationView.swift in Sources */,
+				956737C62B604DD2008B7322 /* TabCollectionViewCell.swift in Sources */,
+				9583D68A2B5F582700FDBE53 /* TimeTablePagerView.swift in Sources */,
+				9583D6882B5F580A00FDBE53 /* ScrollFitable.swift in Sources */,
 				95B10FA72B3315DD005319F6 /* BaseViewController.swift in Sources */,
 				26150E112B59471E00E5059D /* SubRoute.swift in Sources */,
 				956382C32B3975B7006B50ED /* NotificationViewController.swift in Sources */,
@@ -608,12 +627,14 @@
 				267065282B3C998A00F19EC3 /* FavoriteStationViewController.swift in Sources */,
 				956382DE2B397A0E006B50ED /* HomeViewController.swift in Sources */,
 				95B10F7C2B331350005319F6 /* AppDelegate.swift in Sources */,
+				9583D68C2B5F584400FDBE53 /* UIPageViewController+Extension.swift in Sources */,
 				956382BF2B3975A8006B50ED /* TimetableViewController.swift in Sources */,
 				956382C52B3975BE006B50ED /* MyPageView.swift in Sources */,
 				956382E32B397A43006B50ED /* BaseSearchStationView.swift in Sources */,
 				26150E0F2B59433700E5059D /* Station.swift in Sources */,
 				2698646F2B3DC77F003FE9FB /* LineNumMap.swift in Sources */,
 				95B10F962B331519005319F6 /* ExampleRequest.swift in Sources */,
+				9583D6902B5F586D00FDBE53 /* LabelViewController.swift in Sources */,
 				26EFA29D2B4D9D9B003678C0 /* RouteData.swift in Sources */,
 				95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */,
 				26150E172B5952D700E5059D /* SubRouteItem.swift in Sources */,
@@ -624,8 +645,6 @@
 				956382B42B397581006B50ED /* LoginView.swift in Sources */,
 				956382AE2B397568006B50ED /* SplashView.swift in Sources */,
 				26150E132B594BA000E5059D /* SearchRouteTableViewCell.swift in Sources */,
-				95CC86242B57B4150088E44E /* GetOffNotiSetTableViewCell.swift in Sources */,
-				95D0043D2B4BE358009D4DF3 /* MakarNotiView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

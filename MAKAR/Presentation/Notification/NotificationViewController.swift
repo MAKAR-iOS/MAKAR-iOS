@@ -228,7 +228,6 @@ class NotificationViewController: BaseViewController {
         getOffNotiAddButton.menu = UIMenu(options: .displayInline, children: menuChildren)
         getOffNotiAddButton.showsMenuAsPrimaryAction = true
         getOffNotiAddButton.changesSelectionAsPrimaryAction = true
-
     }
 }
 
