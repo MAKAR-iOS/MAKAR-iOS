@@ -28,7 +28,7 @@ class StartSignInView: BaseView {
         $0.image = MakarImage.makarLogo
     }
 
-    private let loginButton = BaseButton().then {
+    private let signInButton = BaseButton().then {
         $0.setTitle("로그인", for: .normal)
         $0.setTitleColor(UIColor.makarBlue, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
@@ -47,7 +47,7 @@ class StartSignInView: BaseView {
     }
 
     // MARK: Properties
-    var tapLoginButton: (() -> Void)?
+    var tapSignInButton: (() -> Void)?
     var tapSignUpButton: (() -> Void)?
 
     // MARK: Configuration
@@ -57,10 +57,10 @@ class StartSignInView: BaseView {
 
         addSubview(makarLabel)
         addSubview(makarLogoImageView)
-        addSubview(loginButton)
+        addSubview(signInButton)
         addSubview(signUpButton)
 
-        loginButton.addTarget(self, action: #selector(handleAppleLoginEvent), for: .touchUpInside)
+        signInButton.addTarget(self, action: #selector(handleAppleLoginEvent), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(handleKakaoLoginEvent), for: .touchUpInside)
     }
 
@@ -80,7 +80,7 @@ class StartSignInView: BaseView {
             $0.height.equalTo(Metric.logoHeight)
         }
 
-        loginButton.snp.makeConstraints {
+        signInButton.snp.makeConstraints {
             $0.bottom.equalTo(signUpButton.snp.top).offset(-13)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(Metric.buttonHeight)
@@ -95,7 +95,7 @@ class StartSignInView: BaseView {
 
     // MARK: Event
     @objc private func handleAppleLoginEvent() {
-        tapLoginButton?()
+        tapSignInButton?()
     }
 
     @objc private func handleKakaoLoginEvent() {
