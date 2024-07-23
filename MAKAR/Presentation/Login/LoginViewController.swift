@@ -28,13 +28,13 @@ class LoginViewController: BaseViewController {
 
         view.addSubview(loginView)
 
-        loginView.tapAppleLogin = {[weak self] in
+        loginView.tapLoginButton = {[weak self] in
             guard let self else { return }
             postAppleLogin()
             router.presentTabBarViewController()
         }
 
-        loginView.tapKakaoLogin = {[weak self] in
+        loginView.tapSignUpButton = {[weak self] in
             guard let self else { return }
             postKakaoLogin()
             router.presentTabBarViewController()
