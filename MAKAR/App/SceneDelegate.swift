@@ -31,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func changeRootViewToLoginViewController() {
         guard let window = window else { return }
-        window.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        window.rootViewController = UINavigationController(rootViewController: StartSignInViewController())
         UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
     }
 
