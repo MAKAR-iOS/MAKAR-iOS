@@ -13,7 +13,7 @@ extension UITextField {
         backgroundColor = .white
         layer.borderColor = UIColor.lightGray4.cgColor
         layer.borderWidth = Metric.textFieldBorderWidth
-        layer.cornerRadius = CGFloat(Metric.textFieldRadius)
+        layer.cornerRadius = Metric.textFieldRadius
         textColor = .black
     }
 }
