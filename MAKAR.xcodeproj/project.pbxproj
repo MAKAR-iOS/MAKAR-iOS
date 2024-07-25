@@ -37,7 +37,7 @@
 		956382AE2B397568006B50ED /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382AD2B397568006B50ED /* SplashView.swift */; };
 		956382B02B397570006B50ED /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382AF2B397570006B50ED /* SplashViewController.swift */; };
 		956382B42B397581006B50ED /* StartSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382B32B397581006B50ED /* StartSignInView.swift */; };
-		956382B62B39758A006B50ED /* startSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382B52B39758A006B50ED /* startSignInViewController.swift */; };
+		956382B62B39758A006B50ED /* StartSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382B52B39758A006B50ED /* StartSignInViewController.swift */; };
 		956382BD2B3975A1006B50ED /* TimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382BC2B3975A1006B50ED /* TimetableView.swift */; };
 		956382BF2B3975A8006B50ED /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382BE2B3975A8006B50ED /* TimetableViewController.swift */; };
 		956382C32B3975B7006B50ED /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382C22B3975B7006B50ED /* NotificationViewController.swift */; };
@@ -125,7 +125,7 @@
 		956382AD2B397568006B50ED /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		956382AF2B397570006B50ED /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		956382B32B397581006B50ED /* StartSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSignInView.swift; sourceTree = "<group>"; };
-		956382B52B39758A006B50ED /* startSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = startSignInViewController.swift; sourceTree = "<group>"; };
+		956382B52B39758A006B50ED /* StartSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSignInViewController.swift; sourceTree = "<group>"; };
 		956382BC2B3975A1006B50ED /* TimetableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableView.swift; sourceTree = "<group>"; };
 		956382BE2B3975A8006B50ED /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		956382C22B3975B7006B50ED /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
@@ -533,7 +533,7 @@
 			isa = PBXGroup;
 			children = (
 				956382B32B397581006B50ED /* StartSignInView.swift */,
-				956382B52B39758A006B50ED /* startSignInViewController.swift */,
+				956382B52B39758A006B50ED /* StartSignInViewController.swift */,
 			);
 			path = StartSignIn;
 			sourceTree = "<group>";
@@ -691,7 +691,7 @@
 				95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */,
 				26150E172B5952D700E5059D /* SubRouteItem.swift in Sources */,
 				2647CE822B500677001208BE /* FavoriteRouteViewController.swift in Sources */,
-				956382B62B39758A006B50ED /* startSignInViewController.swift in Sources */,
+				956382B62B39758A006B50ED /* StartSignInViewController.swift in Sources */,
 				2670652E2B3CA6BC00F19EC3 /* HomeSearchStationViewController.swift in Sources */,
 				95B10FA32B3315BB005319F6 /* ExampleViewController.swift in Sources */,
 				957F3CE32C524B9800EA0AD2 /* UITextField+Extension.swift in Sources */,
