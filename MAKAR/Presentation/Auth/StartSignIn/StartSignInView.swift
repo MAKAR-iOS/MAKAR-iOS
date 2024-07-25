@@ -9,14 +9,6 @@ import UIKit
 
 class StartSignInView: BaseView {
     
-    // MARK: Constants
-    private enum Metric {
-        static let logoWidth = 200
-        static let logoHeight = 40
-        static let buttonHeight = 56
-        static let buttonRadius = 8
-    }
-
     // MARK: UI Components
     private let makarLabel = UILabel().then {
         $0.text = "지하철 막차 알림 서비스"
@@ -35,7 +27,7 @@ class StartSignInView: BaseView {
         $0.backgroundColor = .white
         $0.layer.borderColor = UIColor.makarBlue.cgColor
         $0.layer.borderWidth = 1
-        $0.layer.cornerRadius = CGFloat(Metric.buttonRadius)
+        $0.layer.cornerRadius = Metric.buttonRadius
     }
 
     private let signUpButton = BaseButton().then {
@@ -43,7 +35,7 @@ class StartSignInView: BaseView {
         $0.setTitleColor(UIColor.white, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         $0.backgroundColor = .makarBlue
-        $0.layer.cornerRadius = CGFloat(Metric.buttonRadius)
+        $0.layer.cornerRadius = Metric.buttonRadius
     }
 
     // MARK: Properties
