@@ -52,8 +52,8 @@ class StartSignInView: BaseView {
         addSubview(signInButton)
         addSubview(signUpButton)
 
-        signInButton.addTarget(self, action: #selector(handleAppleLoginEvent), for: .touchUpInside)
-        signUpButton.addTarget(self, action: #selector(handleKakaoLoginEvent), for: .touchUpInside)
+        signInButton.addTarget(self, action: #selector(handleSignInEvent), for: .touchUpInside)
+        signUpButton.addTarget(self, action: #selector(handleSignUpEvent), for: .touchUpInside)
     }
 
     // MARK: Layout
@@ -86,11 +86,11 @@ class StartSignInView: BaseView {
     }
 
     // MARK: Event
-    @objc private func handleAppleLoginEvent() {
+    @objc private func handleSignInEvent() {
         tapSignInButton?()
     }
 
-    @objc private func handleKakaoLoginEvent() {
+    @objc private func handleSignUpEvent() {
         tapSignUpButton?()
     }
 }

@@ -30,13 +30,11 @@ class StartSignInViewController: BaseViewController {
 
         startSignInView.tapSignInButton = {[weak self] in
             guard let self else { return }
-            postAppleLogin()
-            router.presentTabBarViewController()
+            router.presentSignInViewController()
         }
 
         startSignInView.tapSignUpButton = {[weak self] in
             guard let self else { return }
-            postKakaoLogin()
             router.presentTabBarViewController()
         }
     }
@@ -48,14 +46,5 @@ class StartSignInViewController: BaseViewController {
         startSignInView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-    }
-
-    // MARK: Networking
-    private func postAppleLogin() {
-        print("postAppleLogin called")
-    }
-
-    private func postKakaoLogin() {
-        print("postKakaoLogin called")
     }
 }
