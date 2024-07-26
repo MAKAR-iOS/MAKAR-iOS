@@ -28,6 +28,7 @@ class SignInView: BaseView {
     private let passwordTextField = UITextField().then {
         $0.setSignInTextField("비밀번호")
         $0.addLeftPadding()
+        $0.setSecureTextEntry()
     }
 
     private let signInButton = BaseButton().then {
