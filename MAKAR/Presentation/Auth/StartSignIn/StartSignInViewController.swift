@@ -35,7 +35,7 @@ class StartSignInViewController: BaseViewController {
 
         startSignInView.tapSignUpButton = {[weak self] in
             guard let self else { return }
-            router.presentTabBarViewController()
+            router.presentSignUpViewController()
         }
     }
 
