@@ -15,7 +15,7 @@ final class BaseRouter {
     // MARK: Routing
     func presentSignInViewController() {
         let signInViewController = SignInViewController()
-        viewController?.modalPresentationStyle = .fullScreen
+        signInViewController.modalPresentationStyle = .fullScreen
         viewController?.present(signInViewController, animated: true)
     }
 
@@ -25,5 +25,9 @@ final class BaseRouter {
 
         let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
         sceneDelegate?.changeRootViewToTabBarViewController()
+    }
+
+    func dismissViewController() {
+        viewController?.dismiss(animated: true)
     }
 }

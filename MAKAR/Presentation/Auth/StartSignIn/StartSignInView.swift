@@ -31,11 +31,7 @@ class StartSignInView: BaseView {
     }
 
     private let signUpButton = BaseButton().then {
-        $0.setTitle("회원가입", for: .normal)
-        $0.setTitleColor(UIColor.white, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        $0.backgroundColor = .makarBlue
-        $0.layer.cornerRadius = Metric.buttonRadius
+        $0.setDefaultButton("회원가입")
     }
 
     // MARK: Properties
