@@ -15,5 +15,12 @@ extension UITextField {
         layer.borderWidth = Metric.textFieldBorderWidth
         layer.cornerRadius = Metric.textFieldRadius
         textColor = .black
+        addLeftPadding()
+    }
+
+    func addLeftPadding() {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: frame.height))
+        leftView = paddingView
+        leftViewMode = ViewMode.always
     }
 }

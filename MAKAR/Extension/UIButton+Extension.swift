@@ -11,8 +11,8 @@ extension UIButton {
     func setDefaultButton(_ inputTitle: String) {
         setTitle(inputTitle, for: .normal)
         setTitleColor(UIColor.white, for: .normal)
-        titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         backgroundColor = .makarBlue
-        layer.cornerRadius = CGFloat(Metric.buttonRadius)
+        layer.cornerRadius = Metric.buttonRadius
     }
 }
