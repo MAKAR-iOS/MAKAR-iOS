@@ -15,9 +15,10 @@ class BaseViewController: UIViewController {
         
         configureSubviews()
         makeConstraints()
-        setNavigationBar()
+        viewTransition()
+        setNavigationItem()
         setEditing()
-        view.backgroundColor = .white
+        view.backgroundColor = .background
     }
     
     // MARK: Configuration
@@ -29,24 +30,24 @@ class BaseViewController: UIViewController {
     func makeConstraints() {
     }
     
-    // MARK: NavigationBar
-    func setNavigationBar(){
-        let navigationBar = navigationController?.navigationBar
-        navigationBar?.topItem?.backButtonTitle = ""
-        navigationBar?.tintColor = .black
-        navigationBar?.prefersLargeTitles = false
+    // MARK: View Transition
+    func viewTransition() {
+    }
+    
+    // MARK: Set NavigationItem
+    func setNavigationItem() {
     }
     
     // MARK: Keyboard
-    func setEditing(){
-          let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-          tap.cancelsTouchesInView = false
-          view.addGestureRecognizer(tap)
-        }
-        
-        @objc func handleTap() {
-            self.view.endEditing(true)
-        }
+    func setEditing() {
+        let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func handleTap() {
+        self.view.endEditing(true)
+    }
 }
 
 

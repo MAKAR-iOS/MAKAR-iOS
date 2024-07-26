@@ -60,7 +60,8 @@ class HomeViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setNavigationBar()
+
         view.backgroundColor = .background
         changeComponent()
         setFavoriteRouteCollectionView()
@@ -167,8 +168,7 @@ class HomeViewController: BaseViewController {
     }
     
     // MARK: NavigationBar
-    override func setNavigationBar(){
-        super.setNavigationBar()
+    private func setNavigationBar(){
         //TODO: NavigationBar MAKAR icon custom 필요
         
         navigationItem.title = nil

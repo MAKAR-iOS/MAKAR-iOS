@@ -19,7 +19,8 @@ class DestinationSearchStationViewController : BaseSearchStationViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setNavigationBar()
+
         view.backgroundColor = .background
     }
     
@@ -75,8 +76,7 @@ class DestinationSearchStationViewController : BaseSearchStationViewController {
     }
     
     // MARK: NavigationBar
-    override func setNavigationBar(){
-        super.setNavigationBar()
+    private func setNavigationBar(){
         navigationItem.title = "도착역 입력"
     }
     
