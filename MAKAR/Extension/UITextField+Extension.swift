@@ -15,6 +15,8 @@ extension UITextField {
         layer.borderWidth = Metric.textFieldBorderWidth
         layer.cornerRadius = Metric.textFieldRadius
         textColor = .black
+        autocorrectionType = .no
+        spellCheckingType = .no
     }
 
     func addLeftPadding() {
