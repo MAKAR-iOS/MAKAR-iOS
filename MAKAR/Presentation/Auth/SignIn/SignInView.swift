@@ -73,7 +73,7 @@ class SignInView: BaseView {
         super.makeConstraints()
 
         makarLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(212)
+            $0.top.equalToSuperview().inset(200)
             $0.leading.equalToSuperview().inset(82)
         }
 
@@ -85,7 +85,7 @@ class SignInView: BaseView {
         }
 
         idTextField.snp.makeConstraints {
-            $0.top.equalTo(makarLogoImageView.snp.bottom).offset(75)
+            $0.top.equalTo(makarLogoImageView.snp.bottom).offset(40)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(Metric.textFieldHeight)
         }
@@ -97,13 +97,13 @@ class SignInView: BaseView {
         }
 
         signInButton.snp.makeConstraints {
-            $0.top.equalTo(passwordTextField.snp.bottom).offset(26)
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(20)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(Metric.buttonHeight)
         }
 
         signUpButton.snp.makeConstraints {
-            $0.top.equalTo(signInButton.snp.bottom).offset(26)
+            $0.top.equalTo(signInButton.snp.bottom).offset(21)
             $0.centerX.equalToSuperview()
         }
 
