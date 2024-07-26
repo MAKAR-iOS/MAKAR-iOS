@@ -22,4 +22,8 @@ extension UITextField {
         leftView = paddingView
         leftViewMode = ViewMode.always
     }
+
+    func setSecureTextEntry() {
+        isSecureTextEntry = true
+    }
 }
