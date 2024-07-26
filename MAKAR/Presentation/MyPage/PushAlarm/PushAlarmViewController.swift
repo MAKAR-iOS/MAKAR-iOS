@@ -15,14 +15,14 @@ class PushAlarmViewController : BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setNavigationBar()
+
         view.backgroundColor = .background
         setTableView()
     }
     
     // MARK: NavigationBar
-    override func setNavigationBar(){
-        super.setNavigationBar()
+    private func setNavigationBar(){
         navigationItem.title = "푸시 알림"
     }
 }

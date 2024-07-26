@@ -23,7 +23,8 @@ class MyPageViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setNavigationBar()
+
         view.backgroundColor = .background
         setTableView()
     }
@@ -47,8 +48,7 @@ class MyPageViewController: BaseViewController {
     }
     
     // MARK: NavigationBar
-    override func setNavigationBar(){
-        super.setNavigationBar()
+    private func setNavigationBar(){
         navigationItem.title = "마이페이지"
         //TODO: 타이틀 크기 논의 필요
         navigationController?.navigationBar.prefersLargeTitles = true
