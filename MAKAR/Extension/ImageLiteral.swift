@@ -52,6 +52,8 @@ public enum MakarButton {
     public static var searchBarButton : UIImage {.load(name: "ic_search")}
     public static var timetableButton: UIImage { .load(name: "ic_timetable") }
     public static var timetableFilledButton: UIImage { .load(name: "ic_timetable_filled") }
+    public static var uncheckButton: UIImage { .load(name: "ic_uncheck") }
+
 }
 
 extension UIImage {
