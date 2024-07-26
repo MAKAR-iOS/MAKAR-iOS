@@ -18,15 +18,27 @@ class SignUpTextField: BaseView {
         $0.backgroundColor = .lightGray4
     }
 
+    private let uncheckImageView = UIImageView().then {
+        $0.image = MakarButton.uncheckButton
+
+    }
+
+    private let checkImageView = UIImageView().then {
+        $0.image = MakarButton.checkButton
+        $0.isHidden = true
+    }
+
     // MARK: Configuration
     override func configureSubviews(){
         super.configureSubviews()
 
-        self.signUpTextField.delegate = self
-        self.signUpTextField.setSignInTextField(inputPlaceholder)
+        signUpTextField.delegate = self
+        signUpTextField.setSignInTextField(inputPlaceholder)
 
-        self.addSubview(signUpTextField)
-        self.addSubview(underlineView)
+        addSubview(signUpTextField)
+        addSubview(underlineView)
+        addSubview(uncheckImageView)
+        addSubview(checkImageView)
     }
 
     // MARK: Layout
@@ -42,6 +54,20 @@ class SignUpTextField: BaseView {
             $0.height.equalTo(1)
             $0.horizontalEdges.equalToSuperview()
             $0.top.equalTo(signUpTextField.snp.bottom).offset(5)
+        }
+
+        uncheckImageView.snp.makeConstraints {
+            $0.height.equalTo(11)
+            $0.width.equalTo(14)
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(2)
+        }
+
+        checkImageView.snp.makeConstraints {
+            $0.height.equalTo(11)
+            $0.width.equalTo(14)
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(2)
         }
     }
 
@@ -59,6 +85,16 @@ class SignUpTextField: BaseView {
 
     func setSecureTextEntry() {
         signUpTextField.isSecureTextEntry = true
+    }
+
+    func checkTextField() {
+        checkImageView.isHidden = false
+        uncheckImageView.isHidden = true
+    }
+
+    func uncheckTextField() {
+        checkImageView.isHidden = true
+        uncheckImageView.isHidden = false
     }
 }
 
