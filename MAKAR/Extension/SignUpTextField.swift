@@ -52,6 +52,11 @@ class SignUpTextField: BaseView {
         signUpTextField.backgroundColor = .clear
         signUpTextField.layer.borderColor = UIColor.clear.cgColor
         signUpTextField.textColor = .black
+        signUpTextField.font = UIFont.systemFont(ofSize: 15.5, weight: .medium)
+    }
+
+    func setSecureTextEntry() {
+        signUpTextField.isSecureTextEntry = true
     }
 }
 

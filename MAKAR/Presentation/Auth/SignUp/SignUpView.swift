@@ -24,6 +24,7 @@ class SignUpView: BaseView {
 
     private let passwordTextField = SignUpTextField().then {
         $0.setPlaceholder("8자 이상의 비밀번호를 입력해주세요.")
+        $0.setSecureTextEntry()
     }
 
     private let checkPasswordLabel = UILabel().then {
@@ -32,6 +33,7 @@ class SignUpView: BaseView {
 
     private let checkPasswordTextField = SignUpTextField().then {
         $0.setPlaceholder("비밀번호를 한번 더 입력해주세요.")
+        $0.setSecureTextEntry()
     }
 
     private let nickNameLabel = UILabel().then {
