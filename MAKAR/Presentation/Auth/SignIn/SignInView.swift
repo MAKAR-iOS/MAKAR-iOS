@@ -22,10 +22,12 @@ class SignInView: BaseView {
 
     private let idTextField = UITextField().then {
         $0.setSignInTextField("아이디")
+        $0.addLeftPadding()
     }
 
     private let passwordTextField = UITextField().then {
         $0.setSignInTextField("비밀번호")
+        $0.addLeftPadding()
     }
 
     private let signInButton = BaseButton().then {
@@ -44,6 +46,7 @@ class SignInView: BaseView {
 
     // MARK: Properties
     var tapSignInButton: (() -> Void)?
+    var tapSignUpButton: (() -> Void)?
     var tapDismissButton: (() -> Void)?
 
     // MARK: Configuration
@@ -60,7 +63,8 @@ class SignInView: BaseView {
         addSubview(dismissButton)
 
         signInButton.addTarget(self, action: #selector(handleSignInEvent), for: .touchUpInside)
-        signInButton.addTarget(self, action: #selector(handleDismissEvent), for: .touchUpInside)
+        signUpButton.addTarget(self, action: #selector(handleSignUpEvent), for: .touchUpInside)
+        dismissButton.addTarget(self, action: #selector(handleDismissEvent), for: .touchUpInside)
     }
 
     // MARK: Layout
@@ -111,6 +115,10 @@ class SignInView: BaseView {
     // MARK: Event
     @objc private func handleSignInEvent() {
         tapSignInButton?()
+    }
+
+    @objc private func handleSignUpEvent() {
+        tapSignUpButton?()
     }
 
     @objc private func handleDismissEvent() {
