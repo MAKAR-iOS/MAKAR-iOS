@@ -5,4 +5,63 @@
 //  Created by 박지윤 on 7/23/24.
 //
 
-import Foundation
+import UIKit
+
+class SignUpViewController: BaseViewController {
+    
+    // MARK: UI Components
+    private let signUpView = SignUpView()
+
+    private let backButton = BaseButton().then {
+        $0.setImage(MakarButton.dismissButton, for: .normal)
+    }
+
+    // MARK: Environment
+    private let router = BaseRouter()
+
+    // MARK: Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewTransition()
+        setNavigationItem()
+
+        router.viewController = self
+    }
+
+    // MARK: Configuration
+    override func configureSubviews() {
+        super.configureSubviews()
+
+        view.addSubview(signUpView)
+
+        signUpView.tapConfirmButton = { [weak self] in
+            guard let self else { return }
+            // modal
+            router.popViewController()
+        }
+    }
+
+    // MARK: Layout
+    override func makeConstraints() {
+        super.makeConstraints()
+
+        signUpView.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(20)
+        }
+    }
+
+    // MARK: View Transition
+    override func viewTransition() {
+        backButton.tap = { [weak self] in
+            guard let self else { return }
+            router.popViewController()
+        }
+    }
+
+    // MARK: Set Navigation
+    override func setNavigationItem() {
+        navigationItem.title = "회원가입"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    }
+}

@@ -33,6 +33,12 @@ class SignInViewController: BaseViewController {
             router.presentTabBarViewController()
         }
 
+        signInView.tapSignUpButton = {[weak self] in
+            guard let self else { return }
+            // TODO: transition
+            router.presentSignUpViewController()
+        }
+
         signInView.tapDismissButton = { [weak self] in
             guard let self else { return }
             router.dismissViewController()
