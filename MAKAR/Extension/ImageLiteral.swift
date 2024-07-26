@@ -31,9 +31,9 @@ public enum MakarImage {
 
 public enum MakarButton {
     public static var addButton: UIImage { .load(name: "ic_add") }
-    public static var backButton: UIImage { .load(name: "ic_back") }
     public static var checkButton: UIImage { .load(name: "ic_check") }
     public static var deleteButton: UIImage { .load(name: "ic_delete") }
+    public static var dismissButton: UIImage { .load(name: "ic_back") }
     public static var homeButton: UIImage { .load(name: "ic_home") }
     public static var homeFilledButton: UIImage { .load(name: "ic_home_filled") }
     public static var mapButton: UIImage { .load(name: "ic_map") }
