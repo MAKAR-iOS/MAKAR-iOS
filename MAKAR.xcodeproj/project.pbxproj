@@ -13,6 +13,7 @@
 		262F82402C54BA9900C4440F /* StationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F823F2C54BA9900C4440F /* StationResponse.swift */; };
 		262F82432C54BBAC00C4440F /* RouteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F82422C54BBAC00C4440F /* RouteResponse.swift */; };
 		262F82462C54C01A00C4440F /* NotiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F82452C54C01A00C4440F /* NotiResponse.swift */; };
+		262F82492C54C6F900C4440F /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F82482C54C6F900C4440F /* AuthResponse.swift */; };
 		2647CE822B500677001208BE /* FavoriteRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647CE812B500677001208BE /* FavoriteRouteViewController.swift */; };
 		2647CE862B5006B8001208BE /* PushAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647CE852B5006B8001208BE /* PushAlarmViewController.swift */; };
 		2647CE892B500F35001208BE /* FavoriteRouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647CE882B500F35001208BE /* FavoriteRouteTableViewCell.swift */; };
@@ -87,6 +88,7 @@
 		262F823F2C54BA9900C4440F /* StationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationResponse.swift; sourceTree = "<group>"; };
 		262F82422C54BBAC00C4440F /* RouteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteResponse.swift; sourceTree = "<group>"; };
 		262F82452C54C01A00C4440F /* NotiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiResponse.swift; sourceTree = "<group>"; };
+		262F82482C54C6F900C4440F /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		2647CE812B500677001208BE /* FavoriteRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteViewController.swift; sourceTree = "<group>"; };
 		2647CE852B5006B8001208BE /* PushAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAlarmViewController.swift; sourceTree = "<group>"; };
 		2647CE882B500F35001208BE /* FavoriteRouteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteTableViewCell.swift; sourceTree = "<group>"; };
@@ -189,6 +191,14 @@
 				262F82452C54C01A00C4440F /* NotiResponse.swift */,
 			);
 			path = Noti;
+			sourceTree = "<group>";
+		};
+		262F82472C54C6F000C4440F /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				262F82482C54C6F900C4440F /* AuthResponse.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		2647CE802B50065F001208BE /* FavoriteRoute */ = {
@@ -428,6 +438,7 @@
 		95B10F912B3314E7005319F6 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				262F82472C54C6F000C4440F /* Auth */,
 				262F82442C54C00F00C4440F /* Noti */,
 				262F82412C54BBA200C4440F /* Route */,
 				262F823E2C54BA8B00C4440F /* Station */,
@@ -602,6 +613,7 @@
 				956382E52B397A4D006B50ED /* SourceSearchStationViewController.swift in Sources */,
 				95B10F982B331534005319F6 /* RequestProvider.swift in Sources */,
 				956382D22B39789D006B50ED /* TabBarViewController.swift in Sources */,
+				262F82492C54C6F900C4440F /* AuthResponse.swift in Sources */,
 				95B10FA52B3315C7005319F6 /* ExampleRouter.swift in Sources */,
 				26A0EF3C2B5D58CE003E11D6 /* FavoriteRouteTextView.swift in Sources */,
 				267065262B3C997200F19EC3 /* FavoriteStationView.swift in Sources */,

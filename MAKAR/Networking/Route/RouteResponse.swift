@@ -35,7 +35,6 @@ struct SubRouteResponse : Codable {
 }
 
 // MARK: -설정된 경로 조회 API
-
 struct RouteDetailResponse : Codable {
     let routeId : Int
     let sourceStationName : String
