@@ -19,7 +19,7 @@ class SearchRouteViewController : BaseViewController {
     private let searchRouteTableView = UITableView(frame: .zero, style: .plain)
     
         // TODO: FIX: DUMMYLIST
-    let searchRouteList : [RouteData] = RouteData.searchRouteList
+    let searchRouteList : [Route] = Route.searchRouteList
 
     
     // MARK: Life Cycle

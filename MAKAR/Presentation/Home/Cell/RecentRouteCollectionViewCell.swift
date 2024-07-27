@@ -119,8 +119,7 @@ class RecentRouteCollectionViewCell : UICollectionViewCell {
         }
     }
     
-    func setData(data : RouteData) {
-        //TODO: data 설정 수정
+    func setData(data : Route) {
         lineNumImage.addLineNum()
 
         sourceText.text = data.sourceStation.stationName

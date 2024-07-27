@@ -19,62 +19,53 @@ struct Route {
 
 extension Route {
     static let favoriteRouteList : [Route] = [
-        Route(sourceStation: Station(stationName: "강남역", lineNum: 2),
-                  destinationStation: Station(stationName: "숭실대입구역", lineNum: 7),
-                  makarTime: Date(), hakarTime: Date(), totalTime: 40, transitCount: 1, date: "",
-                  subRouteItemList: [
-                    SubRouteItem(subRoute: SubRoute(startStationName: "강남역", endStationName: "대림역", lineNum: "2호선", sectionTime: 24),
-                                 transferInfo: TransferInfo(fromLine: 2, toLine: 2, transferStation: "대림역", transferTime: 5)),
-                  SubRouteItem(subRoute: SubRoute(startStationName: "대림역", endStationName: "숭실대입구역", lineNum: "7호선", sectionTime: 12),
-                               transferInfo: TransferInfo(fromLine: 7, toLine: 7, transferStation: "", transferTime: 0))]),
-        Route(sourceStation: Station(stationName: "홍대입구역", lineNum: 2),
-                  destinationStation: Station(stationName: "신촌역", lineNum: 2),
-                  makarTime: Date(), hakarTime: Date(), totalTime: 20, transitCount: 0, date: "",
-                  subRouteItemList: [SubRouteItem(subRoute: SubRoute(startStationName: "홍대입구역", endStationName: "신촌역", lineNum: "2호선", sectionTime: 2),
-                                                  transferInfo: TransferInfo(fromLine: 2, toLine: 2, transferStation: "", transferTime: 0))]),
-        Route(sourceStation: Station(stationName: "이태원역", lineNum: 6),
-                  destinationStation: Station(stationName: "부평역", lineNum: 1),
-                  makarTime: Date(), hakarTime: Date(), totalTime: 73, transitCount: 1, date: "",
-                  subRouteItemList: [SubRouteItem(subRoute: SubRoute(startStationName: "이태원역", endStationName: "동묘앞역", lineNum: "6호선", sectionTime: 10),
-                                                  transferInfo: TransferInfo(fromLine: 6, toLine: 6, transferStation: "동묘앞역", transferTime: 2)),
-                            SubRouteItem(subRoute: SubRoute(startStationName: "동묘앞역", endStationName: "부평역", lineNum: "1호선", sectionTime: 59),
-                                                 transferInfo: TransferInfo(fromLine: 1, toLine: 1, transferStation: "", transferTime: 0))]),
-        Route(sourceStation: Station(stationName: "이수역", lineNum: 4),
-                  destinationStation: Station(stationName: "광화문역", lineNum: 5),
-                  makarTime: Date(), hakarTime: Date(), totalTime: 50, transitCount: 1, date: "",
-                  subRouteItemList: [SubRouteItem(subRoute: SubRoute(startStationName: "이수역", endStationName: "충무로역", lineNum: "4호선", sectionTime: 19),
-                                                  transferInfo: TransferInfo(fromLine: 4, toLine: 4, transferStation: "충무로역", transferTime: 2)),
-                  SubRouteItem(subRoute: SubRoute(startStationName: "충무로역", endStationName: "종로3가역", lineNum: "3호선", sectionTime: 3),
-                               transferInfo: TransferInfo(fromLine: 3, toLine: 3, transferStation: "종로3가역", transferTime: 2)),
-                  SubRouteItem(subRoute: SubRoute(startStationName: "종로3가역", endStationName: "광화문역", lineNum: "5호선", sectionTime: 2),
-                               transferInfo: TransferInfo(fromLine: 5, toLine: 5, transferStation: "", transferTime: 0))])
+        Route(sourceStation: Station(stationName: "강남역", lineNum: "2호선"),
+                  destinationStation: Station(stationName: "숭실대입구역", lineNum: "7호선"),
+                  sourceTime: Date(), destinationTime: Date(), totalTime: 40, transferCount: 1, date: "",
+                  subRouteList: [
+                    SubRoute(fromStationName: "강남역", toStationName: "대림역", lineNum: "2호선", sectionTime: 24, transferTime: 4),
+                  SubRoute(fromStationName: "대림역", toStationName: "숭실대입구역", lineNum: "7호선", sectionTime: 12, transferTime: 5)]),
+        Route(sourceStation: Station(stationName: "홍대입구역", lineNum: "2호선"),
+                  destinationStation: Station(stationName: "신촌역", lineNum: "2호선"),
+                  sourceTime: Date(), destinationTime: Date(), totalTime: 20, transferCount: 0, date: "",
+                  subRouteList: [SubRoute(fromStationName: "홍대입구역", toStationName: "신촌역", lineNum: "2호선", sectionTime: 2, transferTime: 0)]),
+        Route(sourceStation: Station(stationName: "이태원역", lineNum: "6호선"),
+                  destinationStation: Station(stationName: "부평역", lineNum: "1호선"),
+                  sourceTime: Date(), destinationTime: Date(), totalTime: 73, transferCount: 1, date: "",
+                  subRouteList: [SubRoute(fromStationName: "이태원역", toStationName: "동묘앞역", lineNum: "6호선", sectionTime: 10, transferTime: 2),
+                            SubRoute(fromStationName: "동묘앞역", toStationName: "부평역", lineNum: "1호선", sectionTime: 59, transferTime: 0)]),
+        Route(sourceStation: Station(stationName: "이수역", lineNum: "4호선"),
+                  destinationStation: Station(stationName: "광화문역", lineNum: "5호선"),
+                  sourceTime: Date(), destinationTime: Date(), totalTime: 50, transferCount: 1, date: "",
+                  subRouteList: [SubRoute(fromStationName: "이수역", toStationName: "충무로역", lineNum: "4호선", sectionTime: 19, transferTime: 2),
+                  SubRoute(fromStationName: "충무로역", toStationName: "종로3가역", lineNum: "3호선", sectionTime: 3, transferTime: 2),
+                  SubRoute(fromStationName: "종로3가역", toStationName: "광화문역", lineNum: "5호선", sectionTime: 2, transferTime: 0)])
     ]
     
     static let recentRouteList : [Route] = [
-        Route(sourceStation: Station(stationName: "이수역", lineNum: 4),
-                  destinationStation: Station(stationName: "광화문역", lineNum: 5),
-                  makarTime: Date(), hakarTime: Date(), totalTime: 50, transitCount: 1, date: "12.23",
-                  subRouteItemList: []),
-        Route(sourceStation: Station(stationName: "시청역", lineNum: 1),
-                  destinationStation: Station(stationName: "안암역", lineNum: 6),
-                  makarTime: Date(), hakarTime: Date(), totalTime: 50, transitCount: 1, date: "01.11",
-                  subRouteItemList: [])
+        Route(sourceStation: Station(stationName: "이수역", lineNum: "4호선"),
+                  destinationStation: Station(stationName: "광화문역", lineNum: "5호선"),
+                  sourceTime: Date(), destinationTime: Date(), totalTime: 50, transferCount: 1, date: "12.23",
+                  subRouteList: []),
+        Route(sourceStation: Station(stationName: "시청역", lineNum: "1호선"),
+                  destinationStation: Station(stationName: "안암역", lineNum: "6호선"),
+                  sourceTime: Date(), destinationTime: Date(), totalTime: 50, transferCount: 1, date: "01.11",
+                  subRouteList: [])
     ]
     
     static let searchRouteList : [Route] = [
-        Route(sourceStation: Station(stationName: "숭실대입구역", lineNum: 7),
-                  destinationStation: Station(stationName: "이수역", lineNum: 7),
-                  makarTime: Date(), hakarTime: Date(), totalTime: 4, transitCount: 0, date: "",
-                  subRouteItemList: [SubRouteItem(subRoute: SubRoute(startStationName: "숭실대입구역", endStationName: "이수역", lineNum: "7호선", sectionTime: 4), transferInfo: TransferInfo(fromLine: 7, toLine: 7, transferStation: "", transferTime: 0))]),
-        Route(sourceStation: Station(stationName: "강남역", lineNum: 2),
-                  destinationStation: Station(stationName: "합정역", lineNum: 2),
-                  makarTime: Date(), hakarTime: Date(), totalTime: 30, transitCount: 0, date: "",
-                  subRouteItemList: [SubRouteItem(subRoute: SubRoute(startStationName: "강남역", endStationName: "합정역", lineNum: "2호선", sectionTime: 30), transferInfo: TransferInfo(fromLine: 2, toLine: 2, transferStation: "", transferTime: 0))]),
-        Route(sourceStation: Station(stationName: "숭실대입구역", lineNum: 7),
-                  destinationStation: Station(stationName: "신촌역", lineNum: 2),
-                  makarTime: Date(), hakarTime: Date(), totalTime: 35, transitCount: 1, date: "",
-                  subRouteItemList: [SubRouteItem(subRoute: SubRoute(startStationName: "숭실대입구역", endStationName: "대림역", lineNum: "7호선", sectionTime: 12), transferInfo: TransferInfo(fromLine: 7, toLine: 7, transferStation: "대림", transferTime: 5)),
-                                     SubRouteItem(subRoute: SubRoute(startStationName: "대림역", endStationName: "신촌역", lineNum: "2호선", sectionTime: 18), transferInfo: TransferInfo(fromLine: 2, toLine: 2, transferStation: "", transferTime: 0))
-                                     ])
+        Route(sourceStation: Station(stationName: "숭실대입구역", lineNum: "7호선"),
+                  destinationStation: Station(stationName: "이수역", lineNum: "7호선"),
+                  sourceTime: Date(), destinationTime: Date(), totalTime: 4, transferCount: 0, date: "",
+              subRouteList: [SubRoute(fromStationName: "숭실대입구역", toStationName: "이수역", lineNum: "7호선", sectionTime: 4, transferTime : 0)]),
+        Route(sourceStation: Station(stationName: "강남역", lineNum: "2호선"),
+                  destinationStation: Station(stationName: "합정역", lineNum: "2호선"),
+                  sourceTime: Date(), destinationTime: Date(), totalTime: 30, transferCount: 0, date: "",
+                  subRouteList: [SubRoute(fromStationName: "강남역", toStationName: "합정역", lineNum: "2호선", sectionTime: 30, transferTime: 0)]),
+        Route(sourceStation: Station(stationName: "숭실대입구역", lineNum: "7호선"),
+                  destinationStation: Station(stationName: "신촌역", lineNum: "2호선"),
+              sourceTime: Date(), destinationTime: Date(), totalTime: 35, transferCount: 1, date: "",
+                  subRouteList: [SubRoute(fromStationName: "숭실대입구역", toStationName: "대림역", lineNum: "7호선", sectionTime: 12, transferTime: 5),
+                        SubRoute(fromStationName: "대림역", toStationName: "신촌역", lineNum: "2호선", sectionTime: 18, transferTime: 0)])
     ]
 }

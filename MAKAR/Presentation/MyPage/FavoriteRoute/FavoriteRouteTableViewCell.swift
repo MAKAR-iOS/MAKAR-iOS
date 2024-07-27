@@ -70,7 +70,7 @@ class FavoriteRouteTableViewCell : UITableViewCell {
         }
     }
     
-    func setData(data : RouteData) {
+    func setData(data : Route) {
         lineNumImage.addLineNum()
         
         if(favoriteRouteStackView.subviews.isEmpty){
@@ -79,7 +79,7 @@ class FavoriteRouteTableViewCell : UITableViewCell {
             favoriteRouteStackView.addArrangedSubview(routeLabel)
             
             //중간역, 도착역
-            for route in data.subRouteItemList {
+            for route in data.subRouteList {
                 
                 let moreRightLabel = UILabel().then{
                     $0.text = ">"
@@ -87,7 +87,7 @@ class FavoriteRouteTableViewCell : UITableViewCell {
                 }
                 favoriteRouteStackView.addArrangedSubview(moreRightLabel)
                 
-                let routeLabel = FavoriteRouteTextView(lineName: route.subRoute.endStationName, lineNum: route.subRoute.lineNum)
+                let routeLabel = FavoriteRouteTextView(lineName: route.toStationName, lineNum: route.lineNum)
                 favoriteRouteStackView.addArrangedSubview(routeLabel)
             }
         }

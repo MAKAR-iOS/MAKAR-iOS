@@ -9,7 +9,7 @@ import UIKit
 struct SubRoute {
     let fromStationName : String
     let toStationName : String
-    let lineNum : Int
+    let lineNum : String
     let sectionTime : Int
     let transferTime : Int
 }

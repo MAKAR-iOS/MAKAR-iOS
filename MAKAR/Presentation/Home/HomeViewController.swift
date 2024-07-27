@@ -31,8 +31,8 @@ class HomeViewController: BaseViewController {
     let hakarAlarmTime = 10 //임시 하차 알림 시간
     
     // TODO: dummylist
-    static var favoriteRouteList : [RouteData] = RouteData.favoriteRouteList
-    var recentRouteList : [RouteData] = RouteData.recentRouteList
+    static var favoriteRouteList : [Route] = Route.favoriteRouteList
+    var recentRouteList : [Route] = Route.recentRouteList
     
     // MARK: UI Components
     private let homeView = HomeView()
@@ -346,7 +346,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     // TODO: simplify
-    private func calculateCellWidth(for data: RouteData, cell: UICollectionViewCell) -> CGFloat {
+    private func calculateCellWidth(for data: Route, cell: UICollectionViewCell) -> CGFloat {
         if let favoriteCell = cell as? FavoriteRouteCollectionViewCell {
             favoriteCell.setData(data: data)
             favoriteCell.setNeedsLayout()
@@ -366,7 +366,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let data : RouteData
+        let data : Route
         if(collectionView == favoriteRouteCollectionView){
             data = HomeViewController.favoriteRouteList[indexPath.row]
         } else {
