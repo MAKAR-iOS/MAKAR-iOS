@@ -18,7 +18,7 @@ class SearchRouteViewController : BaseViewController {
     private let searchRouteView = SearchRouteView()
     private let searchRouteTableView = UITableView(frame: .zero, style: .plain)
     
-        // TODO: FIX: DUMMYLIST
+    // TODO: 경로 검색 리스트 조회 API 연결
     let searchRouteList : [Route] = Route.searchRouteList
 
     
@@ -63,6 +63,7 @@ class SearchRouteViewController : BaseViewController {
         searchRouteView.tapSearchRouteButton = {[weak self] in
             guard let self else { return }
             postSearchRouteButtonClicked()
+            // TODO: 경로 리스트 조회 API 호출
         }
     }
     

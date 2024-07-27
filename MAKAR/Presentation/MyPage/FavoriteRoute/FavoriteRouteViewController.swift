@@ -10,7 +10,8 @@ class FavoriteRouteViewController : BaseViewController {
     
     // MARK: UI Components
     let favoriteRouteTableView = UITableView(frame: .zero, style: .plain)
-    // TODO: 최근경로 리스트 데이터 수정
+    
+    // TODO: 최근 경로 리스트 조회 API 연결
     var favoriteRouteList : [Route] = Route.favoriteRouteList
 
     // MARK: Life Cycle

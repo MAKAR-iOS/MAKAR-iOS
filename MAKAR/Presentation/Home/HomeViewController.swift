@@ -30,7 +30,7 @@ class HomeViewController: BaseViewController {
     let makarAlarmTime = 10 //임시 막차 알림 시간
     let hakarAlarmTime = 10 //임시 하차 알림 시간
     
-    // TODO: dummylist
+    // TODO: 최근 경로 리스트, 즐겨찾는 경로 리스트 조회 API 연결
     static var favoriteRouteList : [Route] = Route.favoriteRouteList
     var recentRouteList : [Route] = Route.recentRouteList
     
@@ -169,7 +169,6 @@ class HomeViewController: BaseViewController {
     // MARK: NavigationBar
     override func setNavigationBar(){
         super.setNavigationBar()
-        //TODO: NavigationBar MAKAR icon custom 필요
         
         navigationItem.title = nil
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: MakarButton.mapButton, style: .plain, target: self, action: #selector(handleMapButtonClickEvent))
@@ -185,6 +184,7 @@ class HomeViewController: BaseViewController {
         DispatchQueue.global(qos: .background).async {
             let runLoop = RunLoop.current
             
+            // TODO: Noti List 도입 및 플래그 수정
             Timer.scheduledTimer(withTimeInterval: 10, repeats: true){ _ in
                 if(HomeViewController.isRouteSet){
                     //막차까지 남은 시간 계산
@@ -324,7 +324,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
             //최근경로 삭제
             cell.tapDeleteRecentRouteButton = {[weak self] in
                 guard let self else { return }
-                
+                // TODO: 최근 경로 편집 API 연결
                 self.recentRouteList.remove(at: indexPath.row)
                 recentRouteCollectionView.reloadData()
             }
@@ -375,7 +375,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         //searchBar Text 수정
         let sourceText = "\(data.sourceStation.stationName) \(data.sourceStation.lineNum)"
         let destinationText = "\(data.destinationStation.stationName) \(data.destinationStation.lineNum)"
-        
+        // TODO: 경로 리스트 검색 API 연결
         let searchRouteVC = SearchRouteViewController()
         searchRouteVC.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)
         self.navigationController?.pushViewController(searchRouteVC, animated: true)
