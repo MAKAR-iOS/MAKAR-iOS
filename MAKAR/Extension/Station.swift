@@ -8,6 +8,5 @@
 import UIKit
 struct Station {
     let stationName : String
-    let stationCode : String
-    let lineNum : String
+    let lineNum : Int
 }

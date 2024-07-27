@@ -7,11 +7,9 @@
 
 import UIKit
 struct SubRoute {
-    let startStationName : String
-    let endStationName : String
-    let startStationCode : Int = 0
-    let endStationCode : Int = 0
-    let lineNum : String 
-//    let wayCode : Int
+    let fromStationName : String
+    let toStationName : String
+    let lineNum : Int
     let sectionTime : Int
+    let transferTime : Int
 }
