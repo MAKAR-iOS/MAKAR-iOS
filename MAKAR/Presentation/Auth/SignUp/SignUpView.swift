@@ -71,6 +71,7 @@ class SignUpView: BaseView {
 
     private let confirmButton = BaseButton().then {
         $0.setDefaultButton("입력 완료")
+        $0.setUnabledButton()
     }
 
     // MARK: Properties
