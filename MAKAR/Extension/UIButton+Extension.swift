@@ -10,9 +10,24 @@ import UIKit
 extension UIButton {
     func setDefaultButton(_ inputTitle: String) {
         setTitle(inputTitle, for: .normal)
-        setTitleColor(UIColor.white, for: .normal)
         titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        backgroundColor = .makarBlue
         layer.cornerRadius = Metric.buttonRadius
+    }
+
+    func setMakarButton() {
+        setTitleColor(UIColor.white, for: .normal)
+        backgroundColor = .makarBlue
+    }
+
+    func setUnabledButton() {
+        setTitleColor(UIColor.white, for: .normal)
+        backgroundColor = .lightGray4
+    }
+
+    func setReverseeButton() {
+        setTitleColor(UIColor.makarBlue, for: .normal)
+        backgroundColor = .white
+        layer.borderColor = UIColor.makarBlue.cgColor
+        layer.borderWidth = 1
     }
 }
