@@ -21,17 +21,13 @@ class StartSignInView: BaseView {
     }
 
     private let signInButton = BaseButton().then {
-        $0.setTitle("로그인", for: .normal)
-        $0.setTitleColor(UIColor.makarBlue, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        $0.backgroundColor = .white
-        $0.layer.borderColor = UIColor.makarBlue.cgColor
-        $0.layer.borderWidth = 1
-        $0.layer.cornerRadius = Metric.buttonRadius
+        $0.setDefaultButton("로그인")
+        $0.setReverseeButton()
     }
 
     private let signUpButton = BaseButton().then {
         $0.setDefaultButton("회원가입")
+        $0.setMakarButton()
     }
 
     // MARK: Properties

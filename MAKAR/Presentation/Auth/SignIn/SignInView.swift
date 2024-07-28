@@ -33,6 +33,7 @@ class SignInView: BaseView {
 
     private let signInButton = BaseButton().then {
         $0.setDefaultButton("로그인")
+        $0.setMakarButton()
     }
 
     private let signUpButton = BaseButton().then {
