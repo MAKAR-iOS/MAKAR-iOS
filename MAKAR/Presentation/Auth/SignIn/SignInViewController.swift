@@ -30,7 +30,7 @@ class SignInViewController: BaseViewController {
 
         signInView.tapSignInButton = {[weak self] in
             guard let self else { return }
-            router.presentTabBarViewController()
+            postSignIn()
         }
 
         signInView.tapSignUpButton = {[weak self] in
@@ -52,5 +52,22 @@ class SignInViewController: BaseViewController {
         signInView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+}
+
+extension SignInViewController {
+    // MARK: Network
+    // TODO: SignIn
+    private func postSignIn() {
+        // if success
+        router.presentTabBarViewController()
+        // else
+//        presentAlert(
+//            title: "로그인 실패",
+//            message: "로그인 할 수 없습니다.",
+//            cancelButton: "확인",
+//            style: .default,
+//            handler: nil
+//        )
     }
 }
