@@ -11,7 +11,7 @@ enum CharacterLimitType {
     case id
     case password
     case checkPassword
-    case nickname
+    case nickName
 }
 
 class SignUpTextField: BaseView {
@@ -19,9 +19,10 @@ class SignUpTextField: BaseView {
     var inputPlaceholder: String = ""
     var signUpTextFieldType: CharacterLimitType = .id
     var validId: Bool = false
-    var validNickname: Bool = false
+    var validNickName: Bool = false
     var passwordTextField: SignUpTextField?
-    var onPasswordChange: (() -> Void)?
+    var onPasswordChanged: (() -> Void)?
+    var onStateChanged: (() -> Void)?
 
     // MARK: UI Components
     let signUpTextField = UITextField()
@@ -34,7 +35,7 @@ class SignUpTextField: BaseView {
         $0.image = MakarButton.uncheckButton
     }
 
-    private let checkImageView = UIImageView().then {
+    let checkImageView = UIImageView().then {
         $0.image = MakarButton.checkButton
         $0.isHidden = true
     }
@@ -114,6 +115,7 @@ class SignUpTextField: BaseView {
     func setCheckImageView(_ isHidden: Bool) {
         checkImageView.isHidden = isHidden
         uncheckImageView.isHidden = !isHidden
+        onStateChanged?()
     }
 
     func setWarningLabelHidden(_ isHidden: Bool, _ inputText: String?) {
@@ -159,7 +161,6 @@ extension SignUpTextField: UITextFieldDelegate {
             }
         case .password:
             characterLimit = 8
-            print(updatedText)
             if updatedText.count >= characterLimit {
                 setCheckImageView(false)
                 setWarningLabelHidden(true, "")
@@ -172,7 +173,7 @@ extension SignUpTextField: UITextFieldDelegate {
                 }
             }
 
-            onPasswordChange?()
+            onPasswordChanged?()
         case .checkPassword:
             if updatedText.count > 0 && updatedText == passwordTextField?.signUpTextField.text {
                 setCheckImageView(false)
@@ -185,12 +186,11 @@ extension SignUpTextField: UITextFieldDelegate {
                     setWarningLabelHidden(false, "비밀번호가 일치하지 않습니다.")
                 }
             }
-        case .nickname:
-            checkValidNickname()
-            if validNickname && updatedText.count > 0 {
+        case .nickName:
+            checkValidNickName()
+            if validNickName && updatedText.count > 0 {
                 setCheckImageView(false)
                 setWarningLabelHidden(true, "")
-
             } else {
                 setCheckImageView(true)
                 if updatedText.count == 0 {
@@ -213,14 +213,14 @@ extension SignUpTextField {
         // if true
         validId = true
         // if false
-        validId = false
+//        validId = false
     }
 
-    // TODO: checkValidNickname
-    func checkValidNickname() {
+    // TODO: checkValidNickName
+    func checkValidNickName() {
         // if true
-        validNickname = true
+        validNickName = true
         // if false
-        validNickname = false
+//        validNickName = false
     }
 }

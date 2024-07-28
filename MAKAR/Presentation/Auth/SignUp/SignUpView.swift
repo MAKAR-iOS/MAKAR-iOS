@@ -45,7 +45,7 @@ class SignUpView: BaseView {
 
     private let nickNameTextField = SignUpTextField().then {
         $0.setPlaceholder("사용하실 닉네임을 입력해주세요.")
-        $0.signUpTextFieldType = .nickname
+        $0.signUpTextFieldType = .nickName
     }
 
     private let signUpStackView = UIStackView().then {
@@ -82,6 +82,7 @@ class SignUpView: BaseView {
         super.configureSubviews()
         self.backgroundColor = .background
         manageCheckPassword()
+        checkTextFieldChange()
 
         addSubview(signUpStackView)
         addSubview(confirmButton)
@@ -96,26 +97,7 @@ class SignUpView: BaseView {
         checkPasswordStackView.addArrangedSubviews(checkPasswordLabel, checkPasswordTextField)
         nickNameStackView.addArrangedSubviews(nickNameLabel, nickNameTextField)
 
-        confirmButton.addTarget(self, action: #selector(handleConfirmvent), for: .touchUpInside)
-    }
-
-    private func manageCheckPassword() {
-        self.checkPasswordTextField.passwordTextField = self.passwordTextField
-
-        passwordTextField.onPasswordChange = { [self,  weak checkPasswordTextField] in
-            guard let checkPasswordTextField = checkPasswordTextField else { return }
-            if checkPasswordTextField.signUpTextField.text == passwordTextField.signUpTextField.text {
-                checkPasswordTextField.setCheckImageView(false)
-                checkPasswordTextField.setWarningLabelHidden(true, "")
-            } else {
-                checkPasswordTextField.setCheckImageView(true)
-                if checkPasswordTextField.signUpTextField.text?.count == 0 {
-                    checkPasswordTextField.setWarningLabelHidden(true, "")
-                } else {
-                    checkPasswordTextField.setWarningLabelHidden(false, "비밀번호가 일치하지 않습니다.")
-                }
-            }
-        }
+        confirmButton.addTarget(self, action: #selector(handleConfirmEvent), for: .touchUpInside)
     }
 
     // MARK: Layout
@@ -156,7 +138,61 @@ class SignUpView: BaseView {
     }
 
     // MARK: Event
-    @objc private func handleConfirmvent() {
+    @objc private func handleConfirmEvent() {
         tapConfirmButton?()
+    }
+}
+
+extension SignUpView {
+    private func manageCheckPassword() {
+        self.checkPasswordTextField.passwordTextField = self.passwordTextField
+
+        passwordTextField.onPasswordChanged = { [self,  weak checkPasswordTextField] in
+            guard let checkPasswordTextField = checkPasswordTextField else { return }
+            if checkPasswordTextField.signUpTextField.text == passwordTextField.signUpTextField.text {
+                checkPasswordTextField.setCheckImageView(false)
+                checkPasswordTextField.setWarningLabelHidden(true, "")
+            } else {
+                checkPasswordTextField.setCheckImageView(true)
+                if checkPasswordTextField.signUpTextField.text?.count == 0 {
+                    checkPasswordTextField.setWarningLabelHidden(true, "")
+                } else {
+                    checkPasswordTextField.setWarningLabelHidden(false, "비밀번호가 일치하지 않습니다.")
+                }
+            }
+        }
+    }
+
+    private func checkTextFieldChange() {
+        idTextField.onStateChanged = { [weak self] in
+            self?.setConfirmButtonEnabled()
+        }
+
+        passwordTextField.onStateChanged = { [weak self] in
+            self?.setConfirmButtonEnabled()
+        }
+
+        checkPasswordTextField.onStateChanged = { [weak self] in
+            self?.setConfirmButtonEnabled()
+        }
+
+        nickNameTextField.onStateChanged = { [weak self] in
+            self?.setConfirmButtonEnabled()
+        }
+    }
+
+    private func setConfirmButtonEnabled() {
+        let allFieldsChecked = [
+            idTextField.checkImageView.isHidden == false,
+            passwordTextField.checkImageView.isHidden == false,
+            checkPasswordTextField.checkImageView.isHidden == false,
+            nickNameTextField.checkImageView.isHidden == false
+        ].allSatisfy { $0 }
+
+        if allFieldsChecked {
+            confirmButton.setMakarButton()
+        } else {
+            confirmButton.setUnabledButton()
+        }
     }
 }

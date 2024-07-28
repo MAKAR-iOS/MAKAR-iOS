@@ -38,6 +38,13 @@ class SignUpViewController: BaseViewController {
             guard let self else { return }
             // modal
             router.popViewController()
+            presentAlert(
+                title: "회원가입 성공",
+                message: "회원가입에 성공하였습니다.",
+                cancelButton: "확인",
+                style: .destructive,
+                handler: { _ in }
+            )
         }
     }
 
@@ -63,5 +70,28 @@ class SignUpViewController: BaseViewController {
     override func setNavigationItem() {
         navigationItem.title = "회원가입"
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    }
+}
+
+extension SignUpViewController {
+    private func presentAlert(
+        title: String,
+        message: String?,
+        cancelButton: String,
+        style: UIAlertAction.Style,
+        handler: ((UIAlertAction) -> Void)?
+    ) {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert)
+        
+        let cancelButton = UIAlertAction(
+            title: cancelButton,
+            style: .default)
+
+        alertController.addAction(cancelButton)
+
+        present(alertController, animated: true)
     }
 }
