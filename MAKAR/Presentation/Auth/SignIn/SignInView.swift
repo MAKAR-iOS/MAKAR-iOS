@@ -8,7 +8,7 @@
 import UIKit
 
 class SignInView: BaseView {
-    
+
     // MARK: UI Components
     private let makarLabel = UILabel().then {
         $0.text = "지하철 막차 알림 서비스"
@@ -33,7 +33,7 @@ class SignInView: BaseView {
 
     private let signInButton = BaseButton().then {
         $0.setDefaultButton("로그인")
-        $0.setMakarButton()
+        $0.setUnabledButton()
     }
 
     private let signUpButton = BaseButton().then {
@@ -63,6 +63,9 @@ class SignInView: BaseView {
         addSubview(signInButton)
         addSubview(signUpButton)
         addSubview(dismissButton)
+
+        idTextField.addTarget(self, action: #selector(checkTextFieldChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(checkTextFieldChange), for: .editingChanged)
 
         signInButton.addTarget(self, action: #selector(handleSignInEvent), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(handleSignUpEvent), for: .touchUpInside)
@@ -115,6 +118,17 @@ class SignInView: BaseView {
     }
 
     // MARK: Event
+    @objc private func checkTextFieldChange() {
+        let isIdTextNotEmpty = !(idTextField.text?.isEmpty ?? true)
+        let isPasswordTextNotEmpty = !(passwordTextField.text?.isEmpty ?? true)
+
+        if isIdTextNotEmpty && isPasswordTextNotEmpty {
+            signInButton.setMakarButton()
+        } else {
+            signInButton.setUnabledButton()
+        }
+    }
+
     @objc private func handleSignInEvent() {
         tapSignInButton?()
     }
