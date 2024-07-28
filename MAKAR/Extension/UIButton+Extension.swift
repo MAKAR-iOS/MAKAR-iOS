@@ -17,11 +17,13 @@ extension UIButton {
     func setMakarButton() {
         setTitleColor(UIColor.white, for: .normal)
         backgroundColor = .makarBlue
+        isEnabled = true
     }
 
     func setUnabledButton() {
         setTitleColor(UIColor.white, for: .normal)
         backgroundColor = .lightGray4
+        isEnabled = false
     }
 
     func setReverseeButton() {
