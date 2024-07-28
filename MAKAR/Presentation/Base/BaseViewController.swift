@@ -48,6 +48,29 @@ class BaseViewController: UIViewController {
     @objc func handleTap() {
         self.view.endEditing(true)
     }
+
+    // MARK: Alert
+    func presentAlert(
+        title: String,
+        message: String?,
+        cancelButton: String,
+        style: UIAlertAction.Style,
+        handler: ((UIAlertAction) -> Void)?
+    ) {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert)
+        
+        let cancelButton = UIAlertAction(
+            title: cancelButton,
+            style: .default,
+            handler: handler)
+
+        alertController.addAction(cancelButton)
+
+        present(alertController, animated: true)
+    }
 }
 
 
