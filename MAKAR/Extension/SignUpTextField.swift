@@ -5,14 +5,26 @@
 //  Created by 박지윤 on 7/26/24.
 //
 
-import UIKit.UITextField
+import UIKit
+
+enum CharacterLimitType {
+    case id
+    case password
+    case checkPassword
+    case nickname
+}
 
 class SignUpTextField: BaseView {
 
     var inputPlaceholder: String = ""
+    var signUpTextFieldType: CharacterLimitType = .id
+    var validId: Bool = false
+    var validNickname: Bool = false
+    var passwordTextField: SignUpTextField?
+    var onPasswordChange: (() -> Void)?
 
     // MARK: UI Components
-    private let signUpTextField = UITextField()
+    let signUpTextField = UITextField()
 
     private let underlineView = UIView().then {
         $0.backgroundColor = .lightGray4
@@ -20,11 +32,16 @@ class SignUpTextField: BaseView {
 
     private let uncheckImageView = UIImageView().then {
         $0.image = MakarButton.uncheckButton
-
     }
 
     private let checkImageView = UIImageView().then {
         $0.image = MakarButton.checkButton
+        $0.isHidden = true
+    }
+
+    private let warningLabel = UILabel().then {
+        $0.textColor = .makarRed
+        $0.font = UIFont.systemFont(ofSize: 11, weight: .medium)
         $0.isHidden = true
     }
 
@@ -39,6 +56,7 @@ class SignUpTextField: BaseView {
         addSubview(underlineView)
         addSubview(uncheckImageView)
         addSubview(checkImageView)
+        addSubview(warningLabel)
     }
 
     // MARK: Layout
@@ -69,6 +87,11 @@ class SignUpTextField: BaseView {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().inset(2)
         }
+
+        warningLabel.snp.makeConstraints {
+            $0.top.equalTo(signUpTextField.snp.bottom).offset(12)
+            $0.leading.equalToSuperview().inset(4)
+        }
     }
 
     func setPlaceholder(_ placeholder: String) {
@@ -85,16 +108,17 @@ class SignUpTextField: BaseView {
 
     func setSecureTextEntry() {
         signUpTextField.isSecureTextEntry = true
+        signUpTextField.textContentType = .oneTimeCode
     }
 
-    func checkTextField() {
-        checkImageView.isHidden = false
-        uncheckImageView.isHidden = true
+    func setCheckImageView(_ isHidden: Bool) {
+        checkImageView.isHidden = isHidden
+        uncheckImageView.isHidden = !isHidden
     }
 
-    func uncheckTextField() {
-        checkImageView.isHidden = true
-        uncheckImageView.isHidden = false
+    func setWarningLabelHidden(_ isHidden: Bool, _ inputText: String?) {
+        warningLabel.isHidden = isHidden
+        warningLabel.text = inputText ?? ""
     }
 }
 
@@ -109,5 +133,94 @@ extension SignUpTextField: UITextFieldDelegate {
         UIView.animate(withDuration: 0.1) {
             self.underlineView.backgroundColor = .lightGray4
         }
+    }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        let characterLimit: Int
+
+        switch signUpTextFieldType {
+        case .id:
+            characterLimit = 5
+            checkValidId()
+            if validId && updatedText.count >= characterLimit {
+                setCheckImageView(false)
+                setWarningLabelHidden(true, "")
+            } else {
+                setCheckImageView(true)
+                if updatedText.count == 0 {
+                    setWarningLabelHidden(true, "")
+                } else {
+                    setWarningLabelHidden(false, "이미 사용중인 아이디입니다.")
+                }
+            }
+        case .password:
+            characterLimit = 8
+            print(updatedText)
+            if updatedText.count >= characterLimit {
+                setCheckImageView(false)
+                setWarningLabelHidden(true, "")
+            } else {
+                setCheckImageView(true)
+                if updatedText.count == 0 {
+                    setWarningLabelHidden(true, "")
+                } else {
+                    setWarningLabelHidden(false, "8자 이상의 비밀번호를 입력해주세요.")
+                }
+            }
+
+            onPasswordChange?()
+        case .checkPassword:
+            if updatedText.count > 0 && updatedText == passwordTextField?.signUpTextField.text {
+                setCheckImageView(false)
+                setWarningLabelHidden(true, "")
+            } else {
+                setCheckImageView(true)
+                if updatedText.count == 0 {
+                    setWarningLabelHidden(true, "")
+                } else {
+                    setWarningLabelHidden(false, "비밀번호가 일치하지 않습니다.")
+                }
+            }
+        case .nickname:
+            checkValidNickname()
+            if validNickname && updatedText.count > 0 {
+                setCheckImageView(false)
+                setWarningLabelHidden(true, "")
+
+            } else {
+                setCheckImageView(true)
+                if updatedText.count == 0 {
+                    setWarningLabelHidden(true, "")
+                } else {
+                    setWarningLabelHidden(false, "이미 사용중인 닉네임입니다.")
+                }
+            }
+        }
+
+        return true
+    }
+}
+
+extension SignUpTextField {
+    // MARK: Network
+
+    // TODO: checkValidId
+    func checkValidId() {
+        // if true
+        validId = true
+        // if false
+        validId = false
+    }
+
+    // TODO: checkValidNickname
+    func checkValidNickname() {
+        // if true
+        validNickname = true
+        // if false
+        validNickname = false
     }
 }

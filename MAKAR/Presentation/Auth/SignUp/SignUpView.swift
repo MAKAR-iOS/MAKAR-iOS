@@ -16,6 +16,7 @@ class SignUpView: BaseView {
 
     private let idTextField = SignUpTextField().then {
         $0.setPlaceholder("5자 이상의 아이디를 입력해주세요.")
+        $0.signUpTextFieldType = .id
     }
 
     private let passwordLabel = UILabel().then {
@@ -25,6 +26,7 @@ class SignUpView: BaseView {
     private let passwordTextField = SignUpTextField().then {
         $0.setPlaceholder("8자 이상의 비밀번호를 입력해주세요.")
         $0.setSecureTextEntry()
+        $0.signUpTextFieldType = .password
     }
 
     private let checkPasswordLabel = UILabel().then {
@@ -34,6 +36,7 @@ class SignUpView: BaseView {
     private let checkPasswordTextField = SignUpTextField().then {
         $0.setPlaceholder("비밀번호를 한번 더 입력해주세요.")
         $0.setSecureTextEntry()
+        $0.signUpTextFieldType = .checkPassword
     }
 
     private let nickNameLabel = UILabel().then {
@@ -42,6 +45,7 @@ class SignUpView: BaseView {
 
     private let nickNameTextField = SignUpTextField().then {
         $0.setPlaceholder("사용하실 닉네임을 입력해주세요.")
+        $0.signUpTextFieldType = .nickname
     }
 
     private let signUpStackView = UIStackView().then {
@@ -76,6 +80,7 @@ class SignUpView: BaseView {
     override func configureSubviews() {
         super.configureSubviews()
         self.backgroundColor = .background
+        manageCheckPassword()
 
         addSubview(signUpStackView)
         addSubview(confirmButton)
@@ -91,6 +96,25 @@ class SignUpView: BaseView {
         nickNameStackView.addArrangedSubviews(nickNameLabel, nickNameTextField)
 
         confirmButton.addTarget(self, action: #selector(handleConfirmvent), for: .touchUpInside)
+    }
+
+    private func manageCheckPassword() {
+        self.checkPasswordTextField.passwordTextField = self.passwordTextField
+
+        passwordTextField.onPasswordChange = { [self,  weak checkPasswordTextField] in
+            guard let checkPasswordTextField = checkPasswordTextField else { return }
+            if checkPasswordTextField.signUpTextField.text == passwordTextField.signUpTextField.text {
+                checkPasswordTextField.setCheckImageView(false)
+                checkPasswordTextField.setWarningLabelHidden(true, "")
+            } else {
+                checkPasswordTextField.setCheckImageView(true)
+                if checkPasswordTextField.signUpTextField.text?.count == 0 {
+                    checkPasswordTextField.setWarningLabelHidden(true, "")
+                } else {
+                    checkPasswordTextField.setWarningLabelHidden(false, "비밀번호가 일치하지 않습니다.")
+                }
+            }
+        }
     }
 
     // MARK: Layout
