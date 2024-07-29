@@ -12,15 +12,19 @@ enum CharacterLimitType {
     case password
     case checkPassword
     case nickName
+    case email
 }
 
 class SignUpTextField: BaseView {
 
     var inputPlaceholder: String = ""
+    var passwordTextField: SignUpTextField?
     var signUpTextFieldType: CharacterLimitType = .id
+
     var validId: Bool = false
     var validNickName: Bool = false
-    var passwordTextField: SignUpTextField?
+    var validEmail: Bool = false
+
     var onPasswordChanged: (() -> Void)?
     var onStateChanged: (() -> Void)?
 
@@ -47,7 +51,7 @@ class SignUpTextField: BaseView {
     }
 
     // MARK: Configuration
-    override func configureSubviews(){
+    override func configureSubviews() {
         super.configureSubviews()
 
         signUpTextField.delegate = self
@@ -172,7 +176,6 @@ extension SignUpTextField: UITextFieldDelegate {
                     setWarningLabelHidden(false, "8자 이상의 비밀번호를 입력해주세요.")
                 }
             }
-
             onPasswordChanged?()
         case .checkPassword:
             if updatedText.count > 0 && updatedText == passwordTextField?.signUpTextField.text {
@@ -185,6 +188,13 @@ extension SignUpTextField: UITextFieldDelegate {
                 } else {
                     setWarningLabelHidden(false, "비밀번호가 일치하지 않습니다.")
                 }
+            }
+        case .email:
+            checkValidEmail()
+            if validEmail && updatedText.count > 0 {
+                setCheckImageView(false)
+            } else {
+                setCheckImageView(true)
             }
         case .nickName:
             checkValidNickName()
@@ -222,5 +232,12 @@ extension SignUpTextField {
         validNickName = true
         // if false
 //        validNickName = false
+    }
+
+    func checkValidEmail() {
+        // if true
+        validEmail = true
+        // if false
+//        validEmail = false
     }
 }
