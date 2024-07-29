@@ -127,11 +127,11 @@ extension SignUpViewController {
 
     private func presentSignUpAlert() {
         presentAlert(
-            title: "회원가입 실패",
-            message: "잠시 후 다시 시도해주세요.",
+            title: "회원가입 성공",
+            message: "회원가입에 성공하였습니다.",
             cancelButton: "확인",
             style: .default,
-            handler: nil
+            handler: { action in self.router.popViewController() }
         )
     }
 
