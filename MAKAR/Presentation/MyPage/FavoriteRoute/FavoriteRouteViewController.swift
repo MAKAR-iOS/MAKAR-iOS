@@ -17,14 +17,14 @@ class FavoriteRouteViewController : BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setNavigationBar()
+
         view.backgroundColor = .background
         setTableView()
     }
     
     // MARK: NavigationBar
-    override func setNavigationBar(){
-        super.setNavigationBar()
+    private func setNavigationBar(){
         navigationItem.title = "즐겨찾는 경로 설정"
     }
 }

@@ -19,7 +19,8 @@ class SchoolSearchStationViewController : BaseSearchStationViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setNavigationBar()
+
         view.backgroundColor = .background
     }
     
@@ -41,7 +42,7 @@ class SchoolSearchStationViewController : BaseSearchStationViewController {
     }
     
     // MARK: NavigationBar
-    override func setNavigationBar(){
+    private func setNavigationBar(){
         navigationItem.title = "역 검색"
     }
     

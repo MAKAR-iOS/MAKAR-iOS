@@ -78,7 +78,7 @@ class MakarNotiView: BaseView {
     func setMakarNotiView() {
         backgroundColor = .white
         layer.cornerRadius = 19
-        layer.shadowColor = UIColor.lightGray4.cgColor
+        layer.shadowColor = UIColor.lightGray5.cgColor
         layer.shadowOpacity = 0.35
         layer.shadowOffset = .zero
         layer.shadowRadius = 19

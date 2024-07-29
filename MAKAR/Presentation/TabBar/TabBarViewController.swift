@@ -11,14 +11,15 @@ class TabBarViewController: UITabBarController {
 
     // MARK: Constants
     private enum Metric {
-        static let tabBarHeight = 90
-        static let buttonHeight = 50
-        static let tabBarRadius = 15
+        static let tabBarHeight: CGFloat = 90.0
+        static let titleFontSize: CGFloat = 11.0
+        static let imageTopInset: CGFloat = 0.0
+        static let imageBottomInset: CGFloat = -4.0
+        static let titleVerticalOffset: CGFloat = 3.0
     }
 
     // MARK: UI Components
     let homeViewController = HomeViewController()
-    let timetableViewController = TimetableViewController()
     let myRouteViewController = MyRouteViewController()
     let notificationViewController = NotificationViewController()
     let myPageViewController = MyPageViewController()
@@ -27,7 +28,7 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupTabBar()
+        setupTabBarViewController()
         setupTabBarUI()
     }
 
@@ -36,70 +37,57 @@ class TabBarViewController: UITabBarController {
         super.viewDidLayoutSubviews()
 
         var tabFrame = tabBar.frame
-        tabFrame.size.height = CGFloat(Metric.tabBarHeight)
-        tabFrame.origin.y = view.frame.size.height - CGFloat(Metric.tabBarHeight)
+        tabFrame.size.height = Metric.tabBarHeight
+        tabFrame.origin.y = view.frame.size.height - Metric.tabBarHeight
         tabBar.frame = tabFrame
     }
 
     // MARK: TabBar
-    private func setupTabBar() {
+    private func setupTabBarViewController() {
         homeViewController.title = "홈"
-        timetableViewController.title = "시간표"
-        myRouteViewController.title = nil
+        myRouteViewController.title = "나의 경로"
         notificationViewController.title = "알림"
         myPageViewController.title = "MY"
-
-        homeViewController.tabBarItem.image = MakarButton.homeButton
-        timetableViewController.tabBarItem.image = MakarButton.timetableButton
-        myRouteViewController.tabBarItem.image = MakarButton.myRouteButton
-        notificationViewController.tabBarItem.image = MakarButton.notificationButton
-        myPageViewController.tabBarItem.image = MakarButton.myPageButton
-
-        homeViewController.tabBarItem.selectedImage = MakarButton.homeFilledButton
-        timetableViewController.tabBarItem.selectedImage = MakarButton.timetableFilledButton
-        myRouteViewController.tabBarItem.selectedImage = MakarButton.myRouteButton
-        notificationViewController.tabBarItem.selectedImage = MakarButton.notificationFilledButton
-        myPageViewController.tabBarItem.selectedImage = MakarButton.myPageFilledButton
-
-        homeViewController.navigationItem.largeTitleDisplayMode = .never
-        timetableViewController.navigationItem.largeTitleDisplayMode = .automatic
-        myRouteViewController.navigationItem.largeTitleDisplayMode = .automatic
-        notificationViewController.navigationItem.largeTitleDisplayMode = .automatic
-        myPageViewController.navigationItem.largeTitleDisplayMode = .automatic
+        
+        setupTabBarItem(for: homeViewController, image: MakarButton.homeButton, selectedImage: MakarButton.homeFilledButton)
+        setupTabBarItem(for: myRouteViewController, image: MakarButton.myRouteButton, selectedImage: MakarButton.myRouteButton)
+        setupTabBarItem(for: notificationViewController, image: MakarButton.notificationButton, selectedImage: MakarButton.notificationFilledButton)
+        setupTabBarItem(for: myPageViewController, image: MakarButton.myPageButton, selectedImage: MakarButton.myPageFilledButton)
 
         let navigationHome = UINavigationController(rootViewController: homeViewController)
-        let navigationTimetable = UINavigationController(rootViewController: timetableViewController)
         let navigationMyRoute = UINavigationController(rootViewController: myRouteViewController)
         let navigationNotification = UINavigationController(rootViewController: notificationViewController)
         let navigationMyPage = UINavigationController(rootViewController: myPageViewController)
 
         navigationHome.navigationBar.prefersLargeTitles = false
-        navigationTimetable.navigationBar.prefersLargeTitles = true
         navigationMyRoute.navigationBar.prefersLargeTitles = true
         navigationNotification.navigationBar.prefersLargeTitles = true
         navigationMyPage.navigationBar.prefersLargeTitles = true
 
         setViewControllers([navigationHome,
-                            navigationTimetable,
                             navigationMyRoute,
                             navigationNotification,
                             navigationMyPage], animated: false)
-
-        UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -4)
     }
-    
+
+    private func setupTabBarItem(for viewController: UIViewController, image: UIImage, selectedImage: UIImage) {
+        let tabBarItem = UITabBarItem(title: viewController.title, image: image, selectedImage: selectedImage)
+        tabBarItem.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: Metric.titleFontSize)], for: .normal)
+        tabBarItem.imageInsets = UIEdgeInsets(top: Metric.imageTopInset, left: 0, bottom: Metric.imageBottomInset, right: 0)
+        tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: Metric.titleVerticalOffset)
+        viewController.tabBarItem = tabBarItem
+    }
+
     private func setupTabBarUI() {
         tabBar.backgroundColor = .white
         tabBar.tintColor = .makarBlue
+        tabBar.unselectedItemTintColor = .lightGray4
 
-        tabBar.layer.cornerRadius = CGFloat(Metric.tabBarRadius)
-        tabBar.layer.borderColor = UIColor.lightGray5.cgColor
+        tabBar.layer.borderColor = UIColor.lightGray6.cgColor
         tabBar.layer.borderWidth = 1
 
-        tabBar.layer.masksToBounds = false
-        tabBar.layer.shadowColor = UIColor.darkGray.withAlphaComponent(0.2).cgColor
-        tabBar.layer.shadowOffset = .zero
-        tabBar.layer.shadowOpacity = 0.5
-        tabBar.layer.shadowRadius = CGFloat(Metric.tabBarRadius)
+        tabBar.backgroundImage = UIImage()
+        tabBar.shadowImage = UIImage()
+        tabBar.clipsToBounds = true
     }
 }

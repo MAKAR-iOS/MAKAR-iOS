@@ -14,6 +14,7 @@ class FavoriteStationViewController : BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationBar()
         
         view.backgroundColor = .background
     }
@@ -69,8 +70,7 @@ class FavoriteStationViewController : BaseViewController {
     }
     
     // MARK: NavigationBar
-    override func setNavigationBar(){
-        super.setNavigationBar()
+    private func setNavigationBar(){
         navigationItem.title = "자주 가는 역 설정"
     }
     

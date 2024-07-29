@@ -33,6 +33,7 @@ public enum MakarButton {
     public static var addButton: UIImage { .load(name: "ic_add") }
     public static var checkButton: UIImage { .load(name: "ic_check") }
     public static var deleteButton: UIImage { .load(name: "ic_delete") }
+    public static var dismissButton: UIImage { .load(name: "ic_back") }
     public static var homeButton: UIImage { .load(name: "ic_home") }
     public static var homeFilledButton: UIImage { .load(name: "ic_home_filled") }
     public static var mapButton: UIImage { .load(name: "ic_map") }
@@ -51,6 +52,8 @@ public enum MakarButton {
     public static var searchBarButton : UIImage {.load(name: "ic_search")}
     public static var timetableButton: UIImage { .load(name: "ic_timetable") }
     public static var timetableFilledButton: UIImage { .load(name: "ic_timetable_filled") }
+    public static var uncheckButton: UIImage { .load(name: "ic_uncheck") }
+
 }
 
 extension UIImage {
