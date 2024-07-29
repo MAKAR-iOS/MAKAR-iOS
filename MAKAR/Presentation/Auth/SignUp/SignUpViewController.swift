@@ -10,6 +10,10 @@ import UIKit
 class SignUpViewController: BaseViewController {
     
     // MARK: UI Components
+    private let scrollView = UIScrollView().then {
+        $0.delaysContentTouches = false
+    }
+
     private let signUpView = SignUpView()
 
     private let backButton = BaseButton().then {
@@ -32,7 +36,9 @@ class SignUpViewController: BaseViewController {
     override func configureSubviews() {
         super.configureSubviews()
 
-        view.addSubview(signUpView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(signUpView)
+//        view.addSubview(signUpView)
 
         signUpView.tapConfirmButton = { [weak self] in
             guard let self else { return }
@@ -50,9 +56,13 @@ class SignUpViewController: BaseViewController {
     override func makeConstraints() {
         super.makeConstraints()
 
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+
         signUpView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.top.bottom.equalTo(scrollView.safeAreaLayoutGuide)
+            $0.horizontalEdges.equalTo(scrollView.safeAreaLayoutGuide).inset(20)
         }
     }
 
