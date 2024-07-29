@@ -45,7 +45,6 @@ class SignInViewController: BaseViewController {
 
         signInView.tapSignUpButton = {[weak self] in
             guard let self else { return }
-            // TODO: transition
             router.presentSignUpViewController()
         }
 
