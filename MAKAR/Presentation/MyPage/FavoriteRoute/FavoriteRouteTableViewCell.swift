@@ -75,21 +75,15 @@ class FavoriteRouteTableViewCell : UITableViewCell {
         
         if(favoriteRouteStackView.subviews.isEmpty){
             //출발역
-            let routeLabel = FavoriteRouteTextView(lineName: data.sourceStation.stationName, lineNum: data.sourceStation.lineNum)
-            favoriteRouteStackView.addArrangedSubview(routeLabel)
-            
-            //중간역, 도착역
-            for route in data.subRouteList {
-                
-                let moreRightLabel = UILabel().then{
-                    $0.text = ">"
-                    $0.font = .systemFont(ofSize: 14, weight: .light)
-                }
-                favoriteRouteStackView.addArrangedSubview(moreRightLabel)
-                
-                let routeLabel = FavoriteRouteTextView(lineName: route.toStationName, lineNum: route.lineNum)
-                favoriteRouteStackView.addArrangedSubview(routeLabel)
+            let sourceStationLabel = FavoriteRouteTextView(lineName: data.sourceStation.stationName, lineNum: data.sourceStation.lineNum)
+            let destinationStationLabel = FavoriteRouteTextView(lineName: data.destinationStation.stationName, lineNum: data.destinationStation.lineNum)
+            let moreRightLabel = UILabel().then{
+                $0.text = ">"
+                $0.font = .systemFont(ofSize: 14, weight: .light)
             }
+            favoriteRouteStackView.addArrangedSubview(sourceStationLabel)
+            favoriteRouteStackView.addArrangedSubview(moreRightLabel)
+            favoriteRouteStackView.addArrangedSubview(destinationStationLabel)
         }
     }
     
