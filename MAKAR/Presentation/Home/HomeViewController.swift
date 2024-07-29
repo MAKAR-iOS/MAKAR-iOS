@@ -30,9 +30,9 @@ class HomeViewController: BaseViewController {
     let makarAlarmTime = 10 //임시 막차 알림 시간
     let hakarAlarmTime = 10 //임시 하차 알림 시간
     
-    // TODO: dummylist
-    static var favoriteRouteList : [RouteData] = RouteData.favoriteRouteList
-    var recentRouteList : [RouteData] = RouteData.recentRouteList
+    // TODO: 최근 경로 리스트, 즐겨찾는 경로 리스트 조회 API 연결
+    static var favoriteRouteList : [Route] = Route.favoriteRouteList
+    var recentRouteList : [Route] = Route.recentRouteList
     
     // MARK: UI Components
     private let homeView = HomeView()
@@ -168,6 +168,7 @@ class HomeViewController: BaseViewController {
     }
     
     // MARK: NavigationBar
+
     private func setNavigationBar(){
         //TODO: NavigationBar MAKAR icon custom 필요
         
@@ -185,6 +186,7 @@ class HomeViewController: BaseViewController {
         DispatchQueue.global(qos: .background).async {
             let runLoop = RunLoop.current
             
+            // TODO: Noti List 도입 및 플래그 수정
             Timer.scheduledTimer(withTimeInterval: 10, repeats: true){ _ in
                 if(HomeViewController.isRouteSet){
                     //막차까지 남은 시간 계산
@@ -324,7 +326,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
             //최근경로 삭제
             cell.tapDeleteRecentRouteButton = {[weak self] in
                 guard let self else { return }
-                
+                // TODO: 최근 경로 편집 API 연결
                 self.recentRouteList.remove(at: indexPath.row)
                 recentRouteCollectionView.reloadData()
             }
@@ -346,7 +348,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     // TODO: simplify
-    private func calculateCellWidth(for data: RouteData, cell: UICollectionViewCell) -> CGFloat {
+    private func calculateCellWidth(for data: Route, cell: UICollectionViewCell) -> CGFloat {
         if let favoriteCell = cell as? FavoriteRouteCollectionViewCell {
             favoriteCell.setData(data: data)
             favoriteCell.setNeedsLayout()
@@ -366,7 +368,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let data : RouteData
+        let data : Route
         if(collectionView == favoriteRouteCollectionView){
             data = HomeViewController.favoriteRouteList[indexPath.row]
         } else {
@@ -375,7 +377,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         //searchBar Text 수정
         let sourceText = "\(data.sourceStation.stationName) \(data.sourceStation.lineNum)"
         let destinationText = "\(data.destinationStation.stationName) \(data.destinationStation.lineNum)"
-        
+        // TODO: 경로 리스트 검색 API 연결
         let searchRouteVC = SearchRouteViewController()
         searchRouteVC.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)
         self.navigationController?.pushViewController(searchRouteVC, animated: true)

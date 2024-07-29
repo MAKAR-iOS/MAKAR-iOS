@@ -45,13 +45,13 @@ class SearchRouteProgressView : UIStackView {
         }
     }
     
-    func setData(subRouteItemList : [SubRouteItem]){
+    func setData(subRouteList : [SubRoute]){
         lineNumColor.addLineNum()
         
-        for subroute in subRouteItemList {
-            let lineNum = subroute.subRoute.lineNum
-            let totalTime = subroute.subRoute.sectionTime
-            let transferTime = subroute.transferInfo.transferTime
+        for subroute in subRouteList {
+            let lineNum = subroute.lineNum
+            let totalTime = subroute.sectionTime
+            let transferTime = subroute.transferTime
             
             let lineProgressView = progressView(color: lineNumColor.lineNumColorMap[lineNum]!, text: "\(totalTime)분")
             self.addArrangedSubview(lineProgressView)

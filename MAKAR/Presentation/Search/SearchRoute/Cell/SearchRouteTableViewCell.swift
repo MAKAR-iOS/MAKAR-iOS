@@ -100,27 +100,25 @@ class SearchRouteTableViewCell : UITableViewCell {
         }
     }
     
-    func setData(data : RouteData) {
-        //TODO: data 설정 수정
+    func setData(data : Route) {
         lineNumImage.addLineNum()
-        let startTime = changeDateFormat(date: data.makarTime)
-        let endTime = changeDateFormat(date: data.hakarTime)
+        let startTime = changeDateFormat(date: data.sourceTime)
+        let endTime = changeDateFormat(date: data.destinationTime)
         
         totalTimeLabel.text = "\(data.totalTime)분"
         routeTimeLabel.text = "\(startTime) 출발 | \(endTime) 도착"
-        leftTimeLabel.text = "\(checkLeftTime(targetDate: data.makarTime))분 후 막차"
+        leftTimeLabel.text = "\(checkLeftTime(targetDate: data.sourceTime))분 후 막차"
         if(routeProgressView.subviews.isEmpty){
-            routeProgressView.setData(subRouteItemList: data.subRouteItemList)
+            routeProgressView.setData(subRouteList: data.subRouteList)
         }
         
         if(routeStackView.subviews.isEmpty){
-            //TODO: SUBROUTE 수정
             //출발역
             let routeLabel = SubRouteTextView(lineName: data.sourceStation.stationName, lineNum: data.sourceStation.lineNum)
             routeStackView.addArrangedSubview(routeLabel)
             //중간역, 도착역
-            for route in data.subRouteItemList {
-                let routeLabel = SubRouteTextView(lineName: route.subRoute.endStationName, lineNum: route.subRoute.lineNum)
+            for route in data.subRouteList {
+                let routeLabel = SubRouteTextView(lineName: route.toStationName, lineNum: route.lineNum)
                 routeStackView.addArrangedSubview(routeLabel)
             }
         }

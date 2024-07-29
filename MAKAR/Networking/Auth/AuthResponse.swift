@@ -22,4 +22,5 @@ struct AuthData: Codable {
 struct AuthToken: Codable {
     let token: String
     let expiredIn: Int
+>>>>>>> develop
 }

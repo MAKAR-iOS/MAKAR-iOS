@@ -10,8 +10,9 @@ class FavoriteRouteViewController : BaseViewController {
     
     // MARK: UI Components
     let favoriteRouteTableView = UITableView(frame: .zero, style: .plain)
-    // TODO: 최근경로 리스트 데이터 수정
-    var favoriteRouteList : [RouteData] = RouteData.favoriteRouteList
+    
+    // TODO: 최근 경로 리스트 조회 API 연결
+    var favoriteRouteList : [Route] = Route.favoriteRouteList
 
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -53,7 +54,7 @@ extension FavoriteRouteViewController : UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let data : RouteData = favoriteRouteList[indexPath.row]
+        let data : Route = favoriteRouteList[indexPath.row]
         //searchBar Text 수정
         let sourceText = data.sourceStation.stationName + " " + data.sourceStation.lineNum
         let destinationText = data.destinationStation.stationName + " " + data.destinationStation.lineNum

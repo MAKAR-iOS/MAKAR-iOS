@@ -50,8 +50,7 @@ class MyPageViewController: BaseViewController {
     // MARK: NavigationBar
     private func setNavigationBar(){
         navigationItem.title = "마이페이지"
-        //TODO: 타이틀 크기 논의 필요
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
 }
 
