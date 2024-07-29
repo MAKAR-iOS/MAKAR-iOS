@@ -39,6 +39,15 @@ class SignUpView: BaseView {
         $0.signUpTextFieldType = .checkPassword
     }
 
+    private let emailLabel = UILabel().then {
+        $0.setSignUpLabel("이메일")
+    }
+
+    private let emailTextField = SignUpTextField().then {
+        $0.setPlaceholder("사용하실 이메일을 입력해주세요.")
+        $0.signUpTextFieldType = .email
+    }
+
     private let nickNameLabel = UILabel().then {
         $0.setSignUpLabel("닉네임")
     }
@@ -62,6 +71,10 @@ class SignUpView: BaseView {
     }
 
     private let checkPasswordStackView = UIStackView().then {
+        $0.setSignUpStackView()
+    }
+
+    private let emailStackView = UIStackView().then {
         $0.setSignUpStackView()
     }
 
@@ -90,11 +103,13 @@ class SignUpView: BaseView {
         signUpStackView.addArrangedSubviews(idStackView,
                                             passwordStackView,
                                             checkPasswordStackView,
+                                            emailStackView,
                                             nickNameStackView)
 
         idStackView.addArrangedSubviews(idLabel, idTextField)
         passwordStackView.addArrangedSubviews(passwordLabel, passwordTextField)
         checkPasswordStackView.addArrangedSubviews(checkPasswordLabel, checkPasswordTextField)
+        emailStackView.addArrangedSubviews(emailLabel, emailTextField)
         nickNameStackView.addArrangedSubviews(nickNameLabel, nickNameTextField)
 
         confirmButton.addTarget(self, action: #selector(handleConfirmEvent), for: .touchUpInside)
@@ -107,7 +122,7 @@ class SignUpView: BaseView {
         signUpStackView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide).inset(28)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(360)
+            $0.height.equalTo(460)
         }
 
         idStackView.snp.makeConstraints {
@@ -121,6 +136,11 @@ class SignUpView: BaseView {
         }
 
         checkPasswordStackView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(60)
+        }
+
+        emailStackView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(60)
         }
@@ -176,6 +196,10 @@ extension SignUpView {
             self?.setConfirmButtonEnabled()
         }
 
+        emailTextField.onStateChanged = { [weak self] in
+            self?.setConfirmButtonEnabled()
+        }
+
         nickNameTextField.onStateChanged = { [weak self] in
             self?.setConfirmButtonEnabled()
         }
@@ -186,6 +210,7 @@ extension SignUpView {
             idTextField.checkImageView.isHidden == false,
             passwordTextField.checkImageView.isHidden == false,
             checkPasswordTextField.checkImageView.isHidden == false,
+            emailTextField.checkImageView.isHidden == false,
             nickNameTextField.checkImageView.isHidden == false
         ].allSatisfy { $0 }
 
