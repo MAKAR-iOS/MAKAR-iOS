@@ -23,8 +23,8 @@ class HomeViewController: BaseViewController {
     var hakarNotiFlag = false //하차 알림 실행 유무 플래그
     var isMakarTaken = false //막차 측정/하차 측정 구분 플래그
     
-    static let makarDateComponents = DateComponents(year: 2024, month: 1, day: 10, hour: 22, minute: 56)
-    static let hakarDateComponents = DateComponents(year: 2024, month: 1, day: 10, hour: 22, minute: 58)
+    static let makarDateComponents = DateComponents(year: 2024, month: 7, day: 30, hour: 02, minute: 45)
+    static let hakarDateComponents = DateComponents(year: 2024, month: 7, day: 30, hour: 02, minute: 47)
     let makarTime = Calendar.current.date(from: makarDateComponents)!//임시 막차 시간
     let hakarTime = Calendar.current.date(from: hakarDateComponents)!//임시 하차 시간
     let makarAlarmTime = 10 //임시 막차 알림 시간
@@ -174,7 +174,6 @@ class HomeViewController: BaseViewController {
         
         navigationItem.title = nil
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: MakarButton.mapButton, style: .plain, target: self, action: #selector(handleMapButtonClickEvent))
-        //        navigationItem.leftBarButtonItem = UIBarButtonItem(image: MakarImage.makarLogo, style: .plain, target: nil, action: nil)
     }
     
     @objc private func handleMapButtonClickEvent(){
@@ -245,28 +244,34 @@ class HomeViewController: BaseViewController {
     // MARK: ChangeComponent
     private func changeComponent(){
         DispatchQueue.main.async {
-            if(HomeViewController.isRouteSet){
-                if(!self.isMakarTaken){
-                    self.changeMainTitleText(target: "막차", minute: self.makarLeftTime)
-                    self.homeView.changeMainDestinationText(destinationText: "Source")
-                }
-                else{
-                    self.changeMainTitleText(target: "하차", minute: self.hakarLeftTime)
-                    self.homeView.changeMainDestinationText(destinationText: "Destination")
-                }
-                self.homeView.changeComponentRouteSet()
-                self.favoriteRouteCollectionView.isHidden = true
-                self.recentRouteCollectionView.isHidden = true
-                print("changeComponent: RouteSet")
-            }
-            else{
-                self.homeView.changeComponentRouteUnset()
-                self.favoriteRouteCollectionView.isHidden = false
-                self.recentRouteCollectionView.isHidden = false
-                print("changeComponent: RouteUnset")
+            if HomeViewController.isRouteSet {
+                self.updateRouteSetUI()
+            } else {
+                self.updateRouteUnsetUI()
             }
         }
     }
+    
+    
+    private func updateRouteSetUI() {
+        if !self.isMakarTaken {
+            self.changeMainTitleText(target: "막차", minute: self.makarLeftTime)
+            self.homeView.changeMainDestinationText(destinationText: "Source")
+        } else {
+            self.changeMainTitleText(target: "하차", minute: self.hakarLeftTime)
+            self.homeView.changeMainDestinationText(destinationText: "Destination")
+        }
+        self.homeView.changeComponentRouteSet()
+        print("changeComponent: RouteSet")
+    }
+
+    
+    private func updateRouteUnsetUI() {
+        self.homeView.changeComponentRouteUnset()
+        self.homeView.changeMainDestinationText(destinationText: "MAKAR")
+        print("changeComponent: RouteUnset")
+    }
+
     
     private func changeMainTitleText(target: String, minute : Int){
         DispatchQueue.main.async {
