@@ -11,7 +11,7 @@ enum CharacterLimitType {
     case id
     case password
     case checkPassword
-    case nickName
+    case username
     case email
 }
 
@@ -22,7 +22,7 @@ class SignUpTextField: BaseView {
     var signUpTextFieldType: CharacterLimitType = .id
 
     var validId: Bool = false
-    var validNickName: Bool = false
+    var validUsername: Bool = false
     var validEmail: Bool = false
 
     var onPasswordChanged: (() -> Void)?
@@ -196,9 +196,9 @@ extension SignUpTextField: UITextFieldDelegate {
             } else {
                 setCheckImageView(true)
             }
-        case .nickName:
-            checkValidNickName()
-            if validNickName && updatedText.count > 0 {
+        case .username:
+            checkValidUsername()
+            if validUsername && updatedText.count > 0 {
                 setCheckImageView(false)
                 setWarningLabelHidden(true, "")
             } else {
@@ -226,12 +226,12 @@ extension SignUpTextField {
 //        validId = false
     }
 
-    // TODO: checkValidNickName
-    func checkValidNickName() {
+    // TODO: checkValidUsername
+    func checkValidUsername() {
         // if true
-        validNickName = true
+        validUsername = true
         // if false
-//        validNickName = false
+//        validUsername = false
     }
 
     func checkValidEmail() {
