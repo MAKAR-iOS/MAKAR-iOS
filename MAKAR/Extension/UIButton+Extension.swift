@@ -22,7 +22,7 @@ extension UIButton {
 
     func setUnabledButton() {
         setTitleColor(UIColor.white, for: .normal)
-        backgroundColor = .lightGray4
+        backgroundColor = .lightGray5
         isEnabled = false
     }
 

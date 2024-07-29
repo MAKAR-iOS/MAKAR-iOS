@@ -28,7 +28,7 @@ class SignUpTextField: BaseView {
     let signUpTextField = UITextField()
 
     private let underlineView = UIView().then {
-        $0.backgroundColor = .lightGray4
+        $0.backgroundColor = .lightGray5
     }
 
     private let uncheckImageView = UIImageView().then {
@@ -133,7 +133,7 @@ extension SignUpTextField: UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.1) {
-            self.underlineView.backgroundColor = .lightGray4
+            self.underlineView.backgroundColor = .lightGray5
         }
     }
 

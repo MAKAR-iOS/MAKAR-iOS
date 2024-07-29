@@ -20,7 +20,7 @@ class NotificationViewController: BaseViewController {
     private let makarNotiView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 19
-        $0.layer.shadowColor = UIColor.lightGray4.cgColor
+        $0.layer.shadowColor = UIColor.lightGray5.cgColor
         $0.layer.shadowOpacity = 0.35
         $0.layer.shadowOffset = .zero
         $0.layer.shadowRadius = 19
@@ -63,7 +63,7 @@ class NotificationViewController: BaseViewController {
     private let getOffNotiView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 19
-        $0.layer.shadowColor = UIColor.lightGray4.cgColor
+        $0.layer.shadowColor = UIColor.lightGray5.cgColor
         $0.layer.shadowOpacity = 0.35
         $0.layer.shadowOffset = .zero
         $0.layer.shadowRadius = 19

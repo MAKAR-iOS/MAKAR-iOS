@@ -51,7 +51,7 @@ class FavoriteRouteCollectionViewCell : UICollectionViewCell {
         self.layer.cornerRadius = 10
         self.backgroundColor = .white
         self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.lightGray4.cgColor
+        self.layer.borderColor = UIColor.lightGray5.cgColor
     }
     
     func configureSubviews() {

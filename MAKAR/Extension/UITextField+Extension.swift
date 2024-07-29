@@ -11,7 +11,7 @@ extension UITextField {
     func setSignInTextField(_ inputPlaceholder: String) {
         placeholder = inputPlaceholder
         backgroundColor = .white
-        layer.borderColor = UIColor.lightGray4.cgColor
+        layer.borderColor = UIColor.lightGray5.cgColor
         layer.borderWidth = Metric.textFieldBorderWidth
         layer.cornerRadius = Metric.textFieldRadius
         textColor = .black
