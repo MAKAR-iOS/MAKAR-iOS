@@ -63,6 +63,14 @@
 		957F3CE32C524B9800EA0AD2 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3CDE2C524B9800EA0AD2 /* UITextField+Extension.swift */; };
 		957F3CE52C524C4C00EA0AD2 /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3CE42C524C4C00EA0AD2 /* Metric.swift */; };
 		957F3CED2C53588100EA0AD2 /* SignUpTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3CEC2C53588100EA0AD2 /* SignUpTextField.swift */; };
+		957F3D0C2C5792FD00EA0AD2 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D0B2C5792FD00EA0AD2 /* ErrorResponse.swift */; };
+		957F3D0E2C57930600EA0AD2 /* BlankDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D0D2C57930600EA0AD2 /* BlankDataResponse.swift */; };
+		957F3D102C57931300EA0AD2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D0F2C57931300EA0AD2 /* NetworkService.swift */; };
+		957F3D122C57932300EA0AD2 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D112C57932300EA0AD2 /* NetworkResult.swift */; };
+		957F3D142C57932C00EA0AD2 /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D132C57932C00EA0AD2 /* NetworkLoggerPlugin.swift */; };
+		957F3D172C57952200EA0AD2 /* URLConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D162C57952200EA0AD2 /* URLConst.swift */; };
+		957F3D1E2C57970000EA0AD2 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D1D2C57970000EA0AD2 /* UserDefault.swift */; };
+		957F3D202C57970700EA0AD2 /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D1F2C57970700EA0AD2 /* UserDefaultHandler.swift */; };
 		95A5D9DD2B58B4F8000A2A72 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 95A5D9DC2B58B4F8000A2A72 /* Toast */; };
 		95B10F7C2B331350005319F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7B2B331350005319F6 /* AppDelegate.swift */; };
 		95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7D2B331350005319F6 /* SceneDelegate.swift */; };
@@ -152,6 +160,14 @@
 		957F3CDE2C524B9800EA0AD2 /* UITextField+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		957F3CE42C524C4C00EA0AD2 /* Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metric.swift; sourceTree = "<group>"; };
 		957F3CEC2C53588100EA0AD2 /* SignUpTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTextField.swift; sourceTree = "<group>"; };
+		957F3D0B2C5792FD00EA0AD2 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		957F3D0D2C57930600EA0AD2 /* BlankDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankDataResponse.swift; sourceTree = "<group>"; };
+		957F3D0F2C57931300EA0AD2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		957F3D112C57932300EA0AD2 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		957F3D132C57932C00EA0AD2 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
+		957F3D162C57952200EA0AD2 /* URLConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConst.swift; sourceTree = "<group>"; };
+		957F3D1D2C57970000EA0AD2 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		957F3D1F2C57970700EA0AD2 /* UserDefaultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHandler.swift; sourceTree = "<group>"; };
 		95B10F782B331350005319F6 /* MAKAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAKAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B10F7B2B331350005319F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B10F7D2B331350005319F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -381,6 +397,51 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		957F3D182C57958600EA0AD2 /* EtcResponse */ = {
+			isa = PBXGroup;
+			children = (
+				957F3D0B2C5792FD00EA0AD2 /* ErrorResponse.swift */,
+				957F3D0D2C57930600EA0AD2 /* BlankDataResponse.swift */,
+			);
+			path = EtcResponse;
+			sourceTree = "<group>";
+		};
+		957F3D192C5795A600EA0AD2 /* LoggerPlugin */ = {
+			isa = PBXGroup;
+			children = (
+				957F3D132C57932C00EA0AD2 /* NetworkLoggerPlugin.swift */,
+			);
+			path = LoggerPlugin;
+			sourceTree = "<group>";
+		};
+		957F3D1A2C57961300EA0AD2 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				95B10F972B331534005319F6 /* RequestProvider.swift */,
+				957F3D112C57932300EA0AD2 /* NetworkResult.swift */,
+				957F3D0F2C57931300EA0AD2 /* NetworkService.swift */,
+				957F3D162C57952200EA0AD2 /* URLConst.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		957F3D1B2C57962000EA0AD2 /* TargetType */ = {
+			isa = PBXGroup;
+			children = (
+				95B10F992B331545005319F6 /* TargetType+Extension.swift */,
+			);
+			path = TargetType;
+			sourceTree = "<group>";
+		};
+		957F3D1C2C5796F600EA0AD2 /* UserDefault */ = {
+			isa = PBXGroup;
+			children = (
+				957F3D1D2C57970000EA0AD2 /* UserDefault.swift */,
+				957F3D1F2C57970700EA0AD2 /* UserDefaultHandler.swift */,
+			);
+			path = UserDefault;
+			sourceTree = "<group>";
+		};
 		95B10F6F2B331350005319F6 = {
 			isa = PBXGroup;
 			children = (
@@ -431,8 +492,10 @@
 			isa = PBXGroup;
 			children = (
 				95B10F922B3314F2005319F6 /* Example */,
-				95B10F972B331534005319F6 /* RequestProvider.swift */,
-				95B10F992B331545005319F6 /* TargetType+Extension.swift */,
+				957F3D182C57958600EA0AD2 /* EtcResponse */,
+				957F3D192C5795A600EA0AD2 /* LoggerPlugin */,
+				957F3D1A2C57961300EA0AD2 /* Network */,
+				957F3D1B2C57962000EA0AD2 /* TargetType */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -449,6 +512,7 @@
 		95B10F9B2B331550005319F6 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				957F3D1C2C5796F600EA0AD2 /* UserDefault */,
 				95B10F7B2B331350005319F6 /* AppDelegate.swift */,
 				95B10F7D2B331350005319F6 /* SceneDelegate.swift */,
 				95B10FAC2B33165C005319F6 /* AppDependency.swift */,
@@ -647,6 +711,7 @@
 				95C3F9442C4F752A001CEF8A /* SignInView.swift in Sources */,
 				26150E152B59525900E5059D /* TransferInfo.swift in Sources */,
 				95C3F9482C4F7541001CEF8A /* SignUpView.swift in Sources */,
+				957F3D172C57952200EA0AD2 /* URLConst.swift in Sources */,
 				957F3CE02C524B9800EA0AD2 /* UILabel+Extension.swift in Sources */,
 				26A0EF3C2B5D58CE003E11D6 /* FavoriteRouteTextView.swift in Sources */,
 				267065262B3C997200F19EC3 /* FavoriteStationView.swift in Sources */,
@@ -658,15 +723,18 @@
 				956382C32B3975B7006B50ED /* NotificationViewController.swift in Sources */,
 				2670652C2B3CA6B100F19EC3 /* HomeSearchStationView.swift in Sources */,
 				2647CE892B500F35001208BE /* FavoriteRouteTableViewCell.swift in Sources */,
+				957F3D142C57932C00EA0AD2 /* NetworkLoggerPlugin.swift in Sources */,
 				95B10FA92B3315EB005319F6 /* BaseView.swift in Sources */,
 				95B10F9A2B331545005319F6 /* TargetType+Extension.swift in Sources */,
 				956382F42B398AEB006B50ED /* UIColor+Extension.swift in Sources */,
 				95B10F942B331501005319F6 /* ExampleAPI.swift in Sources */,
 				956382E92B397A66006B50ED /* SearchRouteViewController.swift in Sources */,
 				95C3F94C2C4F776B001CEF8A /* (null) in Sources */,
+				957F3D1E2C57970000EA0AD2 /* UserDefault.swift in Sources */,
 				267065322B3CA70200F19EC3 /* SchoolSearchStationViewController.swift in Sources */,
 				956382BD2B3975A1006B50ED /* TimetableView.swift in Sources */,
 				95B10FAD2B33165C005319F6 /* AppDependency.swift in Sources */,
+				957F3D0E2C57930600EA0AD2 /* BlankDataResponse.swift in Sources */,
 				26A0EF3A2B5D2D2C003E11D6 /* ProgressView.swift in Sources */,
 				95D0043B2B4BE220009D4DF3 /* MakarTableViewCell.swift in Sources */,
 				956382FA2B39A43E006B50ED /* BaseRouter.swift in Sources */,
@@ -677,8 +745,10 @@
 				957F3CE22C524B9800EA0AD2 /* UIView+Extension.swift in Sources */,
 				26E664792B3C4D0A002579C1 /* DestinationSearchStationViewController.swift in Sources */,
 				956382D52B397968006B50ED /* MyRouteView.swift in Sources */,
+				957F3D202C57970700EA0AD2 /* UserDefaultHandler.swift in Sources */,
 				956382B02B397570006B50ED /* SplashViewController.swift in Sources */,
 				956382D72B397971006B50ED /* MyRouteViewController.swift in Sources */,
+				957F3D0C2C5792FD00EA0AD2 /* ErrorResponse.swift in Sources */,
 				267065282B3C998A00F19EC3 /* FavoriteStationViewController.swift in Sources */,
 				956382DE2B397A0E006B50ED /* HomeViewController.swift in Sources */,
 				957F3CE52C524C4C00EA0AD2 /* Metric.swift in Sources */,
@@ -688,10 +758,12 @@
 				956382C52B3975BE006B50ED /* MyPageView.swift in Sources */,
 				956382E32B397A43006B50ED /* BaseSearchStationView.swift in Sources */,
 				26150E0F2B59433700E5059D /* Station.swift in Sources */,
+				957F3D102C57931300EA0AD2 /* NetworkService.swift in Sources */,
 				2698646F2B3DC77F003FE9FB /* LineNumMap.swift in Sources */,
 				95B10F962B331519005319F6 /* ExampleRequest.swift in Sources */,
 				957F3CDF2C524B9800EA0AD2 /* UIStackView+Extension.swift in Sources */,
 				26EFA29D2B4D9D9B003678C0 /* RouteData.swift in Sources */,
+				957F3D122C57932300EA0AD2 /* NetworkResult.swift in Sources */,
 				95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */,
 				26150E172B5952D700E5059D /* SubRouteItem.swift in Sources */,
 				2647CE822B500677001208BE /* FavoriteRouteViewController.swift in Sources */,
