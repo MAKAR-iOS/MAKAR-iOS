@@ -12,17 +12,17 @@ enum URLConst {
     // MARK: - AppInfoURL
     
     // MARK: - Auth
-    static let signIn = "/auth/sign-in"
-    static let signUp = "/auth/sign-up"
+    static let signIn = "/api/v1/auth/sign-in"
+    static let signUp = "/api/v1/auth/sign-up"
 
     // MARK: - Route
     static let route = "/api/v1/route"
     static let routeSet = "/api/v1/route/set"
 
     // MARK: - Noti
-    static let makar = "/noti/makar"
-    static let getoff = "/noti/getoff"
-    static let noti = "/noti"
+    static let makar = "/api/v1/noti/makar"
+    static let getoff = "/api/v1/noti/getoff"
+    static let noti = "/api/v1/noti"
 
     // MARK: - Station
     static let favoriteSchool = "/api/v1/station/favorite/school"
