@@ -127,19 +127,19 @@ class RecentRouteCollectionViewCell : UICollectionViewCell {
         recentRouteDateLabel.text = data.date
         
         //출발역 호선 이미지
-        if let sourceLineImg = lineNumImage.lineNumMap[data.sourceStation.lineNum] {
-            sourceLineNumImageView.image =  sourceLineImg
-        } else {
-            sourceLineNumImageView.image = MakarImage.line0
-        }
-        
+        setLineImage(for: sourceLineNumImageView, with: data.sourceStation.lineNum)
+
         //도착역 호선 이미지
-        if let destinationLineImg = lineNumImage.lineNumMap[data.destinationStation.lineNum] {
-            destinationLineNumImageView.image = destinationLineImg
-        } else {
-            destinationLineNumImageView.image = MakarImage.line0
-        }
+        setLineImage(for: destinationLineNumImageView, with: data.destinationStation.lineNum)
      }
+    
+    private func setLineImage(for imageView: UIImageView, with lineNum: String) {
+        if let lineImg = lineNumImage.lineNumMap[lineNum] {
+            imageView.image = lineImg
+        } else {
+            imageView.image = MakarImage.line0
+        }
+    }
     
     // MARK: Event
     @objc func handleDeleteRecentRouteButton(){
