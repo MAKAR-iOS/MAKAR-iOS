@@ -89,6 +89,10 @@ class SignUpView: BaseView {
 
     // MARK: Properties
     var tapConfirmButton: (() -> Void)?
+    var id: String? { return idTextField.signUpTextField.text }
+    var password: String? { return passwordTextField.signUpTextField.text }
+    var email: String? { return emailTextField.signUpTextField.text }
+    var username: String? { return usernameTextField.signUpTextField.text }
 
     // MARK: Configuration
     override func configureSubviews() {
