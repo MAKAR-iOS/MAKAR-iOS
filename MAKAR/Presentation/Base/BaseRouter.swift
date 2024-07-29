@@ -15,8 +15,7 @@ final class BaseRouter {
     // MARK: Routing
     func presentSignInViewController() {
         let signInViewController = SignInViewController()
-        signInViewController.modalPresentationStyle = .fullScreen
-        viewController?.present(signInViewController, animated: true)
+        viewController?.navigationController?.pushViewController(signInViewController, animated: true)
     }
 
     func presentSignUpViewController() {

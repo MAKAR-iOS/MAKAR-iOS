@@ -12,6 +12,10 @@ class SignInViewController: BaseViewController {
     // MARK: UI Components
     private let signInView = SignInView()
 
+    private let dismissButton = BaseButton().then {
+        $0.setImage(MakarButton.deleteButton, for: .normal)
+    }
+
     // MARK: Environment
     private let router = BaseRouter()
 
@@ -39,9 +43,10 @@ class SignInViewController: BaseViewController {
             router.presentSignUpViewController()
         }
 
-        signInView.tapDismissButton = { [weak self] in
-            guard let self else { return }
-            router.dismissViewController()
+        dismissButton.tap = { [weak self] in
+            guard let self else {
+                return }
+            router.popViewController()
         }
     }
 
@@ -52,6 +57,12 @@ class SignInViewController: BaseViewController {
         signInView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+
+    // MARK: Set Navigation
+    override func setNavigationItem() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: dismissButton)
+        navigationItem.hidesBackButton = true
     }
 }
 
