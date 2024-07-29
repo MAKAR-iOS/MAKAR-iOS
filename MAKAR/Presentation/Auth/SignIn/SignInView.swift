@@ -42,14 +42,9 @@ class SignInView: BaseView {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
     }
 
-    private let dismissButton = BaseButton().then {
-        $0.setImage(MakarButton.deleteButton, for: .normal)
-    }
-
     // MARK: Properties
     var tapSignInButton: (() -> Void)?
     var tapSignUpButton: (() -> Void)?
-    var tapDismissButton: (() -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -62,14 +57,12 @@ class SignInView: BaseView {
         addSubview(passwordTextField)
         addSubview(signInButton)
         addSubview(signUpButton)
-        addSubview(dismissButton)
 
         idTextField.addTarget(self, action: #selector(checkTextFieldChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(checkTextFieldChange), for: .editingChanged)
 
         signInButton.addTarget(self, action: #selector(handleSignInEvent), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(handleSignUpEvent), for: .touchUpInside)
-        dismissButton.addTarget(self, action: #selector(handleDismissEvent), for: .touchUpInside)
     }
 
     // MARK: Layout
@@ -110,11 +103,6 @@ class SignInView: BaseView {
             $0.top.equalTo(signInButton.snp.bottom).offset(21)
             $0.centerX.equalToSuperview()
         }
-
-        dismissButton.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(73)
-            $0.trailing.equalToSuperview().inset(25)
-        }
     }
 
     // MARK: Event
@@ -135,9 +123,5 @@ class SignInView: BaseView {
 
     @objc private func handleSignUpEvent() {
         tapSignUpButton?()
-    }
-
-    @objc private func handleDismissEvent() {
-        tapDismissButton?()
     }
 }
