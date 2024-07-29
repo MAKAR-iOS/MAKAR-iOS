@@ -151,7 +151,7 @@ class SignUpView: BaseView {
         }
 
         confirmButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(57)
+            $0.bottom.equalTo(safeAreaLayoutGuide).inset(30)
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(Metric.buttonHeight)
         }
