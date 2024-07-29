@@ -2,7 +2,7 @@
 //  StationAPI.swift
 //  MAKAR
 //
-//  Created by 박지윤 on 7/29/24.
+//  Created by 김다은 on 7/29/24.
 //
 
 import Foundation

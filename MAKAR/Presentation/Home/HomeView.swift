@@ -250,7 +250,7 @@ class HomeView: BaseView {
     
     // MARK: ChangeComponent
     func changeComponentRouteSet(){
-        mainRouteView.text = "Source   ->  Destination"
+        mainRouteView.text = "Source   →   Destination"
         resetRouteButton.isHidden = false
         setRouteButton.isHidden = true
         changeRouteButton.isHidden = false
@@ -269,7 +269,7 @@ class HomeView: BaseView {
     
     func changeComponentRouteUnset(){
         mainTitleText.text = "경로를 설정해주세요"
-        mainRouteView.text = "출발역   ->  도착역"
+        mainRouteView.text = "출발역   →   도착역"
         mainDestinationText.text = "MAKAR"
         resetRouteButton.isHidden = true
         setRouteButton.isHidden = false
