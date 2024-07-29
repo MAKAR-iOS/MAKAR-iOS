@@ -34,7 +34,13 @@ class SignInViewController: BaseViewController {
 
         signInView.tapSignInButton = {[weak self] in
             guard let self else { return }
-            postSignIn()
+            guard let id = signInView.id,
+                  let password = signInView.password
+            else {
+                presentSignInErrAlert()
+                return
+            }
+            postSignIn(id: id, password: password)
         }
 
         signInView.tapSignUpButton = {[weak self] in
@@ -68,17 +74,42 @@ class SignInViewController: BaseViewController {
 
 extension SignInViewController {
     // MARK: Network
-    // TODO: SignIn
-    private func postSignIn() {
-        // if success
-        router.presentTabBarViewController()
-        // else
-//        presentAlert(
-//            title: "로그인 실패",
-//            message: "로그인 할 수 없습니다.",
-//            cancelButton: "확인",
-//            style: .default,
-//            handler: nil
-//        )
+    private func postSignIn(id: String, password: String) {
+        print("🚇 postSignIn called")
+        NetworkService.shared.auth.postSignIn(
+            id: id,
+            password: password
+        ) { result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? AuthResponse else { return }
+                print("🎯 postSignIn success: " + "\(data)")
+                self.router.presentTabBarViewController()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+                self.presentSignInErrAlert()
+            case .serverErr:
+                print("serverErr")
+                self.presentSignInErrAlert()
+            case .networkFail:
+                print("networkFail")
+                self.presentSignInErrAlert()
+            case .pathErr:
+                print("pathErr")
+                self.presentSignInErrAlert()
+            }
+        }
+    }
+
+    private func presentSignInErrAlert() {
+        presentAlert(
+            title: "로그인 실패",
+            message: "로그인 할 수 없습니다.",
+            cancelButton: "확인",
+            style: .default,
+            handler: nil
+        )
     }
 }
