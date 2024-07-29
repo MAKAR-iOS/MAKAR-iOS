@@ -25,7 +25,7 @@ public enum MakarImage {
     public static var lineA: UIImage { .load(name: "ic_lineA")}
     public static var lineK: UIImage { .load(name: "ic_lineK")}
     public static var last: UIImage { .load(name: "ic_last")}
-    public static var walk: UIImage { .load(name: "walk")}
+    public static var walk: UIImage { .load(name: "ic_walk")}
     public static var profile: UIImage { .load(name: "profile")}
 }
 
