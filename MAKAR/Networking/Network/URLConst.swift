@@ -7,7 +7,7 @@
 
 enum URLConst {
     // MARK: - baseURL
-    static let base = "43.203.204.238:8080"
+    static let base = "http://43.203.204.238:8080"
     
     // MARK: - AppInfoURL
     
