@@ -103,8 +103,6 @@ class SourceSearchStationViewController : BaseSearchStationViewController {
 extension SourceSearchStationViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        //TableView Networking Test
-        print("SourceSearchStationVC : cell -> \(cell!.textLabel!.text)")
         navigationController?.popViewController(animated: true)
     }
 }

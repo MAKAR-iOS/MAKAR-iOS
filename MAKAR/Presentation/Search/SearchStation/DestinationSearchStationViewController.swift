@@ -93,8 +93,6 @@ class DestinationSearchStationViewController : BaseSearchStationViewController {
 extension DestinationSearchStationViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        //TableView Networking Test
-        print("DestinationSearchStationVC : cell -> \(cell!.textLabel!.text)")
         navigationController?.popViewController(animated: true)
     }
 }

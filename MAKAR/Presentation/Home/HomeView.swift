@@ -191,7 +191,7 @@ class HomeView: BaseView {
         }
         
         mainDivider1.snp.makeConstraints {
-            $0.top.equalTo(setRouteButton.snp.bottom).inset(-30)
+            $0.top.equalTo(setRouteButton.snp.bottom).inset(-70)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(Metric.dividerHeight)
         }
@@ -207,7 +207,7 @@ class HomeView: BaseView {
         }
         
         mainDivider2.snp.makeConstraints {
-            $0.top.equalTo(favoriteRouteListText.snp.bottom).inset(-135)
+            $0.top.equalTo(favoriteRouteListText.snp.bottom).inset(-130)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(Metric.dividerHeight)
         }
@@ -255,31 +255,18 @@ class HomeView: BaseView {
         setRouteButton.isHidden = true
         changeRouteButton.isHidden = false
         setAlarmButton.isHidden = false
-        mainDivider1.isHidden = true
-        mainDivider2.isHidden = true
-        favoriteRouteListText.isHidden = true
-        editFavoriteRouteButton.isHidden = true
-        recentRouteListText.isHidden = true
-        allDeleteRecentRouteButton.isHidden = true
-    }
-    
-    func changeMainDestinationText(destinationText : String){
-        mainDestinationText.text = destinationText
     }
     
     func changeComponentRouteUnset(){
         mainTitleText.text = "경로를 설정해주세요"
         mainRouteView.text = "출발역   →   도착역"
-        mainDestinationText.text = "MAKAR"
         resetRouteButton.isHidden = true
         setRouteButton.isHidden = false
         changeRouteButton.isHidden = true
         setAlarmButton.isHidden = true
-        mainDivider1.isHidden = false
-        mainDivider2.isHidden = false
-        favoriteRouteListText.isHidden = false
-        editFavoriteRouteButton.isHidden = false
-        recentRouteListText.isHidden = false
-        allDeleteRecentRouteButton.isHidden = false
+    }
+    
+    func changeMainDestinationText(destinationText : String){
+        mainDestinationText.text = destinationText
     }
 }
