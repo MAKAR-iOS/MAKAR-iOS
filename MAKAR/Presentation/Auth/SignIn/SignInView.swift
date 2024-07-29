@@ -20,12 +20,12 @@ class SignInView: BaseView {
         $0.image = MakarImage.makarLogo
     }
 
-    private let idTextField = UITextField().then {
+    let idTextField = UITextField().then {
         $0.setSignInTextField("아이디")
         $0.addLeftPadding()
     }
 
-    private let passwordTextField = UITextField().then {
+    let passwordTextField = UITextField().then {
         $0.setSignInTextField("비밀번호")
         $0.addLeftPadding()
         $0.setSecureTextEntry()
@@ -45,6 +45,8 @@ class SignInView: BaseView {
     // MARK: Properties
     var tapSignInButton: (() -> Void)?
     var tapSignUpButton: (() -> Void)?
+    var id: String? { return idTextField.text }
+    var password: String? { return passwordTextField.text }
 
     // MARK: Configuration
     override func configureSubviews() {
