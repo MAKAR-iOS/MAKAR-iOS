@@ -48,13 +48,13 @@ class SignUpView: BaseView {
         $0.signUpTextFieldType = .email
     }
 
-    private let nickNameLabel = UILabel().then {
+    private let usernameLabel = UILabel().then {
         $0.setSignUpLabel("닉네임")
     }
 
-    private let nickNameTextField = SignUpTextField().then {
+    private let usernameTextField = SignUpTextField().then {
         $0.setPlaceholder("사용하실 닉네임을 입력해주세요.")
-        $0.signUpTextFieldType = .nickName
+        $0.signUpTextFieldType = .username
     }
 
     private let signUpStackView = UIStackView().then {
@@ -78,7 +78,7 @@ class SignUpView: BaseView {
         $0.setSignUpStackView()
     }
 
-    private let nickNameStackView = UIStackView().then {
+    private let usernameStackView = UIStackView().then {
         $0.setSignUpStackView()
     }
 
@@ -104,13 +104,13 @@ class SignUpView: BaseView {
                                             passwordStackView,
                                             checkPasswordStackView,
                                             emailStackView,
-                                            nickNameStackView)
+                                            usernameStackView)
 
         idStackView.addArrangedSubviews(idLabel, idTextField)
         passwordStackView.addArrangedSubviews(passwordLabel, passwordTextField)
         checkPasswordStackView.addArrangedSubviews(checkPasswordLabel, checkPasswordTextField)
         emailStackView.addArrangedSubviews(emailLabel, emailTextField)
-        nickNameStackView.addArrangedSubviews(nickNameLabel, nickNameTextField)
+        usernameStackView.addArrangedSubviews(usernameLabel, usernameTextField)
 
         confirmButton.addTarget(self, action: #selector(handleConfirmEvent), for: .touchUpInside)
     }
@@ -145,7 +145,7 @@ class SignUpView: BaseView {
             $0.height.equalTo(60)
         }
 
-        nickNameStackView.snp.makeConstraints {
+        usernameStackView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(60)
         }
@@ -200,7 +200,7 @@ extension SignUpView {
             self?.setConfirmButtonEnabled()
         }
 
-        nickNameTextField.onStateChanged = { [weak self] in
+        usernameTextField.onStateChanged = { [weak self] in
             self?.setConfirmButtonEnabled()
         }
     }
@@ -211,7 +211,7 @@ extension SignUpView {
             passwordTextField.checkImageView.isHidden == false,
             checkPasswordTextField.checkImageView.isHidden == false,
             emailTextField.checkImageView.isHidden == false,
-            nickNameTextField.checkImageView.isHidden == false
+            usernameTextField.checkImageView.isHidden == false
         ].allSatisfy { $0 }
 
         if allFieldsChecked {
