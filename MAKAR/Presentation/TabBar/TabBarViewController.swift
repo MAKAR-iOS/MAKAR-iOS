@@ -11,7 +11,11 @@ class TabBarViewController: UITabBarController {
 
     // MARK: Constants
     private enum Metric {
-        static let tabBarHeight = 90.0
+        static let tabBarHeight: CGFloat = 90.0
+        static let titleFontSize: CGFloat = 11.0
+        static let imageTopInset: CGFloat = 0.0
+        static let imageBottomInset: CGFloat = -4.0
+        static let titleVerticalOffset: CGFloat = 3.0
     }
 
     // MARK: UI Components
@@ -24,7 +28,7 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupTabBar()
+        setupTabBarViewController()
         setupTabBarUI()
     }
 
@@ -39,33 +43,16 @@ class TabBarViewController: UITabBarController {
     }
 
     // MARK: TabBar
-    private func setupTabBar() {
+    private func setupTabBarViewController() {
         homeViewController.title = "홈"
         myRouteViewController.title = "나의 경로"
         notificationViewController.title = "알림"
         myPageViewController.title = "MY"
-
-        homeViewController.tabBarItem.image = MakarButton.homeButton
-        myRouteViewController.tabBarItem.image = MakarButton.myRouteButton
-        notificationViewController.tabBarItem.image = MakarButton.notificationButton
-        myPageViewController.tabBarItem.image = MakarButton.myPageButton
-
-        homeViewController.tabBarItem.selectedImage = MakarButton.homeFilledButton
-        myRouteViewController.tabBarItem.selectedImage = MakarButton.myRouteButton
-        notificationViewController.tabBarItem.selectedImage = MakarButton.notificationFilledButton
-        myPageViewController.tabBarItem.selectedImage = MakarButton.myPageFilledButton
-
-        let tabBarItems = [homeViewController.tabBarItem, myRouteViewController.tabBarItem, notificationViewController.tabBarItem, myPageViewController.tabBarItem]
-        for item in tabBarItems {
-            item?.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 11)], for: .normal)
-            item?.imageInsets = UIEdgeInsets(top: 2, left: 0, bottom: -6, right: 0)
-            item?.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 3)
-        }
-
-        homeViewController.navigationItem.largeTitleDisplayMode = .never
-        myRouteViewController.navigationItem.largeTitleDisplayMode = .automatic
-        notificationViewController.navigationItem.largeTitleDisplayMode = .automatic
-        myPageViewController.navigationItem.largeTitleDisplayMode = .automatic
+        
+        setupTabBarItem(for: homeViewController, image: MakarButton.homeButton, selectedImage: MakarButton.homeFilledButton)
+        setupTabBarItem(for: myRouteViewController, image: MakarButton.myRouteButton, selectedImage: MakarButton.myRouteButton)
+        setupTabBarItem(for: notificationViewController, image: MakarButton.notificationButton, selectedImage: MakarButton.notificationFilledButton)
+        setupTabBarItem(for: myPageViewController, image: MakarButton.myPageButton, selectedImage: MakarButton.myPageFilledButton)
 
         let navigationHome = UINavigationController(rootViewController: homeViewController)
         let navigationMyRoute = UINavigationController(rootViewController: myRouteViewController)
@@ -82,7 +69,15 @@ class TabBarViewController: UITabBarController {
                             navigationNotification,
                             navigationMyPage], animated: false)
     }
-    
+
+    private func setupTabBarItem(for viewController: UIViewController, image: UIImage, selectedImage: UIImage) {
+        let tabBarItem = UITabBarItem(title: viewController.title, image: image, selectedImage: selectedImage)
+        tabBarItem.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: Metric.titleFontSize)], for: .normal)
+        tabBarItem.imageInsets = UIEdgeInsets(top: Metric.imageTopInset, left: 0, bottom: Metric.imageBottomInset, right: 0)
+        tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: Metric.titleVerticalOffset)
+        viewController.tabBarItem = tabBarItem
+    }
+
     private func setupTabBarUI() {
         tabBar.backgroundColor = .white
         tabBar.tintColor = .makarBlue
