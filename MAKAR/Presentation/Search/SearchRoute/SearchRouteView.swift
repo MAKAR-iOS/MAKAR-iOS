@@ -7,18 +7,7 @@
 
 import UIKit
 class SearchRouteView : BaseView {
-    
-    // MARK: Constants
-    private enum Metric {
-        static let textWidth = 40
-        static let buttonHeight = 43
-        static let searchBarHeight = 38
-        static let searchBarRadius = 18
-        static let swapButtonHeight = 30
-        static let swapButtonWidth = 30
-        static let dividerHeight = 10
-    }
-    
+
     // MARK: UI Components
     private let sourceText = UILabel().then{
         $0.text = "출발역"
@@ -64,14 +53,12 @@ class SearchRouteView : BaseView {
         $0.configuration = config
     }
     
-    private let searchRouteButton = BaseRouteButton().then{
+    private let searchRouteButton = RouteButton().then{
         $0.setTitle("경로 찾기", for: .normal)
     }
-    
-    private let divider = UIView().then{
-        $0.backgroundColor = .divider
-    }
-    
+
+    private let dividerView = DividerView(dividerType: .thick)
+
     // MARK: Properties
     var tapSwapStationButton: (() -> Void)?
     var tapSourceSearchBar: (() -> Void)?
@@ -89,7 +76,7 @@ class SearchRouteView : BaseView {
         addSubview(destinationSearchBar)
         addSubview(swapButton)
         addSubview(searchRouteButton)
-        addSubview(divider)
+        addSubview(dividerView)
         
         swapButton.addTarget(self, action: #selector(handleSwapButtonClickEvent), for: .touchUpInside)
         sourceSearchBar.addTarget(self, action: #selector(handleSourceSearchBarClickEvent), for: .touchUpInside)
@@ -136,14 +123,13 @@ class SearchRouteView : BaseView {
         
         searchRouteButton.snp.makeConstraints{
             $0.top.equalTo(destinationSearchBar.snp.bottom).inset(-20)
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(Metric.buttonHeight)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.equalTo(Metric.makarButtonHeight)
         }
         
-        divider.snp.makeConstraints{
-            $0.top.equalTo(searchRouteButton.snp.bottom).inset(-10)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(Metric.dividerHeight)
+        dividerView.snp.makeConstraints{
+            $0.top.equalTo(searchRouteButton.snp.bottom).offset(16)
+            $0.horizontalEdges.equalToSuperview()
         }
     }
     
