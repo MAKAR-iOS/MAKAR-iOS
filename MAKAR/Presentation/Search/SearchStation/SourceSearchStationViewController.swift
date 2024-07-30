@@ -15,12 +15,19 @@ class SourceSearchStationViewController : BaseSearchStationViewController {
     
     // MARK: UI Components
     private let sourceSearchStationView = SourceSearchStationView()
-    
+
+    private let backButton = BaseButton().then {
+        $0.setImage(MakarButton.dismissButton, for: .normal)
+    }
+
+    // MARK: Environment
+    private let router = BaseRouter()
+
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationBar()
 
+        router.viewController = self
         view.backgroundColor = .background
     }
     
@@ -60,14 +67,14 @@ class SourceSearchStationViewController : BaseSearchStationViewController {
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
-        
+
         sourceSearchStationView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
-            $0.leading.trailing.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(Metric.viewHeight)
         }
     }
-    
+
     // MARK: Networking
     private func postMyLocationButtonClicked(){
         print("myLocationButton clicked")
@@ -84,17 +91,26 @@ class SourceSearchStationViewController : BaseSearchStationViewController {
     private func postMoreButtonClicked(){
         print("moreButton clicked")
     }
-    
-    // MARK: NavigationBar
-    private func setNavigationBar(){
-        navigationItem.title = "출발역 입력"
+
+    // MARK: View Transition
+    override func viewTransition() {
+        backButton.tap = { [weak self] in
+            guard let self else { return }
+            router.popViewController()
+        }
     }
-    
+
+    // MARK: Set Navigation
+    override func setNavigationItem() {
+        navigationItem.title = "출발역 입력"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    }
+
     // MARK: TableView
     override func setTableView() {
         super.setTableView()
         
-        tableView.snp.makeConstraints{
+        tableView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(Metric.viewHeight)
         }
     }

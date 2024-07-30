@@ -6,33 +6,31 @@
 //
 
 import UIKit
-class BaseSearchStationViewController : BaseViewController {
+class BaseSearchStationViewController: BaseViewController {
     
     var dummyList = ["1호선", "2호선", "3호선", "4호선", "5호선", "6호선",
                     "7호선", "8호선", "9호선", "경의중앙", "공항철도", "0호선"]
+
+    // MARK: UI Components
     let lineNumImage = LineNumImage()
     var tableView = UITableView(frame: .zero, style: .plain)
-    
-    // MARK: UI Components
-    
+
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableView()
     }
-    
+
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
-        
     }
-    
+
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
-
     }
-    
+
     // MARK: TableView
     func setTableView(){
         view.addSubview(tableView)
