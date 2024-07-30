@@ -22,6 +22,7 @@ class SourceSearchStationViewController: BaseSearchStationViewController {
 
     // MARK: Properties
     var isFiltering: Bool = false
+    var searchResult: [StationDTO] = []
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -33,7 +34,7 @@ class SourceSearchStationViewController: BaseSearchStationViewController {
         router.viewController = self
         view.backgroundColor = .background
         setSearchBar()
-        getStation(query: "숭실대")
+        getStation(query: "오")
     }
 
     // MARK: Configuration
@@ -112,9 +113,9 @@ class SourceSearchStationViewController: BaseSearchStationViewController {
     }
 
     // MARK: TableView
-    override func setTableView() {
-        super.setTableView()
-        
+    func setTableView() {
+        super.setTableView(data: searchResult)
+
         tableView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(Metric.viewHeight)
         }
@@ -129,27 +130,7 @@ extension SourceSearchStationViewController {
     }
 }
 
-//extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
-//    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // 서치바를 통해 무언가 검색했다면 filterredArr의 갯수로, 그렇지 않다면 arr의 갯수로
-//        return self.isFilterting ? self.filterredArr.count : self.arr.count
-//    }
-//
-//    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "SeachListCell") as! SearchListTableViewCell
-//        if self.isFiltering {
-//            cell.textLabel?.text = self.filterredArr[indexPath.row]
-//        } else {
-//            cell.textLabel?.text = self.arr[indexPath.row]
-//        }
-//
-//        return cell
-//    }
-//}
-//
-
 extension SourceSearchStationViewController: UISearchBarDelegate {
-    // 서치바에서 검색을 시작할 때 호출
     func setSearchBar() {
         sourceSearchStationView.stationSearchBar.delegate = self
         sourceSearchStationView.stationSearchBar.showsCancelButton = false
@@ -163,22 +144,20 @@ extension SourceSearchStationViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let text = sourceSearchStationView.stationSearchBar.text else { return }
-//        self.filterredArr = self.arr.filter { $0.localizedCaseInsensitiveContains(text) }
-       
+
         tableView.reloadData()
     }
     
-    // 서치바에서 검색버튼을 눌렀을 때 호출
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         dismissKeyboard()
-        guard let text = sourceSearchStationView.stationSearchBar.text?.lowercased() else { return }
-//        self.filterredArr = self.arr.filter { $0.localizedCaseInsensitiveContains(text) }
-        print("searchBarSearchButtonClicked")
+        guard let station = sourceSearchStationView.stationSearchBar.text else { return }
+
+//        getStation(query: station)
+//        print("searchBarSearchButtonClicked")
 
         self.tableView.reloadData()
     }
     
-    // 서치바에서 취소 버튼을 눌렀을 때 호출
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.sourceSearchStationView.stationSearchBar.text = ""
         self.sourceSearchStationView.stationSearchBar.resignFirstResponder()
@@ -186,12 +165,10 @@ extension SourceSearchStationViewController: UISearchBarDelegate {
         self.tableView.reloadData()
     }
     
-    // 서치바 검색이 끝났을 때 호출
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         self.tableView.reloadData()
     }
     
-    // 서치바 키보드 내리기
     func dismissKeyboard() {
         self.sourceSearchStationView.stationSearchBar.resignFirstResponder()
     }
@@ -205,8 +182,10 @@ extension SourceSearchStationViewController {
             result in
                 switch result {
                 case .success(let response):
-                    guard let data = response as? AuthResponse else { return }
+                    guard let data = response as? StationResponse else { return }
                     print("🎯 getStation success: " + "\(data)")
+                    self.searchResult = data.data.stationDtoList
+                    self.setTableView()
                 case .requestErr(let errorResponse):
                     dump(errorResponse)
                     guard let data = errorResponse as? ErrorResponse else { return }
