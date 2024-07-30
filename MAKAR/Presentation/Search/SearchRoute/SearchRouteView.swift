@@ -22,8 +22,8 @@ class SearchRouteView: BaseView {
         $0.textColor = .darkGray
     }
 
-    private let sourceSearchBar = StationSearchBarButton(setTitle: "출발역을 입력하세요")
-    private let destinationSearchBar = StationSearchBarButton(setTitle: "도착역을 입력하세요")
+    let sourceSearchBar = StationSearchBarButton(setTitle: "출발역을 입력하세요")
+    let destinationSearchBar = StationSearchBarButton(setTitle: "도착역을 입력하세요")
 
     private let swapButton = BaseButton().then{
         var config = UIButton.Configuration.plain()
@@ -129,9 +129,8 @@ class SearchRouteView: BaseView {
         tapSearchRouteButton?()
     }
     
-    func changeSearchBarText(sourceText : String, destinationText : String){
+    func changeSearchBarText(sourceText: String, destinationText: String){
         self.sourceSearchBar.setTitle(sourceText, for: .normal)
         self.destinationSearchBar.setTitle(destinationText, for: .normal)
     }
-    
 }
