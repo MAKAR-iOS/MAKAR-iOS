@@ -13,4 +13,7 @@ public enum Metric {
     static let textFieldHeight = 47
     static let textFieldBorderWidth = 1.5
     static let textFieldRadius = 8.0
+
+    // MARK: Search
+    static let searchRouteViewHeight = 188
 }
