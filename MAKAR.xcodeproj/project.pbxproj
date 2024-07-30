@@ -41,7 +41,7 @@
 		26EFA2982B4D5296003678C0 /* FavoriteRouteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EFA2972B4D5296003678C0 /* FavoriteRouteCollectionViewCell.swift */; };
 		26EFA29B2B4D65F1003678C0 /* RecentRouteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EFA29A2B4D65F1003678C0 /* RecentRouteCollectionViewCell.swift */; };
 		26EFA29D2B4D9D9B003678C0 /* RouteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EFA29C2B4D9D9B003678C0 /* RouteData.swift */; };
-		26F3B4292B3C2B3800E7756F /* BaseRouteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F3B4282B3C2B3800E7756F /* BaseRouteButton.swift */; };
+		26F3B4292B3C2B3800E7756F /* RouteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F3B4282B3C2B3800E7756F /* RouteButton.swift */; };
 		956382AE2B397568006B50ED /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382AD2B397568006B50ED /* SplashView.swift */; };
 		956382B02B397570006B50ED /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382AF2B397570006B50ED /* SplashViewController.swift */; };
 		956382B42B397581006B50ED /* StartSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956382B32B397581006B50ED /* StartSignInView.swift */; };
@@ -151,7 +151,7 @@
 		26EFA2972B4D5296003678C0 /* FavoriteRouteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteCollectionViewCell.swift; sourceTree = "<group>"; };
 		26EFA29A2B4D65F1003678C0 /* RecentRouteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentRouteCollectionViewCell.swift; sourceTree = "<group>"; };
 		26EFA29C2B4D9D9B003678C0 /* RouteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteData.swift; sourceTree = "<group>"; };
-		26F3B4282B3C2B3800E7756F /* BaseRouteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouteButton.swift; sourceTree = "<group>"; };
+		26F3B4282B3C2B3800E7756F /* RouteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteButton.swift; sourceTree = "<group>"; };
 		956382AD2B397568006B50ED /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		956382AF2B397570006B50ED /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		956382B32B397581006B50ED /* StartSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSignInView.swift; sourceTree = "<group>"; };
@@ -444,6 +444,7 @@
 				957F3D532C58ABFF00EA0AD2 /* Route */,
 				957F3CE42C524C4C00EA0AD2 /* Metric.swift */,
 				956382F12B39855E006B50ED /* ImageLiteral.swift */,
+				95B10F9E2B331587005319F6 /* Base */,
 				956382F52B398B72006B50ED /* MakarColor.xcassets */,
 				26D7C4082C5817BF002127C1 /* Noti.swift */,
 			);
@@ -555,6 +556,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		957F3D612C58B75F00EA0AD2 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				95B10FAA2B3315F5005319F6 /* BaseButton.swift */,
+				26F3B4282B3C2B3800E7756F /* RouteButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
 		95B10F6F2B331350005319F6 = {
 			isa = PBXGroup;
 			children = (
@@ -651,7 +661,6 @@
 				956382DF2B397A11006B50ED /* Search */,
 				95B10F9D2B331583005319F6 /* Example */,
 				956382A82B3974ED006B50ED /* Timetable */,
-				95B10F9E2B331587005319F6 /* Base */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -672,9 +681,8 @@
 				267F3C462B3D6B2B00E3CD29 /* SearchStation */,
 				95B10FA62B3315DD005319F6 /* BaseViewController.swift */,
 				95B10FA82B3315EB005319F6 /* BaseView.swift */,
-				95B10FAA2B3315F5005319F6 /* BaseButton.swift */,
 				956382F92B39A43E006B50ED /* BaseRouter.swift */,
-				26F3B4282B3C2B3800E7756F /* BaseRouteButton.swift */,
+				957F3D612C58B75F00EA0AD2 /* Button */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -808,7 +816,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				956382C72B3975C7006B50ED /* MyPageViewController.swift in Sources */,
-				26F3B4292B3C2B3800E7756F /* BaseRouteButton.swift in Sources */,
+				26F3B4292B3C2B3800E7756F /* RouteButton.swift in Sources */,
 				956382F22B39855E006B50ED /* ImageLiteral.swift in Sources */,
 				26EFA29B2B4D65F1003678C0 /* RecentRouteCollectionViewCell.swift in Sources */,
 				267F3C452B3D6AE300E3CD29 /* BaseSearchStationViewController.swift in Sources */,
