@@ -433,20 +433,11 @@
 		956382F02B398551006B50ED /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				957F3CDC2C524B9800EA0AD2 /* UIButton+Extension.swift */,
-				957F3CDB2C524B9800EA0AD2 /* UILabel+Extension.swift */,
-				957F3CDA2C524B9800EA0AD2 /* UIStackView+Extension.swift */,
-				957F3CDD2C524B9800EA0AD2 /* UIView+Extension.swift */,
-				956382F32B398AEB006B50ED /* UIColor+Extension.swift */,
-				957F3CDE2C524B9800EA0AD2 /* UITextField+Extension.swift */,
-				957F3CEC2C53588100EA0AD2 /* SignUpTextField.swift */,
+				957F3D522C58ABF200EA0AD2 /* UIKit+Extension */,
+				957F3D532C58ABFF00EA0AD2 /* Route */,
 				957F3CE42C524C4C00EA0AD2 /* Metric.swift */,
 				956382F12B39855E006B50ED /* ImageLiteral.swift */,
 				956382F52B398B72006B50ED /* MakarColor.xcassets */,
-				2698646E2B3DC77F003FE9FB /* LineNumMap.swift */,
-				26EFA29C2B4D9D9B003678C0 /* RouteData.swift */,
-				26150E0E2B59433700E5059D /* Station.swift */,
-				26150E102B59471E00E5059D /* SubRoute.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -504,6 +495,47 @@
 				957F3D282C5798D300EA0AD2 /* AuthResponse.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		957F3D522C58ABF200EA0AD2 /* UIKit+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				957F3D542C58AC0800EA0AD2 /* UIView */,
+				957F3D552C58AC1200EA0AD2 /* UITextField */,
+				957F3CDC2C524B9800EA0AD2 /* UIButton+Extension.swift */,
+				957F3CDB2C524B9800EA0AD2 /* UILabel+Extension.swift */,
+				957F3CDA2C524B9800EA0AD2 /* UIStackView+Extension.swift */,
+				956382F32B398AEB006B50ED /* UIColor+Extension.swift */,
+			);
+			path = "UIKit+Extension";
+			sourceTree = "<group>";
+		};
+		957F3D532C58ABFF00EA0AD2 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				2698646E2B3DC77F003FE9FB /* LineNumMap.swift */,
+				26EFA29C2B4D9D9B003678C0 /* RouteData.swift */,
+				26150E0E2B59433700E5059D /* Station.swift */,
+				26150E102B59471E00E5059D /* SubRoute.swift */,
+			);
+			path = Route;
+			sourceTree = "<group>";
+		};
+		957F3D542C58AC0800EA0AD2 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				957F3CDD2C524B9800EA0AD2 /* UIView+Extension.swift */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		957F3D552C58AC1200EA0AD2 /* UITextField */ = {
+			isa = PBXGroup;
+			children = (
+				957F3CDE2C524B9800EA0AD2 /* UITextField+Extension.swift */,
+				957F3CEC2C53588100EA0AD2 /* SignUpTextField.swift */,
+			);
+			path = UITextField;
 			sourceTree = "<group>";
 		};
 		95B10F6F2B331350005319F6 = {
