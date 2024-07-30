@@ -82,6 +82,8 @@
 		957F3D272C5798CD00EA0AD2 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D262C5798CD00EA0AD2 /* AuthAPI.swift */; };
 		957F3D292C5798D300EA0AD2 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D282C5798D300EA0AD2 /* AuthResponse.swift */; };
 		957F3D2B2C5798DE00EA0AD2 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D2A2C5798DE00EA0AD2 /* AuthService.swift */; };
+		957F3D592C58AC5600EA0AD2 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D582C58AC5600EA0AD2 /* DividerView.swift */; };
+		957F3D5D2C58ACD200EA0AD2 /* MyRouteInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D5C2C58ACD200EA0AD2 /* MyRouteInfoTableViewCell.swift */; };
 		95A5D9DD2B58B4F8000A2A72 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 95A5D9DC2B58B4F8000A2A72 /* Toast */; };
 		95B10F7C2B331350005319F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7B2B331350005319F6 /* AppDelegate.swift */; };
 		95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7D2B331350005319F6 /* SceneDelegate.swift */; };
@@ -190,6 +192,8 @@
 		957F3D262C5798CD00EA0AD2 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		957F3D282C5798D300EA0AD2 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		957F3D2A2C5798DE00EA0AD2 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		957F3D582C58AC5600EA0AD2 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
+		957F3D5C2C58ACD200EA0AD2 /* MyRouteInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRouteInfoTableViewCell.swift; sourceTree = "<group>"; };
 		95B10F782B331350005319F6 /* MAKAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAKAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B10F7B2B331350005319F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B10F7D2B331350005319F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -388,6 +392,7 @@
 			children = (
 				956382D42B397968006B50ED /* MyRouteView.swift */,
 				956382D62B397971006B50ED /* MyRouteViewController.swift */,
+				957F3D5B2C58ACB800EA0AD2 /* Cell */,
 			);
 			path = MyRoute;
 			sourceTree = "<group>";
@@ -435,20 +440,11 @@
 		956382F02B398551006B50ED /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				957F3CDC2C524B9800EA0AD2 /* UIButton+Extension.swift */,
-				957F3CDB2C524B9800EA0AD2 /* UILabel+Extension.swift */,
-				957F3CDA2C524B9800EA0AD2 /* UIStackView+Extension.swift */,
-				957F3CDD2C524B9800EA0AD2 /* UIView+Extension.swift */,
-				956382F32B398AEB006B50ED /* UIColor+Extension.swift */,
-				957F3CDE2C524B9800EA0AD2 /* UITextField+Extension.swift */,
-				957F3CEC2C53588100EA0AD2 /* SignUpTextField.swift */,
+				957F3D522C58ABF200EA0AD2 /* UIKit+Extension */,
+				957F3D532C58ABFF00EA0AD2 /* Route */,
 				957F3CE42C524C4C00EA0AD2 /* Metric.swift */,
 				956382F12B39855E006B50ED /* ImageLiteral.swift */,
 				956382F52B398B72006B50ED /* MakarColor.xcassets */,
-				2698646E2B3DC77F003FE9FB /* LineNumMap.swift */,
-				26EFA29C2B4D9D9B003678C0 /* RouteData.swift */,
-				26150E0E2B59433700E5059D /* Station.swift */,
-				26150E102B59471E00E5059D /* SubRoute.swift */,
 				26D7C4082C5817BF002127C1 /* Noti.swift */,
 			);
 			path = Extension;
@@ -507,6 +503,56 @@
 				957F3D282C5798D300EA0AD2 /* AuthResponse.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		957F3D522C58ABF200EA0AD2 /* UIKit+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				957F3D542C58AC0800EA0AD2 /* UIView */,
+				957F3D552C58AC1200EA0AD2 /* UITextField */,
+				957F3CDC2C524B9800EA0AD2 /* UIButton+Extension.swift */,
+				957F3CDB2C524B9800EA0AD2 /* UILabel+Extension.swift */,
+				957F3CDA2C524B9800EA0AD2 /* UIStackView+Extension.swift */,
+				956382F32B398AEB006B50ED /* UIColor+Extension.swift */,
+			);
+			path = "UIKit+Extension";
+			sourceTree = "<group>";
+		};
+		957F3D532C58ABFF00EA0AD2 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				2698646E2B3DC77F003FE9FB /* LineNumMap.swift */,
+				26EFA29C2B4D9D9B003678C0 /* RouteData.swift */,
+				26150E0E2B59433700E5059D /* Station.swift */,
+				26150E102B59471E00E5059D /* SubRoute.swift */,
+			);
+			path = Route;
+			sourceTree = "<group>";
+		};
+		957F3D542C58AC0800EA0AD2 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				957F3CDD2C524B9800EA0AD2 /* UIView+Extension.swift */,
+				957F3D582C58AC5600EA0AD2 /* DividerView.swift */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		957F3D552C58AC1200EA0AD2 /* UITextField */ = {
+			isa = PBXGroup;
+			children = (
+				957F3CDE2C524B9800EA0AD2 /* UITextField+Extension.swift */,
+				957F3CEC2C53588100EA0AD2 /* SignUpTextField.swift */,
+			);
+			path = UITextField;
+			sourceTree = "<group>";
+		};
+		957F3D5B2C58ACB800EA0AD2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				957F3D5C2C58ACD200EA0AD2 /* MyRouteInfoTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		95B10F6F2B331350005319F6 = {
@@ -595,16 +641,16 @@
 		95B10F9C2B331572005319F6 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				956382DF2B397A11006B50ED /* Search */,
+				956382CE2B39787E006B50ED /* TabBar */,
 				956382AB2B39752D006B50ED /* Splash */,
 				95C3F93F2C4F7455001CEF8A /* Auth */,
-				956382CE2B39787E006B50ED /* TabBar */,
 				956382DA2B3979FC006B50ED /* Home */,
-				956382A82B3974ED006B50ED /* Timetable */,
 				956382D32B397957006B50ED /* MyRoute */,
 				956382A92B3974FF006B50ED /* Notification */,
 				956382AA2B39750B006B50ED /* MyPage */,
+				956382DF2B397A11006B50ED /* Search */,
 				95B10F9D2B331583005319F6 /* Example */,
+				956382A82B3974ED006B50ED /* Timetable */,
 				95B10F9E2B331587005319F6 /* Base */,
 			);
 			path = Presentation;
@@ -834,6 +880,7 @@
 				957F3D0C2C5792FD00EA0AD2 /* ErrorResponse.swift in Sources */,
 				267065282B3C998A00F19EC3 /* FavoriteStationViewController.swift in Sources */,
 				956382DE2B397A0E006B50ED /* HomeViewController.swift in Sources */,
+				957F3D592C58AC5600EA0AD2 /* DividerView.swift in Sources */,
 				957F3CE52C524C4C00EA0AD2 /* Metric.swift in Sources */,
 				95B10F7C2B331350005319F6 /* AppDelegate.swift in Sources */,
 				956382BF2B3975A8006B50ED /* TimetableViewController.swift in Sources */,
@@ -858,6 +905,7 @@
 				956382AE2B397568006B50ED /* SplashView.swift in Sources */,
 				26150E132B594BA000E5059D /* SearchRouteTableViewCell.swift in Sources */,
 				95D0043D2B4BE358009D4DF3 /* MakarNotiView.swift in Sources */,
+				957F3D5D2C58ACD200EA0AD2 /* MyRouteInfoTableViewCell.swift in Sources */,
 				262F82432C54BBAC00C4440F /* RouteResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
