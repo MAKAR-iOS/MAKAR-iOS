@@ -19,6 +19,9 @@ class SearchRouteViewController : BaseViewController {
     // TODO: 경로 검색 리스트 조회 API 연결
     let searchRouteList : [Route] = Route.searchRouteList
 
+    // MARK: Properties
+    var sourceStation: StationDTO?
+
     // MARK: Environment
     private let router = BaseRouter()
 
@@ -99,7 +102,20 @@ class SearchRouteViewController : BaseViewController {
     func changeSearchBarText(sourceText : String, destinationText : String){
             self.searchRouteView.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)
     }
-    
+}
+
+extension SearchRouteViewController {
+    func getSourceStationData(_ sourceStation: StationDTO?) {
+        guard let sourceStationName = sourceStation?.stationName else { return }
+
+        print("🐶sourceStation: \(sourceStation?.stationName ?? "nil") + \(sourceStation?.lineNum ?? "nil")")
+    }
+
+    func getDestinationStationData(_ destinationStation: StationDTO?) {
+        guard let destinationStationName = destinationStation?.stationName else { return }
+
+        print("🐶destinationStation: \(destinationStation?.stationName ?? "nil") + \(destinationStation?.lineNum ?? "nil")")
+    }
 }
 
 extension SearchRouteViewController {

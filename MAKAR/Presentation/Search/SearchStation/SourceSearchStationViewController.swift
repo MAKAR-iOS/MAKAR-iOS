@@ -23,6 +23,7 @@ class SourceSearchStationViewController: BaseSearchStationViewController {
     // MARK: Properties
     var isFiltering: Bool = false
     var searchResult: [StationDTO] = []
+    var sourceStation: StationDTO?
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -125,8 +126,12 @@ class SourceSearchStationViewController: BaseSearchStationViewController {
 extension SourceSearchStationViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        // TODO: 출발역 등록
-        navigationController?.popViewController(animated: true)
+
+        sourceStation = searchResult[indexPath.row]
+        let searchRouteViewController = SearchRouteViewController()
+        searchRouteViewController.getSourceStationData(sourceStation)
+
+        router.popViewController()
     }
 }
 
