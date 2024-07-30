@@ -85,6 +85,7 @@
 		957F3D592C58AC5600EA0AD2 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D582C58AC5600EA0AD2 /* DividerView.swift */; };
 		957F3D5D2C58ACD200EA0AD2 /* MyRouteInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D5C2C58ACD200EA0AD2 /* MyRouteInfoTableViewCell.swift */; };
 		957F3D632C58B95100EA0AD2 /* StationSearchBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D622C58B95100EA0AD2 /* StationSearchBarButton.swift */; };
+		957F3D652C58C2DC00EA0AD2 /* StationSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D642C58C2DC00EA0AD2 /* StationSearchBar.swift */; };
 		95A5D9DD2B58B4F8000A2A72 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 95A5D9DC2B58B4F8000A2A72 /* Toast */; };
 		95B10F7C2B331350005319F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7B2B331350005319F6 /* AppDelegate.swift */; };
 		95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7D2B331350005319F6 /* SceneDelegate.swift */; };
@@ -196,6 +197,7 @@
 		957F3D582C58AC5600EA0AD2 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		957F3D5C2C58ACD200EA0AD2 /* MyRouteInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRouteInfoTableViewCell.swift; sourceTree = "<group>"; };
 		957F3D622C58B95100EA0AD2 /* StationSearchBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationSearchBarButton.swift; sourceTree = "<group>"; };
+		957F3D642C58C2DC00EA0AD2 /* StationSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationSearchBar.swift; sourceTree = "<group>"; };
 		95B10F782B331350005319F6 /* MAKAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAKAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B10F7B2B331350005319F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B10F7D2B331350005319F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -564,6 +566,7 @@
 				95B10FAA2B3315F5005319F6 /* BaseButton.swift */,
 				26F3B4282B3C2B3800E7756F /* RouteButton.swift */,
 				957F3D622C58B95100EA0AD2 /* StationSearchBarButton.swift */,
+				957F3D642C58C2DC00EA0AD2 /* StationSearchBar.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -895,6 +898,7 @@
 				957F3D592C58AC5600EA0AD2 /* DividerView.swift in Sources */,
 				957F3CE52C524C4C00EA0AD2 /* Metric.swift in Sources */,
 				95B10F7C2B331350005319F6 /* AppDelegate.swift in Sources */,
+				957F3D652C58C2DC00EA0AD2 /* StationSearchBar.swift in Sources */,
 				956382BF2B3975A8006B50ED /* TimetableViewController.swift in Sources */,
 				957F3CED2C53588100EA0AD2 /* SignUpTextField.swift in Sources */,
 				956382C52B3975BE006B50ED /* MyPageView.swift in Sources */,

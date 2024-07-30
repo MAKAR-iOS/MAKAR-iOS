@@ -33,6 +33,6 @@ class StationSearchBarButton: BaseButton {
         contentEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 0)
         imageEdgeInsets = .init(top: 0, left: -7, bottom: 0, right: 0)
         backgroundColor = .systemGray6
-        layer.cornerRadius = CGFloat(Metric.searchBarRadius)
+        layer.cornerRadius = CGFloat(Metric.searchBarButtonRadius)
     }
 }

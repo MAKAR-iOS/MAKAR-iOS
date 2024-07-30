@@ -90,14 +90,14 @@ class SearchRouteView: BaseView {
             $0.centerY.equalTo(sourceText)
             $0.leading.equalTo(sourceText.snp.trailing).inset(-8)
             $0.trailing.equalTo(swapButton.snp.leading).inset(-5)
-            $0.height.equalTo(Metric.searchBarHeight)
+            $0.height.equalTo(Metric.searchBarButtonHeight)
         }
         
         destinationSearchBar.snp.makeConstraints{
             $0.centerY.equalTo(destinationText)
             $0.leading.equalTo(destinationText.snp.trailing).inset(-8)
             $0.trailing.equalTo(swapButton.snp.leading).inset(-5)
-            $0.height.equalTo(Metric.searchBarHeight)
+            $0.height.equalTo(Metric.searchBarButtonHeight)
         }
         
         searchRouteButton.snp.makeConstraints{
