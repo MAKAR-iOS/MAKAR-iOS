@@ -14,7 +14,7 @@ class MyRouteViewController: BaseViewController {
         $0.allowsSelection = false
     }
 
-    let myRoute: [RouteData] = RouteData.myRoute
+    let myRoute: [Route] = Route.myRoute
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -58,7 +58,7 @@ class MyRouteViewController: BaseViewController {
 
 extension MyRouteViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myRoute[0].subRouteItemList.count
+        return myRoute[0].subRouteList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,8 +67,8 @@ extension MyRouteViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
 
-        cell.setData(data: myRoute[0].subRouteItemList[indexPath.row])
-        if indexPath.row == myRoute[0].subRouteItemList.count - 1 {
+        cell.setData(data: myRoute[0].subRouteList[indexPath.row])
+        if indexPath.row == myRoute[0].subRouteList.count - 1 {
             cell.dividerView2.isHidden = true
             cell.transferTimeLabel.isHidden = true
             cell.walkVerticalView1.isHidden = true

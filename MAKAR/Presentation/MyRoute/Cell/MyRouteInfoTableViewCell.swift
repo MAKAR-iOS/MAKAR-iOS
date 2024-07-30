@@ -232,11 +232,11 @@ class MyRouteInfoTableViewCell: UITableViewCell {
 }
 
 extension MyRouteInfoTableViewCell {
-    func setData(data: SubRouteItem) {
+    func setData(data: SubRoute) {
         lineNumImage.addLineNum()
         lineNumColor.addLineNum()
 
-        let lineNum = data.subRoute.lineNum
+        let lineNum = data.lineNum
 
         if let lineImg = lineNumImage.lineNumMap[lineNum] {
             lineNumImageView.image = lineImg
@@ -247,10 +247,10 @@ extension MyRouteInfoTableViewCell {
         lineNumVerticalView.backgroundColor = lineNumColor.lineNumColorMap[lineNum]
         lineNumColorView.backgroundColor = lineNumColor.lineNumColorMap[lineNum]
 
-        sourceStationNameLabel.text = data.subRoute.startStationName
-        movingInfoLabel.text = "6개 역 이동 (" + String(data.subRoute.sectionTime) + "분)"
+        sourceStationNameLabel.text = data.fromStationName
+        movingInfoLabel.text = "6개 역 이동 (" + String(data.sectionTime) + "분)"
 
-        destinationStationNameLabel.text = data.subRoute.endStationName
-        transferTimeLabel.text = "환승 도보 (" + String(data.transferInfo.transferTime) + "분)"
+        destinationStationNameLabel.text = data.toStationName
+        transferTimeLabel.text = "환승 도보 (" + String(data.transferTime) + "분)"
     }
 }
