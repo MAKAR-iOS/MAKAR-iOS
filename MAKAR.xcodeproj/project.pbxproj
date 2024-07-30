@@ -241,9 +241,9 @@
 		262F823E2C54BA8B00C4440F /* Station */ = {
 			isa = PBXGroup;
 			children = (
-				262F823F2C54BA9900C4440F /* StationResponse.swift */,
 				26D7C3F92C57DBCA002127C1 /* StationAPI.swift */,
 				26D7C4012C57DC08002127C1 /* StationService.swift */,
+				262F823F2C54BA9900C4440F /* StationResponse.swift */,
 			);
 			path = Station;
 			sourceTree = "<group>";
@@ -621,10 +621,10 @@
 		95B10F912B3314E7005319F6 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				957F3D252C5798C200EA0AD2 /* Auth */,
+				262F823E2C54BA8B00C4440F /* Station */,
 				262F82442C54C00F00C4440F /* Noti */,
 				262F82412C54BBA200C4440F /* Route */,
-				262F823E2C54BA8B00C4440F /* Station */,
-				957F3D252C5798C200EA0AD2 /* Auth */,
 				957F3D182C57958600EA0AD2 /* EtcResponse */,
 				95B10F922B3314F2005319F6 /* Example */,
 				957F3D192C5795A600EA0AD2 /* LoggerPlugin */,
