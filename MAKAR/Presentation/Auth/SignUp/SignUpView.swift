@@ -83,7 +83,7 @@ class SignUpView: BaseView {
     }
 
     private let confirmButton = BaseButton().then {
-        $0.setDefaultButton("입력 완료")
+        $0.setAuthDefaultButton("입력 완료")
         $0.setUnabledButton()
     }
 
@@ -157,7 +157,7 @@ class SignUpView: BaseView {
         confirmButton.snp.makeConstraints {
             $0.bottom.equalTo(safeAreaLayoutGuide).inset(30)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(Metric.buttonHeight)
+            $0.height.equalTo(Metric.authButtonHeight)
         }
     }
 
@@ -219,7 +219,7 @@ extension SignUpView {
         ].allSatisfy { $0 }
 
         if allFieldsChecked {
-            confirmButton.setMakarButton()
+            confirmButton.setAuthButton()
         } else {
             confirmButton.setUnabledButton()
         }

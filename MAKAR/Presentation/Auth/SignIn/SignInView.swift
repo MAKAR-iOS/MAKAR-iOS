@@ -32,7 +32,7 @@ class SignInView: BaseView {
     }
 
     private let signInButton = BaseButton().then {
-        $0.setDefaultButton("로그인")
+        $0.setAuthDefaultButton("로그인")
         $0.setUnabledButton()
     }
 
@@ -98,7 +98,7 @@ class SignInView: BaseView {
         signInButton.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(20)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.height.equalTo(Metric.buttonHeight)
+            $0.height.equalTo(Metric.authButtonHeight)
         }
 
         signUpButton.snp.makeConstraints {
@@ -113,7 +113,7 @@ class SignInView: BaseView {
         let isPasswordTextNotEmpty = !(passwordTextField.text?.isEmpty ?? true)
 
         if isIdTextNotEmpty && isPasswordTextNotEmpty {
-            signInButton.setMakarButton()
+            signInButton.setAuthButton()
         } else {
             signInButton.setUnabledButton()
         }
