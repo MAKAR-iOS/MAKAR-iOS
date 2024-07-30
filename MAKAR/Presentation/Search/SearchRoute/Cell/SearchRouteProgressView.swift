@@ -53,11 +53,11 @@ class SearchRouteProgressView : UIStackView {
             let totalTime = subroute.sectionTime
             let transferTime = subroute.transferTime
             
-            let lineProgressView = progressView(color: lineNumColor.lineNumColorMap[lineNum]!, text: "\(totalTime)분")
+            let lineProgressView = ProgressView(color: lineNumColor.lineNumColorMap[lineNum]!, text: " \(totalTime)분")
             self.addArrangedSubview(lineProgressView)
             
             if transferTime != 0{
-                let transferInfoView = progressView(color: .divider, text: "\(transferTime)분")
+                let transferInfoView = ProgressView(color: .divider, text: "\(transferTime)분")
                 self.addArrangedSubview(transferInfoView)
             }
         }

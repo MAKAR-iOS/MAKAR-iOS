@@ -68,4 +68,12 @@ extension Route {
                   subRouteList: [SubRoute(fromStationName: "숭실대입구역", toStationName: "대림역", lineNum: "7호선", sectionTime: 12, transferTime: 5),
                         SubRoute(fromStationName: "대림역", toStationName: "신촌역", lineNum: "2호선", sectionTime: 18, transferTime: 0)])
     ]
+
+    static let myRoute: [Route] = [
+        Route(sourceStation: Station(stationName: "숭실대입구역", lineNum: "7호선"),
+                  destinationStation: Station(stationName: "신촌역", lineNum: "2호선"),
+              sourceTime: Date(), destinationTime: Date(), totalTime: 35, transferCount: 1, date: "",
+                  subRouteList: [SubRoute(fromStationName: "숭실대입구역", toStationName: "대림역", lineNum: "7호선", sectionTime: 12, transferTime: 5),
+                        SubRoute(fromStationName: "대림역", toStationName: "신촌역", lineNum: "2호선", sectionTime: 18, transferTime: 0)])
+        ]
 }

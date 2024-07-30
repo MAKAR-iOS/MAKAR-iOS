@@ -29,7 +29,7 @@ class MyRouteView: BaseView {
     private let dividerView = DividerView(dividerType: .thick)
 
     // MARK: Properties
-    let myRoute: [RouteData] = RouteData.myRoute
+    let myRoute: [Route] = Route.myRoute
     private let dateFormatter = DateFormatter().then {
         $0.locale = Locale(identifier: "ko_kr")
     }
@@ -80,15 +80,15 @@ class MyRouteView: BaseView {
 }
 
 extension MyRouteView {
-    func setData(data: RouteData) {
-        let startTime = changeDateFormat(date: data.makarTime)
-        let endTime = changeDateFormat(date: data.hakarTime)
+    func setData(data: Route) {
+        let startTime = changeDateFormat(date: data.sourceTime)
+        let endTime = changeDateFormat(date: data.destinationTime)
 
         makarLabel.text = "\(data.totalTime)분"
         myRouteTimeLabel.text = "\(startTime) 출발 | \(endTime) 도착"
-        makarDetailLabel.text = "\(checkLeftTime(targetDate: data.makarTime))분 후 막차"
+        makarDetailLabel.text = "\(checkLeftTime(targetDate: data.sourceTime))분 후 막차"
         if (myRouteProgressView.subviews.isEmpty) {
-            myRouteProgressView.setData(subRouteItemList: data.subRouteItemList)
+            myRouteProgressView.setData(subRouteList: data.subRouteList)
         }
     }
 
