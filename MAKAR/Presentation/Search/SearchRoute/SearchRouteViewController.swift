@@ -8,26 +8,26 @@
 import UIKit
 
 class SearchRouteViewController : BaseViewController {
-    
-    // MARK: Constants
-    private enum Metric {
-        static let searchRouteViewHeight = 188
-    }
-    
+
     // MARK: UI Components
     private let searchRouteView = SearchRouteView()
     private let searchRouteTableView = UITableView(frame: .zero, style: .plain)
-    
+    private let backButton = BaseButton().then {
+        $0.setImage(MakarButton.dismissButton, for: .normal)
+    }
+
     // TODO: 경로 검색 리스트 조회 API 연결
     let searchRouteList : [Route] = Route.searchRouteList
 
-    
+    // MARK: Environment
+    private let router = BaseRouter()
+
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationBar()
 
         view.backgroundColor = .background
+        router.viewController = self
         setSearchRouteTableView()
     }
     
@@ -78,7 +78,31 @@ class SearchRouteViewController : BaseViewController {
             $0.height.equalTo(Metric.searchRouteViewHeight)
         }
     }
+
+    // MARK: View Transition
+    override func viewTransition() {
+        backButton.tap = { [weak self] in
+            guard let self else { return }
+            router.popViewController()
+        }
+    }
+
+    // MARK: Set Navigation
+    override func setNavigationItem() {
+        super.setNavigationItem()
+
+        navigationItem.title = "경로 설정하기"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    }
+
+    // MARK: Event
+    func changeSearchBarText(sourceText : String, destinationText : String){
+            self.searchRouteView.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)
+    }
     
+}
+
+extension SearchRouteViewController {
     // MARK: Networking
     private func postSwapStationButtonClicked(){
         print("swapStationButton clicked")
@@ -95,17 +119,6 @@ class SearchRouteViewController : BaseViewController {
     private func postSearchRouteButtonClicked(){
         print("searchRouteButton clicked")
     }
-    
-    // MARK: NavigationBar
-    private func setNavigationBar(){
-        navigationItem.title = "경로 설정하기"
-    }
-    
-    // MARK: Event
-    func changeSearchBarText(sourceText : String, destinationText : String){
-            self.searchRouteView.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)
-    }
-    
 }
 
     // MARK: TableView
