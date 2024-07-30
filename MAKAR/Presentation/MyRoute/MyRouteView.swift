@@ -95,7 +95,7 @@ extension MyRouteView {
     private func changeDateFormat(date: String) -> String {
         let outputDateFormatter = DateFormatter().then{
             $0.dateFormat = "HH:mm"
-            $0.locale = Locale(identifier: "ko_KR")
+            $0.locale = Locale(identifier: "ko_kr")
         }
            
         let date = convertStringToDate(targetDateString: date)
@@ -110,6 +110,7 @@ extension MyRouteView {
     
     private func convertStringToDate(targetDateString: String) -> Date {
         let adjustedDateString = targetDateString.replacingOccurrences(of: "KST", with: "+0900")
+                                                .replacingOccurrences(of: "UTC", with: "+0900")
         return dateFormatter.date(from: adjustedDateString)!
     }
     

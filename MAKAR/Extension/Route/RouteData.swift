@@ -71,7 +71,7 @@ extension Route {
     static let myRoute: [Route] = [
         Route(sourceStation: Station(stationName: "숭실대입구역", lineNum: "7호선"),
                   destinationStation: Station(stationName: "신촌역", lineNum: "2호선"),
-              sourceTime: "Tue Jul 30 15:45:00 KST 2024", destinationTime: "Tue Jul 30 16:20:00 KST 2024", totalTime: 35, transferCount: 1,
+              sourceTime: "Wed Jul 31 00:35:00 UTC 2024", destinationTime: "Wed Jul 31 00:42:00 UTC 2024", totalTime: 35, transferCount: 1,
                   subRouteList: [SubRoute(fromStationName: "숭실대입구역", toStationName: "대림역", lineNum: "7호선", sectionTime: 12, transferTime: 5),
                         SubRoute(fromStationName: "대림역", toStationName: "신촌역", lineNum: "2호선", sectionTime: 18, transferTime: 0)])
         ]
