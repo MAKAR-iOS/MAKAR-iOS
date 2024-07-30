@@ -83,6 +83,8 @@ extension SignInViewController {
             case .success(let response):
                 guard let data = response as? AuthResponse else { return }
                 print("🎯 postSignIn success: " + "\(data)")
+                UserDefaultHandler.accessToken = data.data.accessToken.token
+                UserDefaultHandler.refreshToken = data.data.refreshToken.token
                 self.router.presentTabBarViewController()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
