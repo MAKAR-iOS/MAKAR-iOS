@@ -84,6 +84,7 @@
 		957F3D2B2C5798DE00EA0AD2 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D2A2C5798DE00EA0AD2 /* AuthService.swift */; };
 		957F3D592C58AC5600EA0AD2 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D582C58AC5600EA0AD2 /* DividerView.swift */; };
 		957F3D5D2C58ACD200EA0AD2 /* MyRouteInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D5C2C58ACD200EA0AD2 /* MyRouteInfoTableViewCell.swift */; };
+		957F3D632C58B95100EA0AD2 /* StationSearchBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D622C58B95100EA0AD2 /* StationSearchBarButton.swift */; };
 		95A5D9DD2B58B4F8000A2A72 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 95A5D9DC2B58B4F8000A2A72 /* Toast */; };
 		95B10F7C2B331350005319F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7B2B331350005319F6 /* AppDelegate.swift */; };
 		95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7D2B331350005319F6 /* SceneDelegate.swift */; };
@@ -194,6 +195,7 @@
 		957F3D2A2C5798DE00EA0AD2 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		957F3D582C58AC5600EA0AD2 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		957F3D5C2C58ACD200EA0AD2 /* MyRouteInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRouteInfoTableViewCell.swift; sourceTree = "<group>"; };
+		957F3D622C58B95100EA0AD2 /* StationSearchBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationSearchBarButton.swift; sourceTree = "<group>"; };
 		95B10F782B331350005319F6 /* MAKAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAKAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B10F7B2B331350005319F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B10F7D2B331350005319F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -561,6 +563,7 @@
 			children = (
 				95B10FAA2B3315F5005319F6 /* BaseButton.swift */,
 				26F3B4282B3C2B3800E7756F /* RouteButton.swift */,
+				957F3D622C58B95100EA0AD2 /* StationSearchBarButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -880,6 +883,7 @@
 				957F3CE22C524B9800EA0AD2 /* UIView+Extension.swift in Sources */,
 				26E664792B3C4D0A002579C1 /* DestinationSearchStationViewController.swift in Sources */,
 				957F3D2B2C5798DE00EA0AD2 /* AuthService.swift in Sources */,
+				957F3D632C58B95100EA0AD2 /* StationSearchBarButton.swift in Sources */,
 				956382D52B397968006B50ED /* MyRouteView.swift in Sources */,
 				957F3D202C57970700EA0AD2 /* UserDefaultHandler.swift in Sources */,
 				956382B02B397570006B50ED /* SplashViewController.swift in Sources */,
