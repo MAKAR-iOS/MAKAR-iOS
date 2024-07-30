@@ -21,13 +21,13 @@ class StartSignInView: BaseView {
     }
 
     private let signInButton = BaseButton().then {
-        $0.setDefaultButton("로그인")
-        $0.setReverseeButton()
+        $0.setAuthDefaultButton("로그인")
+        $0.setReverseButton()
     }
 
     private let signUpButton = BaseButton().then {
-        $0.setDefaultButton("회원가입")
-        $0.setMakarButton()
+        $0.setAuthDefaultButton("회원가입")
+        $0.setAuthButton()
     }
 
     // MARK: Properties
@@ -67,13 +67,13 @@ class StartSignInView: BaseView {
         signInButton.snp.makeConstraints {
             $0.bottom.equalTo(signUpButton.snp.top).offset(-13)
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(Metric.buttonHeight)
+            $0.height.equalTo(Metric.authButtonHeight)
         }
 
         signUpButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(68)
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(Metric.buttonHeight)
+            $0.height.equalTo(Metric.authButtonHeight)
         }
     }
 
