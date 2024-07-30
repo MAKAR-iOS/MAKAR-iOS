@@ -24,8 +24,8 @@ struct RouteDTO: Codable {
     let sourceLineNum: String
     let destinationStationName: String
     let destinationLineNum: String
-    let sourceTime: Date
-    let destinationTime: Date
+    let sourceTime: String
+    let destinationTime: String
     let totalTime: Int
     let transferCount: Int
     let subRouteDtoList: [SubRouteDTO]
