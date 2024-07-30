@@ -21,6 +21,7 @@ class SearchRouteViewController : BaseViewController {
 
     // MARK: Properties
     var sourceStation: StationDTO?
+    var destinationStation: StationDTO?
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -99,8 +100,8 @@ class SearchRouteViewController : BaseViewController {
     }
 
     // MARK: Event
-    func changeSearchBarText(sourceText : String, destinationText : String){
-            self.searchRouteView.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)
+    func changeSearchBarText(sourceText: String, destinationText: String) {
+        self.searchRouteView.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)
     }
 }
 
@@ -109,12 +110,14 @@ extension SearchRouteViewController {
         guard let sourceStationName = sourceStation?.stationName else { return }
 
         print("🐶sourceStation: \(sourceStation?.stationName ?? "nil") + \(sourceStation?.lineNum ?? "nil")")
+        self.sourceStation = sourceStation
     }
 
     func getDestinationStationData(_ destinationStation: StationDTO?) {
         guard let destinationStationName = destinationStation?.stationName else { return }
 
         print("🐶destinationStation: \(destinationStation?.stationName ?? "nil") + \(destinationStation?.lineNum ?? "nil")")
+        self.destinationStation = destinationStation
     }
 }
 
