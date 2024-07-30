@@ -22,6 +22,7 @@ class SchoolSearchStationViewController: BaseSearchStationViewController {
     // MARK: Properties
     var isFiltering: Bool = false
     var searchResult: [StationDTO] = []
+    var schoolStation: StationDTO?
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -81,8 +82,12 @@ class SchoolSearchStationViewController: BaseSearchStationViewController {
 extension SchoolSearchStationViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        // TODO: 학교 등록
-        navigationController?.popViewController(animated: true)
+
+        schoolStation = searchResult[indexPath.row]
+        let favoriteStationViewController = FavoriteStationViewController()
+        favoriteStationViewController.getSchoolStationData(schoolStation)
+
+        router.popViewController()
     }
 }
 
