@@ -23,6 +23,7 @@ class HomeSearchStationViewController: BaseSearchStationViewController {
     // MARK: Properties
     var isFiltering: Bool = false
     var searchResult: [StationDTO] = []
+    var homeStation: StationDTO?
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -82,8 +83,12 @@ class HomeSearchStationViewController: BaseSearchStationViewController {
 extension HomeSearchStationViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        // TODO: 집 등록
-        navigationController?.popViewController(animated: true)
+
+        homeStation = searchResult[indexPath.row]
+        let favoriteStationViewController = FavoriteStationViewController()
+        favoriteStationViewController.getHomeStationData(homeStation)
+
+        router.popViewController()
     }
 }
 

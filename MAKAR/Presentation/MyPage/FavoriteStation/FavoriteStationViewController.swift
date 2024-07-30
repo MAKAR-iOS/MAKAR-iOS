@@ -10,7 +10,7 @@ import UIKit
 class FavoriteStationViewController : BaseViewController {
     // MARK: UI Components
     private let favoriteStationView = FavoriteStationView()
-
+    
     private let backButton = BaseButton().then {
         $0.setImage(MakarButton.dismissButton, for: .normal)
     }
@@ -83,7 +83,25 @@ class FavoriteStationViewController : BaseViewController {
         navigationItem.title = "자주 가는 역 설정"
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
     }
+}
 
+extension FavoriteStationViewController {
+    func getHomeStationData(_ homeStation: StationDTO?) {
+        guard let homeStationName = homeStation?.stationName else { return }
+
+        print("🐶homeStation: \(homeStation?.stationName ?? "nil") + \(homeStation?.lineNum ?? "nil")")
+        self.homeStation = homeStation
+    }
+
+    func getSchoolStationData(_ schoolStation: StationDTO?) {
+        guard let schoolStationName = schoolStation?.stationName else { return }
+
+        print("🐶schoolStation: \(schoolStation?.stationName ?? "nil") + \(schoolStation?.lineNum ?? "nil")")
+        self.schoolStation = schoolStation
+    }
+}
+
+extension FavoriteStationViewController {
     // MARK: Networking
     private func postHomeSearchStationButtonClicked() {
         print("homeSearchStationButton clicked")
