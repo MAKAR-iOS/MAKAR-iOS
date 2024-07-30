@@ -38,8 +38,7 @@ class HomeView: BaseView {
     }
     
     private let mainRouteView = UILabel().then{
-        //TODO: Text ic_arrow 수정 필요
-        $0.text = "출발역  ->  도착역"
+        $0.text = "출발역   →   도착역"
         $0.textColor = .darkGray
         $0.textAlignment = .center
         $0.font = UIFont.systemFont(ofSize: 15, weight: .regular)
@@ -249,8 +248,8 @@ class HomeView: BaseView {
     }
     
     // MARK: ChangeComponent
-    func changeComponentRouteSet(){
-        mainRouteView.text = "Source   →   Destination"
+    func changeComponentRouteSet(source: String, destination: String){
+        mainRouteView.text = "\(source)   →   \(destination)"
         resetRouteButton.isHidden = false
         setRouteButton.isHidden = true
         changeRouteButton.isHidden = false

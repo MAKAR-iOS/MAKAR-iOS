@@ -34,6 +34,7 @@
 		26D7C4002C57DBF6002127C1 /* NotiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7C3FF2C57DBF6002127C1 /* NotiService.swift */; };
 		26D7C4022C57DC08002127C1 /* StationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7C4012C57DC08002127C1 /* StationService.swift */; };
 		26D7C4042C57DC11002127C1 /* RouteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7C4032C57DC11002127C1 /* RouteService.swift */; };
+		26D7C4092C5817BF002127C1 /* Noti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7C4082C5817BF002127C1 /* Noti.swift */; };
 		26E664752B3C4C20002579C1 /* SourceSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664742B3C4C20002579C1 /* SourceSearchStationView.swift */; };
 		26E664772B3C4CFA002579C1 /* DestinationSearchStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664762B3C4CFA002579C1 /* DestinationSearchStationView.swift */; };
 		26E664792B3C4D0A002579C1 /* DestinationSearchStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E664782B3C4D0A002579C1 /* DestinationSearchStationViewController.swift */; };
@@ -141,6 +142,7 @@
 		26D7C3FF2C57DBF6002127C1 /* NotiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiService.swift; sourceTree = "<group>"; };
 		26D7C4012C57DC08002127C1 /* StationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationService.swift; sourceTree = "<group>"; };
 		26D7C4032C57DC11002127C1 /* RouteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteService.swift; sourceTree = "<group>"; };
+		26D7C4082C5817BF002127C1 /* Noti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Noti.swift; sourceTree = "<group>"; };
 		26E664742B3C4C20002579C1 /* SourceSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceSearchStationView.swift; sourceTree = "<group>"; };
 		26E664762B3C4CFA002579C1 /* DestinationSearchStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchStationView.swift; sourceTree = "<group>"; };
 		26E664782B3C4D0A002579C1 /* DestinationSearchStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchStationViewController.swift; sourceTree = "<group>"; };
@@ -447,6 +449,7 @@
 				26EFA29C2B4D9D9B003678C0 /* RouteData.swift */,
 				26150E0E2B59433700E5059D /* Station.swift */,
 				26150E102B59471E00E5059D /* SubRoute.swift */,
+				26D7C4082C5817BF002127C1 /* Noti.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -811,6 +814,7 @@
 				26D7C3FC2C57DBDB002127C1 /* RouteAPI.swift in Sources */,
 				95B10FAD2B33165C005319F6 /* AppDependency.swift in Sources */,
 				26D7C4002C57DBF6002127C1 /* NotiService.swift in Sources */,
+				26D7C4092C5817BF002127C1 /* Noti.swift in Sources */,
 				957F3D0E2C57930600EA0AD2 /* BlankDataResponse.swift in Sources */,
 				26A0EF3A2B5D2D2C003E11D6 /* ProgressView.swift in Sources */,
 				95D0043B2B4BE220009D4DF3 /* MakarTableViewCell.swift in Sources */,

@@ -17,18 +17,17 @@ class HomeViewController: BaseViewController {
     
     // MARK: Flag
     static var isRouteSet = false //경로 설정 유무 플래그
-    var makarLeftTime = 0 //막차까지 남은 시간
-    var hakarLeftTime = 0 //하차까지 남은 시간
-    var makarNotiFlag = false //막차 알림 실행 유무 플래그
-    var hakarNotiFlag = false //하차 알림 실행 유무 플래그
-    var isMakarTaken = false //막차 측정/하차 측정 구분 플래그
+    static var isMakarTaken = false
     
-    static let makarDateComponents = DateComponents(year: 2024, month: 7, day: 30, hour: 02, minute: 45)
-    static let hakarDateComponents = DateComponents(year: 2024, month: 7, day: 30, hour: 02, minute: 47)
-    let makarTime = Calendar.current.date(from: makarDateComponents)!//임시 막차 시간
-    let hakarTime = Calendar.current.date(from: hakarDateComponents)!//임시 하차 시간
-    let makarAlarmTime = 10 //임시 막차 알림 시간
-    let hakarAlarmTime = 10 //임시 하차 알림 시간
+    let sourceStationName = "숭실대입구"
+    let destinationStationName = "영등포"
+    
+    var makarNotiList : [Noti] = Noti.makarNotiList // 막차 알림 리스트
+    var getOffNotiList : [Noti] = Noti.getOffNotiList // 하차 알림 리스트
+    
+    let makarTime = "Tue Jul 30 14:50:00 KST 2024"
+    let getOffTime = "Tue Jul 30 14:53:00 KST 2024"
+    
     
     // TODO: 최근 경로 리스트, 즐겨찾는 경로 리스트 조회 API 연결
     static var favoriteRouteList : [Route] = Route.favoriteRouteList
@@ -168,10 +167,7 @@ class HomeViewController: BaseViewController {
     }
     
     // MARK: NavigationBar
-
     private func setNavigationBar(){
-        //TODO: NavigationBar MAKAR icon custom 필요
-        
         navigationItem.title = nil
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: MakarButton.mapButton, style: .plain, target: self, action: #selector(handleMapButtonClickEvent))
     }
@@ -185,58 +181,76 @@ class HomeViewController: BaseViewController {
         DispatchQueue.global(qos: .background).async {
             let runLoop = RunLoop.current
             
-            // TODO: Noti List 도입 및 플래그 수정
             Timer.scheduledTimer(withTimeInterval: 10, repeats: true){ _ in
-                if(HomeViewController.isRouteSet){
-                    //막차까지 남은 시간 계산
-                    if(!self.isMakarTaken){
-                        self.makarLeftTime = self.checkNotificationTime(targetDate: self.makarTime)
-                        if(self.makarLeftTime < 0){
-                            //막차 시간 도달
-                            self.isMakarTaken = true
-                            self.hakarLeftTime = self.checkNotificationTime(targetDate: self.hakarTime)
-                            self.changeComponent()
-                        } else {
-                            if(self.makarLeftTime == self.makarAlarmTime && !self.makarNotiFlag){
-                                //TODO: showNotification
-                                self.makarNotiFlag = true
-                            }
-                            self.changeMainTitleText(target: "막차", minute: self.makarLeftTime)
-                        }
-                    }else{
-                        //하차까지 남은 시간 계산
-                        self.hakarLeftTime = self.checkNotificationTime(targetDate: self.hakarTime)
-                        if(self.hakarLeftTime == self.hakarAlarmTime && !self.hakarNotiFlag){
-                            //TODO: showNotification
-                            self.hakarNotiFlag = true
-                        }
-                        self.changeMainTitleText(target: "하차", minute: self.hakarLeftTime)
+                if HomeViewController.isRouteSet {
+                    if !HomeViewController.isMakarTaken {
+                        self.handleMakarTime()
+                    } else {
+                        self.handleGetOffTime()
                     }
                 }
             }
             //하차 시간 까지 비동기 루프 실행
-            runLoop.run(until: self.hakarTime)
+            let getOffTimeDate = self.convertStringToDate(targetDateString: self.getOffTime)
+            print("getOffTimeDate = \(getOffTimeDate)")
+            runLoop.run(until: getOffTimeDate)
             
             //하차 시간 도달
             HomeViewController.isRouteSet = false
+            HomeViewController.isMakarTaken = false
+
             //경로 제거
-            self.isMakarTaken = false
-            self.makarNotiFlag = false
-            self.hakarNotiFlag = false
+            // TODO: 설정된 경로 삭제 API 연결
             self.changeComponent()
         }
     }
     
-    private func checkNotificationTime(targetDate : Date) -> Int{
-        //현재 시간과 설정된 시간 비교
-        let date = Date()
-        let dateFormatter = DateFormatter().then{
-            $0.dateFormat = "YYYY-MM-dd HH:mm:ss"
-            $0.locale = Locale(identifier: "ko_kr")
+    private func handleMakarTime() {
+        let makarLeftTime = self.checkNotificationTime(targetDateString: self.makarTime)
+        if makarLeftTime < 0 {
+            // 막차 시간 도달
+            HomeViewController.isMakarTaken = true
+            self.changeComponent()
+        } else {
+            for makarNoti in makarNotiList {
+                if makarLeftTime == makarNoti.notiMinute {
+                    // TODO: showNotification
+                    print("Show Makar Noti")
+                    // 해당 데이터 제거
+                }
+            }
+            self.changeMainTitleText(target: "막차", minute: makarLeftTime)
         }
-        let currentDate = dateFormatter.date(from: dateFormatter.string(from: date))!
-        let targetDate = dateFormatter.date(from: dateFormatter.string(from: targetDate))!
+    }
+
+    private func handleGetOffTime() {
+        let getOffLeftTime = self.checkNotificationTime(targetDateString: self.getOffTime)
+        for getOffNoti in getOffNotiList {
+            if getOffLeftTime == getOffNoti.notiMinute {
+                // TODO: showNotification
+                // 해당 데이터 제거
+                print("Show GetOff Noti")
+            }
+        }
+        self.changeMainTitleText(target: "하차", minute: getOffLeftTime)
+    }
+    
+    private func convertStringToDate(targetDateString: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        let adjustedDateString = targetDateString.replacingOccurrences(of: "KST", with: "+0900")
+        return dateFormatter.date(from: adjustedDateString)!
+    }
+    
+    private func checkNotificationTime(targetDateString: String) -> Int {
+        let currentDate = Date()
         print("[currentTime] : \(currentDate)")
+        // targetDateString을 Date 객체로 변환
+        let targetDate = convertStringToDate(targetDateString: targetDateString)
+        
+        // 현재 시간과 설정된 시간 분 단위 비교
         return Calendar.current.dateComponents([.minute], from: currentDate, to: targetDate).minute!
     }
     
@@ -254,14 +268,16 @@ class HomeViewController: BaseViewController {
     
     
     private func updateRouteSetUI() {
-        if !self.isMakarTaken {
-            self.changeMainTitleText(target: "막차", minute: self.makarLeftTime)
-            self.homeView.changeMainDestinationText(destinationText: "Source")
+        if !HomeViewController.isMakarTaken {
+            let makarLeftTime = self.checkNotificationTime(targetDateString: self.makarTime)
+            self.changeMainTitleText(target: "막차", minute: makarLeftTime)
+            self.homeView.changeMainDestinationText(destinationText: sourceStationName)
         } else {
-            self.changeMainTitleText(target: "하차", minute: self.hakarLeftTime)
-            self.homeView.changeMainDestinationText(destinationText: "Destination")
+            let getOffLeftTime = self.checkNotificationTime(targetDateString: self.getOffTime)
+            self.changeMainTitleText(target: "하차", minute: getOffLeftTime)
+            self.homeView.changeMainDestinationText(destinationText: destinationStationName)
         }
-        self.homeView.changeComponentRouteSet()
+        self.homeView.changeComponentRouteSet(source: sourceStationName, destination: destinationStationName)
         print("changeComponent: RouteSet")
     }
 
@@ -292,8 +308,6 @@ class HomeViewController: BaseViewController {
         resetRouteAlert.addAction( UIAlertAction(title: "확인", style: .destructive, handler: {_ in
             self.changeComponent()
             HomeViewController.isRouteSet = false
-            self.makarNotiFlag = false
-            self.hakarNotiFlag = false
         }))
         resetRouteAlert.addAction(UIAlertAction(title: "취소", style: .cancel))
         present(resetRouteAlert, animated: true)
