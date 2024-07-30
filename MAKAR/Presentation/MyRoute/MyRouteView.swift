@@ -30,7 +30,8 @@ class MyRouteView: BaseView {
     // MARK: Properties
     let myRoute: [Route] = Route.myRoute
     private let dateFormatter = DateFormatter().then {
-        $0.locale = Locale(identifier: "ko_kr")
+        $0.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
+        $0.locale = Locale(identifier: "en_US_POSIX")
     }
 
     // MARK: Configuration
@@ -91,18 +92,25 @@ extension MyRouteView {
         }
     }
 
-    private func changeDateFormat(date: Date) -> String {
-        dateFormatter.dateFormat = "HH:mm"
-        return dateFormatter.string(from: date)
+    private func changeDateFormat(date: String) -> String {
+        let outputDateFormatter = DateFormatter().then{
+            $0.dateFormat = "HH:mm"
+            $0.locale = Locale(identifier: "ko_KR")
+        }
+           
+        let date = convertStringToDate(targetDateString: date)
+        return outputDateFormatter.string(from: date)
     }
 
-    private func checkLeftTime(targetDate: Date) -> Int {
-        let date = Date()
-        dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
-
-        let currentDate = dateFormatter.date(from: dateFormatter.string(from: date))!
-        let targetDate = dateFormatter.date(from: dateFormatter.string(from: targetDate))!
-        print("[currentTime] : \(currentDate)")
+    private func checkLeftTime(targetDate: String) -> Int {
+        let currentDate = Date()
+        let targetDate = convertStringToDate(targetDateString: targetDate)
         return Calendar.current.dateComponents([.minute], from: currentDate, to: targetDate).minute!
     }
+    
+    private func convertStringToDate(targetDateString: String) -> Date {
+        let adjustedDateString = targetDateString.replacingOccurrences(of: "KST", with: "+0900")
+        return dateFormatter.date(from: adjustedDateString)!
+    }
+    
 }
