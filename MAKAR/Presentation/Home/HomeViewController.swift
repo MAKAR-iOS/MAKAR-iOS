@@ -25,8 +25,8 @@ class HomeViewController: BaseViewController {
     var makarNotiList : [Noti] = Noti.makarNotiList // 막차 알림 리스트
     var getOffNotiList : [Noti] = Noti.getOffNotiList // 하차 알림 리스트
     
-    let makarTime = "Tue Jul 30 14:50:00 KST 2024"
-    let getOffTime = "Tue Jul 30 14:53:00 KST 2024"
+    let makarTime = "Tue Jul 30 22:18:00 KST 2024"
+    let getOffTime = "Tue Jul 30 22:21:00 KST 2024"
     
     
     // TODO: 최근 경로 리스트, 즐겨찾는 경로 리스트 조회 API 연결
@@ -93,7 +93,6 @@ class HomeViewController: BaseViewController {
             guard let self else { return }
             
             self.navigationController?.pushViewController(SearchRouteViewController(), animated: true)
-            // TODO: flag 수정
             HomeViewController.isRouteSet = true;
             postSetRouteButtonClicked()
         }
@@ -206,17 +205,16 @@ class HomeViewController: BaseViewController {
     
     private func handleMakarTime() {
         let makarLeftTime = self.checkNotificationTime(targetDateString: self.makarTime)
-        if makarLeftTime < 0 {
+        if makarLeftTime <= 0 {
             // 막차 시간 도달
             HomeViewController.isMakarTaken = true
             self.changeComponent()
         } else {
-            for makarNoti in makarNotiList {
-                if makarLeftTime == makarNoti.notiMinute {
-                    // TODO: showNotification
-                    print("Show Makar Noti")
-                    // 해당 데이터 제거
-                }
+            if makarLeftTime == makarNotiList[0].notiMinute {
+                addNotification(notiType: "막차", minute: makarLeftTime)
+                print("Show MAKAR Notification")
+                // TODO: Noti Del API 연결
+                makarNotiList.remove(at: 0)
             }
             self.changeMainTitleText(target: "막차", minute: makarLeftTime)
         }
@@ -224,12 +222,11 @@ class HomeViewController: BaseViewController {
 
     private func handleGetOffTime() {
         let getOffLeftTime = self.checkNotificationTime(targetDateString: self.getOffTime)
-        for getOffNoti in getOffNotiList {
-            if getOffLeftTime == getOffNoti.notiMinute {
-                // TODO: showNotification
-                // 해당 데이터 제거
-                print("Show GetOff Noti")
-            }
+        if getOffLeftTime == getOffNotiList[0].notiMinute {
+            addNotification(notiType: "하차", minute: getOffLeftTime)
+            print("Show GETOFF Notification")
+            // TODO: Noti Del API 연결
+            getOffNotiList.remove(at: 0)
         }
         self.changeMainTitleText(target: "하차", minute: getOffLeftTime)
     }
@@ -310,6 +307,11 @@ class HomeViewController: BaseViewController {
         }))
         resetRouteAlert.addAction(UIAlertAction(title: "취소", style: .cancel))
         present(resetRouteAlert, animated: true)
+    }
+    
+    // MARK: Notification
+    private func addNotification(notiType: String, minute: Int) {
+        UNUserNotificationCenter.current().addNotificationRequest(notiType: notiType, minute: minute)
     }
 }
 

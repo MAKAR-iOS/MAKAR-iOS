@@ -28,6 +28,7 @@
 		26A0EF342B5AA1B8003E11D6 /* SearchRouteProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0EF332B5AA1B8003E11D6 /* SearchRouteProgressView.swift */; };
 		26A0EF3A2B5D2D2C003E11D6 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0EF392B5D2D2C003E11D6 /* ProgressView.swift */; };
 		26A0EF3C2B5D58CE003E11D6 /* FavoriteRouteTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0EF3B2B5D58CE003E11D6 /* FavoriteRouteTextView.swift */; };
+		26CFF25A2C59171400019529 /* UNUserNotificationCenter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CFF2592C59171400019529 /* UNUserNotificationCenter+Extension.swift */; };
 		26D7C3FA2C57DBCA002127C1 /* StationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7C3F92C57DBCA002127C1 /* StationAPI.swift */; };
 		26D7C3FC2C57DBDB002127C1 /* RouteAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7C3FB2C57DBDB002127C1 /* RouteAPI.swift */; };
 		26D7C3FE2C57DBE7002127C1 /* NotiAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7C3FD2C57DBE7002127C1 /* NotiAPI.swift */; };
@@ -141,6 +142,7 @@
 		26A0EF332B5AA1B8003E11D6 /* SearchRouteProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouteProgressView.swift; sourceTree = "<group>"; };
 		26A0EF392B5D2D2C003E11D6 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		26A0EF3B2B5D58CE003E11D6 /* FavoriteRouteTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteTextView.swift; sourceTree = "<group>"; };
+		26CFF2592C59171400019529 /* UNUserNotificationCenter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNUserNotificationCenter+Extension.swift"; sourceTree = "<group>"; };
 		26D7C3F92C57DBCA002127C1 /* StationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationAPI.swift; sourceTree = "<group>"; };
 		26D7C3FB2C57DBDB002127C1 /* RouteAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAPI.swift; sourceTree = "<group>"; };
 		26D7C3FD2C57DBE7002127C1 /* NotiAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiAPI.swift; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 				957F3CDB2C524B9800EA0AD2 /* UILabel+Extension.swift */,
 				957F3CDA2C524B9800EA0AD2 /* UIStackView+Extension.swift */,
 				956382F32B398AEB006B50ED /* UIColor+Extension.swift */,
+				26CFF2592C59171400019529 /* UNUserNotificationCenter+Extension.swift */,
 			);
 			path = "UIKit+Extension";
 			sourceTree = "<group>";
@@ -867,6 +870,7 @@
 				957F3D682C58F8FE00EA0AD2 /* SearchStationTableViewCell.swift in Sources */,
 				95B10FA72B3315DD005319F6 /* BaseViewController.swift in Sources */,
 				26D7C3FE2C57DBE7002127C1 /* NotiAPI.swift in Sources */,
+				26CFF25A2C59171400019529 /* UNUserNotificationCenter+Extension.swift in Sources */,
 				26150E112B59471E00E5059D /* SubRoute.swift in Sources */,
 				956382C32B3975B7006B50ED /* NotificationViewController.swift in Sources */,
 				262F82462C54C01A00C4440F /* NotiResponse.swift in Sources */,
