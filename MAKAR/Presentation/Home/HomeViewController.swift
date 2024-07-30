@@ -192,7 +192,6 @@ class HomeViewController: BaseViewController {
             }
             //하차 시간 까지 비동기 루프 실행
             let getOffTimeDate = self.convertStringToDate(targetDateString: self.getOffTime)
-            print("getOffTimeDate = \(getOffTimeDate)")
             runLoop.run(until: getOffTimeDate)
             
             //하차 시간 도달

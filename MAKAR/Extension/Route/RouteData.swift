@@ -55,15 +55,15 @@ extension Route {
     static let searchRouteList : [Route] = [
         Route(sourceStation: Station(stationName: "숭실대입구역", lineNum: "7호선"),
                   destinationStation: Station(stationName: "이수역", lineNum: "7호선"),
-                  sourceTime: "SourceTime", destinationTime: "DestinationTime", totalTime: 4, transferCount: 0,
+                  sourceTime: "Tue Jul 30 15:45:00 KST 2024", destinationTime: "Tue Jul 30 16:45:00 KST 2024", totalTime: 4, transferCount: 0,
               subRouteList: [SubRoute(fromStationName: "숭실대입구역", toStationName: "이수역", lineNum: "7호선", sectionTime: 4, transferTime : 0)]),
         Route(sourceStation: Station(stationName: "강남역", lineNum: "2호선"),
                   destinationStation: Station(stationName: "합정역", lineNum: "2호선"),
-                  sourceTime: "SourceTime", destinationTime: "DestinationTime", totalTime: 30, transferCount: 0,
+                  sourceTime: "Tue Jul 30 17:45:00 KST 2024", destinationTime: "Tue Jul 30 18:45:00 KST 2024", totalTime: 30, transferCount: 0,
                   subRouteList: [SubRoute(fromStationName: "강남역", toStationName: "합정역", lineNum: "2호선", sectionTime: 30, transferTime: 0)]),
         Route(sourceStation: Station(stationName: "숭실대입구역", lineNum: "7호선"),
                   destinationStation: Station(stationName: "신촌역", lineNum: "2호선"),
-              sourceTime: "SourceTime", destinationTime: "DestinationTime", totalTime: 35, transferCount: 1,
+              sourceTime: "Tue Jul 30 15:45:00 KST 2024", destinationTime: "Tue Jul 30 16:25:00 KST 2024", totalTime: 35, transferCount: 1,
                   subRouteList: [SubRoute(fromStationName: "숭실대입구역", toStationName: "대림역", lineNum: "7호선", sectionTime: 12, transferTime: 5),
                         SubRoute(fromStationName: "대림역", toStationName: "신촌역", lineNum: "2호선", sectionTime: 18, transferTime: 0)])
     ]
@@ -71,7 +71,7 @@ extension Route {
     static let myRoute: [Route] = [
         Route(sourceStation: Station(stationName: "숭실대입구역", lineNum: "7호선"),
                   destinationStation: Station(stationName: "신촌역", lineNum: "2호선"),
-              sourceTime: "SourceTime", destinationTime: "DestinationTime", totalTime: 35, transferCount: 1,
+              sourceTime: "Tue Jul 30 15:45:00 KST 2024", destinationTime: "Tue Jul 30 16:20:00 KST 2024", totalTime: 35, transferCount: 1,
                   subRouteList: [SubRoute(fromStationName: "숭실대입구역", toStationName: "대림역", lineNum: "7호선", sectionTime: 12, transferTime: 5),
                         SubRoute(fromStationName: "대림역", toStationName: "신촌역", lineNum: "2호선", sectionTime: 18, transferTime: 0)])
         ]
