@@ -121,8 +121,6 @@ extension DestinationSearchStationViewController {
         searchRouteViewController.getDestinationStationData(destinationStation)
 
         router.popViewController()
-        // TODO: 도착역 등록
-        navigationController?.popViewController(animated: true)
     }
 }
 
