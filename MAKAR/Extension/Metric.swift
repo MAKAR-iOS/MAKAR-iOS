@@ -22,6 +22,8 @@ public enum Metric {
     static let swapButtonHeight = 30
     static let swapButtonWidth = 30
     static let textWidth = 40
+    static let searchBarButtonHeight = 38
+    static let searchBarButtonRadius = 18
     static let searchBarHeight = 38
-    static let searchBarRadius = 18
+    static let searchBarRadius = 22
 }
