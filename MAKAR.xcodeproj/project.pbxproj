@@ -86,6 +86,7 @@
 		957F3D5D2C58ACD200EA0AD2 /* MyRouteInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D5C2C58ACD200EA0AD2 /* MyRouteInfoTableViewCell.swift */; };
 		957F3D632C58B95100EA0AD2 /* StationSearchBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D622C58B95100EA0AD2 /* StationSearchBarButton.swift */; };
 		957F3D652C58C2DC00EA0AD2 /* StationSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D642C58C2DC00EA0AD2 /* StationSearchBar.swift */; };
+		957F3D682C58F8FE00EA0AD2 /* SearchStationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F3D672C58F8FE00EA0AD2 /* SearchStationTableViewCell.swift */; };
 		95A5D9DD2B58B4F8000A2A72 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 95A5D9DC2B58B4F8000A2A72 /* Toast */; };
 		95B10F7C2B331350005319F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7B2B331350005319F6 /* AppDelegate.swift */; };
 		95B10F7E2B331350005319F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B10F7D2B331350005319F6 /* SceneDelegate.swift */; };
@@ -198,6 +199,7 @@
 		957F3D5C2C58ACD200EA0AD2 /* MyRouteInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRouteInfoTableViewCell.swift; sourceTree = "<group>"; };
 		957F3D622C58B95100EA0AD2 /* StationSearchBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationSearchBarButton.swift; sourceTree = "<group>"; };
 		957F3D642C58C2DC00EA0AD2 /* StationSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationSearchBar.swift; sourceTree = "<group>"; };
+		957F3D672C58F8FE00EA0AD2 /* SearchStationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStationTableViewCell.swift; sourceTree = "<group>"; };
 		95B10F782B331350005319F6 /* MAKAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAKAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B10F7B2B331350005319F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B10F7D2B331350005319F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 		956382E02B397A1B006B50ED /* SearchStation */ = {
 			isa = PBXGroup;
 			children = (
+				957F3D662C58F8F500EA0AD2 /* Cell */,
 				956382E42B397A4D006B50ED /* SourceSearchStationViewController.swift */,
 				26E664742B3C4C20002579C1 /* SourceSearchStationView.swift */,
 				26E664762B3C4CFA002579C1 /* DestinationSearchStationView.swift */,
@@ -569,6 +572,14 @@
 				957F3D642C58C2DC00EA0AD2 /* StationSearchBar.swift */,
 			);
 			path = Button;
+			sourceTree = "<group>";
+		};
+		957F3D662C58F8F500EA0AD2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				957F3D672C58F8FE00EA0AD2 /* SearchStationTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		95B10F6F2B331350005319F6 = {
@@ -853,6 +864,7 @@
 				2647CE862B5006B8001208BE /* PushAlarmViewController.swift in Sources */,
 				262F82402C54BA9900C4440F /* StationResponse.swift in Sources */,
 				26E664752B3C4C20002579C1 /* SourceSearchStationView.swift in Sources */,
+				957F3D682C58F8FE00EA0AD2 /* SearchStationTableViewCell.swift in Sources */,
 				95B10FA72B3315DD005319F6 /* BaseViewController.swift in Sources */,
 				26D7C3FE2C57DBE7002127C1 /* NotiAPI.swift in Sources */,
 				26150E112B59471E00E5059D /* SubRoute.swift in Sources */,
