@@ -40,11 +40,13 @@ extension StationAPI: TargetType {
     var task: Moya.Task {
         switch self {
         case .getStation(let query):
-            return .requestParameters(parameters: ["query": query], encoding: JSONEncoding.default)
-        case .getFavoriteSchool(let query):
-            return .requestParameters(parameters: ["query": query], encoding: JSONEncoding.default)
-        case .getFavoriteHome(let query):
-            return .requestParameters(parameters: ["query": query], encoding: JSONEncoding.default)
+            return .requestParameters(
+                parameters: [
+                    "q": query
+                ],
+                encoding: URLEncoding.queryString)
+        case .getFavoriteSchool, .getFavoriteHome:
+            return .requestPlain
         case .patchFavoriteSchool(let stationName, let lineNum):
             return .requestParameters(parameters: [
                 "stationName": stationName,
