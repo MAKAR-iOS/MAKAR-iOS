@@ -117,6 +117,7 @@
 		95C3F9562C50BEAD001CEF8A /* (null) in Sources */ = {isa = PBXBuildFile; };
 		95D0043B2B4BE220009D4DF3 /* MakarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D0043A2B4BE220009D4DF3 /* MakarTableViewCell.swift */; };
 		95D0043D2B4BE358009D4DF3 /* MakarNotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D0043C2B4BE358009D4DF3 /* MakarNotiView.swift */; };
+		95E181F22C5925B000CFE6B9 /* RouteListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E181F12C5925B000CFE6B9 /* RouteListResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -223,6 +224,7 @@
 		95C3F9492C4F754A001CEF8A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		95D0043A2B4BE220009D4DF3 /* MakarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakarTableViewCell.swift; sourceTree = "<group>"; };
 		95D0043C2B4BE358009D4DF3 /* MakarNotiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakarNotiView.swift; sourceTree = "<group>"; };
+		95E181F12C5925B000CFE6B9 /* RouteListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteListResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,9 +255,10 @@
 		262F82412C54BBA200C4440F /* Route */ = {
 			isa = PBXGroup;
 			children = (
-				262F82422C54BBAC00C4440F /* RouteResponse.swift */,
 				26D7C3FB2C57DBDB002127C1 /* RouteAPI.swift */,
 				26D7C4032C57DC11002127C1 /* RouteService.swift */,
+				262F82422C54BBAC00C4440F /* RouteResponse.swift */,
+				95E181F12C5925B000CFE6B9 /* RouteListResponse.swift */,
 			);
 			path = Route;
 			sourceTree = "<group>";
@@ -852,6 +855,7 @@
 				95C3F9502C4F83CA001CEF8A /* (null) in Sources */,
 				95C3F9522C4F881A001CEF8A /* (null) in Sources */,
 				95C3F9562C50BEAD001CEF8A /* (null) in Sources */,
+				95E181F22C5925B000CFE6B9 /* RouteListResponse.swift in Sources */,
 				956382D22B39789D006B50ED /* TabBarViewController.swift in Sources */,
 				95B10FA52B3315C7005319F6 /* ExampleRouter.swift in Sources */,
 				95C3F9442C4F752A001CEF8A /* SignInView.swift in Sources */,
