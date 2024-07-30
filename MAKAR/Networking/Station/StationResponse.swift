@@ -8,11 +8,15 @@
 struct StationResponse: Codable {
     let result: String
     let message: String
-    let data: [StationDTOList]
+    let data: StationData
     let statusCode: Int
 }
 
-struct StationDTOList: Codable {
+struct StationData: Codable {
+    let stationDtoList: [StationDTO]
+}
+
+struct StationDTO: Codable {
     let stationName: String
-    let lienNum: String
+    let lineNum: String
 }
