@@ -64,7 +64,6 @@ class MyRouteInfoTableViewCell: UITableViewCell {
     }
 
     private let movingInfoLabel = UILabel().then {
-        $0.text = "6개 역 이동 (12분)"
         $0.textColor = .lightGray
         $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
     }
@@ -83,7 +82,6 @@ class MyRouteInfoTableViewCell: UITableViewCell {
     }
 
     let transferTimeLabel = UILabel().then {
-        $0.text = "환승 도보 (5분)"
         $0.textColor = .lightGray
         $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
     }

@@ -20,7 +20,6 @@ class MyRouteView: BaseView {
     }
 
     private let makarDetailLabel = UILabel().then {
-        $0.text = "10분 후 막차"
         $0.textColor = .darkGray
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
