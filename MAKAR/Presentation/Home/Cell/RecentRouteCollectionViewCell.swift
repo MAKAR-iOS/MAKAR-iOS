@@ -16,11 +16,6 @@ class RecentRouteCollectionViewCell : UICollectionViewCell {
     // MARK: UI Components
     let lineNumImage = LineNumImage()
     
-    private var recentRouteDateLabel = UILabel().then{
-        $0.font = .systemFont(ofSize: 12, weight: .light)
-        $0.textColor = .lightGray3
-    }
-    
     private var deleteRecentRouteButton = BaseButton().then{
         $0.setImage(MakarButton.deleteButton, for: .normal)
     }
@@ -65,7 +60,6 @@ class RecentRouteCollectionViewCell : UICollectionViewCell {
     }
     
     func configureSubviews() {
-        addSubview(recentRouteDateLabel)
         addSubview(deleteRecentRouteButton)
         addSubview(sourceLineNumImageView)
         addSubview(sourceText)
@@ -82,17 +76,13 @@ class RecentRouteCollectionViewCell : UICollectionViewCell {
     // MARK: Layout
     func makeConstraints() {
         
-        recentRouteDateLabel.snp.makeConstraints{
-            $0.top.leading.equalToSuperview().inset(10)
-        }
-        
         deleteRecentRouteButton.snp.makeConstraints{
             $0.top.trailing.equalToSuperview().inset(10)
             $0.width.height.equalTo(Metric.deleteButtonSize)
         }
         
         sourceLineNumImageView.snp.makeConstraints{
-            $0.top.equalTo(recentRouteDateLabel.snp.bottom).inset(-10)
+            $0.top.equalTo(deleteRecentRouteButton.snp.bottom).inset(-10)
             $0.leading.equalToSuperview().inset(10)
             $0.width.height.equalTo(Metric.lineNumSize)
         }
@@ -124,7 +114,6 @@ class RecentRouteCollectionViewCell : UICollectionViewCell {
 
         sourceText.text = data.sourceStation.stationName
         destinationText.text = data.destinationStation.stationName
-        recentRouteDateLabel.text = data.date
         
         //출발역 호선 이미지
         setLineImage(for: sourceLineNumImageView, with: data.sourceStation.lineNum)
