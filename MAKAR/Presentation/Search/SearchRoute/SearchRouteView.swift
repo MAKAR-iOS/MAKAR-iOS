@@ -6,45 +6,25 @@
 //
 
 import UIKit
-class SearchRouteView : BaseView {
+
+class SearchRouteView: BaseView {
 
     // MARK: UI Components
-    private let sourceText = UILabel().then{
+    private let sourceText = UILabel().then {
         $0.text = "출발역"
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         $0.textColor = .darkGray
     }
-    
-    private let destinationText = UILabel().then{
+
+    private let destinationText = UILabel().then {
         $0.text = "도착역"
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         $0.textColor = .darkGray
     }
-    
-    private let sourceSearchBar = BaseButton().then{
-        $0.setTitle("출발역을 입력하세요", for: .normal)
-        $0.setTitleColor(.darkGray, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        $0.contentHorizontalAlignment = .left
-        $0.setImage(MakarButton.searchBarButton, for: .normal)
-        $0.contentEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 0)
-        $0.imageEdgeInsets = .init(top: 0, left: -5, bottom: 0, right: 0)
-        $0.backgroundColor = .systemGray6
-        $0.layer.cornerRadius = CGFloat(Metric.searchBarRadius)
-    }
-    
-    private let destinationSearchBar = BaseButton().then{
-        $0.setTitle("도착역을 입력하세요", for: .normal)
-        $0.setTitleColor(.darkGray, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        $0.contentHorizontalAlignment = .left
-        $0.setImage(MakarButton.searchBarButton, for: .normal)
-        $0.contentEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 0)
-        $0.imageEdgeInsets = .init(top: 0, left: -5, bottom: 0, right: 0)
-        $0.backgroundColor = .systemGray6
-        $0.layer.cornerRadius = CGFloat(Metric.searchBarRadius)
-    }
-    
+
+    private let sourceSearchBar = StationSearchBarButton(setTitle: "출발역을 입력하세요")
+    private let destinationSearchBar = StationSearchBarButton(setTitle: "도착역을 입력하세요")
+
     private let swapButton = BaseButton().then{
         var config = UIButton.Configuration.plain()
         config.baseForegroundColor = .white
@@ -52,7 +32,7 @@ class SearchRouteView : BaseView {
         config.image = MakarButton.swapButton
         $0.configuration = config
     }
-    
+
     private let searchRouteButton = RouteButton().then{
         $0.setTitle("경로 찾기", for: .normal)
     }
@@ -64,7 +44,6 @@ class SearchRouteView : BaseView {
     var tapSourceSearchBar: (() -> Void)?
     var tapDestinationSearchBar: (() -> Void)?
     var tapSearchRouteButton: (() -> Void)?
-    
 
     // MARK: Configuration
     override func configureSubviews() {

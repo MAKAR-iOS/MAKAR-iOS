@@ -6,17 +6,18 @@
 //
 
 import UIKit
+
 class RouteButton: BaseButton {
     override init() {
         super.init()
-        setComponent()
+        configureUI()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setComponent(){
+    func configureUI() {
         setTitleColor(.white, for: .normal)
         backgroundColor = .makarBlue
         titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
