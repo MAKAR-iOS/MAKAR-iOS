@@ -130,7 +130,7 @@ final class RouteService {
         switch statusCode {
         case 200..<300:
             switch responseData {
-            case .getRouteList, .postRoute, .deleteRoute:
+            case .getRouteList, .postRoute, .deleteRoute, .getFavoriteRouteList, .getRecentRouteList:
                 return isValidData(data: data, responseData: responseData)
             }
         case 400..<500:
@@ -149,18 +149,21 @@ final class RouteService {
         let decoder = JSONDecoder()
 
         switch responseData {
-        case .getRouteList, .postRoute:
+        case .getRouteList, .postRoute, .deleteRoute:
             guard let decodedData = try? decoder.decode(RouteListResponse.self, from: data) else {
                 return .pathErr
             }
             return .success(decodedData)
-        
-        case .deleteRoute:
-            guard let decodedData = try? decoder.decode(RouteResponse.self, from: data) else {
+        case .getFavoriteRouteList:
+            guard let decodedData = try? decoder.decode(FavoriteRouteListResponse.self, from: data) else {
+                return .pathErr
+            }
+            return .success(decodedData)
+        case .getRecentRouteList:
+            guard let decodedData = try? decoder.decode(RecentRouteListResponse.self, from: data) else {
                 return .pathErr
             }
             return .success(decodedData)
         }
-        
     }
 }

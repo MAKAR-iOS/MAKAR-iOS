@@ -63,6 +63,8 @@ class HomeViewController: BaseViewController {
 
         view.backgroundColor = .background
         getHome()
+        getFavoriteRouteList()
+        getRecentRouteList()
         changeComponent()
         setFavoriteRouteCollectionView()
         setRecentRouteCollectionView()
@@ -439,9 +441,9 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
 // MARK: Networking
 
 extension HomeViewController {
-    private func getHome(){
+    private func getHome() {
         print("🏠 getHome called")
-        NetworkService.shared.home.getHome(){
+        NetworkService.shared.home.getHome() {
             [self] result in
             switch result {
             case .success(let response):
@@ -456,8 +458,6 @@ extension HomeViewController {
                     makarNotiList = data.data.makarNotiList
                     getOffNotiList = data.data.getOffNotiList
                 }
-                
-                
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
@@ -469,17 +469,16 @@ extension HomeViewController {
             case .pathErr:
                 print("pathErr")
             }
-            
         }
     }
     
-    private func deleteRoute(){
+    private func deleteRoute() {
         print("🚇 deleteRoute called")
-        NetworkService.shared.route.deleteRoute{
+        NetworkService.shared.route.deleteRoute {
             [self] result in
             switch result {
             case .success(let response):
-                guard let data = response as? RouteResponse else { return }
+                guard let data = response as? RouteListResponse else { return }
                 print("🎯 deleteRoute success: " + "\(data)")
                 isRouteSet = false
                 isMakarTaken = false
@@ -497,10 +496,54 @@ extension HomeViewController {
             }
         }
     }
-    
+
+    private func getFavoriteRouteList() {
+        print("🚇 getFavoriteRouteList called")
+        NetworkService.shared.route.getFavoriteRouteList() {
+            [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? FavoriteRouteListResponse else { return }
+                print("🎯 getFavoriteRouteList success: " + "\(data)")
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+
+    private func getRecentRouteList() {
+        print("🚇 getRecentRouteList called")
+        NetworkService.shared.route.getRecentRouteList() {
+            [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? RecentRouteListResponse else { return }
+                print("🎯 getRecentRouteList success: " + "\(data)")
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+
     private func deleteMakarNoti(notiId: Int) {
         print("🔔 deleteMakarNoti called")
-        NetworkService.shared.noti.deleteMakarNoti(notiId: notiId){
+        NetworkService.shared.noti.deleteMakarNoti(notiId: notiId) {
             [self] result in
             switch result {
             case .success(let response):
@@ -518,10 +561,9 @@ extension HomeViewController {
             case .pathErr:
                 print("pathErr")
             }
-            
         }
     }
-    
+
     private func deleteGetOffNoti(notiId: Int) {
         print("🔔 deleteGetOffNoti called")
         NetworkService.shared.noti.deleteMakarNoti(notiId: notiId){
