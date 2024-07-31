@@ -14,24 +14,25 @@ class HomeViewController: BaseViewController {
         static let collectionViewCellHeight = 90
         static let collectionViewCellWidth = 100
     }
-    
+
     // MARK: Flag
+    var homeData: HomeData?
     var isRouteSet = false //경로 설정 유무 플래그
     var isMakarTaken = false
+
+    var sourceStationName: String = ""
+    var destinationStationName: String = ""
+
+    var makarNotiList: [NotiData] = [] // 막차 알림 리스트
+    var getOffNotiList: [NotiData] = [] // 하차 알림 리스트
     
-    var sourceStationName : String = ""
-    var destinationStationName : String = ""
-    
-    var makarNotiList : [NotiData] = [] // 막차 알림 리스트
-    var getOffNotiList : [NotiData] = [] // 하차 알림 리스트
-    
-    var makarTime : String = "Thu Aug 01 03:50:00 UTC 2024"
-    var getOffTime : String = "Fri Aug 01 23:53:00 UTC 2024"
+    var makarTime: String = "Thu Aug 01 03:50:00 UTC 2024"
+    var getOffTime: String = "Fri Aug 01 23:53:00 UTC 2024"
     
     
     // TODO: 최근 경로 리스트, 즐겨찾는 경로 리스트 조회 API 연결
-    static var favoriteRouteList : [Route] = Route.favoriteRouteList
-    var recentRouteList : [Route] = Route.recentRouteList
+    static var favoriteRouteList: [Route] = Route.favoriteRouteList
+    var recentRouteList: [Route] = Route.recentRouteList
     
     // MARK: UI Components
     private let homeView = HomeView()
@@ -48,14 +49,14 @@ class HomeViewController: BaseViewController {
         }()
     
     lazy var recentRouteCollectionView: UICollectionView = {
-            let flowLayout = UICollectionViewFlowLayout()
-            flowLayout.scrollDirection = .horizontal
-            flowLayout.minimumLineSpacing = 15
-            flowLayout.itemSize = CGSize(width: Metric.collectionViewCellWidth, height: Metric.collectionViewCellHeight)
-            let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-            return view
-        }()
-    
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumLineSpacing = 15
+        flowLayout.itemSize = CGSize(width: Metric.collectionViewCellWidth, height: Metric.collectionViewCellHeight)
+        let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        return view
+    }()
+
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,110 +77,110 @@ class HomeViewController: BaseViewController {
         changeComponent()
         favoriteRouteCollectionView.reloadData()
     }
-    
+
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
-        
+
         view.addSubview(homeScrollView)
         homeScrollView.addSubview(homeView)
         homeScrollView.showsVerticalScrollIndicator = false
-        
-        homeView.tapResetRouteButton = {[weak self] in
+
+        homeView.tapResetRouteButton = { [weak self] in
             guard let self else { return }
-            
+
             showResetRouteAlert()
             postResetRouteButtonClicked()
         }
-        
-        homeView.tapSetRouteButton = {[weak self] in
+
+        homeView.tapSetRouteButton = { [weak self] in
             guard let self else { return }
-            
+
             self.navigationController?.pushViewController(SearchRouteViewController(), animated: true)
             // TODO: 경로 설정 API 연결
             postSetRouteButtonClicked()
         }
-        
-        homeView.tapChangeRouteButton = {[weak self] in
+
+        homeView.tapChangeRouteButton = { [weak self] in
             guard let self else { return }
-            
+
             self.navigationController?.pushViewController(SearchRouteViewController(), animated: true)
             postChangeRouteButtonClicked()
         }
-        
-        homeView.tapSetAlarmButton = {[weak self] in
+
+        homeView.tapSetAlarmButton = { [weak self] in
             guard let self else { return }
-            
+
             self.tabBarController?.selectedIndex = 3
             postSetAlarmButtonClicked()
         }
-        
-        homeView.tapEditFavoriteRouteButton = {[weak self] in
+
+        homeView.tapEditFavoriteRouteButton = { [weak self] in
             guard let self else { return }
-            
+
             self.navigationController?.pushViewController(FavoriteRouteViewController(), animated: true)
         }
-        
-        homeView.tapAllDeleteRecentRouteButton = {[weak self] in
+
+        homeView.tapAllDeleteRecentRouteButton = { [weak self] in
             guard let self else { return }
-            
+
             self.recentRouteList = []
             recentRouteCollectionView.reloadData()
         }
     }
-    
+
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
-        
+
         homeScrollView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.bottom.equalToSuperview()
         }
-        
-        homeView.snp.makeConstraints{
+
+        homeView.snp.makeConstraints {
             $0.width.equalTo(homeScrollView)
             $0.top.bottom.equalTo(homeScrollView)
         }
-        
+
         let contentViewHeight = homeView.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor)
         contentViewHeight.priority = .defaultLow
         contentViewHeight.isActive = true
     }
-    
+
     // MARK: Networking
-    private func postResetRouteButtonClicked(){
+    private func postResetRouteButtonClicked() {
         print("resetRouteButton clicked")
     }
-    
+
     private func postSetRouteButtonClicked() {
         print("setRouteButton clicked")
     }
-    
-    private func postMapButtonClicked(){
+
+    private func postMapButtonClicked() {
         print("mapButton clicked")
     }
-    
-    private func postChangeRouteButtonClicked(){
+
+    private func postChangeRouteButtonClicked() {
         print("changeRouteButton clicked")
     }
-    
-    private func postSetAlarmButtonClicked(){
+
+    private func postSetAlarmButtonClicked() {
         print("setAlarmButton clicked")
     }
-    
+
     // MARK: NavigationBar
-    private func setNavigationBar(){
+    private func setNavigationBar() {
         navigationItem.title = nil
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: MakarButton.mapButton, style: .plain, target: self, action: #selector(handleMapButtonClickEvent))
     }
-    
-    @objc private func handleMapButtonClickEvent(){
+
+    @objc private func handleMapButtonClickEvent() {
         postMapButtonClicked()
     }
-    
+
     // MARK: Measure Notification Time
-    private func startNotification(){
+    private func startNotification() {
         DispatchQueue.global(qos: .background).async {
             let runLoop = RunLoop.current
             
@@ -205,8 +206,8 @@ class HomeViewController: BaseViewController {
             self.changeComponent()
         }
     }
-    
-    private func handleMakarTime() {
+
+    private func handleMakarTime(){
         let makarLeftTime = self.checkNotificationTime(targetDateString: self.makarTime)
         if makarLeftTime <= 0 {
             // 막차 시간 도달
@@ -222,7 +223,7 @@ class HomeViewController: BaseViewController {
         }
     }
 
-    private func handleGetOffTime() {
+    private func handleGetOffTime(){
         let getOffLeftTime = self.checkNotificationTime(targetDateString: self.getOffTime)
         if getOffLeftTime == getOffNotiList[0].notiMinute {
             addNotification(notiType: "하차", minute: getOffLeftTime)
@@ -231,7 +232,7 @@ class HomeViewController: BaseViewController {
         }
         self.changeMainTitleText(target: "하차", minute: getOffLeftTime)
     }
-    
+
     private func convertStringToDate(targetDateString: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
@@ -240,7 +241,7 @@ class HomeViewController: BaseViewController {
         let adjustedDateString = targetDateString.replacingOccurrences(of: "KST", with: "+0900")
         return dateFormatter.date(from: adjustedDateString)!
     }
-    
+
     private func checkNotificationTime(targetDateString: String) -> Int {
         let currentDate = Date()
         print("[currentTime] : \(currentDate)")
@@ -250,10 +251,9 @@ class HomeViewController: BaseViewController {
         // 현재 시간과 설정된 시간 분 단위 비교
         return Calendar.current.dateComponents([.minute], from: currentDate, to: targetDate).minute!
     }
-    
-    
+
     // MARK: ChangeComponent
-    private func changeComponent(){
+    private func changeComponent() {
         DispatchQueue.main.async {
             if self.isRouteSet {
                 self.updateRouteSetUI()
@@ -262,9 +262,8 @@ class HomeViewController: BaseViewController {
             }
         }
     }
-    
-    
-    private func updateRouteSetUI() {
+
+    private func updateRouteSetUI(){
         if !self.isMakarTaken {
             let makarLeftTime = self.checkNotificationTime(targetDateString: self.makarTime)
             self.changeMainTitleText(target: "막차", minute: makarLeftTime)
@@ -278,15 +277,13 @@ class HomeViewController: BaseViewController {
         print("changeComponent: RouteSet")
     }
 
-    
-    private func updateRouteUnsetUI() {
+    private func updateRouteUnsetUI(){
         self.homeView.changeComponentRouteUnset()
         self.homeView.changeMainDestinationText(destinationText: "MAKAR")
         print("changeComponent: RouteUnset")
     }
 
-    
-    private func changeMainTitleText(target: String, minute : Int){
+    private func changeMainTitleText(target: String, minute : Int) {
         DispatchQueue.main.async {
             let length = String(minute).count
             let string = "\(target)까지 \(minute)분 남았어요!"
@@ -297,10 +294,9 @@ class HomeViewController: BaseViewController {
             self.homeView.mainTitleText.attributedText = spannableString
         }
     }
-    
-    
+
     // MARK: Alert
-    private func showResetRouteAlert(){
+    private func showResetRouteAlert() {
         let resetRouteAlert = UIAlertController(title: "경로 초기화", message: "설정된 경로를 초기화하시겠어요?", preferredStyle: .alert)
         resetRouteAlert.addAction( UIAlertAction(title: "확인", style: .destructive, handler: {_ in
             self.deleteRoute()
@@ -308,27 +304,27 @@ class HomeViewController: BaseViewController {
         resetRouteAlert.addAction(UIAlertAction(title: "취소", style: .cancel))
         present(resetRouteAlert, animated: true)
     }
-    
+
     // MARK: Notification
     private func addNotification(notiType: String, minute: Int) {
         UNUserNotificationCenter.current().addNotificationRequest(notiType: notiType, minute: minute)
     }
 }
 
-extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
     // MARK: CollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if(collectionView == favoriteRouteCollectionView){
+        if(collectionView == favoriteRouteCollectionView) {
             return HomeViewController.favoriteRouteList.count
         } else {
             return recentRouteList.count
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         //즐겨찾는 경로
-        if (collectionView == favoriteRouteCollectionView){
+        if (collectionView == favoriteRouteCollectionView) {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteRouteCollectionViewCell", for: indexPath) as? FavoriteRouteCollectionViewCell
             else {
                 return UICollectionViewCell()
@@ -353,7 +349,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
             return cell
         }
     }
-    
+
     //item size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if(collectionView == favoriteRouteCollectionView){
@@ -388,7 +384,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let data : Route
+        let data: Route
         if(collectionView == favoriteRouteCollectionView){
             data = HomeViewController.favoriteRouteList[indexPath.row]
         } else {
@@ -451,12 +447,19 @@ extension HomeViewController {
                 print("🎯 getHome success: " + "\(data)")
                 isRouteSet = data.data.routeSet
                 if isRouteSet {
-                    sourceStationName = data.data.sourceStationName
-                    destinationStationName = data.data.destinationStationName
-                    makarTime = data.data.makarTime
-                    getOffTime = data.data.getOffTime
-                    makarNotiList = data.data.makarNotiList
-                    getOffNotiList = data.data.getOffNotiList
+                    guard let sourceStationName = data.data.sourceStationName,
+                          let destinationStationName = data.data.destinationStationName,
+                          let makarTime = data.data.makarTime,
+                          let getOffTime = data.data.getOffTime,
+                          let makarNotiList = data.data.makarNotiList,
+                          let getOffNotiList = data.data.getOffNotiList
+                    else { return }
+                    self.sourceStationName = sourceStationName
+                    self.destinationStationName = destinationStationName
+                    self.makarTime = makarTime
+                    self.getOffTime = getOffTime
+                    self.makarNotiList = makarNotiList
+                    self.getOffNotiList = getOffNotiList
                 }
             case .requestErr(let errorResponse):
                 dump(errorResponse)

@@ -13,11 +13,11 @@ struct HomeResponse: Codable {
 }
 
 struct HomeData: Codable {
-    let sourceStationName: String
-    let destinationStationName: String
-    let makarTime: String
-    let getOffTime: String
-    let makarNotiList: [NotiData]
-    let getOffNotiList: [NotiData]
+    let sourceStationName: String?
+    let destinationStationName: String?
+    let makarTime: String?
+    let getOffTime: String?
+    let makarNotiList: [NotiData]?
+    let getOffNotiList: [NotiData]?
     let routeSet: Bool
 }
