@@ -157,10 +157,6 @@ class HomeViewController: BaseViewController {
         print("setRouteButton clicked")
     }
 
-    private func postMapButtonClicked() {
-        print("mapButton clicked")
-    }
-
     private func postChangeRouteButtonClicked() {
         print("changeRouteButton clicked")
     }
@@ -172,11 +168,6 @@ class HomeViewController: BaseViewController {
     // MARK: NavigationBar
     private func setNavigationBar() {
         navigationItem.title = nil
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: MakarButton.mapButton, style: .plain, target: self, action: #selector(handleMapButtonClickEvent))
-    }
-
-    @objc private func handleMapButtonClickEvent() {
-        postMapButtonClicked()
     }
 
     // MARK: Measure Notification Time
