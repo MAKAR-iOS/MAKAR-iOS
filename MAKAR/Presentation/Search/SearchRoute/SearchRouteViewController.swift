@@ -35,8 +35,7 @@ class SearchRouteViewController : BaseViewController, SourceStationProtocol, Des
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        searchRouteTableView.reloadData()
-    }
+     }
     
     // MARK: Configuration
     override func configureSubviews() {
