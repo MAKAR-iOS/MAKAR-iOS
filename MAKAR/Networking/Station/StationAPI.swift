@@ -10,10 +10,10 @@ import Foundation
 
 enum StationAPI {
     case getStation(query: String)
-    case getFavoriteSchool(query: String)
     case getFavoriteHome(query: String)
-    case patchFavoriteSchool(stationName: String, lineNum: String)
+    case getFavoriteSchool(query: String)
     case patchFavoriteHome(stationName: String, lineNum: String)
+    case patchFavoriteSchool(stationName: String, lineNum: String)
 }
 
 extension StationAPI: TargetType {
@@ -21,18 +21,18 @@ extension StationAPI: TargetType {
         switch self {
         case .getStation:
             return URLConst.getStation
-        case .getFavoriteSchool, .patchFavoriteSchool:
-            return URLConst.favoriteSchool
         case .getFavoriteHome, .patchFavoriteHome:
             return URLConst.favoriteHome
+        case .getFavoriteSchool, .patchFavoriteSchool:
+            return URLConst.favoriteSchool
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .getStation, .getFavoriteSchool, .getFavoriteHome:
+        case .getStation, .getFavoriteHome, .getFavoriteSchool:
             return .get
-        case .patchFavoriteSchool, .patchFavoriteHome:
+        case .patchFavoriteHome, .patchFavoriteSchool:
             return .patch
         }
     }
@@ -45,14 +45,14 @@ extension StationAPI: TargetType {
                     "q": query
                 ],
                 encoding: URLEncoding.queryString)
-        case .getFavoriteSchool, .getFavoriteHome:
+        case .getFavoriteHome, .getFavoriteSchool:
             return .requestPlain
-        case .patchFavoriteSchool(let stationName, let lineNum):
+        case .patchFavoriteHome(let stationName, let lineNum):
             return .requestParameters(parameters: [
                 "stationName": stationName,
                 "lineNum": lineNum
             ], encoding: JSONEncoding.default)
-        case .patchFavoriteHome(let stationName, let lineNum):
+        case .patchFavoriteSchool(let stationName, let lineNum):
             return .requestParameters(parameters: [
                 "stationName": stationName,
                 "lineNum": lineNum
