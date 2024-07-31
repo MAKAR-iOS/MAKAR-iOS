@@ -19,34 +19,37 @@ class MyPageViewController: BaseViewController {
     let myPageTableView = UITableView(frame: .zero, style: .grouped)
     let myPageTableViewCellList : [[String]] = [["자주 가는 역 설정", "즐겨찾는 경로 설정", "푸시 알림"], ["서비스 이용 약관", "개인 정보 처리 방침"], ["로그아웃", "회원 탈퇴"]]
     let myPageTableViewHeaderList : [String] = ["설정", "앱 정보", "계정 관리"]
-    
+
+    // MARK: Environment
+    private let router = BaseRouter()
+
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
-
+        router.viewController = self
         view.backgroundColor = .background
         setTableView()
     }
-    
+
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
-        
+
         view.addSubview(myPageView)
     }
-    
+
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
-        
+
         myPageView.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide)
-            $0.leading.trailing.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(Metric.myPageViewHeight)
         }
     }
-    
+
     // MARK: NavigationBar
     private func setNavigationBar(){
         navigationItem.title = "마이페이지"
@@ -54,13 +57,13 @@ class MyPageViewController: BaseViewController {
     }
 }
 
-    // MARK: TableView
+// MARK: TableView
 extension MyPageViewController : UITableViewDelegate, UITableViewDataSource {
-    //cell
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myPageTableViewCellList[section].count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myPageTableViewCell") ?? UITableViewCell(style: .default, reuseIdentifier: "myPageTableViewCell")
         cell.textLabel?.text = myPageTableViewCellList[indexPath.section][indexPath.row]
@@ -70,11 +73,11 @@ extension MyPageViewController : UITableViewDelegate, UITableViewDataSource {
         cell.accessoryType = .disclosureIndicator
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 45
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
@@ -154,10 +157,10 @@ extension MyPageViewController : UITableViewDelegate, UITableViewDataSource {
 
     // MARK: Alert
 extension MyPageViewController {
-    private func showLogoutAlert(){
+    private func showLogoutAlert() {
         let logoutAlert = UIAlertController(title: "로그아웃하시겠어요?", message: "", preferredStyle: .alert)
-        logoutAlert.addAction( UIAlertAction(title: "로그아웃하기", style: .destructive, handler: {_ in
-           // TODO: 로그아웃 기능 구현
+        logoutAlert.addAction( UIAlertAction(title: "로그아웃", style: .destructive, handler: { [self] _ in
+            postSignOut()
         }))
         logoutAlert.addAction(UIAlertAction(title: "취소", style: .cancel))
         present(logoutAlert, animated: true)
@@ -170,5 +173,31 @@ extension MyPageViewController {
         }))
         withdrawalAlert.addAction(UIAlertAction(title: "취소", style: .cancel))
         present(withdrawalAlert, animated: true)
+    }
+}
+
+extension MyPageViewController {
+    // MARK: Network
+    private func postSignOut() {
+        print("🚇 postSignOut called")
+        NetworkService.shared.auth.postSignOut()
+        { [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? SignOutAuthResponse else { return }
+                print("🎯 postSignOut success: " + "\(data)")
+                router.dismissViewController()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
     }
 }
