@@ -192,6 +192,7 @@ extension SearchRouteViewController {
         let routeId = route.routeId
 
         postRoute(routeId: routeId)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }
 
