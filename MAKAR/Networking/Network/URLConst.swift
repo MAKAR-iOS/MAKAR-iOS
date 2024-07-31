@@ -29,4 +29,7 @@ enum URLConst {
     static let favoriteHome = "/api/v1/station/favorite/home"
     static let stationDetail = "/api/v1/station/detail"
     static let getStation = "/api/v1/station"
+    
+    // MARK: - Home
+    static let home = "/api/v1/home"
 }

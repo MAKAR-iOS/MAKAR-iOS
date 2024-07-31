@@ -28,6 +28,9 @@
 		26A0EF342B5AA1B8003E11D6 /* SearchRouteProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0EF332B5AA1B8003E11D6 /* SearchRouteProgressView.swift */; };
 		26A0EF3A2B5D2D2C003E11D6 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0EF392B5D2D2C003E11D6 /* ProgressView.swift */; };
 		26A0EF3C2B5D58CE003E11D6 /* FavoriteRouteTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0EF3B2B5D58CE003E11D6 /* FavoriteRouteTextView.swift */; };
+		26CA8F522C5AB21A00824E44 /* HomeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA8F512C5AB21A00824E44 /* HomeAPI.swift */; };
+		26CA8F542C5AB22000824E44 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA8F532C5AB22000824E44 /* HomeService.swift */; };
+		26CA8F562C5AB22600824E44 /* HomeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA8F552C5AB22600824E44 /* HomeResponse.swift */; };
 		26CFF25A2C59171400019529 /* UNUserNotificationCenter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CFF2592C59171400019529 /* UNUserNotificationCenter+Extension.swift */; };
 		26D7C3FA2C57DBCA002127C1 /* StationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7C3F92C57DBCA002127C1 /* StationAPI.swift */; };
 		26D7C3FC2C57DBDB002127C1 /* RouteAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7C3FB2C57DBDB002127C1 /* RouteAPI.swift */; };
@@ -144,6 +147,9 @@
 		26A0EF332B5AA1B8003E11D6 /* SearchRouteProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouteProgressView.swift; sourceTree = "<group>"; };
 		26A0EF392B5D2D2C003E11D6 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		26A0EF3B2B5D58CE003E11D6 /* FavoriteRouteTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteTextView.swift; sourceTree = "<group>"; };
+		26CA8F512C5AB21A00824E44 /* HomeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPI.swift; sourceTree = "<group>"; };
+		26CA8F532C5AB22000824E44 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
+		26CA8F552C5AB22600824E44 /* HomeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeResponse.swift; sourceTree = "<group>"; };
 		26CFF2592C59171400019529 /* UNUserNotificationCenter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNUserNotificationCenter+Extension.swift"; sourceTree = "<group>"; };
 		26D7C3F92C57DBCA002127C1 /* StationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationAPI.swift; sourceTree = "<group>"; };
 		26D7C3FB2C57DBDB002127C1 /* RouteAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAPI.swift; sourceTree = "<group>"; };
@@ -334,6 +340,16 @@
 				26A0EF392B5D2D2C003E11D6 /* ProgressView.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		26CA8F502C5AB20300824E44 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				26CA8F512C5AB21A00824E44 /* HomeAPI.swift */,
+				26CA8F532C5AB22000824E44 /* HomeService.swift */,
+				26CA8F552C5AB22600824E44 /* HomeResponse.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		26D7C3F62C57DA35002127C1 /* Recovered References */ = {
@@ -641,6 +657,7 @@
 		95B10F912B3314E7005319F6 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				26CA8F502C5AB20300824E44 /* Home */,
 				957F3D252C5798C200EA0AD2 /* Auth */,
 				262F823E2C54BA8B00C4440F /* Station */,
 				262F82442C54C00F00C4440F /* Noti */,
@@ -842,6 +859,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				956382C72B3975C7006B50ED /* MyPageViewController.swift in Sources */,
+				26CA8F562C5AB22600824E44 /* HomeResponse.swift in Sources */,
 				26F3B4292B3C2B3800E7756F /* RouteButton.swift in Sources */,
 				956382F22B39855E006B50ED /* ImageLiteral.swift in Sources */,
 				26EFA29B2B4D65F1003678C0 /* RecentRouteCollectionViewCell.swift in Sources */,
@@ -882,6 +900,7 @@
 				956382C32B3975B7006B50ED /* NotificationViewController.swift in Sources */,
 				262F82462C54C01A00C4440F /* NotiResponse.swift in Sources */,
 				2670652C2B3CA6B100F19EC3 /* HomeSearchStationView.swift in Sources */,
+				26CA8F542C5AB22000824E44 /* HomeService.swift in Sources */,
 				26D7C3FA2C57DBCA002127C1 /* StationAPI.swift in Sources */,
 				2647CE892B500F35001208BE /* FavoriteRouteTableViewCell.swift in Sources */,
 				957F3D142C57932C00EA0AD2 /* NetworkLoggerPlugin.swift in Sources */,
@@ -906,6 +925,7 @@
 				26A0EF342B5AA1B8003E11D6 /* SearchRouteProgressView.swift in Sources */,
 				26E664772B3C4CFA002579C1 /* DestinationSearchStationView.swift in Sources */,
 				95B10FA12B3315A3005319F6 /* ExampleCustomView.swift in Sources */,
+				26CA8F522C5AB21A00824E44 /* HomeAPI.swift in Sources */,
 				957F3CE22C524B9800EA0AD2 /* UIView+Extension.swift in Sources */,
 				26E664792B3C4D0A002579C1 /* DestinationSearchStationViewController.swift in Sources */,
 				957F3D2B2C5798DE00EA0AD2 /* AuthService.swift in Sources */,

@@ -7,6 +7,13 @@
 
 import Foundation
 
+struct RouteResponse: Codable {
+    let result: String
+    let message: String
+    let data: String
+    let statusCode: Int
+}
+
 // MARK: -설정된 경로 조회 API
 struct RouteDetailResponse : Codable {
     let routeId : Int
