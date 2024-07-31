@@ -46,6 +46,25 @@ final class RouteService {
         }
     }
 
+    public func postRoute(routeId: Int,
+        completion: @escaping (NetworkResult<Any>) -> Void ) {
+        routeProvider.request(.postRoute(routeId: routeId))
+        { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .postRoute)
+                completion(networkResult)
+
+            case .failure(let error):
+                let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .postRoute)
+                completion(networkResult)
+                print(error)
+            }
+        }
+    }
+
     private func judgeStatus(by statusCode: Int, _ data: Data, responseData: ResponseData) -> NetworkResult<Any> {
 
         let decoder = JSONDecoder()
