@@ -123,6 +123,7 @@
 		95D0043D2B4BE358009D4DF3 /* MakarNotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D0043C2B4BE358009D4DF3 /* MakarNotiView.swift */; };
 		95E181F22C5925B000CFE6B9 /* RouteListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E181F12C5925B000CFE6B9 /* RouteListResponse.swift */; };
 		95E181F42C5AA07B00CFE6B9 /* EmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E181F32C5AA07B00CFE6B9 /* EmptyResultView.swift */; };
+		95E181F62C5ACE9A00CFE6B9 /* FavoriteStationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E181F52C5ACE9A00CFE6B9 /* FavoriteStationResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -235,6 +236,7 @@
 		95D0043C2B4BE358009D4DF3 /* MakarNotiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakarNotiView.swift; sourceTree = "<group>"; };
 		95E181F12C5925B000CFE6B9 /* RouteListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteListResponse.swift; sourceTree = "<group>"; };
 		95E181F32C5AA07B00CFE6B9 /* EmptyResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultView.swift; sourceTree = "<group>"; };
+		95E181F52C5ACE9A00CFE6B9 /* FavoriteStationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStationResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +260,7 @@
 				26D7C3F92C57DBCA002127C1 /* StationAPI.swift */,
 				26D7C4012C57DC08002127C1 /* StationService.swift */,
 				262F823F2C54BA9900C4440F /* StationResponse.swift */,
+				95E181F52C5ACE9A00CFE6B9 /* FavoriteStationResponse.swift */,
 			);
 			path = Station;
 			sourceTree = "<group>";
@@ -923,6 +926,7 @@
 				956382FA2B39A43E006B50ED /* BaseRouter.swift in Sources */,
 				956382E72B397A5A006B50ED /* SearchRouteView.swift in Sources */,
 				26A0EF342B5AA1B8003E11D6 /* SearchRouteProgressView.swift in Sources */,
+				95E181F62C5ACE9A00CFE6B9 /* FavoriteStationResponse.swift in Sources */,
 				26E664772B3C4CFA002579C1 /* DestinationSearchStationView.swift in Sources */,
 				95B10FA12B3315A3005319F6 /* ExampleCustomView.swift in Sources */,
 				26CA8F522C5AB21A00824E44 /* HomeAPI.swift in Sources */,
