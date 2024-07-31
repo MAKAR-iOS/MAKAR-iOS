@@ -18,6 +18,8 @@ final class RouteService {
         case deleteRoute
         case getRecentRouteList
         case getFavoriteRouteList
+        case deleteRecentRoute
+        case deleteAllRecentRoute
     }
 
     public func getRouteList(
@@ -36,10 +38,8 @@ final class RouteService {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-
                 let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getRouteList)
                 completion(networkResult)
-
             case .failure(let error):
                 let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .getRouteList)
                 completion(networkResult)
@@ -47,7 +47,25 @@ final class RouteService {
             }
         }
     }
-    
+
+    public func postRoute(routeId: Int,
+        completion: @escaping (NetworkResult<Any>) -> Void ) {
+        routeProvider.request(.postRoute(routeId: routeId))
+        { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .postRoute)
+                completion(networkResult)
+            case .failure(let error):
+                let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .postRoute)
+                completion(networkResult)
+                print(error)
+            }
+        }
+    }
+
     public func deleteRoute(completion: @escaping (NetworkResult<Any>) -> Void){
         routeProvider.request(.deleteRoute
         ){
@@ -56,10 +74,8 @@ final class RouteService {
                 case .success(let response):
                     let statusCode = response.statusCode
                     let data = response.data
-
                     let networkResult = self.judgeStatus(by: statusCode, data, responseData: .deleteRoute)
                     completion(networkResult)
-
                 case .failure(let error):
                     let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .deleteRoute)
                     completion(networkResult)
@@ -77,7 +93,6 @@ final class RouteService {
                 let data = response.data
                 let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getRecentRouteList)
                 completion(networkResult)
-
             case .failure(let error):
                 let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .getRecentRouteList)
                 completion(networkResult)
@@ -95,7 +110,6 @@ final class RouteService {
                 let data = response.data
                 let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getFavoriteRouteList)
                 completion(networkResult)
-
             case .failure(let error):
                 let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .getFavoriteRouteList)
                 completion(networkResult)
@@ -104,19 +118,37 @@ final class RouteService {
         }
     }
 
-    public func postRoute(routeId: Int,
+    public func deleteRecentRoute(routeId: Int,
         completion: @escaping (NetworkResult<Any>) -> Void ) {
-        routeProvider.request(.postRoute(routeId: routeId))
+        routeProvider.request(.deleteRecentRoute(routeId: routeId))
         { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .postRoute)
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .deleteRecentRoute)
                 completion(networkResult)
 
             case .failure(let error):
-                let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .postRoute)
+                let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .deleteRecentRoute)
+                completion(networkResult)
+                print(error)
+            }
+        }
+    }
+
+    public func deleteAllRecentRoute(completion: @escaping (NetworkResult<Any>) -> Void ) {
+        routeProvider.request(.deleteAllRecentRoute)
+        { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .deleteAllRecentRoute)
+                completion(networkResult)
+
+            case .failure(let error):
+                let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .deleteAllRecentRoute)
                 completion(networkResult)
                 print(error)
             }
@@ -130,7 +162,7 @@ final class RouteService {
         switch statusCode {
         case 200..<300:
             switch responseData {
-            case .getRouteList, .postRoute, .deleteRoute, .getFavoriteRouteList, .getRecentRouteList:
+            case .getRouteList, .postRoute, .deleteRoute, .getFavoriteRouteList, .getRecentRouteList, .deleteRecentRoute, .deleteAllRecentRoute:
                 return isValidData(data: data, responseData: responseData)
             }
         case 400..<500:
@@ -161,6 +193,11 @@ final class RouteService {
             return .success(decodedData)
         case .getRecentRouteList:
             guard let decodedData = try? decoder.decode(RecentRouteListResponse.self, from: data) else {
+                return .pathErr
+            }
+            return .success(decodedData)
+        case .deleteRecentRoute, .deleteAllRecentRoute:
+            guard let decodedData = try? decoder.decode(DeleteRouteListResponse.self, from: data) else {
                 return .pathErr
             }
             return .success(decodedData)

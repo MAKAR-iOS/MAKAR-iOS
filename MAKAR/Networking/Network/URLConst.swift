@@ -21,6 +21,7 @@ enum URLConst {
     static let routeSet = "/api/v1/route/set"
     static let routeRecent = "/api/v1/route/recent"
     static let routeFavorite = "/api/v1/route/favorite"
+    static let routeRecentAll = "/api/v1/route/recent/all"
 
     // MARK: - Noti
     static let makar = "/api/v1/noti/makar"
