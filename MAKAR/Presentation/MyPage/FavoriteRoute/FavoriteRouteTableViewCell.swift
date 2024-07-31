@@ -69,15 +69,21 @@ class FavoriteRouteTableViewCell : UITableViewCell {
             $0.trailing.lessThanOrEqualTo(deleteRecentRouteButton.snp.leading)
         }
     }
-    
-    func setData(data : Route) {
+
+    func setData(data: BriefRouteDTO?) {
         lineNumImage.addLineNum()
-        
-        if(favoriteRouteStackView.subviews.isEmpty){
+
+        guard let data = data else { return }
+
+        if (favoriteRouteStackView.subviews.isEmpty) {
             //출발역
-            let sourceStationLabel = FavoriteRouteTextView(lineName: data.sourceStation.stationName, lineNum: data.sourceStation.lineNum)
-            let destinationStationLabel = FavoriteRouteTextView(lineName: data.destinationStation.stationName, lineNum: data.destinationStation.lineNum)
-            let moreRightLabel = UILabel().then{
+            let sourceStationLabel = FavoriteRouteTextView(
+                lineName: data.sourceStationName,
+                lineNum: data.sourceLineNum)
+            let destinationStationLabel = FavoriteRouteTextView(
+                lineName: data.destinationStationName,
+                lineNum: data.destinationLineNum)
+            let moreRightLabel = UILabel().then {
                 $0.text = ">"
                 $0.font = .systemFont(ofSize: 14, weight: .light)
             }
@@ -85,7 +91,7 @@ class FavoriteRouteTableViewCell : UITableViewCell {
             favoriteRouteStackView.addArrangedSubview(moreRightLabel)
             favoriteRouteStackView.addArrangedSubview(destinationStationLabel)
         }
-    }
+     }
     
     // MARK: Event
     @objc func handleDeleteRecentRouteButton(){
