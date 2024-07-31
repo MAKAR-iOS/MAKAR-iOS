@@ -20,7 +20,7 @@ class SearchRouteViewController : BaseViewController, SourceStationProtocol, Des
     // MARK: Properties
     var sourceStation: StationDTO?
     var destinationStation: StationDTO?
-    var searchResultList: [RouteDTO] = []
+    var searchRouteResultList: [RouteDTO] = []
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -166,7 +166,7 @@ extension SearchRouteViewController {
             case .success(let response):
                 guard let data = response as? RouteListResponse else { return }
                 print("🎯 getRouteList success: " + "\(data)")
-                searchResultList = data.data.routeDtoList
+                searchRouteResultList = data.data.routeDtoList
                 searchRouteTableView.reloadData()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
@@ -183,12 +183,23 @@ extension SearchRouteViewController {
     }
 }
 
-    // MARK: TableView
-extension SearchRouteViewController : UITableViewDelegate, UITableViewDataSource {
+// MARK: TableView
+extension SearchRouteViewController {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+
+        let route = searchRouteResultList[indexPath.row]
+        let routeId = route.routeId
+
+        postRoute(routeId: routeId)
+    }
+}
+
+extension SearchRouteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        searchRouteTableView.isHidden = searchResultList.isEmpty
-        emptyResultView.isHidden = !searchResultList.isEmpty
-        return searchResultList.count
+        searchRouteTableView.isHidden = searchRouteResultList.isEmpty
+        emptyResultView.isHidden = !searchRouteResultList.isEmpty
+        return searchRouteResultList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -197,7 +208,7 @@ extension SearchRouteViewController : UITableViewDelegate, UITableViewDataSource
             return UITableViewCell()
         }
 
-        cell.setData(data: searchResultList[indexPath.row])
+        cell.setData(data: searchRouteResultList[indexPath.row])
 
         return cell
     }
@@ -210,5 +221,32 @@ extension SearchRouteViewController : UITableViewDelegate, UITableViewDataSource
         searchRouteTableView.register(SearchRouteTableViewCell.self, forCellReuseIdentifier: "searchRouteTableViewCell")
         searchRouteTableView.dataSource = self
         searchRouteTableView.delegate = self
+    }
+}
+
+// MARK: Networking
+extension SearchRouteViewController {
+    private func postRoute(routeId: Int) {
+        print("🚇 postRoute called")
+        NetworkService.shared.route.postRoute(routeId: routeId) { [self]
+            result in
+                switch result {
+                case .success(let response):
+                    guard let data = response as? RouteSetResponse else { return }
+                    print("🎯 postRoute success: " + "\(data)")
+                    router.popViewController()
+                case .requestErr(let errorResponse):
+                    dump(errorResponse)
+                    guard let data = errorResponse as? ErrorResponse else { return }
+                    print(data)
+                    print("requestErr")
+                case .serverErr:
+                    print("serverErr")
+                case .networkFail:
+                    print("networkFail")
+                case .pathErr:
+                    print("pathErr")
+                }
+        }
     }
 }
