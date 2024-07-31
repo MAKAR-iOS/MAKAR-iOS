@@ -6,7 +6,7 @@
 //
 
 import UIKit
-class SubRouteTextView : UIView{
+class SubRouteTextView: UIView {
     
     // MARK: Constants
     private enum Metric {
@@ -25,7 +25,7 @@ class SubRouteTextView : UIView{
     }
     
     // MARK: Init
-    init(lineName : String, lineNum : String){
+    init(lineName: String, lineNum: String){
         super.init(frame: .infinite)
         
         setData(lineName: lineName, lineNum: lineNum)
@@ -64,7 +64,7 @@ class SubRouteTextView : UIView{
         }
     }
     
-    func setData(lineName : String, lineNum : String){
+    func setData(lineName: String, lineNum: String){
         lineNumImage.addLineNum()
 
         lineNameLabel.text = lineName

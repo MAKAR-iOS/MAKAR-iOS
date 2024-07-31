@@ -16,12 +16,10 @@ class SearchRouteViewController : BaseViewController, SourceStationProtocol, Des
         $0.setImage(MakarButton.dismissButton, for: .normal)
     }
 
-    // TODO: 경로 검색 리스트 조회 API 연결
-    let searchRouteList : [Route] = Route.searchRouteList
-
     // MARK: Properties
     var sourceStation: StationDTO?
     var destinationStation: StationDTO?
+    var searchResultList: [RouteDTO] = []
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -151,11 +149,13 @@ extension SearchRouteViewController {
             fromLineNum: fromLineNum,
             toStationName: toStationName,
             toLineNum: toLineNum
-        ) { result in
+        ) { [self] result in
             switch result {
             case .success(let response):
                 guard let data = response as? RouteListResponse else { return }
                 print("🎯 getRouteList success: " + "\(data)")
+                searchResultList = data.data.routeDtoList
+                searchRouteTableView.reloadData()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
@@ -174,7 +174,7 @@ extension SearchRouteViewController {
     // MARK: TableView
 extension SearchRouteViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchRouteList.count
+        return searchResultList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -182,12 +182,12 @@ extension SearchRouteViewController : UITableViewDelegate, UITableViewDataSource
         else {
             return UITableViewCell()
         }
-        cell.setData(data: searchRouteList[indexPath.row])
+        cell.setData(data: searchResultList[indexPath.row])
         cell.contentView.isHidden = true
         return cell
     }
     
-    func setSearchRouteTableView(){
+    func setSearchRouteTableView() {
         view.addSubview(searchRouteTableView)
         
         searchRouteTableView.backgroundColor = .background
@@ -196,7 +196,7 @@ extension SearchRouteViewController : UITableViewDelegate, UITableViewDataSource
         
         searchRouteTableView.snp.makeConstraints{
             $0.top.equalTo(searchRouteView.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.horizontalEdges.bottom.equalToSuperview()
         }
         
         searchRouteTableView.register(SearchRouteTableViewCell.self, forCellReuseIdentifier: "searchRouteTableViewCell")

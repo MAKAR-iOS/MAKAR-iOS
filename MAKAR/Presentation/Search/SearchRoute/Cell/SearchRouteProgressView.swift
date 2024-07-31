@@ -45,7 +45,7 @@ class SearchRouteProgressView : UIStackView {
         }
     }
     
-    func setData(subRouteList : [SubRoute]){
+    func setData(subRouteList: [SubRouteDTO]) {
         lineNumColor.addLineNum()
         
         for subroute in subRouteList {
