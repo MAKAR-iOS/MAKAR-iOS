@@ -431,8 +431,8 @@
 				957F3D662C58F8F500EA0AD2 /* Cell */,
 				956382E42B397A4D006B50ED /* SourceSearchStationViewController.swift */,
 				26E664742B3C4C20002579C1 /* SourceSearchStationView.swift */,
-				26E664762B3C4CFA002579C1 /* DestinationSearchStationView.swift */,
 				26E664782B3C4D0A002579C1 /* DestinationSearchStationViewController.swift */,
+				26E664762B3C4CFA002579C1 /* DestinationSearchStationView.swift */,
 			);
 			path = SearchStation;
 			sourceTree = "<group>";

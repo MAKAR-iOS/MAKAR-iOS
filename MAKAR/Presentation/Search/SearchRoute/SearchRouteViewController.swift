@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchRouteViewController : BaseViewController {
+class SearchRouteViewController : BaseViewController, SourceStationProtocol, DestinationStationProtocol {
 
     // MARK: UI Components
     private let searchRouteView = SearchRouteView()
@@ -52,23 +52,31 @@ class SearchRouteViewController : BaseViewController {
         }
         
         searchRouteView.tapSourceSearchBar = {[weak self] in
-            guard let self else { return }
-            
-            router.presentSourceSearchStationViewController()
-            postSourceSearchBarClicked()
+            guard let self = self else { return }
+
+            let sourceSearchStationViewController = SourceSearchStationViewController()
+            sourceSearchStationViewController.sourceDelegate = self
+            self.navigationController?.pushViewController(sourceSearchStationViewController, animated: true)
         }
 
         searchRouteView.tapDestinationSearchBar = {[weak self] in
             guard let self else { return }
             
-            router.presentDestinationSearchStationViewController()
-            postDestinationSearchBarClicked()
+            let destinationSearchStationViewController = DestinationSearchStationViewController()
+            destinationSearchStationViewController.destinationDelegate = self
+            self.navigationController?.pushViewController(destinationSearchStationViewController, animated: true)
         }
         
-        searchRouteView.tapSearchRouteButton = {[weak self] in
-            guard let self else { return }
-            postSearchRouteButtonClicked()
-            // TODO: 경로 리스트 조회 API 호출
+        searchRouteView.tapSearchRouteButton = { [self] in
+            guard let fromStationName = sourceStation?.stationName else { return }
+            guard let fromLineNum = sourceStation?.lineNum else { return }
+            guard let toStationName = destinationStation?.stationName else { return }
+            guard let toLineNum = destinationStation?.lineNum else { return }
+            
+            getRouteList(fromStationName: fromStationName,
+                         fromLineNum: fromLineNum,
+                         toStationName: toStationName,
+                         toLineNum: toLineNum)
         }
     }
     
@@ -106,18 +114,16 @@ class SearchRouteViewController : BaseViewController {
 }
 
 extension SearchRouteViewController {
-    func getSourceStationData(_ sourceStation: StationDTO?) {
-        guard let sourceStationName = sourceStation?.stationName else { return }
-
-        print("🐶sourceStation: \(sourceStation?.stationName ?? "nil") + \(sourceStation?.lineNum ?? "nil")")
-        self.sourceStation = sourceStation
+    func sendSourceStation(station: StationDTO) {
+        self.sourceStation = station
+        print("🥺: \(String(describing: self.sourceStation))")
+        print("🥺: \(String(describing: self.destinationStation))")
     }
 
-    func getDestinationStationData(_ destinationStation: StationDTO?) {
-        guard let destinationStationName = destinationStation?.stationName else { return }
-
-        print("🐶destinationStation: \(destinationStation?.stationName ?? "nil") + \(destinationStation?.lineNum ?? "nil")")
-        self.destinationStation = destinationStation
+    func sendDestinationStation(station: StationDTO) {
+        self.destinationStation = station
+        print("🧚‍♀️: \(String(describing: self.sourceStation))")
+        print("🧚‍♀️: \(String(describing: self.destinationStation))")
     }
 }
 

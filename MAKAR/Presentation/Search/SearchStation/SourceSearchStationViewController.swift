@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SourceStationProtocol {
+    func sendSourceStation(station: StationDTO)
+}
+
 class SourceSearchStationViewController: BaseSearchStationViewController {
     // MARK: Constants
     private enum Metric {
@@ -22,8 +26,9 @@ class SourceSearchStationViewController: BaseSearchStationViewController {
 
     // MARK: Properties
     var isFiltering: Bool = false
-    var searchResult: [StationDTO] = []
+    var searchResult: [StationDTO?] = []
     var sourceStation: StationDTO?
+    var sourceDelegate: SourceStationProtocol?
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -127,10 +132,12 @@ extension SourceSearchStationViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
 
-        sourceStation = searchResult[indexPath.row]
-        let searchRouteViewController = SearchRouteViewController()
-        searchRouteViewController.getSourceStationData(sourceStation)
+        guard let sourceStation = searchResult[indexPath.row] else { return }
 
+        let searchRouteViewController = SearchRouteViewController()
+        print("🐶 SourceSearchStationViewController + \(sourceStation)")  // print ok
+
+        sourceDelegate?.sendSourceStation(station: sourceStation)
         router.popViewController()
     }
 }
