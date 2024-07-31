@@ -12,6 +12,7 @@ class SearchRouteViewController : BaseViewController, SourceStationProtocol, Des
     // MARK: UI Components
     private let searchRouteView = SearchRouteView()
     private let searchRouteTableView = UITableView(frame: .zero, style: .plain)
+    private let emptyResultView = EmptyResultView("검색된 경로가 없습니다.")
     private let backButton = BaseButton().then {
         $0.setImage(MakarButton.dismissButton, for: .normal)
     }
@@ -42,12 +43,14 @@ class SearchRouteViewController : BaseViewController, SourceStationProtocol, Des
         super.configureSubviews()
         
         view.addSubview(searchRouteView)
-        
+        view.addSubview(searchRouteTableView)
+        view.addSubview(emptyResultView)
+
         searchRouteView.tapSwapStationButton = {[weak self] in
             guard let self else { return }
             postSwapStationButtonClicked()
         }
-        
+
         searchRouteView.tapSourceSearchBar = {[weak self] in
             guard let self = self else { return }
 
@@ -85,6 +88,16 @@ class SearchRouteViewController : BaseViewController, SourceStationProtocol, Des
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(Metric.searchRouteViewHeight)
+        }
+
+        searchRouteTableView.snp.makeConstraints {
+            $0.top.equalTo(searchRouteView.snp.bottom)
+            $0.horizontalEdges.bottom.equalToSuperview()
+        }
+
+        emptyResultView.snp.makeConstraints {
+            $0.top.equalTo(searchRouteView.snp.bottom)
+            $0.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
 
@@ -173,6 +186,8 @@ extension SearchRouteViewController {
     // MARK: TableView
 extension SearchRouteViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        searchRouteTableView.isHidden = searchResultList.isEmpty
+        emptyResultView.isHidden = !searchResultList.isEmpty
         return searchResultList.count
     }
     
@@ -181,23 +196,17 @@ extension SearchRouteViewController : UITableViewDelegate, UITableViewDataSource
         else {
             return UITableViewCell()
         }
+
         cell.setData(data: searchResultList[indexPath.row])
-        cell.contentView.isHidden = true
+
         return cell
     }
     
     func setSearchRouteTableView() {
-        view.addSubview(searchRouteTableView)
-        
         searchRouteTableView.backgroundColor = .background
         searchRouteTableView.separatorStyle = .singleLine
         searchRouteTableView.rowHeight = UITableView.automaticDimension
-        
-        searchRouteTableView.snp.makeConstraints{
-            $0.top.equalTo(searchRouteView.snp.bottom)
-            $0.horizontalEdges.bottom.equalToSuperview()
-        }
-        
+
         searchRouteTableView.register(SearchRouteTableViewCell.self, forCellReuseIdentifier: "searchRouteTableViewCell")
         searchRouteTableView.dataSource = self
         searchRouteTableView.delegate = self
