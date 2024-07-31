@@ -11,7 +11,6 @@
 		26150E112B59471E00E5059D /* SubRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26150E102B59471E00E5059D /* SubRoute.swift */; };
 		26150E132B594BA000E5059D /* SearchRouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26150E122B594BA000E5059D /* SearchRouteTableViewCell.swift */; };
 		262F82402C54BA9900C4440F /* StationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F823F2C54BA9900C4440F /* StationResponse.swift */; };
-		262F82432C54BBAC00C4440F /* RouteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F82422C54BBAC00C4440F /* RouteResponse.swift */; };
 		262F82462C54C01A00C4440F /* NotiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F82452C54C01A00C4440F /* NotiResponse.swift */; };
 		2647CE822B500677001208BE /* FavoriteRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647CE812B500677001208BE /* FavoriteRouteViewController.swift */; };
 		2647CE862B5006B8001208BE /* PushAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647CE852B5006B8001208BE /* PushAlarmViewController.swift */; };
@@ -124,6 +123,8 @@
 		95E181F22C5925B000CFE6B9 /* RouteListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E181F12C5925B000CFE6B9 /* RouteListResponse.swift */; };
 		95E181F42C5AA07B00CFE6B9 /* EmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E181F32C5AA07B00CFE6B9 /* EmptyResultView.swift */; };
 		95E181F62C5ACE9A00CFE6B9 /* FavoriteStationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E181F52C5ACE9A00CFE6B9 /* FavoriteStationResponse.swift */; };
+		95E181FA2C5ADD6A00CFE6B9 /* FavoriteRouteListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E181F92C5ADD6A00CFE6B9 /* FavoriteRouteListResponse.swift */; };
+		95E181FC2C5ADD7600CFE6B9 /* RecentRouteListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E181FB2C5ADD7600CFE6B9 /* RecentRouteListResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,7 +132,6 @@
 		26150E102B59471E00E5059D /* SubRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubRoute.swift; sourceTree = "<group>"; };
 		26150E122B594BA000E5059D /* SearchRouteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouteTableViewCell.swift; sourceTree = "<group>"; };
 		262F823F2C54BA9900C4440F /* StationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationResponse.swift; sourceTree = "<group>"; };
-		262F82422C54BBAC00C4440F /* RouteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteResponse.swift; sourceTree = "<group>"; };
 		262F82452C54C01A00C4440F /* NotiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiResponse.swift; sourceTree = "<group>"; };
 		2647CE812B500677001208BE /* FavoriteRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteViewController.swift; sourceTree = "<group>"; };
 		2647CE852B5006B8001208BE /* PushAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAlarmViewController.swift; sourceTree = "<group>"; };
@@ -237,6 +237,8 @@
 		95E181F12C5925B000CFE6B9 /* RouteListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteListResponse.swift; sourceTree = "<group>"; };
 		95E181F32C5AA07B00CFE6B9 /* EmptyResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultView.swift; sourceTree = "<group>"; };
 		95E181F52C5ACE9A00CFE6B9 /* FavoriteStationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStationResponse.swift; sourceTree = "<group>"; };
+		95E181F92C5ADD6A00CFE6B9 /* FavoriteRouteListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteListResponse.swift; sourceTree = "<group>"; };
+		95E181FB2C5ADD7600CFE6B9 /* RecentRouteListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentRouteListResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,8 +272,9 @@
 			children = (
 				26D7C3FB2C57DBDB002127C1 /* RouteAPI.swift */,
 				26D7C4032C57DC11002127C1 /* RouteService.swift */,
-				262F82422C54BBAC00C4440F /* RouteResponse.swift */,
 				95E181F12C5925B000CFE6B9 /* RouteListResponse.swift */,
+				95E181F92C5ADD6A00CFE6B9 /* FavoriteRouteListResponse.swift */,
+				95E181FB2C5ADD7600CFE6B9 /* RecentRouteListResponse.swift */,
 			);
 			path = Route;
 			sourceTree = "<group>";
@@ -864,7 +867,9 @@
 				956382C72B3975C7006B50ED /* MyPageViewController.swift in Sources */,
 				26CA8F562C5AB22600824E44 /* HomeResponse.swift in Sources */,
 				26F3B4292B3C2B3800E7756F /* RouteButton.swift in Sources */,
+				95E181FC2C5ADD7600CFE6B9 /* RecentRouteListResponse.swift in Sources */,
 				956382F22B39855E006B50ED /* ImageLiteral.swift in Sources */,
+				95E181FA2C5ADD6A00CFE6B9 /* FavoriteRouteListResponse.swift in Sources */,
 				26EFA29B2B4D65F1003678C0 /* RecentRouteCollectionViewCell.swift in Sources */,
 				267F3C452B3D6AE300E3CD29 /* BaseSearchStationViewController.swift in Sources */,
 				95C3F9542C4F8BE1001CEF8A /* (null) in Sources */,
@@ -970,7 +975,6 @@
 				26150E132B594BA000E5059D /* SearchRouteTableViewCell.swift in Sources */,
 				95D0043D2B4BE358009D4DF3 /* MakarNotiView.swift in Sources */,
 				957F3D5D2C58ACD200EA0AD2 /* MyRouteInfoTableViewCell.swift in Sources */,
-				262F82432C54BBAC00C4440F /* RouteResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
