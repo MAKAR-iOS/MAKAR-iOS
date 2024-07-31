@@ -26,12 +26,42 @@ final class StationService {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-
                 let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getStation)
                 completion(networkResult)
-
             case .failure(let error):
                 let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .getStation)
+                completion(networkResult)
+                print(error)
+            }
+        }
+    }
+
+    public func getFavoriteHome(completion: @escaping (NetworkResult<Any>) -> Void ) {
+        stationProvider.request(.getFavoriteHome) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getFavoriteHome)
+                completion(networkResult)
+            case .failure(let error):
+                let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .getFavoriteHome)
+                completion(networkResult)
+                print(error)
+            }
+        }
+    }
+
+    public func getFavoriteSchool(completion: @escaping (NetworkResult<Any>) -> Void ) {
+        stationProvider.request(.getFavoriteSchool) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getFavoriteSchool)
+                completion(networkResult)
+            case .failure(let error):
+                let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .getFavoriteSchool)
                 completion(networkResult)
                 print(error)
             }
@@ -48,10 +78,8 @@ final class StationService {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-
                 let networkResult = self.judgeStatus(by: statusCode, data, responseData: .patchFavoriteHome)
                 completion(networkResult)
-
             case .failure(let error):
                 let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .patchFavoriteHome)
                 completion(networkResult)
@@ -108,8 +136,13 @@ final class StationService {
         let decoder = JSONDecoder()
 
         switch responseData {
-        case .getStation, .getFavoriteSchool, .getFavoriteHome:
+        case .getStation:
             guard let decodedData = try? decoder.decode(StationResponse.self, from: data) else {
+                return .pathErr
+            }
+            return .success(decodedData)
+        case .getFavoriteHome, .getFavoriteSchool:
+            guard let decodedData = try? decoder.decode(FavoriteStationGetResponse.self, from: data) else {
                 return .pathErr
             }
             return .success(decodedData)

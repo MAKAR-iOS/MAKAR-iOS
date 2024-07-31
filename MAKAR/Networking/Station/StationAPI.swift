@@ -10,8 +10,8 @@ import Foundation
 
 enum StationAPI {
     case getStation(query: String)
-    case getFavoriteHome(query: String)
-    case getFavoriteSchool(query: String)
+    case getFavoriteHome
+    case getFavoriteSchool
     case patchFavoriteHome(stationName: String, lineNum: String)
     case patchFavoriteSchool(stationName: String, lineNum: String)
 }
