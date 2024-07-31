@@ -6,6 +6,11 @@
 //
 
 import UIKit
+
+protocol SchoolStationProtocol {
+    func sendSchoolStation(station: StationDTO)
+}
+
 class SchoolSearchStationViewController: BaseSearchStationViewController {
     // MARK: Constants
     private enum Metric {
@@ -20,8 +25,9 @@ class SchoolSearchStationViewController: BaseSearchStationViewController {
     }
 
     // MARK: Properties
-    var searchResult: [StationDTO] = []
+    var searchResult: [StationDTO?] = []
     var schoolStation: StationDTO?
+    var schoolDelegate: SchoolStationProtocol?
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -34,24 +40,24 @@ class SchoolSearchStationViewController: BaseSearchStationViewController {
         view.backgroundColor = .background
         setSearchBar()
     }
-    
+
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
-        
+
         view.addSubview(schoolSearchStationView)
     }
-    
+
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
-        
+
         schoolSearchStationView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
+            $0.top.horizontalEdges.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(Metric.viewHeight)
         }
     }
-    
+
     // MARK: View Transition
     override func viewTransition() {
         backButton.tap = { [weak self] in
@@ -60,13 +66,12 @@ class SchoolSearchStationViewController: BaseSearchStationViewController {
         }
     }
 
-    
     // MARK: Set Navigation
     override func setNavigationItem() {
         navigationItem.title = "역 검색"
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
     }
-    
+
     // MARK: TableView
     func setTableView() {
         super.setTableView(data: searchResult)
@@ -81,10 +86,10 @@ extension SchoolSearchStationViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
 
-        schoolStation = searchResult[indexPath.row]
-        let favoriteStationViewController = FavoriteStationViewController()
-        favoriteStationViewController.getSchoolStationData(schoolStation)
+        guard let schoolStation = searchResult[indexPath.row] else { return }
+        print("🐶 SchoolSearchStationViewController + \(schoolStation)")
 
+        schoolDelegate?.sendSchoolStation(station: schoolStation)
         router.popViewController()
     }
 }
