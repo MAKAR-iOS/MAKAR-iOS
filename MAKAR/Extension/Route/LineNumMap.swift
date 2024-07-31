@@ -21,6 +21,7 @@ class LineNumImage {
         lineNumMap["9호선"] = MakarImage.line9
         lineNumMap["경의중앙"] = MakarImage.lineK
         lineNumMap["공항철도"] = MakarImage.lineA
+        lineNumMap["error"] = MakarImage.line0
     }
 }
 

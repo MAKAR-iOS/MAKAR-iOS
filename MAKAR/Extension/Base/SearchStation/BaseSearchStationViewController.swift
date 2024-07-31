@@ -10,7 +10,7 @@ class BaseSearchStationViewController: BaseViewController {
     
     var dummyList = ["1호선", "2호선", "3호선", "4호선", "5호선", "6호선",
                     "7호선", "8호선", "9호선", "경의중앙", "공항철도", "0호선"]
-    var searchList: [StationDTO] = []
+    var searchList: [StationDTO?] = []
 
     // MARK: UI Components
     let lineNumImage = LineNumImage()
@@ -33,7 +33,7 @@ class BaseSearchStationViewController: BaseViewController {
     }
 
     // MARK: TableView
-    func setTableView(data: [StationDTO]) {
+    func setTableView(data: [StationDTO?]) {
         searchList = data
 
         view.addSubview(tableView)
@@ -60,12 +60,12 @@ extension BaseSearchStationViewController: UITableViewDelegate, UITableViewDataS
             return UITableViewCell()
         }
 
-        let lineNum = searchList[indexPath.row].lineNum
-        let stationName = searchList[indexPath.row].stationName
+        let lineNum = searchList[indexPath.row]?.lineNum
+        let stationName = searchList[indexPath.row]?.stationName
 
         lineNumImage.addLineNum()
 
-        if let lineImage = lineNumImage.lineNumMap[lineNum] {
+        if let lineImage = lineNumImage.lineNumMap[lineNum ?? "error"] {
             cell.lineNumImageView.image = lineImage
         } else {
             cell.lineNumImageView.image = MakarImage.line0

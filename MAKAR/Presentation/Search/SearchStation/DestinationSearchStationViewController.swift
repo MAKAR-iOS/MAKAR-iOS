@@ -6,6 +6,11 @@
 //
 
 import UIKit
+
+protocol DestinationStationProtocol {
+    func sendDestinationStation(station: StationDTO)
+}
+
 class DestinationSearchStationViewController: BaseSearchStationViewController {
     // MARK: Constants
     private enum Metric {
@@ -21,8 +26,9 @@ class DestinationSearchStationViewController: BaseSearchStationViewController {
 
     // MARK: Properties
     var isFiltering: Bool = false
-    var searchResult: [StationDTO] = []
+    var searchResult: [StationDTO?] = []
     var destinationStation: StationDTO?
+    var destinationDelegate: DestinationStationProtocol?
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -116,9 +122,12 @@ extension DestinationSearchStationViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
 
-        destinationStation = searchResult[indexPath.row]
+        guard let destinationStation = searchResult[indexPath.row] else { return }
+
         let searchRouteViewController = SearchRouteViewController()
-        searchRouteViewController.getDestinationStationData(destinationStation)
+        print("🐶 DestinationSearchStationViewController + \(destinationStation)")  // print ok
+
+        destinationDelegate?.sendDestinationStation(station: destinationStation)
 
         router.popViewController()
     }
