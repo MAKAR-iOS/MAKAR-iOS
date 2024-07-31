@@ -14,10 +14,10 @@ final class StationService {
 
     private enum ResponseData {
         case getStation
-        case getFavoriteSchool
         case getFavoriteHome
-        case patchFavoriteSchool
+        case getFavoriteSchool
         case patchFavoriteHome
+        case patchFavoriteSchool
     }
 
     public func getStation(query: String, completion: @escaping (NetworkResult<Any>) -> Void ) {
@@ -32,6 +32,50 @@ final class StationService {
 
             case .failure(let error):
                 let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .getStation)
+                completion(networkResult)
+                print(error)
+            }
+        }
+    }
+
+    public func patchFavoriteHome(stationName: String,
+                                  lineNum: String,
+                                  completion: @escaping (NetworkResult<Any>) -> Void ) {
+        stationProvider.request(.patchFavoriteHome(
+            stationName: stationName,
+            lineNum: lineNum)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .patchFavoriteHome)
+                completion(networkResult)
+
+            case .failure(let error):
+                let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .patchFavoriteHome)
+                completion(networkResult)
+                print(error)
+            }
+        }
+    }
+
+    public func patchFavoriteSchool(stationName: String,
+                                  lineNum: String,
+                                  completion: @escaping (NetworkResult<Any>) -> Void ) {
+        stationProvider.request(.patchFavoriteSchool(
+            stationName: stationName,
+            lineNum: lineNum)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .patchFavoriteSchool)
+                completion(networkResult)
+
+            case .failure(let error):
+                let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .patchFavoriteSchool)
                 completion(networkResult)
                 print(error)
             }
