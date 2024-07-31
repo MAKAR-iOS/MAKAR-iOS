@@ -83,6 +83,9 @@ class NotificationViewController: BaseViewController {
         $0.imageEdgeInsets = .init(top: 0, left: 10, bottom: 0, right: 0)
         $0.setImage(MakarButton.moreBottomButton, for: .normal)
     }
+    
+    // MARK: Properties
+    var makarNotiList: [NotiData?] = []
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -90,7 +93,9 @@ class NotificationViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // TODO: API 연결 성공 후 TableView Reload
+        getNotiList()
+        
         setDropDown()
         setMakarTableViewHidden()
         setMakarAlertController()
@@ -230,6 +235,12 @@ class NotificationViewController: BaseViewController {
         getOffNotiAddButton.changesSelectionAsPrimaryAction = true
 
     }
+    
+    func setTableView() {
+        for notiData in makarNotiList {
+            selectedMakarTime.append(notiData!.notiMinute)
+        }
+    }
 }
 
 extension NotificationViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -285,5 +296,35 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40
+    }
+}
+
+// MARK: Networking
+extension NotificationViewController {
+    private func getNotiList() {
+        print("🔔 getNotiList called")
+        NetworkService.shared.noti.getNotiList{
+            [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? NotiListResponse else { return }
+                print("🎯 getNotiList success: " + "\(data)")
+                makarNotiList = data.data.makarNotiDtoList
+                setTableView()
+                makarTableView.reloadData()
+                print(selectedMakarTime)
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+            
+        }
     }
 }
