@@ -12,6 +12,7 @@ class SearchStationTableViewCell: UITableViewCell {
     let lineNumColor = LineNumColor()
 
     // MARK: UI Components
+    let stationView = UIView()
     let lineNumImageView = UIImageView()
 
     let stationNameLabel = UILabel().then {
@@ -33,26 +34,27 @@ class SearchStationTableViewCell: UITableViewCell {
 
     // MARK: Configuration
     func configureSubviews() {
-        addSubview(lineNumImageView)
-        addSubview(stationNameLabel)
+        contentView.addSubview(stationView)
+
+        stationView.addSubview(lineNumImageView)
+        stationView.addSubview(stationNameLabel)
     }
 
     // MARK: Layout
     func makeConstraints() {
-        contentView.snp.makeConstraints {
-            $0.height.equalTo(48)
-            $0.width.equalToSuperview()
+        stationView.snp.makeConstraints {
+            $0.edges.equalTo(contentView)
         }
 
         lineNumImageView.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(20)
-            $0.centerY.equalTo(contentView.snp.centerY)
+            $0.leading.equalTo(stationView).inset(20)
+            $0.centerY.equalTo(stationView.snp.centerY)
             $0.height.width.equalTo(18)
         }
 
         stationNameLabel.snp.makeConstraints {
             $0.leading.equalTo(lineNumImageView.snp.trailing).offset(10)
-            $0.centerY.equalTo(contentView.snp.centerY)
+            $0.centerY.equalTo(stationView)
         }
     }
 }
