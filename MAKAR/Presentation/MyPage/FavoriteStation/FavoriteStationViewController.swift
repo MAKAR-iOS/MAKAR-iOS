@@ -54,9 +54,13 @@ class FavoriteStationViewController : BaseViewController, HomeStationProtocol, S
 
         favoriteStationView.tapSetButton = {[weak self] in
             guard let self else { return }
+            guard let homeStationName = homeStation?.stationName else { return }
+            guard let homeLineNum = homeStation?.lineNum else { return }
+            guard let schoolStationName = schoolStation?.stationName else { return }
+            guard let schoolLineNum = schoolStation?.lineNum else { return }
 
-            router.popViewController()
-            // TODO: 즐겨찾는 역 편집 API 연결
+            patchFavoriteHome(stationName: homeStationName, lineNum: homeLineNum)
+            patchFavoriteSchool(stationName: schoolStationName, lineNum: schoolLineNum)
         }
     }
 
@@ -102,4 +106,52 @@ extension FavoriteStationViewController {
 
 extension FavoriteStationViewController {
     // MARK: Networking
+    private func patchFavoriteHome(stationName: String, lineNum: String) {
+        print("🚇 patchFavoriteHome called")
+        NetworkService.shared.station.patchFavoriteHome(
+            stationName: stationName,
+            lineNum: lineNum
+        ) { result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? FavoriteStationResponse else { return }
+                print("🎯 patchFavoriteHome success: " + "\(data)")
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+
+    private func patchFavoriteSchool(stationName: String, lineNum: String) {
+        print("🚇 patchFavoriteSchool called")
+        NetworkService.shared.station.patchFavoriteSchool(
+            stationName: stationName,
+            lineNum: lineNum
+        ) { [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? FavoriteStationResponse else { return }
+                print("🎯 patchFavoriteSchool success: " + "\(data)")
+                router.popViewController()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
 }

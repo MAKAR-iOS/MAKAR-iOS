@@ -108,8 +108,13 @@ final class StationService {
         let decoder = JSONDecoder()
 
         switch responseData {
-        case .getStation, .getFavoriteSchool, .getFavoriteHome, .patchFavoriteSchool, .patchFavoriteHome:
+        case .getStation, .getFavoriteSchool, .getFavoriteHome:
             guard let decodedData = try? decoder.decode(StationResponse.self, from: data) else {
+                return .pathErr
+            }
+            return .success(decodedData)
+        case .patchFavoriteHome, .patchFavoriteSchool:
+            guard let decodedData = try? decoder.decode(FavoriteStationResponse.self, from: data) else {
                 return .pathErr
             }
             return .success(decodedData)

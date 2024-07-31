@@ -12,6 +12,13 @@ struct StationResponse: Codable {
     let statusCode: Int
 }
 
+struct FavoriteStationResponse: Codable {
+    let result: String
+    let message: String
+    let data: StationDTO
+    let statusCode: Int
+}
+
 struct StationData: Codable {
     let stationDtoList: [StationDTO]
 }
