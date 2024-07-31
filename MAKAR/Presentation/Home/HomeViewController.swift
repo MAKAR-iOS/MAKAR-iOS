@@ -16,7 +16,6 @@ class HomeViewController: BaseViewController {
     }
     
     // MARK: Flag
-    // TODO: 홈 화면 조회 API 연결
     var isRouteSet = false //경로 설정 유무 플래그
     var isMakarTaken = false
     
@@ -201,7 +200,7 @@ class HomeViewController: BaseViewController {
             self.isMakarTaken = false
 
             //경로 제거
-            // TODO: 설정된 경로 삭제 API 연결
+            self.deleteRoute()
             self.changeComponent()
         }
     }
@@ -303,9 +302,7 @@ class HomeViewController: BaseViewController {
     private func showResetRouteAlert(){
         let resetRouteAlert = UIAlertController(title: "경로 초기화", message: "설정된 경로를 초기화하시겠어요?", preferredStyle: .alert)
         resetRouteAlert.addAction( UIAlertAction(title: "확인", style: .destructive, handler: {_ in
-            // TODO: 경로 초기화 API 연결
-            self.changeComponent()
-            self.isRouteSet = false
+            self.deleteRoute()
         }))
         resetRouteAlert.addAction(UIAlertAction(title: "취소", style: .cancel))
         present(resetRouteAlert, animated: true)
@@ -452,12 +449,15 @@ extension HomeViewController {
                 guard let data = response as? HomeResponse else { return }
                 print("🎯 getHome success: " + "\(data)")
                 isRouteSet = data.data.routeSet
-                sourceStationName = data.data.sourceStationName
-                destinationStationName = data.data.destinationStationName
-                makarTime = data.data.makarTime
-                getOffTime = data.data.getOffTime
-                makarNotiList = data.data.makarNotiList
-                getOffNotiList = data.data.getOffNotiList
+                if isRouteSet {
+                    sourceStationName = data.data.sourceStationName
+                    destinationStationName = data.data.destinationStationName
+                    makarTime = data.data.makarTime
+                    getOffTime = data.data.getOffTime
+                    makarNotiList = data.data.makarNotiList
+                    getOffNotiList = data.data.getOffNotiList
+                }
+                
                 
             case .requestErr(let errorResponse):
                 dump(errorResponse)
@@ -471,6 +471,31 @@ extension HomeViewController {
                 print("pathErr")
             }
             
+        }
+    }
+    
+    private func deleteRoute(){
+        print("🚇 deleteRoute called")
+        NetworkService.shared.route.deleteRoute{
+            [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? RouteResponse else { return }
+                print("🎯 deleteRoute success: " + "\(data)")
+                isRouteSet = false
+                isMakarTaken = false
+                changeComponent()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
         }
     }
     
