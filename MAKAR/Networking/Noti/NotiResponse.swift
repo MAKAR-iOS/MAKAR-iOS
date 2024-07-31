@@ -28,5 +28,5 @@ struct NotiData : Codable {
 // MARK: -알림 삭제 API / 알림 리스트 조회 API
 struct NotiListData : Codable {
     let makarNotiDtoList : [NotiData]
-    let getOffNotiDtoList : [NotiData]
+    let getoffNotiDtoList : [NotiData]
 }
