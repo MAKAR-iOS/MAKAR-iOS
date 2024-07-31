@@ -16,7 +16,6 @@ class HomeViewController: BaseViewController {
     }
 
     // MARK: Flag
-    var homeData: HomeData?
     var isRouteSet = false //경로 설정 유무 플래그
     var isMakarTaken = false
 
@@ -28,11 +27,15 @@ class HomeViewController: BaseViewController {
     
     var makarTime: String = "Thu Aug 01 03:50:00 UTC 2024"
     var getOffTime: String = "Fri Aug 01 23:53:00 UTC 2024"
-    
-    
+
+    // MARK: Properties
+    var homeData: HomeData?
+    var favoriteRouteList: [BriefRouteDTO]? = []
+    var recentRouteList: [BriefRouteDTO]? = []
+
     // TODO: 최근 경로 리스트, 즐겨찾는 경로 리스트 조회 API 연결
-    static var favoriteRouteList: [Route] = Route.favoriteRouteList
-    var recentRouteList: [Route] = Route.recentRouteList
+//    static var favoriteRouteList: [Route] = Route.favoriteRouteList
+//    var recentRouteList: [Route] = Route.recentRouteList
     
     // MARK: UI Components
     private let homeView = HomeView()
@@ -316,10 +319,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
     // MARK: CollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if(collectionView == favoriteRouteCollectionView) {
-            return HomeViewController.favoriteRouteList.count
+        if (collectionView == favoriteRouteCollectionView) {
+            return favoriteRouteList?.count ?? 0
         } else {
-            return recentRouteList.count
+            return recentRouteList?.count ?? 0
         }
     }
 
@@ -330,7 +333,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             else {
                 return UICollectionViewCell()
             }
-            cell.setData(data: HomeViewController.favoriteRouteList[indexPath.row])
+            cell.setData(data: favoriteRouteList?[indexPath.row])
             return cell
         } else {
             //최근 경로
@@ -339,12 +342,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 return UICollectionViewCell()
             }
             
-            cell.setData(data: recentRouteList[indexPath.row])
+            cell.setData(data: recentRouteList?[indexPath.row])
             //최근경로 삭제
             cell.tapDeleteRecentRouteButton = {[weak self] in
                 guard let self else { return }
                 // TODO: 최근 경로 편집 API 연결
-                self.recentRouteList.remove(at: indexPath.row)
+                recentRouteList?.remove(at: indexPath.row)
                 recentRouteCollectionView.reloadData()
             }
             return cell
@@ -353,19 +356,19 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
     //item size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if(collectionView == favoriteRouteCollectionView){
-            let data = HomeViewController.favoriteRouteList[indexPath.row]
+        if (collectionView == favoriteRouteCollectionView) {
+            let data = favoriteRouteList?[indexPath.row]
             let cellWidth = calculateCellWidth(for: data, cell: FavoriteRouteCollectionViewCell())
             return CGSize(width: cellWidth, height: 90)
         } else {
-            let data = recentRouteList[indexPath.row]
+            let data = recentRouteList?[indexPath.row]
             let cellWidth = calculateCellWidth(for: data, cell: RecentRouteCollectionViewCell())
             return CGSize(width: cellWidth, height: 90)
         }
     }
     
     // TODO: simplify
-    private func calculateCellWidth(for data: Route, cell: UICollectionViewCell) -> CGFloat {
+    private func calculateCellWidth(for data: BriefRouteDTO?, cell: UICollectionViewCell) -> CGFloat {
         if let favoriteCell = cell as? FavoriteRouteCollectionViewCell {
             favoriteCell.setData(data: data)
             favoriteCell.setNeedsLayout()
@@ -385,15 +388,15 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let data: Route
-        if(collectionView == favoriteRouteCollectionView){
-            data = HomeViewController.favoriteRouteList[indexPath.row]
+        let data: BriefRouteDTO?
+        if(collectionView == favoriteRouteCollectionView) {
+            data = favoriteRouteList?[indexPath.row]
         } else {
-            data = recentRouteList[indexPath.row]
+            data = recentRouteList?[indexPath.row]
         }
         //searchBar Text 수정
-        let sourceText = "\(data.sourceStation.stationName) \(data.sourceStation.lineNum)"
-        let destinationText = "\(data.destinationStation.stationName) \(data.destinationStation.lineNum)"
+        let sourceText = "\(data?.sourceStationName) \(data?.sourceLineNum)"
+        let destinationText = "\(data?.destinationStationName) \(data?.destinationLineNum)"
         // TODO: 경로 리스트 검색 API 연결
         let searchRouteVC = SearchRouteViewController()
         searchRouteVC.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)
@@ -509,6 +512,7 @@ extension HomeViewController {
             case .success(let response):
                 guard let data = response as? FavoriteRouteListResponse else { return }
                 print("🎯 getFavoriteRouteList success: " + "\(data)")
+                
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
