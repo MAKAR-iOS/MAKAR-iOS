@@ -135,8 +135,33 @@ extension SearchRouteViewController {
         print("destinationSearchBar clicked")
     }
     
-    private func postSearchRouteButtonClicked(){
-        print("searchRouteButton clicked")
+    private func getRouteList(fromStationName: String,
+                              fromLineNum: String,
+                              toStationName: String,
+                              toLineNum: String) {
+        print("🚇 getRouteList called")
+        NetworkService.shared.route.getRouteList(
+            fromStationName: fromStationName,
+            fromLineNum: fromLineNum,
+            toStationName: toStationName,
+            toLineNum: toLineNum
+        ) { result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? RouteListResponse else { return }
+                print("🎯 getRouteList success: " + "\(data)")
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
     }
 }
 
