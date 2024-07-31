@@ -94,8 +94,7 @@ class HomeViewController: BaseViewController {
             guard let self else { return }
             
             self.navigationController?.pushViewController(SearchRouteViewController(), animated: true)
-            // TODO: 경로 설정 API 연결 후 플래그 제거
-            self.isRouteSet = true;
+            // TODO: 경로 설정 API 연결
             postSetRouteButtonClicked()
         }
         
