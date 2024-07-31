@@ -6,6 +6,11 @@
 //
 
 import UIKit
+
+protocol HomeStationProtocol {
+    func sendHomeStation(station: StationDTO)
+}
+
 class HomeSearchStationViewController: BaseSearchStationViewController {
 
     // MARK: Constants
@@ -21,8 +26,9 @@ class HomeSearchStationViewController: BaseSearchStationViewController {
     }
 
     // MARK: Properties
-    var searchResult: [StationDTO] = []
+    var searchResult: [StationDTO?] = []
     var homeStation: StationDTO?
+    var homeDelegate: HomeStationProtocol?
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -35,24 +41,24 @@ class HomeSearchStationViewController: BaseSearchStationViewController {
         view.backgroundColor = .background
         setSearchBar()
     }
-    
+
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
-        
+
         view.addSubview(homeSearchStationView)
     }
-    
+
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
         
         homeSearchStationView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
+            $0.top.horizontalEdges.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(Metric.viewHeight)
         }
     }
-    
+
     // MARK: View Transition
     override func viewTransition() {
         backButton.tap = { [weak self] in
@@ -61,13 +67,12 @@ class HomeSearchStationViewController: BaseSearchStationViewController {
         }
     }
 
-    
     // MARK: Set Navigation
     override func setNavigationItem() {
         navigationItem.title = "역 검색"
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
     }
-    
+
     // MARK: TableView
     func setTableView() {
         super.setTableView(data: searchResult)
@@ -82,10 +87,10 @@ extension HomeSearchStationViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
 
-        homeStation = searchResult[indexPath.row]
-        let favoriteStationViewController = FavoriteStationViewController()
-        favoriteStationViewController.getHomeStationData(homeStation)
+        guard let homeStation = searchResult[indexPath.row] else { return }
+        print("🐶 HomeSearchStationViewController + \(homeStation)")
 
+        homeDelegate?.sendHomeStation(station: homeStation)
         router.popViewController()
     }
 }

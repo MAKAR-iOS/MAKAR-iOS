@@ -131,9 +131,7 @@ extension SourceSearchStationViewController {
         let cell = tableView.cellForRow(at: indexPath)
 
         guard let sourceStation = searchResult[indexPath.row] else { return }
-
-        let searchRouteViewController = SearchRouteViewController()
-        print("🐶 SourceSearchStationViewController + \(sourceStation)")  // print ok
+        print("🐶 SourceSearchStationViewController + \(sourceStation)")
 
         sourceDelegate?.sendSourceStation(station: sourceStation)
         router.popViewController()
