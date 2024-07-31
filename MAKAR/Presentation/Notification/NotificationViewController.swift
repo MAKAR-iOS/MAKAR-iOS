@@ -83,6 +83,9 @@ class NotificationViewController: BaseViewController {
         $0.imageEdgeInsets = .init(top: 0, left: 10, bottom: 0, right: 0)
         $0.setImage(MakarButton.moreBottomButton, for: .normal)
     }
+    
+    // MARK: Properties
+    var makarNotiList: [NotiData?] = []
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -90,7 +93,9 @@ class NotificationViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // TODO: API 연결 성공 후 TableView Reload
+        getNotiList()
+        
         setDropDown()
         setMakarTableViewHidden()
         setMakarAlertController()
@@ -125,7 +130,8 @@ class NotificationViewController: BaseViewController {
                     self.view.makeToast(" 이미 설정된 알림입니다. ", duration: 1.0, position: .bottom)
                 }
             } else {
-                selectedMakarTime.append(tempMakarTime)
+                // TODO: routeId 설정된 경로 id로 변경
+                postMakarNoti(routeId: 1, notiMinute: tempMakarTime)
                 print(selectedMakarTime)
                 setMakarTableViewHidden()
                 makarTableView.reloadData()
@@ -230,6 +236,13 @@ class NotificationViewController: BaseViewController {
         getOffNotiAddButton.changesSelectionAsPrimaryAction = true
 
     }
+    
+    func setTableView() {
+        selectedMakarTime = []
+        for notiData in makarNotiList {
+            selectedMakarTime.append(notiData!.notiMinute)
+        }
+    }
 }
 
 extension NotificationViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -269,10 +282,9 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
         cell.tapDeleteNotiButton = {[weak self] in
             guard let self else { return }
             
-            selectedMakarTime.remove(at: indexPath.row)
+            let notiId = makarNotiList[indexPath.row]?.notiId
+            deleteMakarNoti(notiId: notiId!)
             print(selectedMakarTime)
-            setMakarTableViewHidden()
-            makarTableView.reloadData()
         }
 
         cell.makarNameLabel.text = "막차 알림 " + "\(indexPath.row + 1)"
@@ -285,5 +297,87 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40
+    }
+}
+
+// MARK: Networking
+extension NotificationViewController {
+    private func getNotiList() {
+        print("🔔 getNotiList called")
+        NetworkService.shared.noti.getNotiList{
+            [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? NotiListResponse else { return }
+                print("🎯 getNotiList success: " + "\(data)")
+                makarNotiList = data.data.makarNotiDtoList
+                setTableView()
+                makarTableView.reloadData()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+            
+        }
+    }
+    
+    private func postMakarNoti(routeId: Int, notiMinute: Int) {
+        print("🔔 postMakarNoti called")
+        NetworkService.shared.noti.postMakarNoti(routeId: routeId, notiMinute: notiMinute){
+            [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? NotiResponse else { return }
+                print("🎯 postMakarNoti success: " + "\(data)")
+                makarNotiList.append(data.data)
+                setTableView()
+                makarTableView.reloadData()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+            
+        }
+    }
+    
+    private func deleteMakarNoti(notiId: Int) {
+        print("🔔 deleteMakarNoti called")
+        NetworkService.shared.noti.deleteMakarNoti(notiId: notiId){
+            [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? NotiListResponse else { return }
+                print("🎯 notiMakarNoti success: " + "\(data)")
+                makarNotiList = data.data.makarNotiDtoList
+                setTableView()
+                setMakarTableViewHidden()
+                makarTableView.reloadData()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+            
+        }
     }
 }
