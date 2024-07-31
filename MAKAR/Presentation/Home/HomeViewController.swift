@@ -16,17 +16,18 @@ class HomeViewController: BaseViewController {
     }
     
     // MARK: Flag
+    // TODO: 홈 화면 조회 API 연결
     static var isRouteSet = false //경로 설정 유무 플래그
     static var isMakarTaken = false
     
-    let sourceStationName = "숭실대입구"
-    let destinationStationName = "영등포"
+    let sourceStationName : String = ""
+    let destinationStationName : String = ""
     
-    var makarNotiList : [Noti] = Noti.makarNotiList // 막차 알림 리스트
-    var getOffNotiList : [Noti] = Noti.getOffNotiList // 하차 알림 리스트
+    var makarNotiList : [NotiData] = [] // 막차 알림 리스트
+    var getOffNotiList : [NotiData] = [] // 하차 알림 리스트
     
-    let makarTime = "Tue Jul 30 22:18:00 KST 2024"
-    let getOffTime = "Tue Jul 30 22:21:00 KST 2024"
+    let makarTime : String = ""
+    let getOffTime : String = ""
     
     
     // TODO: 최근 경로 리스트, 즐겨찾는 경로 리스트 조회 API 연결
@@ -213,8 +214,7 @@ class HomeViewController: BaseViewController {
             if makarLeftTime == makarNotiList[0].notiMinute {
                 addNotification(notiType: "막차", minute: makarLeftTime)
                 print("Show MAKAR Notification")
-                // TODO: Noti Del API 연결
-                makarNotiList.remove(at: 0)
+                deleteMakarNoti(notiId: makarNotiList[0].notiId)
             }
             self.changeMainTitleText(target: "막차", minute: makarLeftTime)
         }
@@ -225,8 +225,7 @@ class HomeViewController: BaseViewController {
         if getOffLeftTime == getOffNotiList[0].notiMinute {
             addNotification(notiType: "하차", minute: getOffLeftTime)
             print("Show GETOFF Notification")
-            // TODO: Noti Del API 연결
-            getOffNotiList.remove(at: 0)
+            deleteGetOffNoti(notiId: getOffNotiList[0].notiId)
         }
         self.changeMainTitleText(target: "하차", minute: getOffLeftTime)
     }
@@ -302,6 +301,7 @@ class HomeViewController: BaseViewController {
     private func showResetRouteAlert(){
         let resetRouteAlert = UIAlertController(title: "경로 초기화", message: "설정된 경로를 초기화하시겠어요?", preferredStyle: .alert)
         resetRouteAlert.addAction( UIAlertAction(title: "확인", style: .destructive, handler: {_ in
+            // TODO: 경로 초기화 API 연결
             self.changeComponent()
             HomeViewController.isRouteSet = false
         }))
@@ -435,6 +435,58 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         recentRouteCollectionView.register(RecentRouteCollectionViewCell.self, forCellWithReuseIdentifier: "RecentRouteCollectionViewCell")
         recentRouteCollectionView.delegate = self
         recentRouteCollectionView.dataSource = self
+    }
+}
+
+// MARK: Networking
+
+extension HomeViewController {
+    private func deleteMakarNoti(notiId: Int) {
+        print("🔔 deleteMakarNoti called")
+        NetworkService.shared.noti.deleteMakarNoti(notiId: notiId){
+            [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? NotiListResponse else { return }
+                print("🎯 notiMakarNoti success: " + "\(data)")
+                makarNotiList = data.data.makarNotiDtoList
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+            
+        }
+    }
+    
+    private func deleteGetOffNoti(notiId: Int) {
+        print("🔔 deleteGetOffNoti called")
+        NetworkService.shared.noti.deleteMakarNoti(notiId: notiId){
+            [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? NotiListResponse else { return }
+                print("🎯 notiGetOffNoti success: " + "\(data)")
+                getOffNotiList = data.data.getoffNotiDtoList
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+            
+        }
     }
 }
 
