@@ -41,6 +41,11 @@ final class BaseRouter {
         viewController?.navigationController?.pushViewController(destinationSearchStationViewController, animated: true)
     }
 
+    func presentFavoriteStationViewController() {
+        let favoriteStationViewController = FavoriteStationViewController()
+        viewController?.navigationController?.pushViewController(favoriteStationViewController, animated: true)
+    }
+
     func popViewController() {
         viewController?.navigationController?.popViewController(animated: true)
     }

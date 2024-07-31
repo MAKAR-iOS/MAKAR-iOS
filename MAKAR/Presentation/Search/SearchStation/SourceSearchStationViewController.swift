@@ -52,21 +52,21 @@ class SourceSearchStationViewController: BaseSearchStationViewController {
         sourceSearchStationView.tapHomeButton = {[weak self] in
             guard let self else { return }
 
-            navigationController?.popViewController(animated: true)
+            router.popViewController()
             postHomeButtonClicked()
         }
 
         sourceSearchStationView.tapSchoolButton = {[weak self] in
             guard let self else { return }
 
-            navigationController?.popViewController(animated: true)
+            router.popViewController()
             postSchoolButtonClicked()
         }
 
         sourceSearchStationView.tapMoreButton = {[weak self] in
             guard let self else { return }
 
-            self.navigationController?.pushViewController(FavoriteStationViewController(), animated: true)
+            router.presentFavoriteStationViewController()
             postMoreButtonClicked()
         }
     }
