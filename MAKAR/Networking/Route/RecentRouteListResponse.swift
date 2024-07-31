@@ -15,7 +15,7 @@ struct RecentRouteListResponse: Codable {
 }
 
 struct RecentRouteListData: Codable {
-    let recentRouteList: [BriefRouteDTO]
+    let recentRouteList: [BriefRouteDTO]?
 }
 
 struct BriefRouteDTO: Codable {
