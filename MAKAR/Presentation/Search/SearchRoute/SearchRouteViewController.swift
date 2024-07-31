@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchRouteViewController : BaseViewController, SourceStationProtocol, DestinationStationProtocol {
+class SearchRouteViewController: BaseViewController, SourceStationProtocol, DestinationStationProtocol {
 
     // MARK: UI Components
     private let searchRouteView = SearchRouteView()
@@ -48,7 +48,6 @@ class SearchRouteViewController : BaseViewController, SourceStationProtocol, Des
 
         searchRouteView.tapSwapStationButton = {[weak self] in
             guard let self else { return }
-            postSwapStationButtonClicked()
         }
 
         searchRouteView.tapSourceSearchBar = {[weak self] in
@@ -139,18 +138,6 @@ extension SearchRouteViewController {
 
 extension SearchRouteViewController {
     // MARK: Networking
-    private func postSwapStationButtonClicked(){
-        print("swapStationButton clicked")
-    }
-    
-    private func postSourceSearchBarClicked(){
-        print("sourceSearchBar clicked")
-    }
-    
-    private func postDestinationSearchBarClicked(){
-        print("destinationSearchBar clicked")
-    }
-    
     private func getRouteList(fromStationName: String,
                               fromLineNum: String,
                               toStationName: String,
