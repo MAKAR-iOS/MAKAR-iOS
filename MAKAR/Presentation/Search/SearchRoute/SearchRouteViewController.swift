@@ -54,14 +54,14 @@ class SearchRouteViewController : BaseViewController {
         searchRouteView.tapSourceSearchBar = {[weak self] in
             guard let self else { return }
             
-            self.navigationController?.pushViewController(SourceSearchStationViewController(), animated: true)
+            router.presentSourceSearchStationViewController()
             postSourceSearchBarClicked()
         }
 
         searchRouteView.tapDestinationSearchBar = {[weak self] in
             guard let self else { return }
             
-            self.navigationController?.pushViewController(DestinationSearchStationViewController(), animated: true)
+            router.presentDestinationSearchStationViewController()
             postDestinationSearchBarClicked()
         }
         
