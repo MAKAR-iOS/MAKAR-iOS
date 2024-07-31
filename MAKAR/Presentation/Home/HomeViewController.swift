@@ -33,10 +33,6 @@ class HomeViewController: BaseViewController {
     var favoriteRouteList: [BriefRouteDTO]? = []
     var recentRouteList: [BriefRouteDTO]? = []
 
-    // TODO: 최근 경로 리스트, 즐겨찾는 경로 리스트 조회 API 연결
-//    static var favoriteRouteList: [Route] = Route.favoriteRouteList
-//    var recentRouteList: [Route] = Route.recentRouteList
-    
     // MARK: UI Components
     private let homeView = HomeView()
     private let homeScrollView = UIScrollView()
@@ -512,7 +508,8 @@ extension HomeViewController {
             case .success(let response):
                 guard let data = response as? FavoriteRouteListResponse else { return }
                 print("🎯 getFavoriteRouteList success: " + "\(data)")
-                
+                favoriteRouteList = data.data
+                favoriteRouteCollectionView.reloadData()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
@@ -535,6 +532,8 @@ extension HomeViewController {
             case .success(let response):
                 guard let data = response as? RecentRouteListResponse else { return }
                 print("🎯 getRecentRouteList success: " + "\(data)")
+                recentRouteList = data.data.recentRouteList
+                recentRouteCollectionView.reloadData()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
