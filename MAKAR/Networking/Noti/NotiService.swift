@@ -6,3 +6,20 @@
 //
 
 import Foundation
+import Moya
+
+final class NotiService {
+    
+    private var notiProvider = MoyaProvider<NotiAPI>(plugins: [NetworkLoggerPlugin()])
+    
+    private enum ResponseData {
+        case postMakarNoti
+        case postGetOffNoti
+        case deleteMakarNoti
+        case deleteGetOffNoti
+        case getNotiList
+    }
+    
+    
+    
+}
