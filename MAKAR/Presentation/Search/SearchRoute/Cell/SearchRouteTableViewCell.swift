@@ -109,21 +109,30 @@ class SearchRouteTableViewCell : UITableViewCell {
         totalTimeLabel.text = "\(data.totalTime)분"
         routeTimeLabel.text = "\(startTime) 출발 | \(endTime) 도착"
         leftTimeLabel.text = "\(checkLeftTime(targetDate: data.sourceTime))분 후 막차"
-        if (routeProgressView.subviews.isEmpty) {
-            routeProgressView.setData(subRouteList: data.subRouteDtoList)
+        
+        if !(routeProgressView.subviews.isEmpty) {
+            for subview in routeProgressView.subviews {
+                subview.removeFromSuperview()
+            }
         }
 
-        if(routeStackView.subviews.isEmpty) {
-            //출발역
-            let routeLabel = SubRouteTextView(
-                lineName: data.sourceStationName,
-                lineNum: data.sourceLineNum)
-            routeStackView.addArrangedSubview(routeLabel)
-            //중간역, 도착역
-            for route in data.subRouteDtoList {
-                let routeLabel = SubRouteTextView(lineName: route.toStationName, lineNum: route.lineNum)
-                routeStackView.addArrangedSubview(routeLabel)
+        if !(routeStackView.subviews.isEmpty) {
+            for subview in routeStackView.subviews {
+                subview.removeFromSuperview()
             }
+        }
+
+        routeProgressView.setData(subRouteList: data.subRouteDtoList)
+        
+        //출발역
+        let routeLabel = SubRouteTextView(
+            lineName: data.sourceStationName,
+            lineNum: data.sourceLineNum)
+        routeStackView.addArrangedSubview(routeLabel)
+        //중간역, 도착역
+        for route in data.subRouteDtoList {
+            let routeLabel = SubRouteTextView(lineName: route.toStationName, lineNum: route.lineNum)
+            routeStackView.addArrangedSubview(routeLabel)
         }
     }
 
@@ -137,7 +146,7 @@ class SearchRouteTableViewCell : UITableViewCell {
         let date = convertStringToDate(targetDateString: date)
         return outputDateFormatter.string(from: date)
     }
-    
+
     //현재 시간과 막차 시간 비교 후 남은 시간 반환
     private func checkLeftTime(targetDate: String) -> Int {
         let currentDate = Date()
