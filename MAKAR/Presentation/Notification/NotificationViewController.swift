@@ -282,10 +282,9 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
         cell.tapDeleteNotiButton = {[weak self] in
             guard let self else { return }
             
-            selectedMakarTime.remove(at: indexPath.row)
+            let notiId = makarNotiList[indexPath.row]?.notiId
+            deleteMakarNoti(notiId: notiId!)
             print(selectedMakarTime)
-            setMakarTableViewHidden()
-            makarTableView.reloadData()
         }
 
         cell.makarNameLabel.text = "막차 알림 " + "\(indexPath.row + 1)"
@@ -339,6 +338,33 @@ extension NotificationViewController {
                 print("🎯 postMakarNoti success: " + "\(data)")
                 makarNotiList.append(data.data)
                 setTableView()
+                makarTableView.reloadData()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+            
+        }
+    }
+    
+    private func deleteMakarNoti(notiId: Int) {
+        print("🔔 deleteMakarNoti called")
+        NetworkService.shared.noti.deleteMakarNoti(notiId: notiId){
+            [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? NotiListResponse else { return }
+                print("🎯 notiMakarNoti success: " + "\(data)")
+                makarNotiList = data.data.makarNotiDtoList
+                setTableView()
+                setMakarTableViewHidden()
                 makarTableView.reloadData()
             case .requestErr(let errorResponse):
                 dump(errorResponse)

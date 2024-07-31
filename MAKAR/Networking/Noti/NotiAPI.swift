@@ -17,6 +17,7 @@ enum NotiAPI {
 }
 
 extension NotiAPI: TargetType {
+    // TODO: delete URI {notiId}로 수정
     var path: String {
         switch self {
         case .postMakarNoti, .deleteMakarNoti:
