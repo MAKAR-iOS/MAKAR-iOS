@@ -119,6 +119,7 @@
 		95D0043B2B4BE220009D4DF3 /* MakarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D0043A2B4BE220009D4DF3 /* MakarTableViewCell.swift */; };
 		95D0043D2B4BE358009D4DF3 /* MakarNotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D0043C2B4BE358009D4DF3 /* MakarNotiView.swift */; };
 		95E181F22C5925B000CFE6B9 /* RouteListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E181F12C5925B000CFE6B9 /* RouteListResponse.swift */; };
+		95E181F42C5AA07B00CFE6B9 /* EmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E181F32C5AA07B00CFE6B9 /* EmptyResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -227,6 +228,7 @@
 		95D0043A2B4BE220009D4DF3 /* MakarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakarTableViewCell.swift; sourceTree = "<group>"; };
 		95D0043C2B4BE358009D4DF3 /* MakarNotiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakarNotiView.swift; sourceTree = "<group>"; };
 		95E181F12C5925B000CFE6B9 /* RouteListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteListResponse.swift; sourceTree = "<group>"; };
+		95E181F32C5AA07B00CFE6B9 /* EmptyResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -445,6 +447,7 @@
 				26A0EF322B5A90BB003E11D6 /* Cell */,
 				956382E62B397A5A006B50ED /* SearchRouteView.swift */,
 				956382E82B397A66006B50ED /* SearchRouteViewController.swift */,
+				95E181F32C5AA07B00CFE6B9 /* EmptyResultView.swift */,
 			);
 			path = SearchRoute;
 			sourceTree = "<group>";
@@ -935,6 +938,7 @@
 				2647CE822B500677001208BE /* FavoriteRouteViewController.swift in Sources */,
 				956382B62B39758A006B50ED /* StartSignInViewController.swift in Sources */,
 				2670652E2B3CA6BC00F19EC3 /* HomeSearchStationViewController.swift in Sources */,
+				95E181F42C5AA07B00CFE6B9 /* EmptyResultView.swift in Sources */,
 				95B10FA32B3315BB005319F6 /* ExampleViewController.swift in Sources */,
 				957F3CE32C524B9800EA0AD2 /* UITextField+Extension.swift in Sources */,
 				956382B42B397581006B50ED /* StartSignInView.swift in Sources */,
