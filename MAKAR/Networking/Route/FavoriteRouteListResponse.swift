@@ -10,6 +10,6 @@ import Foundation
 struct FavoriteRouteListResponse: Codable {
     let result: String
     let message: String
-    let data: [BriefRouteDTO?]
+    let data: [BriefRouteDTO]?
     let statusCode: Int
 }
