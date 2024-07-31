@@ -130,7 +130,8 @@ class NotificationViewController: BaseViewController {
                     self.view.makeToast(" 이미 설정된 알림입니다. ", duration: 1.0, position: .bottom)
                 }
             } else {
-                selectedMakarTime.append(tempMakarTime)
+                // TODO: routeId 설정된 경로 id로 변경
+                postMakarNoti(routeId: 1, notiMinute: tempMakarTime)
                 print(selectedMakarTime)
                 setMakarTableViewHidden()
                 makarTableView.reloadData()
@@ -237,6 +238,7 @@ class NotificationViewController: BaseViewController {
     }
     
     func setTableView() {
+        selectedMakarTime = []
         for notiData in makarNotiList {
             selectedMakarTime.append(notiData!.notiMinute)
         }
@@ -312,7 +314,32 @@ extension NotificationViewController {
                 makarNotiList = data.data.makarNotiDtoList
                 setTableView()
                 makarTableView.reloadData()
-                print(selectedMakarTime)
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+            
+        }
+    }
+    
+    private func postMakarNoti(routeId: Int, notiMinute: Int) {
+        print("🔔 postMakarNoti called")
+        NetworkService.shared.noti.postMakarNoti(routeId: routeId, notiMinute: notiMinute){
+            [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? NotiResponse else { return }
+                print("🎯 postMakarNoti success: " + "\(data)")
+                makarNotiList.append(data.data)
+                setTableView()
+                makarTableView.reloadData()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
