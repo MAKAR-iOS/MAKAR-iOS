@@ -8,7 +8,7 @@
 struct HomeResponse: Codable {
     let result: String
     let message: String
-    let data: NotiData
+    let data: HomeData
     let statusCode: Int
 }
 

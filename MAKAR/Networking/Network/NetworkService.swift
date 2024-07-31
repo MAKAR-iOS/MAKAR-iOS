@@ -14,4 +14,5 @@ final class NetworkService {
     let station = StationService()
     let route = RouteService()
     let noti = NotiService()
+    let home = HomeService()
 }

@@ -17,17 +17,17 @@ class HomeViewController: BaseViewController {
     
     // MARK: Flag
     // TODO: 홈 화면 조회 API 연결
-    static var isRouteSet = false //경로 설정 유무 플래그
-    static var isMakarTaken = false
+    var isRouteSet = false //경로 설정 유무 플래그
+    var isMakarTaken = false
     
-    let sourceStationName : String = ""
-    let destinationStationName : String = ""
+    var sourceStationName : String = ""
+    var destinationStationName : String = ""
     
     var makarNotiList : [NotiData] = [] // 막차 알림 리스트
     var getOffNotiList : [NotiData] = [] // 하차 알림 리스트
     
-    let makarTime : String = ""
-    let getOffTime : String = ""
+    var makarTime : String = "Thu Aug 01 03:50:00 UTC 2024"
+    var getOffTime : String = "Fri Aug 01 23:53:00 UTC 2024"
     
     
     // TODO: 최근 경로 리스트, 즐겨찾는 경로 리스트 조회 API 연결
@@ -63,6 +63,7 @@ class HomeViewController: BaseViewController {
         setNavigationBar()
 
         view.backgroundColor = .background
+        getHome()
         changeComponent()
         setFavoriteRouteCollectionView()
         setRecentRouteCollectionView()
@@ -94,7 +95,8 @@ class HomeViewController: BaseViewController {
             guard let self else { return }
             
             self.navigationController?.pushViewController(SearchRouteViewController(), animated: true)
-            HomeViewController.isRouteSet = true;
+            // TODO: 경로 설정 API 연결 후 플래그 제거
+            self.isRouteSet = true;
             postSetRouteButtonClicked()
         }
         
@@ -182,8 +184,8 @@ class HomeViewController: BaseViewController {
             let runLoop = RunLoop.current
             
             Timer.scheduledTimer(withTimeInterval: 10, repeats: true){ _ in
-                if HomeViewController.isRouteSet {
-                    if !HomeViewController.isMakarTaken {
+                if self.isRouteSet {
+                    if !self.isMakarTaken {
                         self.handleMakarTime()
                     } else {
                         self.handleGetOffTime()
@@ -195,8 +197,8 @@ class HomeViewController: BaseViewController {
             runLoop.run(until: getOffTimeDate)
             
             //하차 시간 도달
-            HomeViewController.isRouteSet = false
-            HomeViewController.isMakarTaken = false
+            self.isRouteSet = false
+            self.isMakarTaken = false
 
             //경로 제거
             // TODO: 설정된 경로 삭제 API 연결
@@ -208,7 +210,7 @@ class HomeViewController: BaseViewController {
         let makarLeftTime = self.checkNotificationTime(targetDateString: self.makarTime)
         if makarLeftTime <= 0 {
             // 막차 시간 도달
-            HomeViewController.isMakarTaken = true
+            self.isMakarTaken = true
             self.changeComponent()
         } else {
             if makarLeftTime == makarNotiList[0].notiMinute {
@@ -253,7 +255,7 @@ class HomeViewController: BaseViewController {
     // MARK: ChangeComponent
     private func changeComponent(){
         DispatchQueue.main.async {
-            if HomeViewController.isRouteSet {
+            if self.isRouteSet {
                 self.updateRouteSetUI()
             } else {
                 self.updateRouteUnsetUI()
@@ -263,7 +265,7 @@ class HomeViewController: BaseViewController {
     
     
     private func updateRouteSetUI() {
-        if !HomeViewController.isMakarTaken {
+        if !self.isMakarTaken {
             let makarLeftTime = self.checkNotificationTime(targetDateString: self.makarTime)
             self.changeMainTitleText(target: "막차", minute: makarLeftTime)
             self.homeView.changeMainDestinationText(destinationText: sourceStationName)
@@ -303,7 +305,7 @@ class HomeViewController: BaseViewController {
         resetRouteAlert.addAction( UIAlertAction(title: "확인", style: .destructive, handler: {_ in
             // TODO: 경로 초기화 API 연결
             self.changeComponent()
-            HomeViewController.isRouteSet = false
+            self.isRouteSet = false
         }))
         resetRouteAlert.addAction(UIAlertAction(title: "취소", style: .cancel))
         present(resetRouteAlert, animated: true)
@@ -441,6 +443,37 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
 // MARK: Networking
 
 extension HomeViewController {
+    private func getHome(){
+        print("🏠 getHome called")
+        NetworkService.shared.home.getHome(){
+            [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? HomeResponse else { return }
+                print("🎯 getHome success: " + "\(data)")
+                isRouteSet = data.data.routeSet
+                sourceStationName = data.data.sourceStationName
+                destinationStationName = data.data.destinationStationName
+                makarTime = data.data.makarTime
+                getOffTime = data.data.getOffTime
+                makarNotiList = data.data.makarNotiList
+                getOffNotiList = data.data.getOffNotiList
+                
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+            
+        }
+    }
+    
     private func deleteMakarNoti(notiId: Int) {
         print("🔔 deleteMakarNoti called")
         NetworkService.shared.noti.deleteMakarNoti(notiId: notiId){
