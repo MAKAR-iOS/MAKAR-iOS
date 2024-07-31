@@ -14,6 +14,7 @@ enum URLConst {
     // MARK: - Auth
     static let signIn = "/api/v1/auth/sign-in"
     static let signUp = "/api/v1/auth/sign-up"
+    static let signOut = "/api/v1/auth/sign-out"
 
     // MARK: - Route
     static let route = "/api/v1/route"

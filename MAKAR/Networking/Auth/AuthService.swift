@@ -15,6 +15,7 @@ final class AuthService {
     private enum ResponseData {
         case postSignIn
         case postSignUp
+        case postSignOut
     }
 
     public func postSignIn(id: String, password: String, completion: @escaping (NetworkResult<Any>) -> Void ) {
@@ -23,10 +24,8 @@ final class AuthService {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                
                 let networkResult = self.judgeStatus(by: statusCode, data, responseData: .postSignIn)
                 completion(networkResult)
-                
             case .failure(let error):
                 let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .postSignIn)
                 completion(networkResult)
@@ -41,10 +40,22 @@ final class AuthService {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                
                 let networkResult = self.judgeStatus(by: statusCode, data, responseData: .postSignUp)
                 completion(networkResult)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 
+    public func postSignOut(completion: @escaping (NetworkResult<Any>) -> Void) {
+        authProvider.request(.postSignOut) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .postSignOut)
+                completion(networkResult)
             case .failure(let error):
                 print(error)
             }
@@ -58,7 +69,7 @@ final class AuthService {
         switch statusCode {
         case 200..<300:
             switch responseData {
-            case .postSignIn, .postSignUp:
+            case .postSignIn, .postSignUp, .postSignOut:
                 return isValidData(data: data, responseData: responseData)
             }
         case 400..<500:
@@ -79,6 +90,11 @@ final class AuthService {
         switch responseData {
         case .postSignIn, .postSignUp:
             guard let decodedData = try? decoder.decode(AuthResponse.self, from: data) else {
+                return .pathErr
+            }
+            return .success(decodedData)
+        case .postSignOut:
+            guard let decodedData = try? decoder.decode(SignOutAuthResponse.self, from: data) else {
                 return .pathErr
             }
             return .success(decodedData)

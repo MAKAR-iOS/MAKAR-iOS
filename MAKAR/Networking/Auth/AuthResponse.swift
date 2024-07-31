@@ -23,3 +23,10 @@ struct AuthToken: Codable {
     let token: String
     let expiredIn: Int
 }
+
+struct SignOutAuthResponse: Codable {
+    let result: String
+    let message: String
+    let data: String
+    let statusCode: Int
+}

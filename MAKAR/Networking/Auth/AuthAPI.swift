@@ -11,6 +11,7 @@ import Foundation
 enum AuthAPI {
     case postSignIn(id: String, password: String)
     case postSignUp(id: String, password: String, email: String, username: String)
+    case postSignOut
 }
 
 extension AuthAPI: TargetType {
@@ -20,16 +21,18 @@ extension AuthAPI: TargetType {
             return URLConst.signIn
         case .postSignUp:
             return URLConst.signUp
+        case .postSignOut:
+            return URLConst.signOut
         }
     }
-    
+
     var method: Moya.Method {
         switch self {
-        case .postSignIn, .postSignUp:
+        case .postSignIn, .postSignUp, .postSignOut:
             return .post
         }
     }
-    
+
     var task: Moya.Task {
         switch self {
         case .postSignIn(let id, let password):
@@ -44,6 +47,8 @@ extension AuthAPI: TargetType {
                 "email": email,
                 "username": username
             ], encoding: JSONEncoding.default)
+        case .postSignOut:
+            return .requestPlain
         }
     }
 }
