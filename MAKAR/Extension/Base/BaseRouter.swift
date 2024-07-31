@@ -31,6 +31,16 @@ final class BaseRouter {
         sceneDelegate?.changeRootViewToTabBarViewController()
     }
 
+    func presentSourceSearchStationViewController() {
+        let sourceSearchStationViewController = SourceSearchStationViewController()
+        viewController?.navigationController?.pushViewController(sourceSearchStationViewController, animated: true)
+    }
+
+    func presentDestinationSearchStationViewController() {
+        let destinationSearchStationViewController = DestinationSearchStationViewController()
+        viewController?.navigationController?.pushViewController(destinationSearchStationViewController, animated: true)
+    }
+
     func popViewController() {
         viewController?.navigationController?.popViewController(animated: true)
     }
