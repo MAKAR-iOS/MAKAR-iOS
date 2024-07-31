@@ -100,8 +100,8 @@ class SearchRouteTableViewCell : UITableViewCell {
             $0.leading.trailing.bottom.equalToSuperview().inset(20)
         }
     }
-    
-    func setData(data : Route) {
+
+    func setData(data: RouteDTO) {
         lineNumImage.addLineNum()
         let startTime = changeDateFormat(date: data.sourceTime)
         let endTime = changeDateFormat(date: data.destinationTime)
@@ -109,22 +109,24 @@ class SearchRouteTableViewCell : UITableViewCell {
         totalTimeLabel.text = "\(data.totalTime)분"
         routeTimeLabel.text = "\(startTime) 출발 | \(endTime) 도착"
         leftTimeLabel.text = "\(checkLeftTime(targetDate: data.sourceTime))분 후 막차"
-        if(routeProgressView.subviews.isEmpty){
-            routeProgressView.setData(subRouteList: data.subRouteList)
+        if (routeProgressView.subviews.isEmpty) {
+            routeProgressView.setData(subRouteList: data.subRouteDtoList)
         }
-        
-        if(routeStackView.subviews.isEmpty){
+
+        if(routeStackView.subviews.isEmpty) {
             //출발역
-            let routeLabel = SubRouteTextView(lineName: data.sourceStation.stationName, lineNum: data.sourceStation.lineNum)
+            let routeLabel = SubRouteTextView(
+                lineName: data.sourceStationName,
+                lineNum: data.sourceLineNum)
             routeStackView.addArrangedSubview(routeLabel)
             //중간역, 도착역
-            for route in data.subRouteList {
+            for route in data.subRouteDtoList {
                 let routeLabel = SubRouteTextView(lineName: route.toStationName, lineNum: route.lineNum)
                 routeStackView.addArrangedSubview(routeLabel)
             }
         }
     }
-        
+
     //열차 출발, 도착 시간 format 지정
     private func changeDateFormat(date: String) -> String {
         let outputDateFormatter = DateFormatter().then{
