@@ -37,6 +37,9 @@ class HomeViewController: BaseViewController {
     // MARK: UI Components
     private let homeView = HomeView()
     private let homeScrollView = UIScrollView()
+    private let navigationTitleImageView = UIImageView().then {
+        $0.image = MakarImage.makarLogo
+    }
     
     lazy var favoriteRouteCollectionView: UICollectionView = {
             let flowLayout = UICollectionViewFlowLayout()
@@ -143,6 +146,11 @@ class HomeViewController: BaseViewController {
             $0.top.bottom.equalTo(homeScrollView)
         }
 
+        navigationTitleImageView.snp.makeConstraints {
+            $0.height.equalTo(20)
+            $0.width.equalTo(100)
+        }
+
         let contentViewHeight = homeView.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor)
         contentViewHeight.priority = .defaultLow
         contentViewHeight.isActive = true
@@ -168,6 +176,8 @@ class HomeViewController: BaseViewController {
     // MARK: NavigationBar
     private func setNavigationBar() {
         navigationItem.title = nil
+//        navigationItem.largeTitleDisplayMode = .never
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: navigationTitleImageView)
     }
 
     // MARK: Measure Notification Time
