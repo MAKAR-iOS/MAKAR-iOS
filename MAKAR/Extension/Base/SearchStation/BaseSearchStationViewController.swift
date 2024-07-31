@@ -14,7 +14,7 @@ class BaseSearchStationViewController: BaseViewController {
 
     // MARK: UI Components
     let lineNumImage = LineNumImage()
-    var tableView = UITableView(frame: .zero, style: .plain)
+    var searchListTableView = UITableView(frame: .zero, style: .plain)
 
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -36,16 +36,16 @@ class BaseSearchStationViewController: BaseViewController {
     func setTableView(data: [StationDTO?]) {
         searchList = data
 
-        view.addSubview(tableView)
-        tableView.backgroundColor = .background
-        
-        tableView.snp.makeConstraints{
+        view.addSubview(searchListTableView)
+        searchListTableView.backgroundColor = .background
+
+        searchListTableView.snp.makeConstraints{
             $0.trailing.leading.bottom.equalToSuperview()
         }
 
-        tableView.register(SearchStationTableViewCell.self, forCellReuseIdentifier: "searchStationTableViewCell")
-        tableView.dataSource = self
-        tableView.delegate = self
+        searchListTableView.register(SearchStationTableViewCell.self, forCellReuseIdentifier: "searchStationTableViewCell")
+        searchListTableView.dataSource = self
+        searchListTableView.delegate = self
     }
 }
 

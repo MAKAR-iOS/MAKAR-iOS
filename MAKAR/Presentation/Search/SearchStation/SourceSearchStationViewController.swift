@@ -25,7 +25,6 @@ class SourceSearchStationViewController: BaseSearchStationViewController {
     }
 
     // MARK: Properties
-    var isFiltering: Bool = false
     var searchResult: [StationDTO?] = []
     var sourceStation: StationDTO?
     var sourceDelegate: SourceStationProtocol?
@@ -40,7 +39,6 @@ class SourceSearchStationViewController: BaseSearchStationViewController {
         router.viewController = self
         view.backgroundColor = .background
         setSearchBar()
-        getStation(query: "오")
     }
 
     // MARK: Configuration
@@ -122,7 +120,7 @@ class SourceSearchStationViewController: BaseSearchStationViewController {
     func setTableView() {
         super.setTableView(data: searchResult)
 
-        tableView.snp.makeConstraints {
+        searchListTableView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(Metric.viewHeight)
         }
     }
@@ -149,40 +147,26 @@ extension SourceSearchStationViewController: UISearchBarDelegate {
     }
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        isFiltering = true
-        tableView.reloadData()
-        print("searchBarTextDidBeginEditing")
+        sourceSearchStationView.stationSearchBar.becomeFirstResponder()
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard let text = sourceSearchStationView.stationSearchBar.text else { return }
-
-        tableView.reloadData()
+        guard let station = sourceSearchStationView.stationSearchBar.text else { return }
+        getStation(query: station)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         dismissKeyboard()
         guard let station = sourceSearchStationView.stationSearchBar.text else { return }
-
-//        getStation(query: station)
-//        print("searchBarSearchButtonClicked")
-
-        self.tableView.reloadData()
+        getStation(query: station)
     }
-    
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.sourceSearchStationView.stationSearchBar.text = ""
-        self.sourceSearchStationView.stationSearchBar.resignFirstResponder()
-        self.isFiltering = false
-        self.tableView.reloadData()
+        sourceSearchStationView.stationSearchBar.text = ""
     }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        self.tableView.reloadData()
-    }
-    
+
     func dismissKeyboard() {
-        self.sourceSearchStationView.stationSearchBar.resignFirstResponder()
+        sourceSearchStationView.stationSearchBar.resignFirstResponder()
     }
 }
 
@@ -190,14 +174,15 @@ extension SourceSearchStationViewController: UISearchBarDelegate {
 extension SourceSearchStationViewController {
     private func getStation(query: String) {
         print("🚇 getStation called")
-        NetworkService.shared.station.getStation(query: query) {
+        NetworkService.shared.station.getStation(query: query) { [self]
             result in
                 switch result {
                 case .success(let response):
                     guard let data = response as? StationResponse else { return }
                     print("🎯 getStation success: " + "\(data)")
-                    self.searchResult = data.data.stationDtoList
-                    self.setTableView()
+                    searchResult = data.data.stationDtoList
+                    setTableView()
+                    searchListTableView.reloadData()
                 case .requestErr(let errorResponse):
                     dump(errorResponse)
                     guard let data = errorResponse as? ErrorResponse else { return }
