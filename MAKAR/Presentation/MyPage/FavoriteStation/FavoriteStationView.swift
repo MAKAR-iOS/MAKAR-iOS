@@ -28,7 +28,7 @@ class FavoriteStationView : BaseView {
         $0.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
     }
     
-    private let homeStationTextView = BaseButton().then{
+    let homeStationTextView = BaseButton().then{
         $0.setTitle("집 주변 지하철 역을 등록해주세요", for: .normal)
         $0.setTitleColor(.lightGray, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .light)
@@ -38,7 +38,7 @@ class FavoriteStationView : BaseView {
         $0.layer.cornerRadius = CGFloat(Metric.buttonRadius)
     }
     
-    private let schoolStationTextView = BaseButton().then{
+    let schoolStationTextView = BaseButton().then{
         $0.setTitle("학교 주변 지하철 역을 등록해주세요", for: .normal)
         $0.setTitleColor(.lightGray, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .light)

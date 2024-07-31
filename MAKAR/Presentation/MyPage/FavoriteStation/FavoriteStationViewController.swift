@@ -26,6 +26,8 @@ class FavoriteStationViewController : BaseViewController, HomeStationProtocol, S
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        getFavoriteHome()
+        getFavoriteSchool()
         view.backgroundColor = .background
         router.viewController = self
     }
@@ -102,10 +104,61 @@ extension FavoriteStationViewController {
         print("🧚‍♀️: \(String(describing: self.homeStation))")
         print("🧚‍♀️: \(String(describing: self.schoolStation))")
     }
+
+    func setStationTextViewTitle(_ stationType: BaseButton, _ stationName: String?) {
+        stationType.setTitle(stationName, for: .normal)
+        stationType.setTitleColor(.black, for: .normal)
+    }
 }
 
 extension FavoriteStationViewController {
     // MARK: Networking
+    private func getFavoriteHome() {
+        print("🚇 getFavoriteHome called")
+        NetworkService.shared.station.getFavoriteHome() { [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? FavoriteStationGetResponse else { return }
+                print("🎯 getFavoriteHome success: " + "\(data)")
+                homeStation = data.data
+                setStationTextViewTitle(favoriteStationView.homeStationTextView, homeStation?.stationName)
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+
+    private func getFavoriteSchool() {
+        print("🚇 getFavoriteSchool called")
+        NetworkService.shared.station.getFavoriteSchool() { [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? FavoriteStationGetResponse else { return }
+                print("🎯 getFavoriteSchool success: " + "\(data)")
+                schoolStation = data.data
+                setStationTextViewTitle(favoriteStationView.schoolStationTextView, schoolStation?.stationName)
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+
     private func patchFavoriteHome(stationName: String, lineNum: String) {
         print("🚇 patchFavoriteHome called")
         NetworkService.shared.station.patchFavoriteHome(
