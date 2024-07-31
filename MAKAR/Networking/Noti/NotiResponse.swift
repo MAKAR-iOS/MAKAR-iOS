@@ -11,6 +11,13 @@ struct NotiResponse: Codable {
     let data: NotiData
     let statusCode: Int
 }
+
+struct NotiListResponse: Codable {
+    let result: String
+    let message: String
+    let data: NotiListData
+    let statusCode: Int
+}
 // MARK: -알림 추가 API
 struct NotiData : Codable {
     let notiId : Int

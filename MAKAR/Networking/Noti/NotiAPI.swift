@@ -13,7 +13,7 @@ enum NotiAPI {
     case postGetOffNoti(routeId: Int, notiMinute: Int)
     case deleteMakarNoti(notiId: Int)
     case deleteGetOffNoti(notiId: Int)
-    case getNotiList(query: String)
+    case getNotiList
 }
 
 extension NotiAPI: TargetType {
