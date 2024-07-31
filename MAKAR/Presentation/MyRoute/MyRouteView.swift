@@ -28,7 +28,7 @@ class MyRouteView: BaseView {
     private let dividerView = DividerView(dividerType: .thick)
 
     // MARK: Properties
-    let myRoute: [Route] = Route.myRoute
+    let myRoute: [RouteDTO] = []
     private let dateFormatter = DateFormatter().then {
         $0.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
         $0.locale = Locale(identifier: "en_US_POSIX")
@@ -38,7 +38,7 @@ class MyRouteView: BaseView {
     override func configureSubviews() {
         super.configureSubviews()
         self.backgroundColor = .background
-        setData(data: myRoute[0])
+//        setData(data: myRoute[0])
 
         addSubview(makarLabel)
         addSubview(myRouteTimeLabel)
@@ -80,7 +80,7 @@ class MyRouteView: BaseView {
 }
 
 extension MyRouteView {
-    func setData(data: Route) {
+    func setData(data: RouteDTO) {
         let startTime = changeDateFormat(date: data.sourceTime)
         let endTime = changeDateFormat(date: data.destinationTime)
 
@@ -88,7 +88,7 @@ extension MyRouteView {
         myRouteTimeLabel.text = "\(startTime) 출발 | \(endTime) 도착"
         makarDetailLabel.text = "\(checkLeftTime(targetDate: data.sourceTime))분 후 막차"
         if (myRouteProgressView.subviews.isEmpty) {
-            myRouteProgressView.setData(subRouteList: data.subRouteList)
+            myRouteProgressView.setData(subRouteList: data.subRouteDtoList)
         }
     }
 
