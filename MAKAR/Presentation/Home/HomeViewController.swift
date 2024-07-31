@@ -126,8 +126,7 @@ class HomeViewController: BaseViewController {
         homeView.tapAllDeleteRecentRouteButton = { [weak self] in
             guard let self else { return }
 
-            self.recentRouteList = []
-            recentRouteCollectionView.reloadData()
+            deleteAllRecentRoute()
         }
     }
 
@@ -338,12 +337,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
 
             cell.setData(data: recentRouteList?[indexPath.row])
-            //최근경로 삭제
+
             cell.tapDeleteRecentRouteButton = {[weak self] in
                 guard let self else { return }
-                // TODO: 최근 경로 편집 API 연결
-                recentRouteList?.remove(at: indexPath.row)
-                recentRouteCollectionView.reloadData()
+                guard let routeId = recentRouteList?[indexPath.row].routeId else { return }
+                deleteRecentRoute(routeId: routeId)
             }
             return cell
         }
@@ -507,6 +505,52 @@ extension HomeViewController {
                 print("🎯 getFavoriteRouteList success: " + "\(data)")
                 favoriteRouteList = data.data
                 favoriteRouteCollectionView.reloadData()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+
+    private func deleteRecentRoute(routeId: Int) {
+        print("🚇 deleteRecentRoute called")
+        NetworkService.shared.route.deleteRecentRoute(routeId: routeId) {
+            [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? DeleteRouteListResponse else { return }
+                print("🎯 deleteRecentRoute success: " + "\(data)")
+                getRecentRouteList()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+
+    private func deleteAllRecentRoute() {
+        print("🚇 deleteAllRecentRoute called")
+        NetworkService.shared.route.deleteAllRecentRoute() {
+            [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? DeleteRouteListResponse else { return }
+                print("🎯 deleteAllRecentRoute success: " + "\(data)")
+                getRecentRouteList()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
