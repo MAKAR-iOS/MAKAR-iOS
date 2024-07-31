@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoriteStationViewController : BaseViewController {
+class FavoriteStationViewController : BaseViewController, HomeStationProtocol, SchoolStationProtocol {
     // MARK: UI Components
     private let favoriteStationView = FavoriteStationView()
     
@@ -39,22 +39,23 @@ class FavoriteStationViewController : BaseViewController {
         favoriteStationView.tapHomeSearchStationButton = {[weak self] in
             guard let self else { return }
 
-            navigationController?.pushViewController(HomeSearchStationViewController(), animated: true)
-            postHomeSearchStationButtonClicked()
+            let homeSearchStationViewController = HomeSearchStationViewController()
+            homeSearchStationViewController.homeDelegate = self
+            navigationController?.pushViewController(homeSearchStationViewController, animated: true)
         }
 
         favoriteStationView.tapSchoolSearchStationButton = {[weak self] in
             guard let self else { return }
 
-            navigationController?.pushViewController(SchoolSearchStationViewController(), animated: true)
-            postSchoolSearchStationButtonClicked()
+            let schoolSearchStationViewController = SchoolSearchStationViewController()
+            schoolSearchStationViewController.schoolDelegate = self
+            navigationController?.pushViewController(schoolSearchStationViewController, animated: true)
         }
 
         favoriteStationView.tapSetButton = {[weak self] in
             guard let self else { return }
 
             router.popViewController()
-            postSetButtonClicked()
             // TODO: 즐겨찾는 역 편집 API 연결
         }
     }
@@ -86,32 +87,19 @@ class FavoriteStationViewController : BaseViewController {
 }
 
 extension FavoriteStationViewController {
-    func getHomeStationData(_ homeStation: StationDTO?) {
-        guard let homeStationName = homeStation?.stationName else { return }
-
-        print("🐶homeStation: \(homeStation?.stationName ?? "nil") + \(homeStation?.lineNum ?? "nil")")
-        self.homeStation = homeStation
+    func sendHomeStation(station: StationDTO) {
+        self.homeStation = station
+        print("🥺: \(String(describing: self.homeStation))")
+        print("🥺: \(String(describing: self.schoolStation))")
     }
 
-    func getSchoolStationData(_ schoolStation: StationDTO?) {
-        guard let schoolStationName = schoolStation?.stationName else { return }
-
-        print("🐶schoolStation: \(schoolStation?.stationName ?? "nil") + \(schoolStation?.lineNum ?? "nil")")
-        self.schoolStation = schoolStation
+    func sendSchoolStation(station: StationDTO) {
+        self.schoolStation = station
+        print("🧚‍♀️: \(String(describing: self.homeStation))")
+        print("🧚‍♀️: \(String(describing: self.schoolStation))")
     }
 }
 
 extension FavoriteStationViewController {
     // MARK: Networking
-    private func postHomeSearchStationButtonClicked() {
-        print("homeSearchStationButton clicked")
-    }
-
-    private func postSchoolSearchStationButtonClicked() {
-        print("schoolSearchStationButton clicked")
-    }
-
-    private func postSetButtonClicked() {
-        print("setButton clicked")
-    }
 }
