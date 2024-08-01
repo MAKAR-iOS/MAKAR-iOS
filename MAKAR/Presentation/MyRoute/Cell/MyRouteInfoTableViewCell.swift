@@ -230,20 +230,20 @@ class MyRouteInfoTableViewCell: UITableViewCell {
 }
 
 extension MyRouteInfoTableViewCell {
-    func setData(data: SubRoute) {
+    func setData(data: SubRouteDTO?) {
         lineNumImage.addLineNum()
         lineNumColor.addLineNum()
 
-        let lineNum = data.lineNum
+        guard let data = data else { return }
 
-        if let lineImg = lineNumImage.lineNumMap[lineNum] {
+        if let lineImg = lineNumImage.lineNumMap[data.lineNum] {
             lineNumImageView.image = lineImg
         } else {
             lineNumImageView.image = MakarImage.line0
         }
 
-        lineNumVerticalView.backgroundColor = lineNumColor.lineNumColorMap[lineNum]
-        lineNumColorView.backgroundColor = lineNumColor.lineNumColorMap[lineNum]
+        lineNumVerticalView.backgroundColor = lineNumColor.lineNumColorMap[data.lineNum]
+        lineNumColorView.backgroundColor = lineNumColor.lineNumColorMap[data.lineNum]
 
         sourceStationNameLabel.text = data.fromStationName
         movingInfoLabel.text = "6개 역 이동 (" + String(data.sectionTime) + "분)"
