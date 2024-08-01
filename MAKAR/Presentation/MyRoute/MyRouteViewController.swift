@@ -100,6 +100,12 @@ extension MyRouteViewController: UITableViewDataSource, UITableViewDelegate {
         myRouteTableView.dataSource = self
         myRouteTableView.delegate = self
     }
+
+    func setHidden(_ bool: Bool) {
+        myRouteTableView.isEditing = bool
+        myRouteView.isHidden = bool
+        emptyResultView.isHidden = !bool
+    }
 }
 
 extension MyRouteViewController {
@@ -112,6 +118,7 @@ extension MyRouteViewController {
             case .success(let response):
                 guard let data = response as? RouteGetResponse else { return }
                 print("🎯 getRoute success: " + "\(data)")
+                setHidden(false)
                 myRoute = data.data
                 myRouteTableView.reloadData()
                 myRouteView.setData(data: myRoute)
@@ -125,9 +132,7 @@ extension MyRouteViewController {
                 print("networkFail")
             case .pathErr:
                 print("pathErr")
-                myRouteTableView.isHidden = true
-                myRouteView.isHidden = true
-                emptyResultView.isHidden = false
+                setHidden(true)
             }
         }
     }
