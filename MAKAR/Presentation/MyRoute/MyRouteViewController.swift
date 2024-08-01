@@ -14,7 +14,7 @@ class MyRouteViewController: BaseViewController {
         $0.allowsSelection = false
     }
 
-    let myRoute: [Route] = Route.myRoute
+    var myRoute: RouteDTO?
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -29,7 +29,7 @@ class MyRouteViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        myRouteTableView.reloadData()
+        getRoute()
     }
 
     // MARK: Configuration
@@ -58,7 +58,7 @@ class MyRouteViewController: BaseViewController {
 
 extension MyRouteViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myRoute[0].subRouteList.count
+        return myRoute?.subRouteDtoList.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,15 +67,18 @@ extension MyRouteViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
 
-        cell.setData(data: myRoute[0].subRouteList[indexPath.row])
-        if indexPath.row == myRoute[0].subRouteList.count - 1 {
-            cell.dividerView2.isHidden = true
-            cell.transferTimeLabel.isHidden = true
-            cell.walkVerticalView1.isHidden = true
-            cell.walkVerticalView2.isHidden = true
-            cell.walkImageView.isHidden = true
-        } else {
-            cell.walkVerticalView3.isHidden = true
+        cell.setData(data: myRoute?.subRouteDtoList[indexPath.row])
+
+        if !(myRoute?.subRouteDtoList.isEmpty)! {
+            if indexPath.row == (myRoute?.subRouteDtoList.count)! - 1 {
+                cell.dividerView2.isHidden = true
+                cell.transferTimeLabel.isHidden = true
+                cell.walkVerticalView1.isHidden = true
+                cell.walkVerticalView2.isHidden = true
+                cell.walkImageView.isHidden = true
+            } else {
+                cell.walkVerticalView3.isHidden = true
+            }
         }
 
         return cell
@@ -88,5 +91,32 @@ extension MyRouteViewController: UITableViewDataSource, UITableViewDelegate {
         myRouteTableView.register(MyRouteInfoTableViewCell.self, forCellReuseIdentifier: "myRouteInfoTableViewCell")
         myRouteTableView.dataSource = self
         myRouteTableView.delegate = self
+    }
+}
+
+extension MyRouteViewController {
+    // MARK: Networking
+    private func getRoute() {
+        print("🚇 getRoute called")
+        NetworkService.shared.route.getRoute() {
+            [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? RouteGetResponse else { return }
+                print("🎯 getRoute success: " + "\(data)")
+                myRoute = data.data
+                myRouteTableView.reloadData()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
     }
 }
