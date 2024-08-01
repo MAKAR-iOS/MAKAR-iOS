@@ -16,7 +16,6 @@ class HomeViewController: BaseViewController {
     }
 
     // MARK: Flag
-    var isRouteSet = false //경로 설정 유무 플래그
     var isMakarTaken = false
 
     var sourceStationName: String = ""
@@ -26,7 +25,7 @@ class HomeViewController: BaseViewController {
     var getOffNotiList: [NotiData] = [] // 하차 알림 리스트
 
     var makarTime: String = "Thu Aug 01 03:50:00 UTC 2024"
-    var getOffTime: String = "Fri Aug 01 23:53:00 UTC 2024"
+    var getOffTime: String = "Fri Aug 02 23:53:00 UTC 2024"
 
     // MARK: Properties
     var homeData: HomeData?
@@ -65,7 +64,7 @@ class HomeViewController: BaseViewController {
         setNavigationBar()
 
         view.backgroundColor = .background
-        
+        startNotification()
         changeComponent()
         setFavoriteRouteCollectionView()
         setRecentRouteCollectionView()
@@ -77,7 +76,7 @@ class HomeViewController: BaseViewController {
         getHome()
         getFavoriteRouteList()
         getRecentRouteList()
-        startNotification()
+        
         changeComponent()
         favoriteRouteCollectionView.reloadData()
     }
@@ -186,7 +185,7 @@ class HomeViewController: BaseViewController {
             let runLoop = RunLoop.current
             
             Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
-                if self.isRouteSet {
+                if UserDefaultHandler.routeId != 0 {
                     if !self.isMakarTaken {
                         self.handleMakarTime()
                     } else {
@@ -199,12 +198,10 @@ class HomeViewController: BaseViewController {
             runLoop.run(until: getOffTimeDate)
 
             //하차 시간 도달
-            self.isRouteSet = false
-            self.isMakarTaken = false
-
-            //경로 제거
-            self.deleteRoute()
-            self.changeComponent()
+            if UserDefaultHandler.routeId != 0{
+                //경로 제거
+                self.deleteRoute()
+            }
         }
     }
 
@@ -226,6 +223,7 @@ class HomeViewController: BaseViewController {
 
     private func handleGetOffTime() {
         let getOffLeftTime = self.checkNotificationTime(targetDateString: self.getOffTime)
+        if getOffNotiList.isEmpty {return}
         if getOffLeftTime == getOffNotiList[0].notiMinute {
             addNotification(notiType: "하차", minute: getOffLeftTime)
             print("Show GETOFF Notification")
@@ -256,7 +254,7 @@ class HomeViewController: BaseViewController {
     // MARK: ChangeComponent
     private func changeComponent() {
         DispatchQueue.main.async {
-            if self.isRouteSet {
+            if UserDefaultHandler.routeId != 0 {
                 self.updateRouteSetUI()
             } else {
                 self.updateRouteUnsetUI()
@@ -451,7 +449,7 @@ extension HomeViewController {
             case .success(let response):
                 guard let data = response as? HomeResponse else { return }
                 print("🎯 getHome success: " + "\(data)")
-                isRouteSet = data.data.routeSet
+                let isRouteSet = data.data.routeSet
                 if isRouteSet {
                     guard let sourceStationName = data.data.sourceStationName,
                           let destinationStationName = data.data.destinationStationName,
@@ -487,10 +485,9 @@ extension HomeViewController {
             [self] result in
             switch result {
             case .success(let response):
-                guard let data = response as? RouteListResponse else { return }
+                guard let data = response as? RouteDeleteResponse else { return }
                 print("🎯 deleteRoute success: " + "\(data)")
                 UserDefaultHandler.routeId = 0
-                isRouteSet = false
                 isMakarTaken = false
                 changeComponent()
             case .requestErr(let errorResponse):
