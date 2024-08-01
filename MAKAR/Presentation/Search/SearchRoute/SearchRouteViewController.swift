@@ -36,6 +36,8 @@ class SearchRouteViewController: BaseViewController, SourceStationProtocol, Dest
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setSourceSearch()
+        setDestinationSearch()
      }
     
     // MARK: Configuration
@@ -119,6 +121,18 @@ class SearchRouteViewController: BaseViewController, SourceStationProtocol, Dest
     // MARK: Event
     func changeSearchBarText(sourceText: String, destinationText: String) {
         self.searchRouteView.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)
+    }
+
+    func setSourceSearch() {
+        guard let sourceStation = sourceStation else { return }
+        let sourceSearchBarTitle = "\(sourceStation.stationName) \(sourceStation.lineNum)"
+        searchRouteView.sourceSearchBar.setTitle(sourceSearchBarTitle, for: .normal)
+    }
+
+    func setDestinationSearch() {
+        guard let destinationStation = destinationStation else { return }
+        let destinationSearchBarTitle = "\(destinationStation.stationName) \(destinationStation.lineNum)"
+        searchRouteView.destinationSearchBar.setTitle(destinationSearchBarTitle, for: .normal)
     }
 }
 
