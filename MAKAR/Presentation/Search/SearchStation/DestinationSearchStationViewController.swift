@@ -123,7 +123,7 @@ extension DestinationSearchStationViewController {
         guard let destinationStation = searchResult[indexPath.row] else { return }
 
         let searchRouteViewController = SearchRouteViewController()
-        print("🐶 DestinationSearchStationViewController + \(destinationStation)")  // print ok
+        print("🐶 DestinationSearchStationViewController + \(destinationStation)")
 
         destinationDelegate?.sendDestinationStation(station: destinationStation)
 
