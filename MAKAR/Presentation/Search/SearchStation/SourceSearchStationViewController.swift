@@ -28,6 +28,8 @@ class SourceSearchStationViewController: BaseSearchStationViewController {
     var searchResult: [StationDTO?] = []
     var sourceStation: StationDTO?
     var sourceDelegate: SourceStationProtocol?
+    var homeStation: StationDTO?
+    var schoolStation: StationDTO?
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -36,6 +38,8 @@ class SourceSearchStationViewController: BaseSearchStationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        getFavoriteHome()
+        getFavoriteSchool()
         router.viewController = self
         view.backgroundColor = .background
         setSearchBar()
@@ -55,22 +59,27 @@ class SourceSearchStationViewController: BaseSearchStationViewController {
         sourceSearchStationView.tapHomeButton = {[weak self] in
             guard let self else { return }
 
+            guard let homeStation = homeStation else { return }
+            print("🐶 SourceSearchStationViewController + \(homeStation)")
+
+            sourceDelegate?.sendSourceStation(station: homeStation)
             router.popViewController()
-            postHomeButtonClicked()
         }
 
-        sourceSearchStationView.tapSchoolButton = {[weak self] in
+        sourceSearchStationView.tapSchoolButton = { [weak self] in
             guard let self else { return }
 
+            guard let schoolStation = schoolStation else { return }
+            print("🐶 SourceSearchStationViewController + \(schoolStation)")
+
+            sourceDelegate?.sendSourceStation(station: schoolStation)
             router.popViewController()
-            postSchoolButtonClicked()
         }
 
         sourceSearchStationView.tapMoreButton = {[weak self] in
             guard let self else { return }
 
             router.presentFavoriteStationViewController()
-            postMoreButtonClicked()
         }
     }
 
@@ -86,20 +95,16 @@ class SourceSearchStationViewController: BaseSearchStationViewController {
     }
 
     // MARK: Networking
-    private func postMyLocationButtonClicked(){
+    private func postMyLocationButtonClicked() {
         print("myLocationButton clicked")
     }
     
-    private func postHomeButtonClicked(){
+    private func postHomeButtonClicked() {
         print("homeButton clicked")
     }
     
-    private func postSchoolButtonClicked(){
+    private func postSchoolButtonClicked() {
         print("schoolButton clicked")
-    }
-    
-    private func postMoreButtonClicked(){
-        print("moreButton clicked")
     }
 
     // MARK: View Transition
@@ -174,24 +179,70 @@ extension SourceSearchStationViewController {
         print("🚇 getStation called")
         NetworkService.shared.station.getStation(query: query) { [self]
             result in
-                switch result {
-                case .success(let response):
-                    guard let data = response as? StationResponse else { return }
-                    print("🎯 getStation success: " + "\(data)")
-                    searchResult = data.data.stationDtoList
-                    setTableView()
-                    searchListTableView.reloadData()
-                case .requestErr(let errorResponse):
-                    dump(errorResponse)
-                    guard let data = errorResponse as? ErrorResponse else { return }
-                    print(data)
-                case .serverErr:
-                    print("serverErr")
-                case .networkFail:
-                    print("networkFail")
-                case .pathErr:
-                    print("pathErr")
-                }
+            switch result {
+            case .success(let response):
+                guard let data = response as? StationResponse else { return }
+                print("🎯 getStation success: " + "\(data)")
+                searchResult = data.data.stationDtoList
+                setTableView()
+                searchListTableView.reloadData()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+    
+    private func getFavoriteHome() {
+        print("🚇 getFavoriteHome called")
+        NetworkService.shared.station.getFavoriteHome() { [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? FavoriteStationGetResponse else { return }
+                print("🎯 getFavoriteHome success: " + "\(data)")
+                guard let homeStation = data.data else { return }
+                self.homeStation = homeStation
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+
+    private func getFavoriteSchool() {
+        print("🚇 getFavoriteSchool called")
+        NetworkService.shared.station.getFavoriteSchool() { [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? FavoriteStationGetResponse else { return }
+                print("🎯 getFavoriteSchool success: " + "\(data)")
+                guard let schoolStation = data.data else { return }
+                self.schoolStation = schoolStation
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
         }
     }
 }

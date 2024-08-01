@@ -28,6 +28,8 @@ class DestinationSearchStationViewController: BaseSearchStationViewController {
     var searchResult: [StationDTO?] = []
     var destinationStation: StationDTO?
     var destinationDelegate: DestinationStationProtocol?
+    var homeStation: StationDTO?
+    var schoolStation: StationDTO?
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -36,6 +38,8 @@ class DestinationSearchStationViewController: BaseSearchStationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        getFavoriteHome()
+        getFavoriteSchool()
         router.viewController = self
         view.backgroundColor = .background
         setSearchBar()
@@ -50,15 +54,21 @@ class DestinationSearchStationViewController: BaseSearchStationViewController {
         destinationSearchStationView.tapHomeButton = {[weak self] in
             guard let self else { return }
             
-            navigationController?.popViewController(animated: true)
-            postHomeButtonClicked()
+            guard let homeStation = homeStation else { return }
+            print("🐶 DestinationSearchStationViewController + \(homeStation)")
+
+            destinationDelegate?.sendDestinationStation(station: homeStation)
+            router.popViewController()
         }
         
         destinationSearchStationView.tapSchoolButton = {[weak self] in
             guard let self else { return }
             
-            navigationController?.popViewController(animated: true)
-            postSchoolButtonClicked()
+            guard let schoolStation = schoolStation else { return }
+            print("🐶 DestinationSearchStationViewController + \(schoolStation)")
+
+            destinationDelegate?.sendDestinationStation(station: schoolStation)
+            router.popViewController()
         }
         
        destinationSearchStationView.tapMoreButton = {[weak self] in
@@ -167,24 +177,70 @@ extension DestinationSearchStationViewController {
         print("🚇 getStation called")
         NetworkService.shared.station.getStation(query: query) { [self]
             result in
-                switch result {
-                case .success(let response):
-                    guard let data = response as? StationResponse else { return }
-                    print("🎯 getStation success: " + "\(data)")
-                    searchResult = data.data.stationDtoList
-                    setTableView()
-                    searchListTableView.reloadData()
-                case .requestErr(let errorResponse):
-                    dump(errorResponse)
-                    guard let data = errorResponse as? ErrorResponse else { return }
-                    print(data)
-                case .serverErr:
-                    print("serverErr")
-                case .networkFail:
-                    print("networkFail")
-                case .pathErr:
-                    print("pathErr")
-                }
+            switch result {
+            case .success(let response):
+                guard let data = response as? StationResponse else { return }
+                print("🎯 getStation success: " + "\(data)")
+                searchResult = data.data.stationDtoList
+                setTableView()
+                searchListTableView.reloadData()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+
+    private func getFavoriteHome() {
+        print("🚇 getFavoriteHome called")
+        NetworkService.shared.station.getFavoriteHome() { [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? FavoriteStationGetResponse else { return }
+                print("🎯 getFavoriteHome success: " + "\(data)")
+                guard let homeStation = data.data else { return }
+                self.homeStation = homeStation
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+
+    private func getFavoriteSchool() {
+        print("🚇 getFavoriteSchool called")
+        NetworkService.shared.station.getFavoriteSchool() { [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? FavoriteStationGetResponse else { return }
+                print("🎯 getFavoriteSchool success: " + "\(data)")
+                guard let schoolStation = data.data else { return }
+                self.schoolStation = schoolStation
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
         }
     }
 }
