@@ -485,7 +485,7 @@ extension HomeViewController {
             [self] result in
             switch result {
             case .success(let response):
-                guard let data = response as? RouteDeleteResponse else { return }
+                guard let data = response as? DeleteRouteListResponse else { return }
                 print("🎯 deleteRoute success: " + "\(data)")
                 UserDefaultHandler.routeId = 0
                 isMakarTaken = false
