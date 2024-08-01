@@ -240,6 +240,7 @@ extension SearchRouteViewController {
                 case .success(let response):
                     guard let data = response as? RouteSetResponse else { return }
                     print("🎯 postRoute success: " + "\(data)")
+                    UserDefaultHandler.routeId = data.data.routeId
                     router.popViewController()
                 case .requestErr(let errorResponse):
                     dump(errorResponse)
