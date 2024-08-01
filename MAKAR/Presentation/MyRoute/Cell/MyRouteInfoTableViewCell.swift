@@ -229,7 +229,7 @@ class MyRouteInfoTableViewCell: UITableViewCell {
 }
 
 extension MyRouteInfoTableViewCell {
-    func setData(data: SubRouteDTO?) {
+    func setData(data: SubRouteGetDTO?) {
         lineNumImage.addLineNum()
         lineNumColor.addLineNum()
 

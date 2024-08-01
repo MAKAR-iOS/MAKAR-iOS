@@ -80,7 +80,7 @@ class MyRouteView: BaseView {
 }
 
 extension MyRouteView {
-    func setData(data: RouteDTO?) {
+    func setData(data: RouteGetDTO?) {
         guard let data = data else { return }
 
         let startTime = changeDateFormat(date: data.sourceTime)
@@ -90,7 +90,7 @@ extension MyRouteView {
         myRouteTimeLabel.text = "\(startTime) 출발 | \(endTime) 도착"
         makarDetailLabel.text = "\(checkLeftTime(targetDate: data.sourceTime))분 후 막차"
         if (myRouteProgressView.subviews.isEmpty) {
-            myRouteProgressView.setData(subRouteList: data.subRouteDtoList)
+            myRouteProgressView.setGetData(subRouteList: data.subRouteDtoList)
         }
     }
 

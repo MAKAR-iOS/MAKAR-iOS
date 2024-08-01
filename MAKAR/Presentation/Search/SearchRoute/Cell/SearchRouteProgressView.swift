@@ -63,4 +63,23 @@ class SearchRouteProgressView : UIStackView {
             }
         }
     }
+
+    func setGetData(subRouteList: [SubRouteGetDTO]) {
+
+        lineNumColor.addLineNum()
+        
+        for subroute in subRouteList {
+            let lineNum = subroute.lineNum
+            let totalTime = subroute.sectionTime
+            let transferTime = subroute.transferTime
+            
+            let lineProgressView = ProgressView(color: lineNumColor.lineNumColorMap[lineNum]!, text: " \(totalTime)분")
+            self.addArrangedSubview(lineProgressView)
+            
+            if transferTime != 0{
+                let transferInfoView = ProgressView(color: .divider, text: "\(transferTime)분")
+                self.addArrangedSubview(transferInfoView)
+            }
+        }
+    }
 }
