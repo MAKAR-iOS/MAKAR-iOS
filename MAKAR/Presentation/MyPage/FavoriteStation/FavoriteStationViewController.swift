@@ -32,6 +32,13 @@ class FavoriteStationViewController : BaseViewController, HomeStationProtocol, S
         router.viewController = self
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        setHomeSearch()
+        setSchoolSearch()
+    }
+
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
@@ -108,6 +115,18 @@ extension FavoriteStationViewController {
     func setStationTextViewTitle(_ stationType: BaseButton, _ stationName: String?) {
         stationType.setTitle(stationName, for: .normal)
         stationType.setTitleColor(.black, for: .normal)
+    }
+
+    func setHomeSearch() {
+        guard let homeStation = homeStation else { return }
+        let homeSearchBarTitle = "\(homeStation.stationName) \(homeStation.lineNum)"
+        favoriteStationView.homeStationTextView.setTitle(homeSearchBarTitle, for: .normal)
+    }
+
+    func setSchoolSearch() {
+        guard let schoolStation = schoolStation else { return }
+        let schoolSearchBarTitle = "\(schoolStation.stationName) \(schoolStation.lineNum)"
+        favoriteStationView.schoolStationTextView.setTitle(schoolSearchBarTitle, for: .normal)
     }
 }
 
