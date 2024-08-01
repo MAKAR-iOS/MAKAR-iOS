@@ -24,7 +24,7 @@ struct RouteGetResponse: Codable {
 struct RouteSetResponse: Codable {
     let result: String
     let message: String
-    let data: RouteDTO?
+    let data: RouteDTO
     let statusCode: Int
 }
 
@@ -51,7 +51,6 @@ struct SubRouteDTO: Codable {
     let lineNum: String
     let sectionTime: Int
     let transferTime: Int
-//    let path: [String]
 }
 
 struct RouteGetDTO: Codable {
