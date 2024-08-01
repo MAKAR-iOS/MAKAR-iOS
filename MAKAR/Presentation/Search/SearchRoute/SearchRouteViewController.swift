@@ -152,7 +152,7 @@ extension SearchRouteViewController {
 
 extension SearchRouteViewController {
     // MARK: Networking
-    private func getRouteList(fromStationName: String,
+    func getRouteList(fromStationName: String,
                               fromLineNum: String,
                               toStationName: String,
                               toLineNum: String) {
