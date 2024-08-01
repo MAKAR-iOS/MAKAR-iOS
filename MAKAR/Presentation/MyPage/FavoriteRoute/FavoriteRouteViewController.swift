@@ -26,6 +26,7 @@ class FavoriteRouteViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        getFavoriteRouteList()
         view.backgroundColor = .background
         router.viewController = self
         setTableView()
@@ -63,12 +64,10 @@ extension FavoriteRouteViewController: UITableViewDelegate, UITableViewDataSourc
         cell.contentView.isHidden = true
 
         //즐겨찾는 경로 삭제
-        cell.tapDeleteRecentRouteButton = {[weak self] in
+        cell.tapDeleteRecentRouteButton = { [weak self] in
             guard let self else { return }
-            favoriteRouteList?.remove(at: indexPath.row)
-            let homeViewController = HomeViewController()
-            favoriteRouteList = homeViewController.favoriteRouteList
-            favoriteRouteTableView.reloadData()
+            guard let routeId = favoriteRouteList?[indexPath.row].routeId else { return }
+            deleteFavoriteRoute(routeId: routeId)
         }
 
         return cell
@@ -106,3 +105,53 @@ extension FavoriteRouteViewController: UITableViewDelegate, UITableViewDataSourc
     }
 }
 
+extension FavoriteRouteViewController {
+    private func getFavoriteRouteList() {
+        print("🚇 getFavoriteRouteList called")
+        NetworkService.shared.route.getFavoriteRouteList() {
+            [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? FavoriteRouteListResponse else { return }
+                print("🎯 getFavoriteRouteList success: " + "\(data)")
+                favoriteRouteList = data.data
+                favoriteRouteTableView.reloadData()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+
+    private func deleteFavoriteRoute(routeId: Int) {
+        print("🚇 deleteFavoriteRoute called")
+        NetworkService.shared.route.deleteFavoriteRoute(routeId: routeId) { [self]
+            result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? FavoriteRouteListResponse else { return }
+                print("🎯 deleteFavoriteRoute success: " + "\(data)")
+                favoriteRouteList = data.data
+                favoriteRouteTableView.reloadData()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+                print("requestErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+}

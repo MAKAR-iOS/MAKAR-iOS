@@ -21,6 +21,7 @@ final class RouteService {
         case deleteRecentRoute
         case deleteAllRecentRoute
         case postFavoriteRoute
+        case deleteFavoriteRoute
     }
 
     public func getRouteList(
@@ -174,6 +175,24 @@ final class RouteService {
         }
     }
 
+    public func deleteFavoriteRoute(routeId: Int,
+                                      completion: @escaping (NetworkResult<Any>) -> Void ) {
+        routeProvider.request(.deleteFavoriteRoute(routeId: routeId))
+        { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .deleteFavoriteRoute)
+                completion(networkResult)
+            case .failure(let error):
+                let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .deleteFavoriteRoute)
+                completion(networkResult)
+                print(error)
+            }
+        }
+    }
+
     private func judgeStatus(by statusCode: Int, _ data: Data, responseData: ResponseData) -> NetworkResult<Any> {
 
         let decoder = JSONDecoder()
@@ -181,7 +200,7 @@ final class RouteService {
         switch statusCode {
         case 200..<300:
             switch responseData {
-            case .getRouteList, .postRoute, .deleteRoute, .getFavoriteRouteList, .getRecentRouteList, .deleteRecentRoute, .deleteAllRecentRoute, .postFavoriteRoute:
+            case .getRouteList, .postRoute, .deleteRoute, .getFavoriteRouteList, .getRecentRouteList, .deleteRecentRoute, .deleteAllRecentRoute, .postFavoriteRoute, .deleteFavoriteRoute:
                 return isValidData(data: data, responseData: responseData)
             }
         case 400..<500:
@@ -205,7 +224,7 @@ final class RouteService {
                 return .pathErr
             }
             return .success(decodedData)
-        case .getFavoriteRouteList:
+        case .getFavoriteRouteList, .deleteFavoriteRoute:
             guard let decodedData = try? decoder.decode(FavoriteRouteListResponse.self, from: data) else {
                 return .pathErr
             }
