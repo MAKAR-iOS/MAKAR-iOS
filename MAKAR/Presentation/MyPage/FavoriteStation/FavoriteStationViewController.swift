@@ -139,8 +139,10 @@ extension FavoriteStationViewController {
             case .success(let response):
                 guard let data = response as? FavoriteStationGetResponse else { return }
                 print("🎯 getFavoriteHome success: " + "\(data)")
-                homeStation = data.data
-                setStationTextViewTitle(favoriteStationView.homeStationTextView, homeStation?.stationName)
+                guard let homeStation = data.data else { return }
+                self.homeStation = homeStation
+                let text = "\(homeStation.stationName) \(homeStation.lineNum)"
+                setStationTextViewTitle(favoriteStationView.homeStationTextView, text)
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
@@ -162,8 +164,10 @@ extension FavoriteStationViewController {
             case .success(let response):
                 guard let data = response as? FavoriteStationGetResponse else { return }
                 print("🎯 getFavoriteSchool success: " + "\(data)")
-                schoolStation = data.data
-                setStationTextViewTitle(favoriteStationView.schoolStationTextView, schoolStation?.stationName)
+                guard let schoolStation = data.data else { return }
+                self.schoolStation = schoolStation
+                let text = "\(schoolStation.stationName) \(schoolStation.lineNum)"
+                setStationTextViewTitle(favoriteStationView.schoolStationTextView, text)
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
