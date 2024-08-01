@@ -394,9 +394,15 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let sourceText = "\(data.sourceStationName) \(data.sourceLineNum)"
         let destinationText = "\(data.destinationStationName) \(data.destinationLineNum)"
 
-        let searchRouteVC = SearchRouteViewController()
-        searchRouteVC.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)
-        self.navigationController?.pushViewController(searchRouteVC, animated: true)
+        let searchRouteViewController = SearchRouteViewController()
+        searchRouteViewController.sourceStation = StationDTO(
+            stationName: data.sourceStationName,
+            lineNum: data.sourceLineNum)
+        searchRouteViewController.destinationStation = StationDTO(
+            stationName: data.destinationStationName,
+            lineNum: data.destinationLineNum)
+        searchRouteViewController.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)
+        self.navigationController?.pushViewController(searchRouteViewController, animated: true)
     }
 
     func setFavoriteRouteCollectionView() {

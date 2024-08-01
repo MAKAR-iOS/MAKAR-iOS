@@ -19,4 +19,9 @@ struct StationData: Codable {
 struct StationDTO: Codable {
     let stationName: String
     let lineNum: String
+
+    init(stationName: String, lineNum: String) {
+        self.stationName = stationName
+        self.lineNum = lineNum
+    }
 }
