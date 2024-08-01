@@ -14,6 +14,13 @@ struct RouteListResponse: Codable {
     let statusCode: Int
 }
 
+struct RouteGetResponse: Codable {
+    let result: String
+    let message: String
+    let data: RouteDTO
+    let statusCode: Int
+}
+
 struct RouteSetResponse: Codable {
     let result: String
     let message: String
