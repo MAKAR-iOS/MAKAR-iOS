@@ -489,6 +489,7 @@ extension HomeViewController {
             case .success(let response):
                 guard let data = response as? RouteListResponse else { return }
                 print("🎯 deleteRoute success: " + "\(data)")
+                UserDefaultHandler.routeId = 0
                 isRouteSet = false
                 isMakarTaken = false
                 changeComponent()
