@@ -66,8 +66,6 @@ class HomeViewController: BaseViewController {
 
         view.backgroundColor = .background
         getHome()
-        getFavoriteRouteList()
-        getRecentRouteList()
         changeComponent()
         setFavoriteRouteCollectionView()
         setRecentRouteCollectionView()
@@ -75,6 +73,9 @@ class HomeViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        getFavoriteRouteList()
+        getRecentRouteList()
         startNotification()
         changeComponent()
         favoriteRouteCollectionView.reloadData()
@@ -120,7 +121,8 @@ class HomeViewController: BaseViewController {
         homeView.tapEditFavoriteRouteButton = { [weak self] in
             guard let self else { return }
 
-            self.navigationController?.pushViewController(FavoriteRouteViewController(), animated: true)
+            let favoriteRouteViewController = FavoriteRouteViewController()
+            self.navigationController?.pushViewController(favoriteRouteViewController, animated: true)
         }
 
         homeView.tapAllDeleteRecentRouteButton = { [weak self] in
