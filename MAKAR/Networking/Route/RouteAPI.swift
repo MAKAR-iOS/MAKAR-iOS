@@ -15,6 +15,7 @@ enum RouteAPI {
         toStationName: String,
         toLineNum: String
     )
+    case getRoute
     case postRoute(routeId: Int)
     case deleteRoute
     case getRecentRouteList
@@ -30,6 +31,8 @@ extension RouteAPI: TargetType {
         switch self {
         case .getRouteList, .deleteRoute:
             return URLConst.route
+        case .getRoute:
+            return URLConst.routeSet
         case .postRoute(let routeId):
             return URLConst.route + "/\(routeId)"
         case .getRecentRouteList:
@@ -47,7 +50,7 @@ extension RouteAPI: TargetType {
 
     var method: Moya.Method {
         switch self {
-        case .getRouteList, .getRecentRouteList, .getFavoriteRouteList:
+        case .getRouteList, .getRoute, .getRecentRouteList, .getFavoriteRouteList:
             return .get
         case .postRoute, .postFavoriteRoute:
             return .post
@@ -70,7 +73,8 @@ extension RouteAPI: TargetType {
                     "toLineNum": toLineNum
                 ],
                 encoding: URLEncoding.queryString)
-        case .postRoute,
+        case .getRoute,
+                .postRoute,
                 .deleteRoute,
                 .getRecentRouteList,
                 .getFavoriteRouteList,

@@ -9,11 +9,12 @@ import Foundation
 import Moya
 
 final class RouteService {
-
+    
     private var routeProvider = MoyaProvider<RouteAPI>(plugins: [NetworkLoggerPlugin()])
-
+    
     private enum ResponseData {
         case getRouteList
+        case getRoute
         case postRoute
         case deleteRoute
         case getRecentRouteList
@@ -23,27 +24,44 @@ final class RouteService {
         case postFavoriteRoute
         case deleteFavoriteRoute
     }
-
+    
     public func getRouteList(
         fromStationName: String,
         fromLineNum: String,
         toStationName: String,
         toLineNum: String,
         completion: @escaping (NetworkResult<Any>) -> Void ) {
-        routeProvider.request(.getRouteList(
-            fromStationName: fromStationName,
-            fromLineNum: fromLineNum,
-            toStationName: toStationName,
-            toLineNum: toLineNum)
-        ) { result in
+            routeProvider.request(.getRouteList(
+                fromStationName: fromStationName,
+                fromLineNum: fromLineNum,
+                toStationName: toStationName,
+                toLineNum: toLineNum)
+            ) { result in
+                switch result {
+                case .success(let response):
+                    let statusCode = response.statusCode
+                    let data = response.data
+                    let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getRouteList)
+                    completion(networkResult)
+                case .failure(let error):
+                    let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .getRouteList)
+                    completion(networkResult)
+                    print(error)
+                }
+            }
+        }
+    
+    public func getRoute(completion: @escaping (NetworkResult<Any>) -> Void){
+        routeProvider.request(.getRoute) {
+            result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getRouteList)
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getRoute)
                 completion(networkResult)
             case .failure(let error):
-                let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .getRouteList)
+                let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .getRoute)
                 completion(networkResult)
                 print(error)
             }
@@ -69,8 +87,7 @@ final class RouteService {
     }
 
     public func deleteRoute(completion: @escaping (NetworkResult<Any>) -> Void){
-        routeProvider.request(.deleteRoute
-        ){
+        routeProvider.request(.deleteRoute) {
             result in
                 switch result {
                 case .success(let response):
@@ -200,7 +217,7 @@ final class RouteService {
         switch statusCode {
         case 200..<300:
             switch responseData {
-            case .getRouteList, .postRoute, .deleteRoute, .getFavoriteRouteList, .getRecentRouteList, .deleteRecentRoute, .deleteAllRecentRoute, .postFavoriteRoute, .deleteFavoriteRoute:
+            case .getRouteList, .getRoute, .postRoute, .deleteRoute, .getFavoriteRouteList, .getRecentRouteList, .deleteRecentRoute, .deleteAllRecentRoute, .postFavoriteRoute, .deleteFavoriteRoute:
                 return isValidData(data: data, responseData: responseData)
             }
         case 400..<500:
@@ -224,6 +241,11 @@ final class RouteService {
                 return .pathErr
             }
             return .success(decodedData)
+        case .getRoute:
+            guard let decodedData = try? decoder.decode(RouteGetResponse.self, from: data) else {
+                return .pathErr
+            }
+            return .success(decodedData)   
         case .getFavoriteRouteList, .deleteFavoriteRoute:
             guard let decodedData = try? decoder.decode(FavoriteRouteListResponse.self, from: data) else {
                 return .pathErr
