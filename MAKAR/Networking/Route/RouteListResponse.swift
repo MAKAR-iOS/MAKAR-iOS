@@ -17,7 +17,7 @@ struct RouteListResponse: Codable {
 struct RouteGetResponse: Codable {
     let result: String
     let message: String
-    let data: RouteGetDTO
+    let data: RouteGetDTO?
     let statusCode: Int
 }
 
