@@ -14,7 +14,7 @@ class MyRouteViewController: BaseViewController {
         $0.allowsSelection = false
     }
 
-    var myRoute: RouteDTO?
+    var myRoute: RouteGetDTO?
 
     // MARK: Environment
     private let router = BaseRouter()

@@ -17,7 +17,7 @@ struct RouteListResponse: Codable {
 struct RouteGetResponse: Codable {
     let result: String
     let message: String
-    let data: RouteDTO
+    let data: RouteGetDTO
     let statusCode: Int
 }
 
@@ -46,6 +46,28 @@ struct RouteDTO: Codable {
 }
 
 struct SubRouteDTO: Codable {
+    let fromStationName: String
+    let toStationName: String
+    let lineNum: String
+    let sectionTime: Int
+    let transferTime: Int
+//    let path: [String]
+}
+
+struct RouteGetDTO: Codable {
+    let routeId: Int
+    let sourceStationName: String
+    let sourceLineNum: String
+    let destinationStationName: String
+    let destinationLineNum: String
+    let sourceTime: String
+    let destinationTime: String
+    let totalTime: Int
+    let transferCount: Int
+    let subRouteDtoList: [SubRouteGetDTO]
+}
+
+struct SubRouteGetDTO: Codable {
     let fromStationName: String
     let toStationName: String
     let lineNum: String
