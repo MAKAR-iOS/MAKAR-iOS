@@ -102,7 +102,7 @@ extension MyRouteViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func setHidden(_ bool: Bool) {
-        myRouteTableView.isEditing = bool
+        myRouteTableView.isHidden = bool
         myRouteView.isHidden = bool
         emptyResultView.isHidden = !bool
     }
