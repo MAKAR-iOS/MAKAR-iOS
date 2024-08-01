@@ -28,6 +28,13 @@ struct RouteSetResponse: Codable {
     let statusCode: Int
 }
 
+struct RouteDeleteResponse: Codable {
+    let result: String
+    let message: String
+    let data: String
+    let statusCode: Int
+}
+
 struct RouteListData: Codable {
     let routeDtoList: [RouteDTO]
 }

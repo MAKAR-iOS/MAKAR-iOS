@@ -236,7 +236,7 @@ final class RouteService {
         let decoder = JSONDecoder()
 
         switch responseData {
-        case .getRouteList, .deleteRoute:
+        case .getRouteList:
             guard let decodedData = try? decoder.decode(RouteListResponse.self, from: data) else {
                 return .pathErr
             }
@@ -250,7 +250,12 @@ final class RouteService {
             guard let decodedData = try? decoder.decode(RouteGetResponse.self, from: data) else {
                 return .pathErr
             }
-            return .success(decodedData)   
+            return .success(decodedData) 
+        case .deleteRoute:
+            guard let decodedData = try? decoder.decode(RouteDeleteResponse.self, from: data) else {
+                return .pathErr
+            }
+            return .success(decodedData)
         case .getFavoriteRouteList, .deleteFavoriteRoute:
             guard let decodedData = try? decoder.decode(FavoriteRouteListResponse.self, from: data) else {
                 return .pathErr

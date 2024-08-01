@@ -130,8 +130,7 @@ class NotificationViewController: BaseViewController {
                     self.view.makeToast(" 이미 설정된 알림입니다. ", duration: 1.0, position: .bottom)
                 }
             } else {
-                // TODO: routeId 설정된 경로 id로 변경
-                postMakarNoti(routeId: 1, notiMinute: tempMakarTime)
+                postMakarNoti(routeId: UserDefaultHandler.routeId, notiMinute: tempMakarTime)
                 print(selectedMakarTime)
                 setMakarTableViewHidden()
                 makarTableView.reloadData()
