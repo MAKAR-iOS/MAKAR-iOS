@@ -65,7 +65,7 @@ class HomeViewController: BaseViewController {
         setNavigationBar()
 
         view.backgroundColor = .background
-        getHome()
+        
         changeComponent()
         setFavoriteRouteCollectionView()
         setRecentRouteCollectionView()
@@ -74,6 +74,7 @@ class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        getHome()
         getFavoriteRouteList()
         getRecentRouteList()
         startNotification()
@@ -114,7 +115,7 @@ class HomeViewController: BaseViewController {
         homeView.tapSetAlarmButton = { [weak self] in
             guard let self else { return }
 
-            self.tabBarController?.selectedIndex = 3
+            self.tabBarController?.selectedIndex = 2
             postSetAlarmButtonClicked()
         }
 
