@@ -13,6 +13,9 @@ class MyRouteViewController: BaseViewController {
     private let myRouteTableView = UITableView(frame: .zero, style: .plain).then {
         $0.allowsSelection = false
     }
+    private let emptyResultView = EmptyResultView("설정된 경로가 없습니다.").then {
+        $0.isHidden = true
+    }
 
     var myRoute: RouteGetDTO?
 
@@ -38,6 +41,7 @@ class MyRouteViewController: BaseViewController {
 
         view.addSubview(myRouteView)
         view.addSubview(myRouteTableView)
+        view.addSubview(emptyResultView)
     }
 
     // MARK: Layout
@@ -52,6 +56,10 @@ class MyRouteViewController: BaseViewController {
         myRouteTableView.snp.makeConstraints{
             $0.top.equalTo(myRouteView.snp.bottom)
             $0.horizontalEdges.bottom.equalToSuperview()
+        }
+
+        emptyResultView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
@@ -117,6 +125,9 @@ extension MyRouteViewController {
                 print("networkFail")
             case .pathErr:
                 print("pathErr")
+                myRouteTableView.isHidden = true
+                myRouteView.isHidden = true
+                emptyResultView.isHidden = false
             }
         }
     }
