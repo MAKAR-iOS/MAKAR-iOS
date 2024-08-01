@@ -69,37 +69,37 @@ class HomeView: BaseView {
         $0.layer.cornerRadius = CGFloat(Metric.buttonRadius)
     }
 
-    private let setAlarmButton = RouteButton().then{
+    private let setAlarmButton = RouteButton().then {
         $0.setTitle("막차/하차 알림 설정하기", for: .normal)
     }
 
-    private let mainDivider1 = UIView().then{
+    private let mainDivider1 = UIView().then {
         $0.backgroundColor = .divider
     }
 
-    let favoriteRouteListText = UILabel().then{
+    let favoriteRouteListText = UILabel().then {
         $0.text = "즐겨찾는 경로"
         $0.font = UIFont.systemFont(ofSize: 15, weight: .light)
         $0.textColor = .darkGray
     }
 
-    private let editFavoriteRouteButton = BaseButton().then{
+    private let editFavoriteRouteButton = BaseButton().then {
         $0.setTitle("편집", for: .normal)
         $0.setTitleColor(.lightGray3, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .light)
     }
 
-    private let mainDivider2 = UIView().then{
+    private let mainDivider2 = UIView().then {
         $0.backgroundColor = .divider
     }
 
-    let recentRouteListText = UILabel().then{
+    let recentRouteListText = UILabel().then {
         $0.text = "최근 경로"
         $0.font = UIFont.systemFont(ofSize: 15, weight: .light)
         $0.textColor = .darkGray
     }
 
-    let allDeleteRecentRouteButton = BaseButton().then{
+    let allDeleteRecentRouteButton = BaseButton().then {
         $0.setTitle("전체 삭제", for: .normal)
         $0.setTitleColor(.lightGray3, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .light)
@@ -156,68 +156,68 @@ class HomeView: BaseView {
         }
 
         mainRouteView.snp.makeConstraints {
-            $0.top.equalTo(mainTitleText.snp.bottom).inset(-10)
+            $0.top.equalTo(mainTitleText.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(Metric.buttonHeight)
         }
 
         mainMakarProgress.snp.makeConstraints {
-            $0.top.equalTo(mainRouteView.snp.bottom).inset(-30)
+            $0.top.equalTo(mainRouteView.snp.bottom).offset(30)
             $0.horizontalEdges.equalToSuperview().inset(50)
         }
 
         mainDestinationText.snp.makeConstraints {
-            $0.top.equalTo(mainMakarProgress.snp.bottom).inset(-3)
+            $0.top.equalTo(mainMakarProgress.snp.bottom).offset(3)
             $0.centerX.equalTo(mainMakarProgress.snp.trailing).inset(45)
         }
 
         setRouteButton.snp.makeConstraints {
-            $0.top.equalTo(mainDestinationText.snp.bottom).inset(-30)
+            $0.top.equalTo(mainDestinationText.snp.bottom).offset(30)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(Metric.buttonHeight)
         }
 
         changeRouteButton.snp.makeConstraints{
-            $0.top.equalTo(mainDestinationText.snp.bottom).inset(-30)
+            $0.top.equalTo(mainDestinationText.snp.bottom).offset(30)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(Metric.buttonHeight)
         }
     
         setAlarmButton.snp.makeConstraints{
-            $0.top.equalTo(changeRouteButton.snp.bottom).inset(-10)
+            $0.top.equalTo(changeRouteButton.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(Metric.buttonHeight)
         }
     
         mainDivider1.snp.makeConstraints {
-            $0.top.equalTo(setRouteButton.snp.bottom).inset(-70)
+            $0.top.equalTo(setRouteButton.snp.bottom).offset(70)
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(Metric.dividerHeight)
         }
 
         favoriteRouteListText.snp.makeConstraints {
-            $0.top.equalTo(mainDivider1.snp.bottom).inset(-15)
+            $0.top.equalTo(mainDivider1.snp.bottom).offset(17)
             $0.leading.equalToSuperview().inset(20)
         }
 
         editFavoriteRouteButton.snp.makeConstraints {
-            $0.top.equalTo(favoriteRouteListText.snp.top)
+            $0.centerY.equalTo(favoriteRouteListText.snp.centerY)
             $0.trailing.equalToSuperview().inset(20)
         }
 
         mainDivider2.snp.makeConstraints {
-            $0.top.equalTo(favoriteRouteListText.snp.bottom).inset(-130)
+            $0.top.equalTo(favoriteRouteListText.snp.bottom).offset(130)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(Metric.dividerHeight)
         }
     
         recentRouteListText.snp.makeConstraints {
-            $0.top.equalTo(mainDivider2.snp.bottom).inset(-15)
+            $0.top.equalTo(mainDivider2.snp.bottom).offset(15)
             $0.leading.equalToSuperview().inset(20)
         }
 
         allDeleteRecentRouteButton.snp.makeConstraints {
-            $0.top.equalTo(recentRouteListText.snp.top)
+            $0.centerY.equalTo(recentRouteListText.snp.centerY)
             $0.trailing.equalToSuperview().inset(20)
         }
     }
