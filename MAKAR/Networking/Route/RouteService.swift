@@ -271,7 +271,7 @@ final class RouteService {
                 return .pathErr
             }
             return .success(decodedData)
-        case .deleteRecentRoute, .deleteAllRecentRoute:
+        case .deleteRoute, .deleteRecentRoute, .deleteAllRecentRoute:
             guard let decodedData = try? decoder.decode(DeleteRouteListResponse.self, from: data) else {
                 return .pathErr
             }

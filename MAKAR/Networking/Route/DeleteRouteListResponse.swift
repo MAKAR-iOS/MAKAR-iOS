@@ -8,6 +8,6 @@
 struct DeleteRouteListResponse: Codable {
     let result: String
     let message: String
-    let data: String
+    let data: String?
     let statusCode: Int
 }
