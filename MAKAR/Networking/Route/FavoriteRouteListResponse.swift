@@ -13,3 +13,10 @@ struct FavoriteRouteListResponse: Codable {
     let data: [BriefRouteDTO]?
     let statusCode: Int
 }
+
+struct FavoriteRoutePostListResponse: Codable {
+    let result: String
+    let message: String
+    let data: String
+    let statusCode: Int
+}

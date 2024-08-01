@@ -21,6 +21,7 @@ enum RouteAPI {
     case getFavoriteRouteList
     case deleteRecentRoute(routeId: Int)
     case deleteAllRecentRoute
+    case postFavoriteRoute(routeId: Int)
 }
 
 extension RouteAPI: TargetType {
@@ -38,6 +39,8 @@ extension RouteAPI: TargetType {
             return URLConst.routeRecent + "/\(routeId)"
         case .deleteAllRecentRoute:
             return URLConst.routeRecentAll
+        case .postFavoriteRoute(let routeId):
+            return URLConst.routeFavorite + "/\(routeId)"
         }
     }
 
@@ -45,7 +48,7 @@ extension RouteAPI: TargetType {
         switch self {
         case .getRouteList, .getRecentRouteList, .getFavoriteRouteList:
             return .get
-        case .postRoute:
+        case .postRoute, .postFavoriteRoute:
             return .post
         case .deleteRoute, .deleteRecentRoute, .deleteAllRecentRoute:
             return .delete
@@ -71,7 +74,8 @@ extension RouteAPI: TargetType {
                 .getRecentRouteList,
                 .getFavoriteRouteList,
                 .deleteRecentRoute,
-                .deleteAllRecentRoute:
+                .deleteAllRecentRoute,
+                .postFavoriteRoute:
             return .requestPlain
         }
     }
