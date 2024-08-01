@@ -206,7 +206,7 @@ class HomeViewController: BaseViewController {
         DispatchQueue.global(qos: .background).async {
             let runLoop = RunLoop.current
             
-            Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
+            Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
                 if UserDefaultHandler.routeId != 0 {
                     if !self.isMakarTaken {
                         self.handleMakarTime()
@@ -216,8 +216,9 @@ class HomeViewController: BaseViewController {
                 }
             }
             //하차 시간 까지 비동기 루프 실행
-            let getOffTimeDate = self.convertStringToDate(targetDateString: self.getOffTime)
-            runLoop.run(until: getOffTimeDate)
+//            let getOffTimeDate = self.convertStringToDate(targetDateString: self.getOffTime)
+//            runLoop.run(until: getOffTimeDate)
+            runLoop.run()
 
             //하차 시간 도달
             if UserDefaultHandler.routeId != 0{
@@ -494,6 +495,8 @@ extension HomeViewController {
                     self.makarNotiList = makarNotiList
                     self.getOffNotiList = getOffNotiList
                 }
+                UserDefaultHandler.routeId = data.data.routeId ?? 0
+                changeComponent()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }

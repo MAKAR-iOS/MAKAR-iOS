@@ -13,6 +13,7 @@ struct HomeResponse: Codable {
 }
 
 struct HomeData: Codable {
+    let routeId : Int?
     let sourceStationName: String?
     let destinationStationName: String?
     let makarTime: String?
