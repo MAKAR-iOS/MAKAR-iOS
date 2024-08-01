@@ -11,4 +11,7 @@ struct UserDefaultHandler {
     
     @UserDefault(key: "refreshToken", defaultValue: "")
     static var refreshToken: String
+
+    @UserDefault(key: "routeId", defaultValue: 0)
+    static var routeId: Int
 }
