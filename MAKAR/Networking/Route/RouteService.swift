@@ -20,6 +20,7 @@ final class RouteService {
         case getFavoriteRouteList
         case deleteRecentRoute
         case deleteAllRecentRoute
+        case postFavoriteRoute
     }
 
     public func getRouteList(
@@ -155,6 +156,24 @@ final class RouteService {
         }
     }
 
+    public func postFavoriteRoute(routeId: Int,
+                                      completion: @escaping (NetworkResult<Any>) -> Void ) {
+        routeProvider.request(.postFavoriteRoute(routeId: routeId))
+        { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .postFavoriteRoute)
+                completion(networkResult)
+            case .failure(let error):
+                let networkResult = self.judgeStatus(by: error.response?.statusCode ?? 500, error.response?.data ?? Data(), responseData: .postFavoriteRoute)
+                completion(networkResult)
+                print(error)
+            }
+        }
+    }
+
     private func judgeStatus(by statusCode: Int, _ data: Data, responseData: ResponseData) -> NetworkResult<Any> {
 
         let decoder = JSONDecoder()
@@ -162,7 +181,7 @@ final class RouteService {
         switch statusCode {
         case 200..<300:
             switch responseData {
-            case .getRouteList, .postRoute, .deleteRoute, .getFavoriteRouteList, .getRecentRouteList, .deleteRecentRoute, .deleteAllRecentRoute:
+            case .getRouteList, .postRoute, .deleteRoute, .getFavoriteRouteList, .getRecentRouteList, .deleteRecentRoute, .deleteAllRecentRoute, .postFavoriteRoute:
                 return isValidData(data: data, responseData: responseData)
             }
         case 400..<500:
@@ -188,6 +207,11 @@ final class RouteService {
             return .success(decodedData)
         case .getFavoriteRouteList:
             guard let decodedData = try? decoder.decode(FavoriteRouteListResponse.self, from: data) else {
+                return .pathErr
+            }
+            return .success(decodedData)
+        case .postFavoriteRoute:
+            guard let decodedData = try? decoder.decode(FavoriteRoutePostListResponse.self, from: data) else {
                 return .pathErr
             }
             return .success(decodedData)
