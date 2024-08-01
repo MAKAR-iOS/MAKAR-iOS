@@ -106,6 +106,7 @@ extension MyRouteViewController {
                 print("🎯 getRoute success: " + "\(data)")
                 myRoute = data.data
                 myRouteTableView.reloadData()
+                myRouteView.setData(data: myRoute)
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }

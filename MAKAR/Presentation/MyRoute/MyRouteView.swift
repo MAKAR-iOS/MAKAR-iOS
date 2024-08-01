@@ -28,7 +28,8 @@ class MyRouteView: BaseView {
     private let dividerView = DividerView(dividerType: .thick)
 
     // MARK: Properties
-    let myRoute: [RouteDTO] = []
+    var myRoute: RouteDTO?
+
     private let dateFormatter = DateFormatter().then {
         $0.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
         $0.locale = Locale(identifier: "en_US_POSIX")
@@ -38,7 +39,6 @@ class MyRouteView: BaseView {
     override func configureSubviews() {
         super.configureSubviews()
         self.backgroundColor = .background
-//        setData(data: myRoute[0])
 
         addSubview(makarLabel)
         addSubview(myRouteTimeLabel)
@@ -80,7 +80,9 @@ class MyRouteView: BaseView {
 }
 
 extension MyRouteView {
-    func setData(data: RouteDTO) {
+    func setData(data: RouteDTO?) {
+        guard let data = data else { return }
+
         let startTime = changeDateFormat(date: data.sourceTime)
         let endTime = changeDateFormat(date: data.destinationTime)
 
@@ -97,7 +99,7 @@ extension MyRouteView {
             $0.dateFormat = "HH:mm"
             $0.locale = Locale(identifier: "ko_kr")
         }
-           
+
         let date = convertStringToDate(targetDateString: date)
         return outputDateFormatter.string(from: date)
     }
@@ -107,11 +109,10 @@ extension MyRouteView {
         let targetDate = convertStringToDate(targetDateString: targetDate)
         return Calendar.current.dateComponents([.minute], from: currentDate, to: targetDate).minute!
     }
-    
+
     private func convertStringToDate(targetDateString: String) -> Date {
         let adjustedDateString = targetDateString.replacingOccurrences(of: "KST", with: "+0900")
                                                 .replacingOccurrences(of: "UTC", with: "+0900")
         return dateFormatter.date(from: adjustedDateString)!
     }
-    
 }
