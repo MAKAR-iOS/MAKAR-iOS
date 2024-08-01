@@ -18,34 +18,38 @@ class SearchRouteTableViewCell : UITableViewCell {
         $0.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
         $0.locale = Locale(identifier: "en_US_POSIX")
     }
-    
+
     // MARK: UI Components
     let lineNumImage = LineNumImage()
     
-    let totalTimeLabel = UILabel().then{ //탑승 시간
+    let totalTimeLabel = UILabel().then { //탑승 시간
         $0.font = UIFont.systemFont(ofSize: 23, weight: .bold)
         $0.sizeToFit()
     }
-    
-    let routeTimeLabel = UILabel().then{ //출발, 도착 시간
+
+    let routeTimeLabel = UILabel().then { //출발, 도착 시간
         $0.font = UIFont.systemFont(ofSize: 14, weight: .light)
         $0.sizeToFit()
     }
-    
-    let leftTimeLabel = UILabel().then{ //남은 시간
+
+    let favoriteRouteButton = BaseButton().then {
+        $0.setImage(MakarButton.starButton, for: .normal)
+    }
+
+    let leftTimeLabel = UILabel().then { //남은 시간
         $0.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         $0.sizeToFit()
     }
-    
+
     let routeProgressView = SearchRouteProgressView()
-    
-    let routeStackView = UIStackView().then{ //경로
+
+    let routeStackView = UIStackView().then { //경로
         $0.axis = .vertical
-        $0.spacing = 10
+        $0.spacing = 12
         $0.distribution = .equalSpacing
         $0.alignment = .leading
     }
-    
+
     // MARK: Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -54,50 +58,58 @@ class SearchRouteTableViewCell : UITableViewCell {
         configureSubviews()
         makeConstraints()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Configuration
-    func configure(){
+    func configure() {
         self.backgroundColor = .background
     }
-    
+
     func configureSubviews() {
         addSubview(totalTimeLabel)
         addSubview(routeTimeLabel)
+        addSubview(favoriteRouteButton)
         addSubview(leftTimeLabel)
         addSubview(routeProgressView)
         addSubview(routeStackView)
     }
-    
+
     // MARK: Properties
-        
+
     // MARK: Layout
     func makeConstraints() {
-        totalTimeLabel.snp.makeConstraints{
+        totalTimeLabel.snp.makeConstraints {
             $0.top.leading.equalToSuperview().inset(20)
         }
-        
-        routeTimeLabel.snp.makeConstraints{
-            $0.centerY.equalTo(totalTimeLabel.snp.centerY)
-            $0.leading.equalTo(totalTimeLabel.snp.trailing).inset(-8)
+
+        routeTimeLabel.snp.makeConstraints {
+            $0.centerY.equalTo(totalTimeLabel.snp.centerY).offset(2)
+            $0.leading.equalTo(totalTimeLabel.snp.trailing).offset(8)
         }
-        
-        leftTimeLabel.snp.makeConstraints{
-            $0.top.equalTo(totalTimeLabel.snp.bottom).inset(-5)
+
+        favoriteRouteButton.snp.makeConstraints {
+            $0.centerY.equalTo(totalTimeLabel.snp.centerY)
+            $0.trailing.equalToSuperview().inset(20)
+            $0.height.width.equalTo(20)
+        }
+
+        leftTimeLabel.snp.makeConstraints {
+            $0.top.equalTo(totalTimeLabel.snp.bottom).offset(8)
             $0.leading.equalToSuperview().inset(20)
         }
-        
-        routeProgressView.snp.makeConstraints{
-            $0.top.equalTo(leftTimeLabel.snp.bottom).inset(-10)
-            $0.leading.trailing.equalToSuperview().inset(20)
+
+        routeProgressView.snp.makeConstraints {
+            $0.top.equalTo(leftTimeLabel.snp.bottom).offset(12)
+            $0.horizontalEdges.equalToSuperview().inset(20)
         }
-        
-        routeStackView.snp.makeConstraints{
-            $0.top.equalTo(routeProgressView.snp.bottom).inset(-15)
-            $0.leading.trailing.bottom.equalToSuperview().inset(20)
+
+        routeStackView.snp.makeConstraints {
+            $0.top.equalTo(routeProgressView.snp.bottom).offset(17)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview().inset(17)
         }
     }
 
@@ -105,11 +117,11 @@ class SearchRouteTableViewCell : UITableViewCell {
         lineNumImage.addLineNum()
         let startTime = changeDateFormat(date: data.sourceTime)
         let endTime = changeDateFormat(date: data.destinationTime)
-        
+
         totalTimeLabel.text = "\(data.totalTime)분"
         routeTimeLabel.text = "\(startTime) 출발 | \(endTime) 도착"
         leftTimeLabel.text = "\(checkLeftTime(targetDate: data.sourceTime))분 후 막차"
-        
+
         if !(routeProgressView.subviews.isEmpty) {
             for subview in routeProgressView.subviews {
                 subview.removeFromSuperview()
@@ -123,7 +135,7 @@ class SearchRouteTableViewCell : UITableViewCell {
         }
 
         routeProgressView.setData(subRouteList: data.subRouteDtoList)
-        
+
         //출발역
         let routeLabel = SubRouteTextView(
             lineName: data.sourceStationName,
@@ -142,7 +154,7 @@ class SearchRouteTableViewCell : UITableViewCell {
             $0.dateFormat = "HH:mm"
             $0.locale = Locale(identifier: "ko_KR")
         }
-           
+
         let date = convertStringToDate(targetDateString: date)
         return outputDateFormatter.string(from: date)
     }
@@ -153,7 +165,7 @@ class SearchRouteTableViewCell : UITableViewCell {
         let targetDate = convertStringToDate(targetDateString: targetDate)
         return Calendar.current.dateComponents([.minute], from: currentDate, to: targetDate).minute!
     }
-    
+
     private func convertStringToDate(targetDateString: String) -> Date {
         let adjustedDateString = targetDateString.replacingOccurrences(of: "KST", with: "+0900")
         return dateFormatter.date(from: adjustedDateString)!
