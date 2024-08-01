@@ -425,6 +425,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             lineNum: data.destinationLineNum)
         searchRouteViewController.changeSearchBarText(sourceText: sourceText, destinationText: destinationText)
         self.navigationController?.pushViewController(searchRouteViewController, animated: true)
+        searchRouteViewController.getRouteList(
+            fromStationName: data.sourceStationName,
+            fromLineNum: data.sourceLineNum,
+            toStationName: data.destinationStationName,
+            toLineNum: data.destinationLineNum)
     }
 
     func setFavoriteRouteCollectionView() {
