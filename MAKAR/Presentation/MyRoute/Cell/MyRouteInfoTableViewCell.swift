@@ -46,7 +46,6 @@ class MyRouteInfoTableViewCell: UITableViewCell {
     }
 
     private let directLabel = UILabel().then {
-        $0.text = "상도 방면"
         $0.textColor = .lightGray
         $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
     }
@@ -58,7 +57,7 @@ class MyRouteInfoTableViewCell: UITableViewCell {
     }
 
     private let leftTimeDetailLabel = UILabel().then {
-        $0.text = "23:30 (석남행)"
+        $0.text = "23:30"
         $0.textColor = .lightGray
         $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
     }
@@ -246,7 +245,8 @@ extension MyRouteInfoTableViewCell {
         lineNumColorView.backgroundColor = lineNumColor.lineNumColorMap[data.lineNum]
 
         sourceStationNameLabel.text = data.fromStationName
-        movingInfoLabel.text = "6개 역 이동 (" + String(data.sectionTime) + "분)"
+        directLabel.text = "\(data.path[1]) 방면"
+        movingInfoLabel.text = "\(data.path.count-1)개 역 이동 (" + String(data.sectionTime) + "분)"
 
         destinationStationNameLabel.text = data.toStationName
         transferTimeLabel.text = "환승 도보 (" + String(data.transferTime) + "분)"

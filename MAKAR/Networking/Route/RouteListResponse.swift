@@ -51,4 +51,5 @@ struct SubRouteDTO: Codable {
     let lineNum: String
     let sectionTime: Int
     let transferTime: Int
+    let path: [String]
 }
