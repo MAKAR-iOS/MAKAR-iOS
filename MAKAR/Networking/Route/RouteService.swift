@@ -236,8 +236,13 @@ final class RouteService {
         let decoder = JSONDecoder()
 
         switch responseData {
-        case .getRouteList, .postRoute, .deleteRoute:
+        case .getRouteList, .deleteRoute:
             guard let decodedData = try? decoder.decode(RouteListResponse.self, from: data) else {
+                return .pathErr
+            }
+            return .success(decodedData)
+        case .postRoute:
+            guard let decodedData = try? decoder.decode(RouteSetResponse.self, from: data) else {
                 return .pathErr
             }
             return .success(decodedData)
