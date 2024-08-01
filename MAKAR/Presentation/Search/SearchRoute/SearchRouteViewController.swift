@@ -197,7 +197,11 @@ extension SearchRouteViewController: UITableViewDelegate, UITableViewDataSource 
         }
 
         cell.setData(data: searchRouteResultList[indexPath.row])
-
+        cell.tapFavoriteRouteButton = { [weak self] in
+            guard let self else { return }
+            let routeId = searchRouteResultList[indexPath.row].routeId
+            postFavoriteRoute(routeId: routeId)
+        }
         return cell
     }
     
@@ -223,6 +227,29 @@ extension SearchRouteViewController {
                     guard let data = response as? RouteSetResponse else { return }
                     print("🎯 postRoute success: " + "\(data)")
                     router.popViewController()
+                case .requestErr(let errorResponse):
+                    dump(errorResponse)
+                    guard let data = errorResponse as? ErrorResponse else { return }
+                    print(data)
+                    print("requestErr")
+                case .serverErr:
+                    print("serverErr")
+                case .networkFail:
+                    print("networkFail")
+                case .pathErr:
+                    print("pathErr")
+                }
+        }
+    }
+
+    private func postFavoriteRoute(routeId: Int) {
+        print("🚇 postFavoriteRoute called")
+        NetworkService.shared.route.postFavoriteRoute(routeId: routeId) { [self]
+            result in
+                switch result {
+                case .success(let response):
+                    guard let data = response as? FavoriteRoutePostListResponse else { return }
+                    print("🎯 postFavoriteRoute success: " + "\(data)")
                 case .requestErr(let errorResponse):
                     dump(errorResponse)
                     guard let data = errorResponse as? ErrorResponse else { return }

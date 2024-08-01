@@ -18,7 +18,7 @@ class SearchRouteTableViewCell : UITableViewCell {
         $0.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
         $0.locale = Locale(identifier: "en_US_POSIX")
     }
-
+    
     // MARK: UI Components
     let lineNumImage = LineNumImage()
     
@@ -26,58 +26,61 @@ class SearchRouteTableViewCell : UITableViewCell {
         $0.font = UIFont.systemFont(ofSize: 23, weight: .bold)
         $0.sizeToFit()
     }
-
+    
     let routeTimeLabel = UILabel().then { //출발, 도착 시간
         $0.font = UIFont.systemFont(ofSize: 14, weight: .light)
         $0.sizeToFit()
     }
-
+    
     let favoriteRouteButton = BaseButton().then {
         $0.setImage(MakarButton.starButton, for: .normal)
     }
-
+    
     let leftTimeLabel = UILabel().then { //남은 시간
         $0.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         $0.sizeToFit()
     }
-
+    
     let routeProgressView = SearchRouteProgressView()
-
+    
     let routeStackView = UIStackView().then { //경로
         $0.axis = .vertical
         $0.spacing = 12
         $0.distribution = .equalSpacing
         $0.alignment = .leading
     }
-
+    
     // MARK: Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+        
         configure()
         configureSubviews()
         makeConstraints()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: Configuration
     func configure() {
         self.backgroundColor = .background
     }
-
+    
     func configureSubviews() {
-        addSubview(totalTimeLabel)
-        addSubview(routeTimeLabel)
-        addSubview(favoriteRouteButton)
-        addSubview(leftTimeLabel)
-        addSubview(routeProgressView)
-        addSubview(routeStackView)
+        contentView.addSubview(totalTimeLabel)
+        contentView.addSubview(routeTimeLabel)
+        contentView.addSubview(leftTimeLabel)
+        contentView.addSubview(routeProgressView)
+        contentView.addSubview(routeStackView)
+        contentView.addSubview(favoriteRouteButton)
+
+        favoriteRouteButton.addTarget(self, action: #selector(handleFavoriteRecentRouteButton), for: .touchUpInside)
     }
 
     // MARK: Properties
+    var tapFavoriteRouteButton: (() -> Void)?
 
     // MARK: Layout
     func makeConstraints() {
@@ -112,7 +115,9 @@ class SearchRouteTableViewCell : UITableViewCell {
             $0.bottom.equalToSuperview().inset(17)
         }
     }
+}
 
+extension SearchRouteTableViewCell {
     func setData(data: RouteDTO) {
         lineNumImage.addLineNum()
         let startTime = changeDateFormat(date: data.sourceTime)
@@ -170,5 +175,9 @@ class SearchRouteTableViewCell : UITableViewCell {
         let adjustedDateString = targetDateString.replacingOccurrences(of: "KST", with: "+0900")
         return dateFormatter.date(from: adjustedDateString)!
     }
-}
 
+    // MARK: Event
+    @objc func handleFavoriteRecentRouteButton() {
+        tapFavoriteRouteButton?()
+    }
+}
