@@ -39,6 +39,14 @@ class HomeViewController: BaseViewController {
         $0.image = MakarImage.makarLogo
     }
 
+    private let favoriteEmptyResultView = EmptyResultView("즐겨찾는 경로가 없습니다.").then {
+        $0.isHidden = true
+    }
+
+    private let recentEmptyResultView = EmptyResultView("최근 검색된 경로가 없습니다.").then {
+        $0.isHidden = true
+    }
+
     lazy var favoriteRouteCollectionView: UICollectionView = {
             let flowLayout = UICollectionViewFlowLayout()
             flowLayout.scrollDirection = .horizontal
@@ -87,6 +95,8 @@ class HomeViewController: BaseViewController {
 
         view.addSubview(homeScrollView)
         homeScrollView.addSubview(homeView)
+        homeView.addSubview(favoriteEmptyResultView)
+        homeView.addSubview(recentEmptyResultView)
         homeScrollView.showsVerticalScrollIndicator = false
 
         homeView.tapResetRouteButton = { [weak self] in
@@ -148,6 +158,18 @@ class HomeViewController: BaseViewController {
         navigationTitleImageView.snp.makeConstraints {
             $0.height.equalTo(20)
             $0.width.equalTo(100)
+        }
+
+        favoriteEmptyResultView.snp.makeConstraints {
+            $0.top.equalTo(homeView.favoriteRouteListText.snp.bottom).offset(15)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.equalTo(Metric.collectionViewHeight)
+        }
+
+        recentEmptyResultView.snp.makeConstraints {
+            $0.top.equalTo(homeView.recentRouteListText.snp.bottom).offset(15)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.equalTo(Metric.collectionViewHeight)
         }
 
         let contentViewHeight = homeView.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor)
@@ -405,12 +427,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 
     func setFavoriteRouteCollectionView() {
-        view.addSubview(favoriteRouteCollectionView)
+        homeView.addSubview(favoriteRouteCollectionView)
         favoriteRouteCollectionView.backgroundColor = .background
-        favoriteRouteCollectionView.showsHorizontalScrollIndicator = false //스크롤바 숨김
 
         favoriteRouteCollectionView.snp.makeConstraints {
-            $0.top.equalTo(homeView.favoriteRouteListText.snp.bottom).inset(-15)
+            $0.top.equalTo(homeView.favoriteRouteListText.snp.bottom).offset(15)
             $0.leading.equalToSuperview().inset(20)
             $0.trailing.equalToSuperview()
             $0.height.equalTo(Metric.collectionViewHeight)
@@ -421,9 +442,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         favoriteRouteCollectionView.dataSource = self
     }
 
-    func setRecentRouteCollectionView(){
+    func setRecentRouteCollectionView() {
         homeView.addSubview(recentRouteCollectionView)
         recentRouteCollectionView.showsHorizontalScrollIndicator = false
+        recentRouteCollectionView.backgroundColor = .background
 
         recentRouteCollectionView.snp.makeConstraints {
             $0.top.equalTo(homeView.recentRouteListText.snp.bottom).inset(-15)
@@ -436,6 +458,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         recentRouteCollectionView.register(RecentRouteCollectionViewCell.self, forCellWithReuseIdentifier: "RecentRouteCollectionViewCell")
         recentRouteCollectionView.delegate = self
         recentRouteCollectionView.dataSource = self
+    }
+
+    func setHidden(_ collectionView: UICollectionView,
+                   _ emptyView: EmptyResultView,
+                   _ bool: Bool) {
+        collectionView.isHidden = bool
+        emptyView.isHidden = !bool
     }
 }
 
@@ -513,6 +542,10 @@ extension HomeViewController {
                 guard let data = response as? FavoriteRouteListResponse else { return }
                 print("🎯 getFavoriteRouteList success: " + "\(data)")
                 favoriteRouteList = data.data
+                guard let isEmpty = data.data?.isEmpty else { return }
+                setHidden(favoriteRouteCollectionView,
+                          favoriteEmptyResultView,
+                          isEmpty)
                 favoriteRouteCollectionView.reloadData()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
@@ -537,6 +570,7 @@ extension HomeViewController {
                 guard let data = response as? DeleteRouteListResponse else { return }
                 print("🎯 deleteRecentRoute success: " + "\(data)")
                 getRecentRouteList()
+                recentRouteCollectionView.reloadData()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
@@ -560,6 +594,7 @@ extension HomeViewController {
                 guard let data = response as? DeleteRouteListResponse else { return }
                 print("🎯 deleteAllRecentRoute success: " + "\(data)")
                 getRecentRouteList()
+                recentRouteCollectionView.reloadData()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
@@ -583,6 +618,10 @@ extension HomeViewController {
                 guard let data = response as? RecentRouteListResponse else { return }
                 print("🎯 getRecentRouteList success: " + "\(data)")
                 recentRouteList = data.data.recentRouteList
+                guard let isEmpty = data.data.recentRouteList?.isEmpty else { return }
+                setHidden(recentRouteCollectionView,
+                          recentEmptyResultView,
+                          isEmpty)
                 recentRouteCollectionView.reloadData()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
