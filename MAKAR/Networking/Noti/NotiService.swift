@@ -78,7 +78,7 @@ final class NotiService {
     }
     
     public func deleteGetOffNoti(notiId: Int, completion: @escaping (NetworkResult<Any>) -> Void ) {
-        notiProvider.request(.deleteMakarNoti(notiId: notiId))
+        notiProvider.request(.deleteGetOffNoti(notiId: notiId))
         { result in
             switch result {
             case .success(let response):
