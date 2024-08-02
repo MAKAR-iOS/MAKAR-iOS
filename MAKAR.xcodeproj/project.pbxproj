@@ -285,8 +285,8 @@
 		262F82442C54C00F00C4440F /* Noti */ = {
 			isa = PBXGroup;
 			children = (
-				262F82452C54C01A00C4440F /* NotiResponse.swift */,
 				26D7C3FD2C57DBE7002127C1 /* NotiAPI.swift */,
+				262F82452C54C01A00C4440F /* NotiResponse.swift */,
 				26D7C3FF2C57DBF6002127C1 /* NotiService.swift */,
 			);
 			path = Noti;
