@@ -10,13 +10,13 @@ import UIKit
 class SearchRouteView: BaseView {
 
     // MARK: UI Components
-    private let sourceText = UILabel().then {
+    private let sourceTextLabel = UILabel().then {
         $0.text = "출발역"
         $0.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         $0.textColor = .darkGray
     }
 
-    private let destinationText = UILabel().then {
+    private let destinationTextLabel = UILabel().then {
         $0.text = "도착역"
         $0.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         $0.textColor = .darkGray
@@ -25,7 +25,7 @@ class SearchRouteView: BaseView {
     let sourceSearchBar = StationSearchBarButton(setTitle: "출발역을 입력하세요")
     let destinationSearchBar = StationSearchBarButton(setTitle: "도착역을 입력하세요")
 
-    private let swapButton = BaseButton().then{
+    private let swapButton = BaseButton().then {
         var config = UIButton.Configuration.plain()
         config.baseForegroundColor = .white
         config.cornerStyle = .capsule
@@ -33,7 +33,7 @@ class SearchRouteView: BaseView {
         $0.configuration = config
     }
 
-    private let searchRouteButton = RouteButton().then{
+    private let searchRouteButton = RouteButton().then {
         $0.setTitle("경로 찾기", for: .normal)
     }
 
@@ -48,88 +48,88 @@ class SearchRouteView: BaseView {
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
-        
-        addSubview(sourceText)
-        addSubview(destinationText)
+
+        addSubview(sourceTextLabel)
+        addSubview(destinationTextLabel)
         addSubview(sourceSearchBar)
         addSubview(destinationSearchBar)
         addSubview(swapButton)
         addSubview(searchRouteButton)
         addSubview(dividerView)
-        
+
         swapButton.addTarget(self, action: #selector(handleSwapButtonClickEvent), for: .touchUpInside)
         sourceSearchBar.addTarget(self, action: #selector(handleSourceSearchBarClickEvent), for: .touchUpInside)
         destinationSearchBar.addTarget(self, action: #selector(handleDestinationSearchBarClickEvent), for: .touchUpInside)
         searchRouteButton.addTarget(self, action: #selector(handleSearchRouteButtonClickEvent), for: .touchUpInside)
     }
-    
+
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
-        
-        sourceText.snp.makeConstraints{
+
+        sourceTextLabel.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide).inset(20)
             $0.leading.equalToSuperview().inset(20)
             $0.width.equalTo(Metric.textWidth)
         }
-        
-        destinationText.snp.makeConstraints{
-            $0.top.equalTo(sourceText.snp.bottom).inset(-40)
-            $0.leading.equalTo(sourceText.snp.leading)
+
+        destinationTextLabel.snp.makeConstraints {
+            $0.top.equalTo(sourceTextLabel.snp.bottom).offset(40)
+            $0.leading.equalTo(sourceTextLabel.snp.leading)
             $0.width.equalTo(Metric.textWidth)
         }
-        
-        swapButton.snp.makeConstraints{
+
+        swapButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(20)
-            $0.centerY.equalTo(sourceText.snp.bottom).inset(-25)
+            $0.centerY.equalTo(sourceTextLabel.snp.bottom).offset(25)
             $0.height.equalTo(Metric.swapButtonHeight)
             $0.width.equalTo(Metric.swapButtonWidth)
         }
-        
-        sourceSearchBar.snp.makeConstraints{
-            $0.centerY.equalTo(sourceText)
-            $0.leading.equalTo(sourceText.snp.trailing).inset(-8)
-            $0.trailing.equalTo(swapButton.snp.leading).inset(-5)
+
+        sourceSearchBar.snp.makeConstraints {
+            $0.centerY.equalTo(sourceTextLabel)
+            $0.leading.equalTo(sourceTextLabel.snp.trailing).offset(8)
+            $0.trailing.equalTo(swapButton.snp.leading).offset(5)
             $0.height.equalTo(Metric.searchBarButtonHeight)
         }
-        
-        destinationSearchBar.snp.makeConstraints{
-            $0.centerY.equalTo(destinationText)
-            $0.leading.equalTo(destinationText.snp.trailing).inset(-8)
-            $0.trailing.equalTo(swapButton.snp.leading).inset(-5)
+
+        destinationSearchBar.snp.makeConstraints {
+            $0.centerY.equalTo(destinationTextLabel)
+            $0.leading.equalTo(destinationTextLabel.snp.trailing).offset(8)
+            $0.trailing.equalTo(swapButton.snp.leading).offset(5)
             $0.height.equalTo(Metric.searchBarButtonHeight)
         }
-        
-        searchRouteButton.snp.makeConstraints{
-            $0.top.equalTo(destinationSearchBar.snp.bottom).inset(-20)
+
+        searchRouteButton.snp.makeConstraints {
+            $0.top.equalTo(destinationSearchBar.snp.bottom).offset(20)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(Metric.makarButtonHeight)
         }
-        
-        dividerView.snp.makeConstraints{
+
+        dividerView.snp.makeConstraints {
             $0.top.equalTo(searchRouteButton.snp.bottom).offset(16)
             $0.horizontalEdges.equalToSuperview()
         }
     }
-    
+
     // MARK: Event
     @objc private func handleSwapButtonClickEvent() {
         tapSwapStationButton?()
     }
-    
+
     @objc private func handleSourceSearchBarClickEvent() {
         tapSourceSearchBar?()
     }
-    
+
     @objc private func handleDestinationSearchBarClickEvent() {
         tapDestinationSearchBar?()
     }
-    
+
     @objc private func handleSearchRouteButtonClickEvent() {
         tapSearchRouteButton?()
     }
-    
-    func changeSearchBarText(sourceText: String, destinationText: String){
+
+    func changeSearchBarText(sourceText: String, destinationText: String) {
         self.sourceSearchBar.setTitle(sourceText, for: .normal)
         self.destinationSearchBar.setTitle(destinationText, for: .normal)
     }
