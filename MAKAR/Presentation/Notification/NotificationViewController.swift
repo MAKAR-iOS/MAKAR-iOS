@@ -83,7 +83,7 @@ class NotificationViewController: BaseViewController {
         $0.imageEdgeInsets = .init(top: 0, left: 10, bottom: 0, right: 0)
         $0.setImage(MakarButton.moreBottomButton, for: .normal)
     }
-    
+
     // MARK: Properties
     var makarNotiList: [NotiData?] = []
 
@@ -93,11 +93,8 @@ class NotificationViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: API 연결 성공 후 TableView Reload
-        getNotiList()
-        
+
         setDropDown()
-        setMakarTableViewHidden()
         setMakarAlertController()
 
         makarTableView.dataSource = self
@@ -108,7 +105,13 @@ class NotificationViewController: BaseViewController {
         
         makarNotiAddButton.addTarget(self, action: #selector(tapMakarNotiAdd), for: .touchUpInside)
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        getNotiList()
+    }
+
     @objc private func tapMakarNotiAdd() {
         present(makarAlertController, animated: true)
     }
@@ -239,7 +242,7 @@ class NotificationViewController: BaseViewController {
     func setTableView() {
         selectedMakarTime = []
         for notiData in makarNotiList {
-            selectedMakarTime.append(notiData!.notiMinute)
+            selectedMakarTime.append(notiData?.notiMinute ?? 0)
         }
     }
 }
@@ -311,6 +314,7 @@ extension NotificationViewController {
                 print("🎯 getNotiList success: " + "\(data)")
                 makarNotiList = data.data.makarNotiDtoList
                 setTableView()
+                setMakarTableViewHidden()
                 makarTableView.reloadData()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
@@ -323,10 +327,9 @@ extension NotificationViewController {
             case .pathErr:
                 print("pathErr")
             }
-            
         }
     }
-    
+
     private func postMakarNoti(routeId: Int, notiMinute: Int) {
         print("🔔 postMakarNoti called")
         NetworkService.shared.noti.postMakarNoti(routeId: routeId, notiMinute: notiMinute){
@@ -349,10 +352,9 @@ extension NotificationViewController {
             case .pathErr:
                 print("pathErr")
             }
-            
         }
     }
-    
+
     private func deleteMakarNoti(notiId: Int) {
         print("🔔 deleteMakarNoti called")
         NetworkService.shared.noti.deleteMakarNoti(notiId: notiId){
@@ -376,7 +378,6 @@ extension NotificationViewController {
             case .pathErr:
                 print("pathErr")
             }
-            
         }
     }
 }
