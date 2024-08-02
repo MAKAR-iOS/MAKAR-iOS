@@ -13,8 +13,8 @@ class NotificationViewController: BaseViewController {
     let makarTimeArr = [5, 10, 15, 20, 25, 30]
     var tempMakarTime = 5
     var selectedMakarTime: [Int] = []
-    let getOffStationArr = ["없음", "1전 역", "2전 역", "3전 역"]
-    var selectedGetOffStation = "없음"
+    let getOffStationArr = ["없음", "5분 전", "10분 전", "15분 전"]
+    var selectedGetOffStation = "10분 전"
 
     // MARK: UI Components
     private let makarNotiView = UIView().then {
@@ -76,7 +76,7 @@ class NotificationViewController: BaseViewController {
     }
 
     private let getOffNotiAddButton = BaseButton().then {
-        $0.setTitle("없음", for: .normal)
+        $0.setTitle("10분 전", for: .normal)
         $0.setTitleColor(UIColor.lightGray, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         $0.semanticContentAttribute = .forceRightToLeft
@@ -237,6 +237,7 @@ class NotificationViewController: BaseViewController {
         getOffNotiAddButton.showsMenuAsPrimaryAction = true
         getOffNotiAddButton.changesSelectionAsPrimaryAction = true
 
+        getOffNotiAddButton.setTitle(selectedGetOffStation, for: .normal)
     }
     
     func setTableView() {
