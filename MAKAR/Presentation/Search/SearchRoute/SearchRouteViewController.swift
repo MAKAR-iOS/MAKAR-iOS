@@ -20,6 +20,7 @@ class SearchRouteViewController: BaseViewController, SourceStationProtocol, Dest
     // MARK: Properties
     var sourceStation: StationDTO?
     var destinationStation: StationDTO?
+    var tempStation: StationDTO?
     var searchRouteResultList: [RouteDTO] = []
 
     // MARK: Environment
@@ -48,11 +49,12 @@ class SearchRouteViewController: BaseViewController, SourceStationProtocol, Dest
         view.addSubview(searchRouteTableView)
         view.addSubview(emptyResultView)
 
-        searchRouteView.tapSwapStationButton = {[weak self] in
+        searchRouteView.tapSwapStationButton = { [weak self] in
             guard let self else { return }
+            swapSearch()
         }
 
-        searchRouteView.tapSourceSearchBar = {[weak self] in
+        searchRouteView.tapSourceSearchBar = { [weak self] in
             guard let self = self else { return }
 
             let sourceSearchStationViewController = SourceSearchStationViewController()
@@ -60,7 +62,7 @@ class SearchRouteViewController: BaseViewController, SourceStationProtocol, Dest
             self.navigationController?.pushViewController(sourceSearchStationViewController, animated: true)
         }
 
-        searchRouteView.tapDestinationSearchBar = {[weak self] in
+        searchRouteView.tapDestinationSearchBar = { [weak self] in
             guard let self else { return }
             
             let destinationSearchStationViewController = DestinationSearchStationViewController()
@@ -133,6 +135,20 @@ class SearchRouteViewController: BaseViewController, SourceStationProtocol, Dest
         guard let destinationStation = destinationStation else { return }
         let destinationSearchBarTitle = "\(destinationStation.stationName) \(destinationStation.lineNum)"
         searchRouteView.destinationSearchBar.setTitle(destinationSearchBarTitle, for: .normal)
+    }
+
+    func swapSearch() {
+        guard let sourceStation = sourceStation,
+              let destinationStation = destinationStation else { return }
+        
+        let sourceSearchBarTitle = "\(sourceStation.stationName) \(sourceStation.lineNum)"
+        let destinationSearchBarTitle = "\(destinationStation.stationName) \(destinationStation.lineNum)"
+        searchRouteView.sourceSearchBar.setTitle(destinationSearchBarTitle, for: .normal)
+        searchRouteView.destinationSearchBar.setTitle(sourceSearchBarTitle, for: .normal)
+
+        self.tempStation = sourceStation
+        self.sourceStation = destinationStation
+        self.destinationStation = tempStation
     }
 }
 
