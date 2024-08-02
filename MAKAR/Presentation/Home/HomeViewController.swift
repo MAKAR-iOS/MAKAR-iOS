@@ -16,7 +16,7 @@ class HomeViewController: BaseViewController {
     }
 
     // MARK: Flag
-    var isMakarTaken = false
+    static var isMakarTaken = false
 
     var sourceStationName: String = ""
     var destinationStationName: String = ""
@@ -24,8 +24,8 @@ class HomeViewController: BaseViewController {
     var makarNotiList: [NotiData] = [] // 막차 알림 리스트
     var getOffNotiList: [NotiData] = [] // 하차 알림 리스트
 
-    var makarTime: String = "Thu Aug 01 03:50:00 UTC 2024"
-    var getOffTime: String = "Fri Aug 02 23:53:00 UTC 2024"
+    var makarTime: String = "Fri Aug 02 22:50:00 KST 2024"
+    var getOffTime: String = "Sat Aug 03 00:37:00 KST 2024"
 
     // MARK: Properties
     var homeData: HomeData?
@@ -208,18 +208,21 @@ class HomeViewController: BaseViewController {
             
             Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
                 if UserDefaultHandler.routeId != 0 {
-                    if !self.isMakarTaken {
+                    if !HomeViewController.isMakarTaken {
                         self.handleMakarTime()
                     } else {
                         self.handleGetOffTime()
                     }
                 }
+//                self.changeComponent()
             }
             //하차 시간 까지 비동기 루프 실행
 //            let getOffTimeDate = self.convertStringToDate(targetDateString: self.getOffTime)
+//            print("GetOffTimeDAte : \(getOffTimeDate)")
 //            runLoop.run(until: getOffTimeDate)
             runLoop.run()
 
+            print("Over Time")
             //하차 시간 도달
             if UserDefaultHandler.routeId != 0{
                 //경로 제거
@@ -232,9 +235,10 @@ class HomeViewController: BaseViewController {
         let makarLeftTime = self.checkNotificationTime(targetDateString: self.makarTime)
         if makarLeftTime <= 0 {
             // 막차 시간 도달
-            self.isMakarTaken = true
+            HomeViewController.isMakarTaken = true
             self.changeComponent()
         } else {
+            if makarNotiList.isEmpty{return}
             if makarLeftTime == makarNotiList[0].notiMinute {
                 addNotification(notiType: "막차", minute: makarLeftTime)
                 print("Show MAKAR Notification")
@@ -246,6 +250,9 @@ class HomeViewController: BaseViewController {
 
     private func handleGetOffTime() {
         let getOffLeftTime = self.checkNotificationTime(targetDateString: self.getOffTime)
+        if getOffLeftTime <= 0 {
+            deleteRoute()
+        }
         if getOffNotiList.isEmpty {return}
         if getOffLeftTime == getOffNotiList[0].notiMinute {
             addNotification(notiType: "하차", minute: getOffLeftTime)
@@ -286,7 +293,7 @@ class HomeViewController: BaseViewController {
     }
 
     private func updateRouteSetUI() {
-        if !self.isMakarTaken {
+        if !HomeViewController.isMakarTaken {
             let makarLeftTime = self.checkNotificationTime(targetDateString: self.makarTime)
             self.changeMainTitleText(target: "막차", minute: makarLeftTime)
             self.homeView.changeMainDestinationText(destinationText: sourceStationName)
@@ -525,7 +532,7 @@ extension HomeViewController {
                 guard let data = response as? DeleteRouteListResponse else { return }
                 print("🎯 deleteRoute success: " + "\(data)")
                 UserDefaultHandler.routeId = 0
-                isMakarTaken = false
+                HomeViewController.isMakarTaken = false
                 changeComponent()
             case .requestErr(let errorResponse):
                 dump(errorResponse)
