@@ -20,10 +20,14 @@ extension NotiAPI: TargetType {
     // TODO: delete URI {notiId}로 수정
     var path: String {
         switch self {
-        case .postMakarNoti, .deleteMakarNoti:
+        case .postMakarNoti:
             return URLConst.makar
-        case .postGetOffNoti, .deleteGetOffNoti:
+        case .deleteMakarNoti(let routeId):
+            return URLConst.makar + "/\(routeId)"
+        case .postGetOffNoti:
             return URLConst.getoff
+        case .deleteGetOffNoti(let routeId):
+            return URLConst.getoff + "/\(routeId)"
         case .getNotiList:
             return URLConst.noti
         }
