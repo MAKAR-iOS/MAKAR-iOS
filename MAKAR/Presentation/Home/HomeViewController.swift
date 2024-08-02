@@ -390,13 +390,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             favoriteCell.setData(data: data)
             favoriteCell.setNeedsLayout()
             favoriteCell.layoutIfNeeded()
-            let cellWidth = max(favoriteCell.destinationText.frame.width, favoriteCell.sourceText.frame.width) + 50
+            let cellWidth = max(favoriteCell.destinationTextLabel.frame.width, favoriteCell.sourceTextLabel.frame.width) + 50
             return cellWidth
         } else if let recentCell = cell as? RecentRouteCollectionViewCell {
             recentCell.setData(data: data)
             recentCell.setNeedsLayout()
             recentCell.layoutIfNeeded()
-            let cellWidth = max(recentCell.destinationText.frame.width, recentCell.sourceText.frame.width) + 50
+            let cellWidth = max(recentCell.destinationTextLabel.frame.width, recentCell.sourceTextLabel.frame.width) + 50
             return cellWidth
         } else {
             return 0

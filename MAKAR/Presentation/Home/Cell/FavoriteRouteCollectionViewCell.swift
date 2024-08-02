@@ -17,7 +17,7 @@ class FavoriteRouteCollectionViewCell: UICollectionViewCell {
 
     private var sourceLineNumImageView = UIImageView()
 
-    var sourceText = UILabel().then {
+    var sourceTextLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 13, weight: .light)
         $0.sizeToFit()
     }
@@ -30,7 +30,7 @@ class FavoriteRouteCollectionViewCell: UICollectionViewCell {
 
     private var destinationLineNumImageView = UIImageView()
 
-    var destinationText = UILabel().then {
+    var destinationTextLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 13, weight: .light)
         $0.sizeToFit()
     }
@@ -58,10 +58,10 @@ class FavoriteRouteCollectionViewCell: UICollectionViewCell {
 
     func configureSubviews() {
         addSubview(sourceLineNumImageView)
-        addSubview(sourceText)
+        addSubview(sourceTextLabel)
         addSubview(moreRightLabel)
         addSubview(destinationLineNumImageView)
-        addSubview(destinationText)
+        addSubview(destinationTextLabel)
     }
 
     // MARK: Layout
@@ -72,25 +72,25 @@ class FavoriteRouteCollectionViewCell: UICollectionViewCell {
             $0.width.height.equalTo(Metric.lineNumSize)
         }
 
-        sourceText.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(25)
-            $0.leading.equalTo(sourceLineNumImageView.snp.trailing).inset(-3)
+        sourceTextLabel.snp.makeConstraints {
+            $0.centerY.equalTo(sourceLineNumImageView.snp.centerY)
+            $0.leading.equalTo(sourceLineNumImageView.snp.trailing).offset(3)
         }
 
         moreRightLabel.snp.makeConstraints {
-            $0.top.equalTo(sourceText.snp.bottom).inset(-12)
+            $0.top.equalTo(sourceTextLabel.snp.bottom).offset(12)
             $0.leading.equalToSuperview().inset(10)
         }
 
         destinationLineNumImageView.snp.makeConstraints {
             $0.centerY.equalTo(moreRightLabel.snp.centerY)
-            $0.leading.equalTo(moreRightLabel.snp.trailing).inset(-3)
+            $0.leading.equalTo(moreRightLabel.snp.trailing).offset(3)
             $0.width.height.equalTo(Metric.lineNumSize)
         }
 
-        destinationText.snp.makeConstraints {
-            $0.centerY.equalTo(moreRightLabel.snp.centerY)
-            $0.leading.equalTo(destinationLineNumImageView.snp.trailing).inset(-3)
+        destinationTextLabel.snp.makeConstraints {
+            $0.centerY.equalTo(destinationLineNumImageView.snp.centerY)
+            $0.leading.equalTo(destinationLineNumImageView.snp.trailing).offset(3)
         }
     }
 
@@ -99,8 +99,8 @@ class FavoriteRouteCollectionViewCell: UICollectionViewCell {
 
         guard let data = data else { return }
 
-        sourceText.text = data.sourceStationName
-        destinationText.text = data.destinationStationName
+        sourceTextLabel.text = data.sourceStationName
+        destinationTextLabel.text = data.destinationStationName
 
         setLineImage(for: sourceLineNumImageView, with: data.sourceLineNum)
         setLineImage(for: destinationLineNumImageView, with: data.destinationLineNum)
