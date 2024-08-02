@@ -677,7 +677,7 @@ extension HomeViewController {
 
     private func deleteGetOffNoti(notiId: Int) {
         print("🔔 deleteGetOffNoti called")
-        NetworkService.shared.noti.deleteMakarNoti(notiId: notiId){
+        NetworkService.shared.noti.deleteGetOffNoti(notiId: notiId){
             [self] result in
             switch result {
             case .success(let response):
