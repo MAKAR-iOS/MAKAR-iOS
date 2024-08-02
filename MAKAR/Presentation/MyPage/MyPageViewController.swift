@@ -70,6 +70,7 @@ extension MyPageViewController : UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
         cell.textLabel?.textColor = .darkGray
         cell.backgroundColor = .background
+        cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         return cell
     }
